@@ -29,12 +29,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""SpeedIncrease"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""fb2baa5f-f6f1-4faf-9053-ae3e503b9cb4"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""PoleGrab"",
@@ -47,12 +47,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""ItemGrab"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3627d632-c6c2-4e34-8487-f724d05cfcf5"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Movement"",
