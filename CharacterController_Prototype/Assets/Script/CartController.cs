@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Presets;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour
 {
+    PlayerInput playerInput;
+    private InputAction increase;
 
     public Rigidbody rb;
     public float speed;
@@ -13,29 +18,26 @@ public class CarController : MonoBehaviour
 
     public bool dynamicTurnBool;
 
+
     private void Start()
     {
+        playerInput = new PlayerInput();
+        playerInput.Enable();
+
+        increase = playerInput.Gameplay.ItemGrab;
+        increase.Enable();
+        increase.performed += Increase;
+
         dynamicTurnBool = true;
+    }
+
+    private void Update()
+    {
+
     }
 
     private void FixedUpdate()
     {
-        //if(Input.GetKeyDown(KeyCode.O)) 
-        //{ 
-        //    if(dynamicTurnBool == true)
-        //    {
-        //        dynamicTurnBool = false;
-        //        turnSpeed = 0;
-        //    }
-
-        //    if (dynamicTurnBool == false)
-        //    {
-        //        dynamicTurnBool = true;
-        //        turnSpeed = 2;
-        //    }
-        //}
-
-        
 
         if (dynamicTurnBool == true)
         {
@@ -52,9 +54,7 @@ public class CarController : MonoBehaviour
             }
         }
 
-
-        float moveInput = Input.GetAxis("Vertical"); // Forward/Backward
-        Debug.Log(moveInput);
+        float moveInput = 0;
         float turnInput = Input.GetAxis("Horizontal"); // Left/Right
 
         rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.deltaTime);
@@ -64,5 +64,10 @@ public class CarController : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.deltaTime);
         }
+    }
+
+    private void Increase(InputAction.CallbackContext context)
+    {
+        Debug.Log("HELP");
     }
 }

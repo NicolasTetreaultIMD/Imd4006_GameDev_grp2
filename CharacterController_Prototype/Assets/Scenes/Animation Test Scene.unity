@@ -1926,7 +1926,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 638825164}
   speed: 10
-  turnSpeed: 2
+  currentTurnSpeed: 0
+  maxTurnSpeed: 0
+  dynamicTurnBool: 0
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
