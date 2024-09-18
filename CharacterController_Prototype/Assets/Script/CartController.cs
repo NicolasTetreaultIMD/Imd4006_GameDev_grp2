@@ -1,30 +1,43 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
+    public Animator animationController;
+
     PlayerInput playerInput;
     private InputAction increase;
 
     public Rigidbody rb;
+
+    public float moveInput;
     public float speed;
     public float currentTurnSpeed;
     public float maxTurnSpeed;
+    float speedDecreaseCooldown; //The time in which a speed will decrease
+    public float speedDecreaseValue; //How much the speed will decrease by
 
     public bool dynamicTurnBool;
 
 
     private void Start()
     {
+        speed = 0;
+        currentTurnSpeed = 0;
+        maxTurnSpeed = 3.6f;
+        speedDecreaseValue = 0.5f;
+
         playerInput = new PlayerInput();
         playerInput.Enable();
 
-        increase = playerInput.Gameplay.ItemGrab;
+        increase = playerInput.Gameplay.SpeedIncrease;
         increase.Enable();
         increase.performed += Increase;
 
@@ -33,19 +46,56 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        //Syncs the speed of the player's leg animation to the player's actual speed in the game.
+        float newLowerBodySpeed = speed / 18.75f;
+        animationController.SetFloat("LowerBodySpeed",newLowerBodySpeed);
 
+        if (speed == 0)
+        {
+            animationController.SetBool("IsIdle", true);
+            //animationController.Play("Idle", 1);
+        }
+        else
+        {
+            animationController.SetBool("IsIdle", false);
+            //animationController.Play("Run_LowerBody", 1);
+        }
     }
-
     private void FixedUpdate()
     {
+        //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
+        if (speed > 0)
+        {
+            if (Time.time >= speedDecreaseCooldown)
+            {
+                speed -= speedDecreaseValue;
+                speedDecreaseCooldown = Time.time + 0.5f;
+            }
+        }
+        else if(speed < 0) 
+        {
+            speed = 0;
+        }
 
+        //Forumla to synchronize the player's maximum turn speed relative to their current speed.
+        maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
+
+        /* JOYSTICK CONTROLS FOR TURNING
+        Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+        if(Math.Abs(leftStick.x) > 0.05f)
+        {
+
+        }
+        */
+
+        // Adjusts the turn speed to increase incrementally instead of just 0% -> 100% turn speed.
         if (dynamicTurnBool == true)
         {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+            if (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed)
             {
                 if (currentTurnSpeed < maxTurnSpeed)
                 {
-                    currentTurnSpeed += 0.1f;
+                    currentTurnSpeed += (maxTurnSpeed/10);
                 }
             }
             else
@@ -54,20 +104,31 @@ public class CarController : MonoBehaviour
             }
         }
 
-        float moveInput = 0;
-        float turnInput = Input.GetAxis("Horizontal"); // Left/Right
+        moveInput = 1f; // 0 = Don't Move & 1 = Move
+        float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
 
         rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.deltaTime);
 
-        if (turnInput != 0)
+        if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
         {
             Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.deltaTime);
         }
     }
 
-    private void Increase(InputAction.CallbackContext context)
+    private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        Debug.Log("HELP");
+        speedDecreaseCooldown = Time.time + 0.15f;
+
+        if (speed < 37.5f)
+        {
+            speed += 2.5f;
+        }
+
+        if(currentTurnSpeed > maxTurnSpeed) //Makes sure the current turn speed does not exceed the max turn speed
+        {
+            currentTurnSpeed = maxTurnSpeed;
+        }    
+
     }
 }

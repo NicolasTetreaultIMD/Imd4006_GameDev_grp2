@@ -551,6 +551,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 5bb2e75b85c54d94191c8e22a86a59e0, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 853db726dd044f14894a30472653cf49,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1924,10 +1929,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 1592444424}
   rb: {fileID: 638825164}
-  speed: 10
+  moveInput: 0
+  speed: 0
   currentTurnSpeed: 0
   maxTurnSpeed: 0
+  speedDecreaseValue: 0
   dynamicTurnBool: 0
 --- !u!1 &832575517
 GameObject:
@@ -1981,6 +1989,12 @@ Transform:
 --- !u!4 &1592444423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 853db726dd044f14894a30472653cf49,
+    type: 3}
+  m_PrefabInstance: {fileID: 617017440}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1592444424 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 853db726dd044f14894a30472653cf49,
     type: 3}
   m_PrefabInstance: {fileID: 617017440}
   m_PrefabAsset: {fileID: 0}
