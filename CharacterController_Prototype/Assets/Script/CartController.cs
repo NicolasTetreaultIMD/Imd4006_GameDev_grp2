@@ -5,87 +5,64 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
 
-    private float horizontalInput;
-    private float verticalInput;
-    private float currentSteerAngle;
-    private float currentbreakForce;
-    private bool isBreaking;
+    public Rigidbody rb;
+    public float speed;
+    public float currentTurnSpeed;
+    public float maxTurnSpeed;
 
-    public float motorForce;
-    public float breakForce;
-    public float maxSteerAngle;
-
-    public WheelCollider frontLeftWheelCollider;
-    public WheelCollider frontRightWheelCollider;
-    public WheelCollider backLeftWheelCollider;
-    public WheelCollider backRightWheelCollider;
-
-    public Transform frontLeftWheelTransform;
-    public Transform frontRightWheelTransform;
-    public Transform backLeftWheelTransform;
-    public Transform backRightWheelTransform;
+    public bool dynamicTurnBool;
 
     private void Start()
     {
-
+        dynamicTurnBool = true;
     }
 
     private void FixedUpdate()
     {
-        GetInput();
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
-    }
+        //if(Input.GetKeyDown(KeyCode.O)) 
+        //{ 
+        //    if(dynamicTurnBool == true)
+        //    {
+        //        dynamicTurnBool = false;
+        //        turnSpeed = 0;
+        //    }
+
+        //    if (dynamicTurnBool == false)
+        //    {
+        //        dynamicTurnBool = true;
+        //        turnSpeed = 2;
+        //    }
+        //}
+
+        
+
+        if (dynamicTurnBool == true)
+        {
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+            {
+                if (currentTurnSpeed < maxTurnSpeed)
+                {
+                    currentTurnSpeed += 0.1f;
+                }
+            }
+            else
+            {
+                currentTurnSpeed = 0;
+            }
+        }
 
 
-    private void GetInput()
-    {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
-    }
+        float moveInput = Input.GetAxis("Vertical"); // Forward/Backward
+        Debug.Log(moveInput);
+        float turnInput = Input.GetAxis("Horizontal"); // Left/Right
 
-    private void HandleMotor()
-    {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
-        ApplyBreaking();
-    }
+        rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.deltaTime);
 
-    private void ApplyBreaking()
-    {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        backLeftWheelCollider.brakeTorque = currentbreakForce;
-        backRightWheelCollider.brakeTorque = currentbreakForce;
-    }
-
-    private void HandleSteering()
-    {
-        currentSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
-    }
-
-    private void UpdateWheels()
-    {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(backRightWheelCollider, backRightWheelTransform);
-        UpdateSingleWheel(backLeftWheelCollider, backLeftWheelTransform);
-    }
-
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
-    {
-        Vector3 pos;
-        Quaternion rot;       
-        wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
-        wheelTransform.position =  pos;
+        if (turnInput != 0)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.deltaTime);
+        }
     }
 }
