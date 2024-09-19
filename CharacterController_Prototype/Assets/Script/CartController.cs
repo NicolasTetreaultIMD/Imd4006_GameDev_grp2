@@ -101,12 +101,15 @@ public class CarController : MonoBehaviour
                 rightWheelSmoke.SetActive(false);
         }
         */
+
+        VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
+        VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
+
         if (Keyboard.current.aKey.isPressed)
         {
             // Turn left, play left wheel smoke
             if (leftWheelSmoke != null)
             {
-                VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
                 if (leftVfx != null) leftVfx.Play(); // Start the visual effect
                 Debug.Log("Left wheel smoke started");
 
@@ -115,17 +118,15 @@ public class CarController : MonoBehaviour
             // Stop right wheel smoke 
             if (rightWheelSmoke != null)
             {
-                VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
                 if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
             }
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             // Turn right, play right wheel smoke
-            if (rightWheelSmoke != null)
+            if (!rightVfx.HasAnySystemAwake())
             {
-                VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
-                if (rightVfx != null) rightVfx.Play(); // Start the visual effect
+                rightVfx.Play(); // Start the visual effect
                 Debug.Log("Right wheel smoke started");
 
             }
@@ -133,8 +134,7 @@ public class CarController : MonoBehaviour
             // Stop left wheel smoke
             if (leftWheelSmoke != null)
             {
-                VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
-                //if (leftVfx != null) leftVfx.Stop(); // Stop the visual effect
+                //here
             }
         }
         //else // Neither key pressed, stop both wheel smokes
