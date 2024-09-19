@@ -6,6 +6,7 @@ using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
@@ -14,6 +15,7 @@ public class CarController : MonoBehaviour
 
     PlayerInput playerInput;
     private InputAction increase;
+
 
     public Rigidbody rb;
 
@@ -25,6 +27,9 @@ public class CarController : MonoBehaviour
     public float speedDecreaseValue; //How much the speed will decrease by
 
     public bool dynamicTurnBool;
+
+    public GameObject leftWheelSmoke;
+    public GameObject rightWheelSmoke;
 
 
     private void Start()
@@ -59,6 +64,37 @@ public class CarController : MonoBehaviour
         {
             animationController.SetBool("IsIdle", false);
             //animationController.Play("Run_LowerBody", 1);
+        }
+
+        // -------------- SMOKE FOR WHEELS -------------------------
+        // Check input to determine visual effects when turning
+        if (Keyboard.current.aKey.isPressed)
+        {
+            // Turning left, show left wheel smoke
+            if (leftWheelSmoke != null)
+                leftWheelSmoke.SetActive(false);
+
+            // Hide right wheel smoke
+            if (rightWheelSmoke != null)
+                rightWheelSmoke.SetActive(true);
+        }
+        else if (Keyboard.current.dKey.isPressed)
+        {
+            // Turning right, show right wheel smoke
+            if (rightWheelSmoke != null)
+                rightWheelSmoke.SetActive(false);
+
+            // Hide left wheel smoke
+            if (leftWheelSmoke != null)
+                leftWheelSmoke.SetActive(true);
+        }
+        else // Neither key pressed, hide both wheel smokes
+        {
+            if (leftWheelSmoke != null)
+                leftWheelSmoke.SetActive(false);
+
+            if (rightWheelSmoke != null)
+                rightWheelSmoke.SetActive(false);
         }
     }
     private void FixedUpdate()
@@ -102,6 +138,7 @@ public class CarController : MonoBehaviour
             {
                 currentTurnSpeed = 0;
             }
+
         }
 
         moveInput = 1f; // 0 = Don't Move & 1 = Move
