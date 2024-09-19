@@ -342,7 +342,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.05
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -594,7 +594,7 @@ Transform:
   m_GameObject: {fileID: 719265017}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -1.306, y: 0.152, z: 0.022}
+  m_LocalPosition: {x: 0.041, y: 0.106, z: -0.05}
   m_LocalScale: {x: 0.04540599, y: 0.045405995, z: 0.04540599}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -755,12 +755,12 @@ MonoBehaviour:
   maxTurnSpeed: 0
   speedDecreaseValue: 0
   dynamicTurnBool: 0
-  leftWheelSmoke: {fileID: 1662479471}
-  rightWheelSmoke: {fileID: 114195490}
-  topLeft_TRL: {fileID: 199247766}
-  topRight_TRL: {fileID: 1079264750}
-  botLeft_TRL: {fileID: 1690256389}
-  botRight_TRL: {fileID: 719265017}
+  leftWheelSmoke: {fileID: 1662479474}
+  rightWheelSmoke: {fileID: 114195493}
+  topLeft_TRL: {fileID: 199247768}
+  topRight_TRL: {fileID: 1079264752}
+  botLeft_TRL: {fileID: 1690256391}
+  botRight_TRL: {fileID: 719265019}
 --- !u!65 &827348482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2170,7 +2170,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.05
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -3020,7 +3020,7 @@ Transform:
   m_GameObject: {fileID: 1690256389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.449, y: 1.76, z: 5.78}
+  m_LocalPosition: {x: 0.47, y: 0.17, z: -0.814}
   m_LocalScale: {x: 1.957291, y: 0.2301423, z: 0.23014244}
   m_ConstrainProportionsScale: 0
   m_Children: []
