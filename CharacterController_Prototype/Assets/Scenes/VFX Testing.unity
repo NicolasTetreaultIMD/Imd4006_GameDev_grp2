@@ -238,7 +238,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 811877841bd8880448c18c0950fd14d6, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -320,8 +320,8 @@ MonoBehaviour:
   maxTurnSpeed: 0
   speedDecreaseValue: 0
   dynamicTurnBool: 0
-  leftWheelSmoke: {fileID: 114195490}
-  rightWheelSmoke: {fileID: 1662479471}
+  leftWheelSmoke: {fileID: 1662479471}
+  rightWheelSmoke: {fileID: 114195490}
 --- !u!65 &827348482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2382,7 +2382,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 811877841bd8880448c18c0950fd14d6, type: 3}
   m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1

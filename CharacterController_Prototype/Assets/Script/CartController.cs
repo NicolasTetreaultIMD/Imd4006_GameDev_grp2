@@ -47,6 +47,7 @@ public class CarController : MonoBehaviour
         increase.performed += Increase;
 
         dynamicTurnBool = true;
+
     }
 
     private void Update()
@@ -66,27 +67,30 @@ public class CarController : MonoBehaviour
             //animationController.Play("Run_LowerBody", 1);
         }
 
+
         // -------------- SMOKE FOR WHEELS -------------------------
+
+        /*
         // Check input to determine visual effects when turning
         if (Keyboard.current.aKey.isPressed)
         {
             // Turning left, show left wheel smoke
             if (leftWheelSmoke != null)
-                leftWheelSmoke.SetActive(false);
+                leftWheelSmoke.SetActive(true);
 
             // Hide right wheel smoke
             if (rightWheelSmoke != null)
-                rightWheelSmoke.SetActive(true);
+                rightWheelSmoke.SetActive(false);
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             // Turning right, show right wheel smoke
             if (rightWheelSmoke != null)
-                rightWheelSmoke.SetActive(false);
+                rightWheelSmoke.SetActive(true);
 
             // Hide left wheel smoke
             if (leftWheelSmoke != null)
-                leftWheelSmoke.SetActive(true);
+                leftWheelSmoke.SetActive(false);
         }
         else // Neither key pressed, hide both wheel smokes
         {
@@ -96,6 +100,57 @@ public class CarController : MonoBehaviour
             if (rightWheelSmoke != null)
                 rightWheelSmoke.SetActive(false);
         }
+        */
+        if (Keyboard.current.aKey.isPressed)
+        {
+            // Turn left, play left wheel smoke
+            if (leftWheelSmoke != null)
+            {
+                VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
+                if (leftVfx != null) leftVfx.Play(); // Start the visual effect
+                Debug.Log("Left wheel smoke started");
+
+            }
+
+            // Stop right wheel smoke 
+            if (rightWheelSmoke != null)
+            {
+                VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
+                if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
+            }
+        }
+        else if (Keyboard.current.dKey.isPressed)
+        {
+            // Turn right, play right wheel smoke
+            if (rightWheelSmoke != null)
+            {
+                VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
+                if (rightVfx != null) rightVfx.Play(); // Start the visual effect
+                Debug.Log("Right wheel smoke started");
+
+            }
+
+            // Stop left wheel smoke
+            if (leftWheelSmoke != null)
+            {
+                VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
+                //if (leftVfx != null) leftVfx.Stop(); // Stop the visual effect
+            }
+        }
+        //else // Neither key pressed, stop both wheel smokes
+        //{
+        //    if (leftWheelSmoke != null)
+        //    {
+        //        VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
+        //        if (leftVfx != null) leftVfx.Stop(); // Stop the visual effect
+        //    }
+
+        //    if (rightWheelSmoke != null)
+        //    {
+        //        VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
+        //        if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
+        //    }
+        //}
     }
     private void FixedUpdate()
     {
