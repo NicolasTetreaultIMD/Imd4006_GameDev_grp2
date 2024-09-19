@@ -31,6 +31,11 @@ public class CarController : MonoBehaviour
     public GameObject leftWheelSmoke;
     public GameObject rightWheelSmoke;
 
+    public GameObject topLeft_TRL;
+    public GameObject topRight_TRL;
+    public GameObject botLeft_TRL;
+    public GameObject botRight_TRL;
+
 
     private void Start()
     {
@@ -68,9 +73,8 @@ public class CarController : MonoBehaviour
         }
 
 
-        // -------------- SMOKE FOR WHEELS -------------------------
+        // -------------- VISUAL EFFECTS -------------------------
 
-        /*
         // Check input to determine visual effects when turning
         if (Keyboard.current.aKey.isPressed)
         {
@@ -81,6 +85,14 @@ public class CarController : MonoBehaviour
             // Hide right wheel smoke
             if (rightWheelSmoke != null)
                 rightWheelSmoke.SetActive(false);
+            
+            // Show || hide trails
+            //topLeft_TRL.SetActive(true);
+            //botLeft_TRL.SetActive(true);
+            //topRight_TRL.SetActive(false);
+            //botRight_TRL.SetActive(false);
+
+
         }
         else if (Keyboard.current.dKey.isPressed)
         {
@@ -91,6 +103,13 @@ public class CarController : MonoBehaviour
             // Hide left wheel smoke
             if (leftWheelSmoke != null)
                 leftWheelSmoke.SetActive(false);
+
+            // Show || hide trails
+            //topLeft_TRL.SetActive(false);
+            //botLeft_TRL.SetActive(false);
+            //topRight_TRL.SetActive(true);
+            //botRight_TRL.SetActive(true);
+
         }
         else // Neither key pressed, hide both wheel smokes
         {
@@ -99,44 +118,51 @@ public class CarController : MonoBehaviour
 
             if (rightWheelSmoke != null)
                 rightWheelSmoke.SetActive(false);
+
+            // Hide all trails
+            //topLeft_TRL.SetActive(false);
+            //botLeft_TRL.SetActive(false);
+            //topRight_TRL.SetActive(false);
+            //botRight_TRL.SetActive(false);
+
         }
-        */
+        
 
-        VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
-        VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
+        //VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
+        //VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
 
-        if (Keyboard.current.aKey.isPressed)
-        {
-            // Turn left, play left wheel smoke
-            if (leftWheelSmoke != null)
-            {
-                if (leftVfx != null) leftVfx.Play(); // Start the visual effect
-                Debug.Log("Left wheel smoke started");
+        //if (Keyboard.current.aKey.isPressed)
+        //{
+        //    // Turn left, play left wheel smoke
+        //    if (leftWheelSmoke != null)
+        //    {
+        //        if (leftVfx != null) leftVfx.Play(); // Start the visual effect
+        //        Debug.Log("Left wheel smoke started");
 
-            }
+        //    }
 
-            // Stop right wheel smoke 
-            if (rightWheelSmoke != null)
-            {
-                if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
-            }
-        }
-        else if (Keyboard.current.dKey.isPressed)
-        {
-            // Turn right, play right wheel smoke
-            if (!rightVfx.HasAnySystemAwake())
-            {
-                rightVfx.Play(); // Start the visual effect
-                Debug.Log("Right wheel smoke started");
+        //    // Stop right wheel smoke 
+        //    if (rightWheelSmoke != null)
+        //    {
+        //        if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
+        //    }
+        //}
+        //else if (Keyboard.current.dKey.isPressed)
+        //{
+        //    // Turn right, play right wheel smoke
+        //    if (!rightVfx.HasAnySystemAwake())
+        //    {
+        //        rightVfx.Play(); // Start the visual effect
+        //        Debug.Log("Right wheel smoke started");
 
-            }
+        //    }
 
-            // Stop left wheel smoke
-            if (leftWheelSmoke != null)
-            {
-                //here
-            }
-        }
+        //    // Stop left wheel smoke
+        //    if (leftWheelSmoke != null)
+        //    {
+        //        //here
+        //    }
+        //}
         //else // Neither key pressed, stop both wheel smokes
         //{
         //    if (leftWheelSmoke != null)
@@ -151,6 +177,30 @@ public class CarController : MonoBehaviour
         //        if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
         //    }
         //}
+
+        // ------------------------- END OF SMOKE FOR WHEELS --------------------------------------
+        
+        // Toggles the visibility of wind trails to on
+        //void ShowTrails(string tag)
+        //{
+        //    GameObject[] trails = GameObject.FindGameObjectsWithTag(tag);
+        //    foreach (GameObject trail in trails)
+        //    {
+        //         trail.SetActive(true);
+        //    }
+        //}
+
+        //// Toggles the visibility of wind trails to off
+        //void HideTrails(string tag)
+        //{
+        //    GameObject[] trails = GameObject.FindGameObjectsWithTag(tag);
+        //    foreach (GameObject trail in trails)
+        //    {
+        //         trail.SetActive(false);
+        //    }
+        //}
+
+        // ----------------------------- END OF TRAILS -------------------------------------
     }
     private void FixedUpdate()
     {
