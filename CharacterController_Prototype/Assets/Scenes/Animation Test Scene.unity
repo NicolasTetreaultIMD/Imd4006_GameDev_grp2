@@ -223,7 +223,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.97, z: 0}
-  m_LocalScale: {x: 329.23502, y: 0.47782502, z: 343.57}
+  m_LocalScale: {x: 1406.5305, y: 0.47782502, z: 1424.5382}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1937,6 +1937,8 @@ MonoBehaviour:
   maxTurnSpeed: 0
   speedDecreaseValue: 0
   dynamicTurnBool: 0
+  leftWheelSmoke: {fileID: 0}
+  rightWheelSmoke: {fileID: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
