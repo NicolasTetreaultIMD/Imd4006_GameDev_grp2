@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - wind_trail
+  - right_trails
+  - left_trails
   layers:
   - Default
   - TransparentFX
