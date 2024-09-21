@@ -151,7 +151,7 @@ public class CarController : MonoBehaviour
         }
 
         // Play feather effect when running above a certain speed
-        if (speed >= 5f)  // Adjust this speed threshold as needed
+        if (speed >= 30f)  // Adjust this speed threshold as needed
         {
             if (featherEffect != null && !featherEffect.isPlaying)
             {
