@@ -38,6 +38,8 @@ public class CarController : MonoBehaviour
     public TrailRenderer botLeft_TRL;
     public TrailRenderer botRight_TRL;
 
+    public ParticleSystem featherEffect; 
+
     // minTime is used for Trail renderer for wind trails ( VFX )
     private float minTime = 0.0005f;
     private float maxTime = 0.035f;
@@ -59,6 +61,12 @@ public class CarController : MonoBehaviour
         increase.performed += Increase;
 
         dynamicTurnBool = true;
+
+        // make sure the feather effect is stopped when game starts
+        if (featherEffect != null)
+        {
+            featherEffect.Stop();
+        }
 
     }
 
@@ -141,7 +149,24 @@ public class CarController : MonoBehaviour
                 rightWheelSmoke.enabled = false;
 
         }
-        
+
+        // Play feather effect when running above a certain speed
+        if (speed >= 5f)  // Adjust this speed threshold as needed
+        {
+            if (featherEffect != null && !featherEffect.isPlaying)
+            {
+                featherEffect.Play(); // Start the feather effect when speed is high
+            }
+        }
+        else
+        {
+            if (featherEffect != null && featherEffect.isPlaying)
+            {
+                featherEffect.Stop(); // Stop the feather effect when speed is low
+            }
+        }
+
+        ToggleFeatherEffect(); //call feather effect function
 
         //VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
         //VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
@@ -194,7 +219,7 @@ public class CarController : MonoBehaviour
         //}
 
         // ------------------------- END OF SMOKE FOR WHEELS --------------------------------------
-        
+
         // Toggles the visibility of wind trails to on
         //void ShowTrails(string tag)
         //{
@@ -288,4 +313,37 @@ public class CarController : MonoBehaviour
         }    
 
     }
+
+    //function to turn on and off the effect
+    private void ToggleFeatherEffect() 
+    {
+
+        //play feather effect when running above 5 speed
+        if (speed >= 5f) 
+        {
+
+            if (featherEffect != null && !featherEffect.isPlaying)
+            {
+
+                featherEffect.Play(); //start the feather effect 
+
+            }
+
+        }
+        else
+        {
+
+            if (featherEffect != null && featherEffect.isPlaying)
+            {
+
+                featherEffect.Stop(); //stop the feather effect if it is playing and speed is under 5
+
+            }
+
+        }
+
+    }
+
+
+
 }
