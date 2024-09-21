@@ -3,7 +3,17 @@ guid: 47b4c675c2c27dd4587340ed1503d7fc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animationController: {instanceID: 0}
+  - rb: {instanceID: 0}
+  - leftWheelSmoke: {instanceID: 0}
+  - rightWheelSmoke: {instanceID: 0}
+  - topLeft_TRL: {instanceID: 0}
+  - topRight_TRL: {instanceID: 0}
+  - botLeft_TRL: {instanceID: 0}
+  - botRight_TRL: {instanceID: 0}
+  - featherEffect: {fileID: 2123899505114930522, guid: 9a636ab71d8f5414592793a9c38c224b,
+      type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
