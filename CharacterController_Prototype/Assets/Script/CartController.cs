@@ -44,6 +44,9 @@ public class CarController : MonoBehaviour
     private float minTime = 0.0005f;
     private float maxTime = 0.035f;
 
+    // AUDIO
+
+    public AudioSource cartAudio;
 
 
     private void Start()
@@ -67,6 +70,12 @@ public class CarController : MonoBehaviour
         {
             featherEffect.Stop();
         }
+
+        //init audio
+        cartAudio = GetComponent<AudioSource>();
+
+        // stop audio at the start
+        cartAudio.Pause();
 
     }
 
@@ -150,23 +159,9 @@ public class CarController : MonoBehaviour
 
         }
 
-        // Play feather effect when running above a certain speed
-        if (speed >= 5f)  // Adjust this speed threshold as needed
-        {
-            if (featherEffect != null && !featherEffect.isPlaying)
-            {
-                featherEffect.Play(); // Start the feather effect when speed is high
-            }
-        }
-        else
-        {
-            if (featherEffect != null && featherEffect.isPlaying)
-            {
-                featherEffect.Stop(); // Stop the feather effect when speed is low
-            }
-        }
-
         ToggleFeatherEffect(); //call feather effect function
+
+        CartAudioEffect(); //call cart audio effect function
 
         //VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
         //VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
@@ -344,6 +339,70 @@ public class CarController : MonoBehaviour
 
     }
 
+    //function to turn on cart audio
+    private void CartAudioEffect()
+    {
 
+        //Debug.Log("CartAudio enabled: " + cartAudio.enabled);
+
+        if (cartAudio.enabled)
+        {
+
+            float fadeSpeed = 1.7f;
+
+            //if character is moving, play the audio, if not pause the audio
+            if (speed == 0)
+            {
+
+                if (cartAudio.volume > 0)
+                {
+
+                    //fade out the audio but slightly longer by multiplying time by the fadeSpeed constant 
+                    cartAudio.volume -= Time.deltaTime*fadeSpeed; 
+
+                    if (cartAudio.volume < 0)
+                    {
+
+                        cartAudio.volume = 0;
+                        cartAudio.Pause(); //pause the audio when the volume is fully faded out 
+
+                    }
+
+                }
+
+            }
+            else
+            {
+
+                if (!cartAudio.isPlaying)
+                {
+                    cartAudio.volume = 0;
+                    cartAudio.Play();
+                }
+
+                if (cartAudio.volume < 1)
+                {
+
+                    //fade in the audio by adjusting the volume over time
+                    cartAudio.volume += Time.deltaTime; 
+
+                    if (cartAudio.volume > 1)
+                    {
+
+                        //play at full volume
+                        cartAudio.volume = 1;
+
+                    }
+
+                }
+
+                //map the pitch of the audio to the speed of the cart
+                cartAudio.pitch = Mathf.Lerp(0.7f, 4f, speed / 37.5f);
+
+            }
+
+        }
+
+    }
 
 }
