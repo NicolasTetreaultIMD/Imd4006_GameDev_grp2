@@ -47,6 +47,8 @@ public class CarController : MonoBehaviour
     // AUDIO
 
     public AudioSource cartAudio;
+    public AudioSource stepAudio;
+    public AudioSource wheelAudio;
 
 
     private void Start()
@@ -76,6 +78,7 @@ public class CarController : MonoBehaviour
 
         // stop audio at the start
         cartAudio.Pause();
+        stepAudio.Pause();
 
     }
 
@@ -162,6 +165,11 @@ public class CarController : MonoBehaviour
         ToggleFeatherEffect(); //call feather effect function
 
         CartAudioEffect(); //call cart audio effect function
+
+        stepAudioEffect(); //call step audio effect function
+
+        wheelAudioEffect(); //call wheel audio effect function
+
 
         //VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
         //VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
@@ -398,6 +406,68 @@ public class CarController : MonoBehaviour
 
                 //map the pitch of the audio to the speed of the cart
                 cartAudio.pitch = Mathf.Lerp(0.7f, 4f, speed / 37.5f);
+
+            }
+
+        }
+
+    }
+
+    //function for step audio
+    private void stepAudioEffect()
+    {
+
+        if (speed == 0)
+        {
+
+            //stop audio when the player is not moving
+            if (stepAudio.isPlaying)
+            {
+                stepAudio.Pause();
+            }
+
+        }
+        else
+        {
+
+            //play audio when player is moving
+            if (!stepAudio.isPlaying)
+            {
+
+                stepAudio.Play();
+
+            }
+
+            //map speed to pitch
+            stepAudio.pitch = Mathf.Lerp(0f, 1.49f, speed / 37.5f); //this should be synced as close as possible to the steps of the character
+
+        }
+
+    }
+
+    //function for wheel audio
+    private void wheelAudioEffect()
+    {
+
+        //if the player is going fast and turning, play the audio
+        if (speed >= 20f && (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed))
+        {
+ 
+            if (!wheelAudio.isPlaying)
+            {
+
+                wheelAudio.Play();
+
+            }
+
+        }
+        else
+        {
+            
+            if (wheelAudio.isPlaying)
+            {
+
+                wheelAudio.Pause();
 
             }
 
