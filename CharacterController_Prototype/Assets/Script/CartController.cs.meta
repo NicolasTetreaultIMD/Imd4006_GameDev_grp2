@@ -12,7 +12,9 @@ MonoImporter:
   - topRight_TRL: {instanceID: 0}
   - botLeft_TRL: {instanceID: 0}
   - botRight_TRL: {instanceID: 0}
-  - featherEffect: {fileID: 2123899505114930522, guid: 9a636ab71d8f5414592793a9c38c224b,
+  - featherEffect: {fileID: 973273922201912892, guid: 07b49f9aa172a844784dd2894b62cfa2,
+      type: 3}
+  - cartAudio: {fileID: 7039405082489817977, guid: 9ba162b5f56b93b4d9936ecf04749b57,
       type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
