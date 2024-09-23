@@ -319,7 +319,6 @@ public class CarController : MonoBehaviour
         }
         else // Player is moving, audio plays
         {
-
             //play audio when player is moving
             if (!stepAudio.isPlaying)
             {
