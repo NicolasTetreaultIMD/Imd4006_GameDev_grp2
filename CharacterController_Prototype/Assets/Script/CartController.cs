@@ -11,23 +11,28 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
+    enum CartState { Running, InCart };
+
     public Animator animationController;
 
     PlayerInput playerInput;
     private InputAction increase;
 
-
+    public Transform testCharTrans;
     public Rigidbody rb;
 
     public float moveInput;
     public float speed;
     public float currentTurnSpeed;
+    public float minInCartSpeed = 10f;
+    public float maxSpeed = 37.5f;
     public float maxTurnSpeed;
     float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
 
     public bool dynamicTurnBool;
 
+    CartState cartState;
 
     // VISUAL EFFECTS
     public VisualEffect leftWheelSmoke;
@@ -66,6 +71,8 @@ public class CarController : MonoBehaviour
         increase.performed += Increase;
 
         dynamicTurnBool = true;
+
+        cartState = CartState.Running;
 
         // make sure the feather effect is stopped when game starts
         if (featherEffect != null)
@@ -187,6 +194,11 @@ public class CarController : MonoBehaviour
             speed = 0;
         }
 
+        if (speed < minInCartSpeed && cartState == CartState.InCart)
+        {
+            SwitchCartState(CartState.Running);
+        }
+
         //Forumla to synchronize the player's maximum turn speed relative to their current speed.
         maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
 
@@ -229,16 +241,46 @@ public class CarController : MonoBehaviour
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        speedDecreaseCooldown = Time.time + 0.15f;
-        if (speed < 37.5f)
+        if (cartState == CartState.Running)
         {
-            speed += 2.5f;
+            speedDecreaseCooldown = Time.time + 0.15f;
+            if (speed < maxSpeed)
+            {
+                speed += 2.5f;
+            }
+            else if (speed >= maxSpeed)
+            {
+                speed = maxSpeed;
+            
+                if (cartState == CartState.Running)
+                {
+                    SwitchCartState(CartState.InCart);
+                }
+            }
         }
 
         if(currentTurnSpeed > maxTurnSpeed) //Makes sure the current turn speed does not exceed the max turn speed
         {
             currentTurnSpeed = maxTurnSpeed;
         }    
+    }
+
+    //Controls the current state of the controller
+    private void SwitchCartState(CartState newState)
+    {
+        cartState = newState;
+
+        //Perfoms different actions based on the new state
+        switch (newState){
+            case CartState.Running:
+                Debug.Log("RUNNING");
+                testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z - 1);
+                break;
+            case CartState.InCart:
+                Debug.Log("IN CART");
+                testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z + 1);
+                break;
+        };
     }
 
     //function to turn on and off the effect
