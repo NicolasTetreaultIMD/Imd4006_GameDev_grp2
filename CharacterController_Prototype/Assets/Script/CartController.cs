@@ -170,80 +170,6 @@ public class CarController : MonoBehaviour
 
         wheelAudioEffect(); //call wheel audio effect function
 
-
-        //VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
-        //VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
-
-        //if (Keyboard.current.aKey.isPressed)
-        //{
-        //    // Turn left, play left wheel smoke
-        //    if (leftWheelSmoke != null)
-        //    {
-        //        if (leftVfx != null) leftVfx.Play(); // Start the visual effect
-        //        Debug.Log("Left wheel smoke started");
-
-        //    }
-
-        //    // Stop right wheel smoke 
-        //    if (rightWheelSmoke != null)
-        //    {
-        //        if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
-        //    }
-        //}
-        //else if (Keyboard.current.dKey.isPressed)
-        //{
-        //    // Turn right, play right wheel smoke
-        //    if (!rightVfx.HasAnySystemAwake())
-        //    {
-        //        rightVfx.Play(); // Start the visual effect
-        //        Debug.Log("Right wheel smoke started");
-
-        //    }
-
-        //    // Stop left wheel smoke
-        //    if (leftWheelSmoke != null)
-        //    {
-        //        //here
-        //    }
-        //}
-        //else // Neither key pressed, stop both wheel smokes
-        //{
-        //    if (leftWheelSmoke != null)
-        //    {
-        //        VisualEffect leftVfx = leftWheelSmoke.GetComponent<VisualEffect>();
-        //        if (leftVfx != null) leftVfx.Stop(); // Stop the visual effect
-        //    }
-
-        //    if (rightWheelSmoke != null)
-        //    {
-        //        VisualEffect rightVfx = rightWheelSmoke.GetComponent<VisualEffect>();
-        //        if (rightVfx != null) rightVfx.Stop(); // Stop the visual effect
-        //    }
-        //}
-
-        // ------------------------- END OF SMOKE FOR WHEELS --------------------------------------
-
-        // Toggles the visibility of wind trails to on
-        //void ShowTrails(string tag)
-        //{
-        //    GameObject[] trails = GameObject.FindGameObjectsWithTag(tag);
-        //    foreach (GameObject trail in trails)
-        //    {
-        //         trail.SetActive(true);
-        //    }
-        //}
-
-        //// Toggles the visibility of wind trails to off
-        //void HideTrails(string tag)
-        //{
-        //    GameObject[] trails = GameObject.FindGameObjectsWithTag(tag);
-        //    foreach (GameObject trail in trails)
-        //    {
-        //         trail.SetActive(false);
-        //    }
-        //}
-
-        // ----------------------------- END OF TRAILS -------------------------------------
     }
     private void FixedUpdate()
     {
@@ -304,7 +230,6 @@ public class CarController : MonoBehaviour
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
         speedDecreaseCooldown = Time.time + 0.15f;
-
         if (speed < 37.5f)
         {
             speed += 2.5f;
@@ -314,74 +239,51 @@ public class CarController : MonoBehaviour
         {
             currentTurnSpeed = maxTurnSpeed;
         }    
-
     }
 
     //function to turn on and off the effect
     private void ToggleFeatherEffect() 
     {
-
         //play feather effect when running above 5 speed
         if (speed >= 5f) 
         {
-
             if (featherEffect != null && !featherEffect.isPlaying)
             {
-
                 featherEffect.Play(); //start the feather effect 
-
             }
-
         }
         else
         {
-
             if (featherEffect != null && featherEffect.isPlaying)
             {
-
                 featherEffect.Stop(); //stop the feather effect if it is playing and speed is under 5
-
             }
-
         }
-
     }
 
     //function to turn on cart audio
     private void CartAudioEffect()
     {
-
         //Debug.Log("CartAudio enabled: " + cartAudio.enabled);
-
         if (cartAudio.enabled)
         {
-
             float fadeSpeed = 1.7f;
 
-            //if character is moving, play the audio, if not pause the audio
-            if (speed == 0)
+            if (speed == 0) // Player is not moving, pause the audio
             {
-
                 if (cartAudio.volume > 0)
                 {
-
                     //fade out the audio but slightly longer by multiplying time by the fadeSpeed constant 
                     cartAudio.volume -= Time.deltaTime*fadeSpeed; 
-
                     if (cartAudio.volume < 0)
                     {
-
                         cartAudio.volume = 0;
                         cartAudio.Pause(); //pause the audio when the volume is fully faded out 
-
                     }
-
                 }
-
             }
-            else
+            else // Player is moving
             {
-
                 if (!cartAudio.isPlaying)
                 {
                     cartAudio.volume = 0;
@@ -390,89 +292,61 @@ public class CarController : MonoBehaviour
 
                 if (cartAudio.volume < 1)
                 {
-
                     //fade in the audio by adjusting the volume over time
                     cartAudio.volume += Time.deltaTime; 
-
                     if (cartAudio.volume > 1)
                     {
-
                         //play at full volume
                         cartAudio.volume = 1;
-
                     }
-
                 }
 
                 //map the pitch of the audio to the speed of the cart
                 cartAudio.pitch = Mathf.Lerp(0.7f, 4f, speed / 37.5f);
-
             }
-
         }
-
     }
 
     //function for step audio
     private void stepAudioEffect()
     {
-
-        if (speed == 0)
+        if (speed == 0) // Player is not moving, pause audio
         {
-
-            //stop audio when the player is not moving
             if (stepAudio.isPlaying)
             {
                 stepAudio.Pause();
             }
-
         }
-        else
+        else // Player is moving, audio plays
         {
 
             //play audio when player is moving
             if (!stepAudio.isPlaying)
             {
-
                 stepAudio.Play();
-
             }
-
             //map speed to pitch
             stepAudio.pitch = Mathf.Lerp(0f, 1.49f, speed / 37.5f); //this should be synced as close as possible to the steps of the character
-
         }
-
     }
 
     //function for wheel audio
     private void wheelAudioEffect()
     {
-
         //if the player is going fast and turning, play the audio
         if (speed >= 20f && (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed))
         {
- 
             if (!wheelAudio.isPlaying)
             {
-
                 wheelAudio.Play();
-
             }
-
         }
         else
-        {
-            
+        {       
             if (wheelAudio.isPlaying)
             {
-
                 wheelAudio.Pause();
-
             }
-
         }
-
     }
-
 }
