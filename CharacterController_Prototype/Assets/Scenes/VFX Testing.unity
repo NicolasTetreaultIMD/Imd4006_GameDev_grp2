@@ -4558,6 +4558,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 692100048758245688, guid: f47f859032e937a4bb8c83d0a983ff44,
+        type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 692100048758245688, guid: f47f859032e937a4bb8c83d0a983ff44,
+        type: 3}
+      propertyPath: ClampVelocityModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 692100048758245688, guid: f47f859032e937a4bb8c83d0a983ff44,
+        type: 3}
+      propertyPath: ClampVelocityModule.magnitude.scalar
+      value: 0.14
+      objectReference: {fileID: 0}
     - target: {fileID: 1081494962539643153, guid: f47f859032e937a4bb8c83d0a983ff44,
         type: 3}
       propertyPath: m_Name
