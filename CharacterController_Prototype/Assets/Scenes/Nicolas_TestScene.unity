@@ -285,6 +285,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &224935017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &295028455
 GameObject:
   m_ObjectHideFlags: 0
@@ -436,6 +448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carController: {fileID: 0}
+  maxCamDistance: 0
+  cameraShakeAmount: 0
 --- !u!1 &640682747
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +670,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7021541461510723589}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &884957580 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4547719463237422834, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904098141
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,6 +745,7 @@ MonoBehaviour:
   rb: {fileID: 941737918}
   cartLeftCtrl: {fileID: 0}
   cartRightCtrl: {fileID: 0}
+  cartBodyCtrl: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
@@ -736,6 +757,7 @@ MonoBehaviour:
   speedPoleIncreaseRate: 0
   dynamicTurnBool: 0
   cartState: 0
+  cartShakeAmount: 1
   leftWheelSmoke: {fileID: 0}
   rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
@@ -1343,6 +1365,7 @@ MonoBehaviour:
   rb: {fileID: 1192316230}
   cartLeftCtrl: {fileID: 0}
   cartRightCtrl: {fileID: 0}
+  cartBodyCtrl: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
@@ -1354,6 +1377,7 @@ MonoBehaviour:
   speedPoleIncreaseRate: 0
   dynamicTurnBool: 0
   cartState: 0
+  cartShakeAmount: 1
   leftWheelSmoke: {fileID: 0}
   rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
@@ -2695,6 +2719,27 @@ Transform:
   - {fileID: 1160824523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1319641071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3076260961574402361, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319641076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319641071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad376c6ae43f674f924b4a08ce0c46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carController: {fileID: 224935017}
+  maxCamDistance: 2
+  cameraShakeAmount: 0.002
 --- !u!1 &1324152267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5325,7 +5370,17 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 35
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: cartBodyCtrl
+      value: 
+      objectReference: {fileID: 884957580}
+    - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: cartShakeAmount
+      value: 0.0005
       objectReference: {fileID: 0}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
@@ -5340,7 +5395,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3076260961574402361, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1319641076}
   m_SourcePrefab: {fileID: 100100000, guid: a01f2d67a0cecaf43977b4a51d0ca769, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
