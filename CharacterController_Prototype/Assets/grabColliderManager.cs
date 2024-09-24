@@ -8,11 +8,11 @@ public class grabColliderManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        armManager.AddGrabItem(other.gameObject);
+        armManager.AddGrab(other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        armManager.RemoveGrabItem(other.gameObject);
+        armManager.RemoveGrab(other.gameObject);
     }
 }
