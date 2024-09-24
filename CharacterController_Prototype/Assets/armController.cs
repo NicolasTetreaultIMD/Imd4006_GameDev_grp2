@@ -8,6 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class armController : MonoBehaviour
 {
     PlayerInput playerControls;
+    List<GameObject> grabableItems = new List<GameObject>();
+
     public Transform characterArm;
     public Transform cartLeftTilt;
     public Transform cartRightTilt;
@@ -66,7 +68,7 @@ public class armController : MonoBehaviour
 
         armRotation = Map(-inputRange, inputRange, maxArmAngle, -maxArmAngle, armAngle);
 
-        characterArm.localRotation = Quaternion.Euler(0, 0, armRotation);
+        characterArm.localRotation = Quaternion.Euler(35.874f, 0, armRotation);
 
         //Right Tilt
         if (armAngle > cartAngleDeadZone)
@@ -89,17 +91,34 @@ public class armController : MonoBehaviour
             cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
             cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
         }
-
-        //ITEM GRAB --------------------------
     }
 
     public static float Map(float a, float b, float c, float d, float x)
     {
         return c + (x - a) * (d - c) / (b - a);
-    } 
+    }
 
+    //ITEM GRAB --------------------------
     private void Grab(InputAction.CallbackContext context)
     {
         Debug.Log("GRAB");
+        int itemCount = grabableItems.Count - 1;
+        for (int i = itemCount; i > -1; i--)
+        {
+            GameObject temp = grabableItems[i];
+            grabableItems.Remove(temp);
+            Destroy(temp);
+        }
+    }
+
+    public void AddGrabItem(GameObject newItem)
+    {
+        //Debug.Log("Added: " + newItem.name);
+        grabableItems.Add(newItem);
+    }
+    public void RemoveGrabItem(GameObject oldItem)
+    {
+        //Debug.Log("Removed: " + oldItem.name);
+        grabableItems.Remove(oldItem);
     }
 }
