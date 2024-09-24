@@ -24,6 +24,7 @@ public class CarController : MonoBehaviour
 
     public Transform cartLeftCtrl;
     public Transform cartRightCtrl;
+    public Transform cartBodyCtrl;
 
     public Transform poleRotateLookatRef;
 
@@ -42,6 +43,7 @@ public class CarController : MonoBehaviour
     public CartState cartState;
 
     private int poleTurnDirection = 1;
+    public float cartShakeAmount = 1;
 
     // VISUAL EFFECTS
     public VisualEffect leftWheelSmoke;
@@ -189,6 +191,13 @@ public class CarController : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //cart shake
+        Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * cartShakeAmount * speed + new Vector3(-0.467f, 0.359f, 0);
+        cartBodyCtrl.localPosition = randomPoint;
+
+        float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
+        Debug.Log(shakeAngle);
+        transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
 
         if (cartState != CartState.PoleHolding)
         {
@@ -296,7 +305,7 @@ public class CarController : MonoBehaviour
                 testCharTransNoAnim.gameObject.SetActive(false);
 
                 cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
-                cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
+                cartRightCtrl.localRotation = Quaternion.Euler(0, 0, 0);
 
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", false);
