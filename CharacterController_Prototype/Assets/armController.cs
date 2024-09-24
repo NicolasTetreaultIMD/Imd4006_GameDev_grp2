@@ -18,6 +18,7 @@ public class armController : MonoBehaviour
     public Transform cartRightTilt;
     public Transform handTransform;
     public Transform lookatRef;
+    public Transform stationaryCamRef;
 
     public float maxCartAngle;
     public float maxArmAngle;
@@ -25,6 +26,7 @@ public class armController : MonoBehaviour
     public float armMoveSpeed;
 
     public bool mouseMode;
+    public bool stationaryCam;
 
     private InputAction grab;
     private float poleHoldValue;
@@ -110,6 +112,12 @@ public class armController : MonoBehaviour
         else if (poleHoldValue < 0.6f && carController.cartState == CarController.CartState.PoleHolding)
         {
             carController.transform.parent = null;
+            if (stationaryCam)
+            {
+                Camera.main.transform.parent = carController.transform;
+                Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
+            }
+
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
         }
@@ -165,6 +173,14 @@ public class armController : MonoBehaviour
         {
             lookatRef.gameObject.SetActive(true);
             lookatRef.position = handTransform.position;
+
+            if (stationaryCam)
+            {
+                stationaryCamRef.position = carController.gameObject.transform.position;
+                stationaryCamRef.rotation = carController.gameObject.transform.rotation;
+                Camera.main.transform.parent = stationaryCamRef;
+            }
+
             carController.SwitchCartState(CarController.CartState.PoleHolding);
         }
     }

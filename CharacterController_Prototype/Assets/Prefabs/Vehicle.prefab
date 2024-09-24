@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 44
+  m_VersionIndex: 53
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1842,7 +1842,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1852576806548013000, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
@@ -2079,11 +2079,13 @@ MonoBehaviour:
   cartRightTilt: {fileID: 8381922318481482233}
   handTransform: {fileID: 3252501099571627838}
   lookatRef: {fileID: 0}
+  stationaryCamRef: {fileID: 0}
   maxCartAngle: 10
   maxArmAngle: 70
   cartAngleDeadZone: 0
   armMoveSpeed: 10
   mouseMode: 0
+  stationaryCam: 1
 --- !u!4 &6244861630378672491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 853db726dd044f14894a30472653cf49,
@@ -2156,7 +2158,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 853db726dd044f14894a30472653cf49,
         type: 3}

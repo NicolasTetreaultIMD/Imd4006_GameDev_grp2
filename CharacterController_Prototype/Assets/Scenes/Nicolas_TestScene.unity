@@ -265,11 +265,13 @@ MonoBehaviour:
   cartRightTilt: {fileID: 904098142}
   handTransform: {fileID: 0}
   lookatRef: {fileID: 0}
+  stationaryCamRef: {fileID: 0}
   maxCartAngle: 10
   maxArmAngle: 70
   cartAngleDeadZone: 0
   armMoveSpeed: 5
   mouseMode: 0
+  stationaryCam: 0
 --- !u!4 &121084681
 Transform:
   m_ObjectHideFlags: 0
@@ -285,18 +287,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &224935017 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-    type: 3}
-  m_PrefabInstance: {fileID: 7021541461510723589}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &295028455
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,12 +657,6 @@ Transform:
 --- !u!4 &797494267 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6244861630378672491, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-    type: 3}
-  m_PrefabInstance: {fileID: 7021541461510723589}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &884957580 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4547719463237422834, guid: a01f2d67a0cecaf43977b4a51d0ca769,
     type: 3}
   m_PrefabInstance: {fileID: 7021541461510723589}
   m_PrefabAsset: {fileID: 0}
@@ -2719,27 +2703,37 @@ Transform:
   - {fileID: 1160824523}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1319641071 stripped
+--- !u!1 &1264690043
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3076260961574402361, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-    type: 3}
-  m_PrefabInstance: {fileID: 7021541461510723589}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1319641076
-MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1319641071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad376c6ae43f674f924b4a08ce0c46b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carController: {fileID: 224935017}
-  maxCamDistance: 2
-  cameraShakeAmount: 0.002
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1264690044}
+  m_Layer: 0
+  m_Name: StationaryCamRef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1264690044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264690043}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.35527253, y: 9.239995, z: -3.0081265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1324152267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,17 +5364,7 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: cartBodyCtrl
-      value: 
-      objectReference: {fileID: 884957580}
-    - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: cartShakeAmount
-      value: 0.0005
+      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
@@ -5392,14 +5376,15 @@ PrefabInstance:
       propertyPath: lookatRef
       value: 
       objectReference: {fileID: 1717715941}
+    - target: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: stationaryCamRef
+      value: 
+      objectReference: {fileID: 1264690044}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3076260961574402361, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1319641076}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a01f2d67a0cecaf43977b4a51d0ca769, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -5418,3 +5403,4 @@ SceneRoots:
   - {fileID: 118420218}
   - {fileID: 1324152271}
   - {fileID: 2117780884}
+  - {fileID: 1264690044}
