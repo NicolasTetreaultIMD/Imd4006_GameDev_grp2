@@ -197,7 +197,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 88e65f98d48718943a922b24b2c58b24, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.553
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -919,7 +919,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5ec7c568a95a3d9409e6ad600b5a69c7, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.888
+  m_Volume: 0.3
   m_Pitch: 1.5
   Loop: 1
   Mute: 0
@@ -1042,6 +1042,9 @@ MonoBehaviour:
   testCharTrans: {fileID: 0}
   testCharTransNoAnim: {fileID: 0}
   rb: {fileID: 827348483}
+  cartLeftCtrl: {fileID: 0}
+  cartRightCtrl: {fileID: 0}
+  poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
   currentTurnSpeed: 0
@@ -1049,7 +1052,9 @@ MonoBehaviour:
   maxSpeed: 37.5
   maxTurnSpeed: 0
   speedDecreaseValue: 0
+  speedPoleIncreaseRate: 0
   dynamicTurnBool: 0
+  cartState: 0
   leftWheelSmoke: {fileID: 1662479474}
   rightWheelSmoke: {fileID: 114195493}
   topLeft_TRL: {fileID: 199247768}
@@ -2409,7 +2414,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4dab95642213d934db0fe21edd82685c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.664
+  m_Volume: 0.151
   m_Pitch: 1
   Loop: 1
   Mute: 0

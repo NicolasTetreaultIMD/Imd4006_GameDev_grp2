@@ -394,19 +394,19 @@ public class CarController : MonoBehaviour
                     cartAudio.Play();
                 }
 
-                if (cartAudio.volume < 1)
+                if (cartAudio.volume < 0.4f)
                 {
                     //fade in the audio by adjusting the volume over time
                     cartAudio.volume += Time.deltaTime; 
-                    if (cartAudio.volume > 1)
+                    if (cartAudio.volume > 0.4f)
                     {
                         //play at full volume
-                        cartAudio.volume = 1;
+                        cartAudio.volume = 0.4f;
                     }
                 }
 
                 //map the pitch of the audio to the speed of the cart
-                cartAudio.pitch = Mathf.Lerp(0.7f, 4f, speed / 37.5f);
+                cartAudio.pitch = Mathf.Lerp(1.5f, 4f, speed / 37.5f);
             }
         }
     }
