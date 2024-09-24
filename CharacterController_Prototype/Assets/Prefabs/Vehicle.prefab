@@ -303,6 +303,7 @@ MonoBehaviour:
   rb: {fileID: 4876081273646826042}
   cartLeftCtrl: {fileID: 6974182314487456050}
   cartRightCtrl: {fileID: 8381922318481482233}
+  poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
   currentTurnSpeed: 0
@@ -310,7 +311,9 @@ MonoBehaviour:
   maxSpeed: 37.5
   maxTurnSpeed: 0
   speedDecreaseValue: 0
+  speedPoleIncreaseRate: 0.1
   dynamicTurnBool: 0
+  cartState: 0
   leftWheelSmoke: {fileID: 0}
   rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
@@ -348,13 +351,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3243752452315730768}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.29770982, y: 0.1191395, z: -0.008823419, w: 0.947152}
   m_LocalPosition: {x: -0, y: 0.052, z: 0.006}
   m_LocalScale: {x: 0.55806, y: 0.55806, z: 0.55806}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3252501099571627838}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.476, y: 15.509, z: 3.771}
 --- !u!136 &4292864966658628480
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -365,7 +368,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -374,10 +377,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.2318286
-  m_Direction: 2
-  m_Center: {x: -0.0000000010529958, y: 0.000000010108034, z: 0.11591428}
+  m_Radius: 0.639643
+  m_Height: 1.4721631
+  m_Direction: 1
+  m_Center: {x: -0.07583058, y: -0.12016691, z: 0.17972644}
 --- !u!114 &4943747104074594303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +420,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &9195281356762999252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1707,7 +1710,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 8
+  m_VersionIndex: 32
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1821,7 +1824,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1852576806548013000, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
@@ -2052,13 +2055,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865292f60aaaef4a8ae8a91265d73dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carController: {fileID: 7543207487933112963}
   characterArm: {fileID: 6244861630378672491}
   cartLeftTilt: {fileID: 6974182314487456050}
   cartRightTilt: {fileID: 8381922318481482233}
+  handTransform: {fileID: 3252501099571627838}
+  lookatRef: {fileID: 0}
   maxCartAngle: 10
   maxArmAngle: 70
   cartAngleDeadZone: 0
-  armMoveSpeed: 5
+  armMoveSpeed: 10
   mouseMode: 0
 --- !u!4 &6244861630378672491 stripped
 Transform:
@@ -2132,7 +2138,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 853db726dd044f14894a30472653cf49,
         type: 3}

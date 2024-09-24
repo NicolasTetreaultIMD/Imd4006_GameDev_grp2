@@ -9,10 +9,15 @@ public class armController : MonoBehaviour
 {
     PlayerInput playerControls;
     List<GameObject> grabableItems = new List<GameObject>();
+    List<GameObject> grabablePoles = new List<GameObject>();
+
+    public CarController carController;
 
     public Transform characterArm;
     public Transform cartLeftTilt;
     public Transform cartRightTilt;
+    public Transform handTransform;
+    public Transform lookatRef;
 
     public float maxCartAngle;
     public float maxArmAngle;
@@ -22,6 +27,8 @@ public class armController : MonoBehaviour
     public bool mouseMode;
 
     private InputAction grab;
+    private float poleHoldValue;
+
     private Vector2 armInput;
     private float armRotation;
 
@@ -48,7 +55,7 @@ public class armController : MonoBehaviour
         if (!mouseMode)
         {
             armInput = playerControls.Gameplay.ArmMovement.ReadValue<Vector2>();
-            armAngle += armInput.x * armMoveSpeed;
+            armAngle += armInput.x * armMoveSpeed * Time.fixedDeltaTime * 20;
 
             armAngle = Mathf.Max(Mathf.Min(armAngle, 90), -90);
             inputRange = 90;
@@ -91,6 +98,21 @@ public class armController : MonoBehaviour
             cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
             cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
         }
+
+        //POLE GRAB -----------
+
+        poleHoldValue = playerControls.Gameplay.PoleGrab.ReadValue<float>(); 
+
+        if (poleHoldValue > 0.6f && carController.cartState != CarController.CartState.PoleHolding)
+        {
+            PoleHold();
+        }
+        else if (poleHoldValue < 0.6f && carController.cartState == CarController.CartState.PoleHolding)
+        {
+            carController.transform.parent = null;
+            lookatRef.gameObject.SetActive(false);
+            carController.SwitchCartState(CarController.CartState.InCart);
+        }
     }
 
     public static float Map(float a, float b, float c, float d, float x)
@@ -111,14 +133,39 @@ public class armController : MonoBehaviour
         }
     }
 
-    public void AddGrabItem(GameObject newItem)
+    public void AddGrab(GameObject newItem)
     {
-        //Debug.Log("Added: " + newItem.name);
-        grabableItems.Add(newItem);
+        if (newItem.layer == LayerMask.NameToLayer("Item"))
+        {
+            Debug.Log("item");
+            grabableItems.Add(newItem);
+        }
+        else if (newItem.layer == LayerMask.NameToLayer("Pole"))
+        {
+            Debug.Log("pole in");
+            grabablePoles.Add(newItem);
+        }
     }
-    public void RemoveGrabItem(GameObject oldItem)
+    public void RemoveGrab(GameObject oldItem)
     {
-        //Debug.Log("Removed: " + oldItem.name);
-        grabableItems.Remove(oldItem);
+        if (oldItem.layer == LayerMask.NameToLayer("Item"))
+        {
+            grabableItems.Remove(oldItem);
+        }
+        else if (oldItem.layer == LayerMask.NameToLayer("Pole"))
+        {
+            Debug.Log("pole out");
+            grabablePoles.Remove(oldItem);
+        }
+    }
+
+    private void PoleHold()
+    {
+        if (grabablePoles.Count > 0)
+        {
+            lookatRef.gameObject.SetActive(true);
+            lookatRef.position = handTransform.position;
+            carController.SwitchCartState(CarController.CartState.PoleHolding);
+        }
     }
 }

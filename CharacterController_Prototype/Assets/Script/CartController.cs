@@ -11,7 +11,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
-    enum CartState { Running, InCart };
+    public enum CartState { Running, InCart, PoleHolding };
 
     public Animator animationController;
 
@@ -25,6 +25,8 @@ public class CarController : MonoBehaviour
     public Transform cartLeftCtrl;
     public Transform cartRightCtrl;
 
+    public Transform poleRotateLookatRef;
+
     public float moveInput;
     public float speed;
     public float currentTurnSpeed;
@@ -33,10 +35,13 @@ public class CarController : MonoBehaviour
     public float maxTurnSpeed;
     float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
+    public float speedPoleIncreaseRate;
 
     public bool dynamicTurnBool;
 
-    CartState cartState;
+    public CartState cartState;
+
+    private int poleTurnDirection = 1;
 
     // VISUAL EFFECTS
     public VisualEffect leftWheelSmoke;
@@ -184,58 +189,77 @@ public class CarController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
-        if (speed > 0)
+
+        if (cartState != CartState.PoleHolding)
         {
-            if (Time.time >= speedDecreaseCooldown)
+            //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
+            if (speed > 0)
             {
-                speed -= speedDecreaseValue;
-                speedDecreaseCooldown = Time.time + 0.5f;
+                if (Time.time >= speedDecreaseCooldown)
+                {
+                    speed -= speedDecreaseValue;
+                    speedDecreaseCooldown = Time.time + 0.5f;
+                }
             }
-        }
-        else if(speed < 0) 
-        {
-            speed = 0;
-        }
-
-        if (speed < minInCartSpeed && cartState == CartState.InCart)
-        {
-            SwitchCartState(CartState.Running);
-        }
-
-        //Forumla to synchronize the player's maximum turn speed relative to their current speed.
-        maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
-
-        //JOYSTICK CONTROLS FOR TURNING
-        Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
-        if(Math.Abs(leftStick.x) > 0.05f)
-        {
-            if (currentTurnSpeed < maxTurnSpeed)
+            else if(speed < 0) 
             {
-                currentTurnSpeed += (maxTurnSpeed / 10);
+                speed = 0;
+            }
+
+            if (speed < minInCartSpeed && cartState == CartState.InCart)
+            {
+                SwitchCartState(CartState.Running);
+            }
+
+            //Forumla to synchronize the player's maximum turn speed relative to their current speed.
+            maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
+
+            //JOYSTICK CONTROLS FOR TURNING
+            Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+            if(Math.Abs(leftStick.x) > 0.05f)
+            {
+                if (currentTurnSpeed < maxTurnSpeed)
+                {
+                    currentTurnSpeed += (maxTurnSpeed / 10);
+                }
+            }
+            else
+            {
+                currentTurnSpeed = 0;
+            }
+
+
+            moveInput = 1f; // 0 = Don't Move & 1 = Move
+            float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
+
+            rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
+
+            if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
+            {
+                Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
             }
         }
         else
         {
-            currentTurnSpeed = 0;
+            //Gradually increases the player's speed while on the pole
+            if (speed < maxSpeed)
+            {
+                speed += speedPoleIncreaseRate;
+            }
+            else if (speed > maxSpeed)
+            {
+                speed = maxSpeed;
+            }
+
+            poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
         }
 
-
-        moveInput = 1f; // 0 = Don't Move & 1 = Move
-        float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
-
-        rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.deltaTime);
-
-        if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
-        {
-            Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.deltaTime);
-        }
     }
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        if (cartState == CartState.Running)
+        if (cartState == CartState.Running || cartState == CartState.PoleHolding)
         {
             speedDecreaseCooldown = Time.time + 0.15f;
             if (speed < maxSpeed)
@@ -260,7 +284,7 @@ public class CarController : MonoBehaviour
     }
 
     //Controls the current state of the controller
-    private void SwitchCartState(CartState newState)
+    public void SwitchCartState(CartState newState)
     {
         cartState = newState;
 
@@ -288,6 +312,26 @@ public class CarController : MonoBehaviour
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", true);
                 //testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z + 1);
+                break;
+            case CartState.PoleHolding:
+                Debug.Log("Holding Pole");
+
+                //then rotate point to the right of cart
+                if (Vector3.Dot(transform.right, Vector3.Normalize(poleRotateLookatRef.position - transform.position)) > 0)
+                {
+                    transform.LookAt(poleRotateLookatRef);
+                    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y - 90, 0);
+                    poleTurnDirection = 1;
+                }
+                //Rotate point to the left of cart
+                else
+                {
+                    transform.LookAt(poleRotateLookatRef);
+                    transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90, 0);
+                    poleTurnDirection = -1;
+                }
+
+                transform.parent = poleRotateLookatRef;
                 break;
         };
     }
