@@ -1040,12 +1040,12 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 0.0005
-  leftWheelSmoke: {fileID: 0}
-  rightWheelSmoke: {fileID: 0}
-  topLeft_TRL: {fileID: 0}
-  topRight_TRL: {fileID: 0}
-  botLeft_TRL: {fileID: 0}
-  botRight_TRL: {fileID: 0}
+  leftWheelSmoke: {fileID: 1934579637418762395}
+  rightWheelSmoke: {fileID: 5285527750694920960}
+  topLeft_TRL: {fileID: 4403146706418960238}
+  topRight_TRL: {fileID: 4864601636670459267}
+  botLeft_TRL: {fileID: 8928800816927317117}
+  botRight_TRL: {fileID: 2958124863827630012}
   featherEffect: {fileID: 0}
   cartAudio: {fileID: 0}
   stepAudio: {fileID: 0}

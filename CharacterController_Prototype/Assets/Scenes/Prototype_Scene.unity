@@ -259,19 +259,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865292f60aaaef4a8ae8a91265d73dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carController: {fileID: 0}
+  carController: {fileID: 2139778172}
   characterArm: {fileID: 797494267}
   cartLeftTilt: {fileID: 1658923564}
   cartRightTilt: {fileID: 904098142}
-  handTransform: {fileID: 0}
-  lookatRef: {fileID: 0}
-  stationaryCamRef: {fileID: 0}
+  handTransform: {fileID: 1401883983}
+  lookatRef: {fileID: 1717715941}
+  stationaryCamRef: {fileID: 1264690044}
   maxCartAngle: 10
   maxArmAngle: 70
   cartAngleDeadZone: 0
   armMoveSpeed: 5
-  mouseMode: 0
+  mouseMode: 1
   stationaryCam: 0
+  pickupAudio: {fileID: 0}
 --- !u!4 &121084681
 Transform:
   m_ObjectHideFlags: 0
@@ -3058,6 +3059,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 853db726dd044f14894a30472653cf49, type: 3}
+--- !u!4 &1401883983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 853db726dd044f14894a30472653cf49,
+    type: 3}
+  m_PrefabInstance: {fileID: 1332710745}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1518404847
 Mesh:
   m_ObjectHideFlags: 0
@@ -5422,6 +5429,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139778172 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7021541461510723589
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5498,7 +5517,7 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 65
+      value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
