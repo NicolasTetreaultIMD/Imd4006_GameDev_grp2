@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ArmMovementMouse",
+                    "type": "Value",
+                    "id": "293b3b26-9985-4dc7-8148-04224f41d4ba",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -208,12 +217,12 @@
                 },
                 {
                     "name": "",
-                    "id": "17307687-5e73-4d9d-896b-7b6bf6ab4e9f",
+                    "id": "8aedd422-f925-4acd-b8f5-66752c339586",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmMovement",
+                    "action": "ArmMovementMouse",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

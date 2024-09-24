@@ -71,6 +71,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ArmMovementMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""293b3b26-9985-4dc7-8148-04224f41d4ba"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -230,12 +239,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""17307687-5e73-4d9d-896b-7b6bf6ab4e9f"",
+                    ""id"": ""8aedd422-f925-4acd-b8f5-66752c339586"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmMovement"",
+                    ""action"": ""ArmMovementMouse"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -251,6 +260,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_ItemGrab = m_Gameplay.FindAction("ItemGrab", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_ArmMovement = m_Gameplay.FindAction("ArmMovement", throwIfNotFound: true);
+        m_Gameplay_ArmMovementMouse = m_Gameplay.FindAction("ArmMovementMouse", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -317,6 +327,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ItemGrab;
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_ArmMovement;
+    private readonly InputAction m_Gameplay_ArmMovementMouse;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -326,6 +337,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @ItemGrab => m_Wrapper.m_Gameplay_ItemGrab;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @ArmMovement => m_Wrapper.m_Gameplay_ArmMovement;
+        public InputAction @ArmMovementMouse => m_Wrapper.m_Gameplay_ArmMovementMouse;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -350,6 +362,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ArmMovement.started += instance.OnArmMovement;
             @ArmMovement.performed += instance.OnArmMovement;
             @ArmMovement.canceled += instance.OnArmMovement;
+            @ArmMovementMouse.started += instance.OnArmMovementMouse;
+            @ArmMovementMouse.performed += instance.OnArmMovementMouse;
+            @ArmMovementMouse.canceled += instance.OnArmMovementMouse;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -369,6 +384,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @ArmMovement.started -= instance.OnArmMovement;
             @ArmMovement.performed -= instance.OnArmMovement;
             @ArmMovement.canceled -= instance.OnArmMovement;
+            @ArmMovementMouse.started -= instance.OnArmMovementMouse;
+            @ArmMovementMouse.performed -= instance.OnArmMovementMouse;
+            @ArmMovementMouse.canceled -= instance.OnArmMovementMouse;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -393,5 +411,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnItemGrab(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnArmMovement(InputAction.CallbackContext context);
+        void OnArmMovementMouse(InputAction.CallbackContext context);
     }
 }
