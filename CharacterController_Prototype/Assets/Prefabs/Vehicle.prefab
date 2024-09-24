@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 2991140817489534017}
   - component: {fileID: 9071638756710464735}
   - component: {fileID: 328514319057738316}
+  - component: {fileID: 7456518616722598808}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -201,6 +202,21 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &7456518616722598808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3076260961574402361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ad376c6ae43f674f924b4a08ce0c46b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carController: {fileID: 7543207487933112963}
+  maxCamDistance: 2
+  cameraShakeAmount: 0.002
 --- !u!1 &3208308213684094190
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +250,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2729869999371569544}
+  - {fileID: 8974088881879057612}
   - {fileID: 6974182314487456050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -303,6 +320,7 @@ MonoBehaviour:
   rb: {fileID: 4876081273646826042}
   cartLeftCtrl: {fileID: 6974182314487456050}
   cartRightCtrl: {fileID: 8381922318481482233}
+  cartBodyCtrl: {fileID: 4547719463237422834}
   poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
@@ -314,6 +332,7 @@ MonoBehaviour:
   speedPoleIncreaseRate: 0.1
   dynamicTurnBool: 0
   cartState: 0
+  cartShakeAmount: 0.0005
   leftWheelSmoke: {fileID: 0}
   rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
@@ -453,7 +472,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8974088881879057612}
   - {fileID: 3682855099423416093}
   m_Father: {fileID: 8381922318481482233}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1710,7 +1728,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 32
+  m_VersionIndex: 44
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2078,12 +2096,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 4547719463237422834}
+    m_TransformParent: {fileID: 265994346353587761}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.028999984
+      value: 0.029000014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
