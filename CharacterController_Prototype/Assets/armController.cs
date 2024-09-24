@@ -35,6 +35,10 @@ public class armController : MonoBehaviour
     private float armAngle;
     private float inputRange;
 
+    //Audio
+
+    public AudioSource pickupAudio;
+
     void Start()
     {
         playerControls = new PlayerInput();
@@ -139,6 +143,8 @@ public class armController : MonoBehaviour
         {
             Debug.Log("item");
             grabableItems.Add(newItem);
+            pickupAudio.Play();
+
         }
         else if (newItem.layer == LayerMask.NameToLayer("Pole"))
         {
