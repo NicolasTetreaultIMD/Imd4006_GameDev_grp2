@@ -22,6 +22,9 @@ public class CarController : MonoBehaviour
     public Transform testCharTransNoAnim;
     public Rigidbody rb;
 
+    public Transform cartLeftCtrl;
+    public Transform cartRightCtrl;
+
     public float moveInput;
     public float speed;
     public float currentTurnSpeed;
@@ -267,6 +270,9 @@ public class CarController : MonoBehaviour
                 Debug.Log("RUNNING");
                 testCharTrans.gameObject.SetActive(true);
                 testCharTransNoAnim.gameObject.SetActive(false);
+
+                cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
+                cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
 
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", false);
