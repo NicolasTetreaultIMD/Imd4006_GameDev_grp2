@@ -19,6 +19,7 @@ public class CarController : MonoBehaviour
     private InputAction increase;
 
     public Transform testCharTrans;
+    public Transform testCharTransNoAnim;
     public Rigidbody rb;
 
     public float moveInput;
@@ -202,30 +203,20 @@ public class CarController : MonoBehaviour
         //Forumla to synchronize the player's maximum turn speed relative to their current speed.
         maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
 
-        /* JOYSTICK CONTROLS FOR TURNING
+        //JOYSTICK CONTROLS FOR TURNING
         Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
         if(Math.Abs(leftStick.x) > 0.05f)
         {
-
+            if (currentTurnSpeed < maxTurnSpeed)
+            {
+                currentTurnSpeed += (maxTurnSpeed / 10);
+            }
         }
-        */
-
-        // Adjusts the turn speed to increase incrementally instead of just 0% -> 100% turn speed.
-        if (dynamicTurnBool == true)
+        else
         {
-            if (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed)
-            {
-                if (currentTurnSpeed < maxTurnSpeed)
-                {
-                    currentTurnSpeed += (maxTurnSpeed/10);
-                }
-            }
-            else
-            {
-                currentTurnSpeed = 0;
-            }
-
+            currentTurnSpeed = 0;
         }
+
 
         moveInput = 1f; // 0 = Don't Move & 1 = Move
         float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
@@ -274,11 +265,23 @@ public class CarController : MonoBehaviour
         switch (newState){
             case CartState.Running:
                 Debug.Log("RUNNING");
-                testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z - 1);
+                testCharTrans.gameObject.SetActive(true);
+                testCharTransNoAnim.gameObject.SetActive(false);
+
+                //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
+                //animationController.SetBool("IsInCart", false);
+                //testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z - 1);
+
                 break;
             case CartState.InCart:
                 Debug.Log("IN CART");
-                testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z + 1);
+                testCharTrans.gameObject.SetActive(false);
+                testCharTransNoAnim.gameObject.SetActive(true);
+
+
+                //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
+                //animationController.SetBool("IsInCart", true);
+                //testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z + 1);
                 break;
         };
     }
