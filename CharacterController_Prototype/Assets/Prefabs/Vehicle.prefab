@@ -217,6 +217,7 @@ MonoBehaviour:
   carController: {fileID: 7543207487933112963}
   maxCamDistance: 2
   cameraShakeAmount: 0.002
+  camDisplacement: {x: 0, y: 0, z: 0}
 --- !u!1 &3208308213684094190
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +253,7 @@ Transform:
   - {fileID: 2729869999371569544}
   - {fileID: 8974088881879057612}
   - {fileID: 6974182314487456050}
+  - {fileID: 2555462090159666520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &4876081273646826042
@@ -440,6 +442,76 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &6274685138000533850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2555462090159666520}
+  - component: {fileID: 4527489360064866844}
+  - component: {fileID: 4790726972300997294}
+  m_Layer: 0
+  m_Name: ObstacleCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2555462090159666520
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274685138000533850}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 265994346353587761}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4527489360064866844
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274685138000533850}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 127
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7486251, y: 1, z: 0.28356266}
+  m_Center: {x: 0, y: 0, z: 0.58758116}
+--- !u!114 &4790726972300997294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6274685138000533850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af063546e171a014896e2c06e312908e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carController: {fileID: 7543207487933112963}
+  cameraShakeDuration: 0.8
+  cameraShakeStrength: 0.002
+  minHitSpeed: 10
 --- !u!1 &9195281356762999252
 GameObject:
   m_ObjectHideFlags: 0
@@ -1728,7 +1800,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 44
+  m_VersionIndex: 62
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1842,7 +1914,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1852576806548013000, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
@@ -2079,11 +2151,13 @@ MonoBehaviour:
   cartRightTilt: {fileID: 8381922318481482233}
   handTransform: {fileID: 3252501099571627838}
   lookatRef: {fileID: 0}
+  stationaryCamRef: {fileID: 0}
   maxCartAngle: 10
   maxArmAngle: 70
   cartAngleDeadZone: 0
   armMoveSpeed: 10
   mouseMode: 0
+  stationaryCam: 1
 --- !u!4 &6244861630378672491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7078722787440015773, guid: 853db726dd044f14894a30472653cf49,
@@ -2156,7 +2230,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853db726dd044f14894a30472653cf49,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 853db726dd044f14894a30472653cf49,
         type: 3}

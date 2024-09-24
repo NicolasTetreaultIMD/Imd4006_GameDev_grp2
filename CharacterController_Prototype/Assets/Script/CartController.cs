@@ -196,7 +196,7 @@ public class CarController : MonoBehaviour
         cartBodyCtrl.localPosition = randomPoint;
 
         float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
-        Debug.Log(shakeAngle);
+        //Debug.Log(shakeAngle);
         transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
 
         if (cartState != CartState.PoleHolding)
