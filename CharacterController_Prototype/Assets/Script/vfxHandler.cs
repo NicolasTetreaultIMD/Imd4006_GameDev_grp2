@@ -30,7 +30,7 @@ public class vfxHandler : MonoBehaviour
     {
         speed = 0;
         ToggleSparks(false);
-        ToggleVolumetricSmoke(true);
+        ToggleVolumetricSmoke(false);
         ToggleParticleSmoke(false);
     }
 
@@ -38,7 +38,7 @@ public class vfxHandler : MonoBehaviour
     void Update()
     {
         speed = cartController.speed;
-
+        
 
         // SHOW wind lines when player speed is greater than 20
         if (speed >= 20)
@@ -59,6 +59,15 @@ public class vfxHandler : MonoBehaviour
             ToggleTrailEffect(false);
         }
 
+        if (cartController.speed > 0)
+        {
+            ToggleVolumetricSmoke(true);
+        }
+        else
+        {
+            ToggleVolumetricSmoke(false);
+        }
+
 
         // SWITCH smokes depending on states
         // Player is running / sitting in cart
@@ -66,7 +75,6 @@ public class vfxHandler : MonoBehaviour
         {
             ToggleSparks(false);
             ToggleParticleSmoke(false);
-            ToggleVolumetricSmoke(true);
         }
         // Player is grabing pole
         else if(cartController.cartState == CarController.CartState.PoleHolding)
