@@ -9958,6 +9958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5916802629412167254, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916802629412167254, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 4dab95642213d934db0fe21edd82685c, type: 3}
@@ -10021,6 +10026,11 @@ PrefabInstance:
       propertyPath: lookatRef
       value: 
       objectReference: {fileID: 1717715941}
+    - target: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: mouseMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: stationaryCamRef
