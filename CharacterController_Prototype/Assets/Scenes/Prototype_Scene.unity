@@ -272,6 +272,7 @@ MonoBehaviour:
   armMoveSpeed: 5
   mouseMode: 1
   stationaryCam: 0
+  smokeEffect: []
   pickupAudio: {fileID: 0}
 --- !u!4 &121084681
 Transform:
@@ -744,8 +745,6 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 1
-  leftWheelSmoke: {fileID: 0}
-  rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
   topRight_TRL: {fileID: 0}
   botLeft_TRL: {fileID: 0}
@@ -1259,8 +1258,6 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 1
-  leftWheelSmoke: {fileID: 0}
-  rightWheelSmoke: {fileID: 0}
   topLeft_TRL: {fileID: 0}
   topRight_TRL: {fileID: 0}
   botLeft_TRL: {fileID: 0}
@@ -5495,7 +5492,7 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 641
+      value: 707
       objectReference: {fileID: 0}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
