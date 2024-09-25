@@ -130,6 +130,7 @@ public class armController : MonoBehaviour
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
+
         }
     }
 
