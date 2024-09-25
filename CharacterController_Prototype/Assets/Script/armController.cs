@@ -62,52 +62,57 @@ public class armController : MonoBehaviour
     {
         //ARM MOVEMENT ----------------------
 
-        if (!mouseMode)
+        if (carController.cartState != CarController.CartState.PoleHolding)
         {
-            armInput = playerControls.Gameplay.ArmMovement.ReadValue<Vector2>();
-            armAngle += armInput.x * armMoveSpeed * Time.fixedDeltaTime * 20;
+            if (!mouseMode)
+            {
+                armInput = playerControls.Gameplay.ArmMovement.ReadValue<Vector2>();
+                armAngle += armInput.x * armMoveSpeed * Time.fixedDeltaTime * 20;
 
-            armAngle = Mathf.Max(Mathf.Min(armAngle, 90), -90);
-            inputRange = 90;
+                armAngle = Mathf.Max(Mathf.Min(armAngle, 90), -90);
+                inputRange = 90;
+            }
+            else
+            {
+                armInput = playerControls.Gameplay.ArmMovementMouse.ReadValue<Vector2>();
+                armInput.x /= Screen.width;
+                armInput.y /= Screen.height;
+
+                armInput -= new Vector2(0.5f, 0.5f);
+
+                armInput = new Vector2(Mathf.Max(Mathf.Min(armInput.x, 0.5f), -0.5f), Mathf.Max(Mathf.Min(armInput.y, 0.5f), -0.5f));
+                armAngle = armInput.x;
+                inputRange = 0.5f;
+            }
+
+            armRotation = Map(-inputRange, inputRange, maxArmAngle, -maxArmAngle, armAngle);
+
+            characterArm.localRotation = Quaternion.Euler(characterArm.localRotation.eulerAngles.x, 0, armRotation);
+
+            //Right Tilt
+            if (armAngle > cartAngleDeadZone)
+            {
+                float cartRotation = Map(cartAngleDeadZone, inputRange, 0, -maxCartAngle, armAngle);
+
+                cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
+                cartRightTilt.localRotation = Quaternion.Euler(0, 0, cartRotation);
+            }
+            //Left Tilt
+            else if (armAngle < -cartAngleDeadZone)
+            {
+                float cartRotation = Map(-inputRange, -cartAngleDeadZone, maxCartAngle, 0, armAngle);
+
+                cartLeftTilt.localRotation = Quaternion.Euler(0, 0, cartRotation);
+                cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+            else
+            {
+                cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
+                cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
+            }
+
         }
-        else
-        {
-            armInput = playerControls.Gameplay.ArmMovementMouse.ReadValue<Vector2>();
-            armInput.x /= Screen.width;
-            armInput.y /= Screen.height;
 
-            armInput -= new Vector2(0.5f, 0.5f);
-
-            armInput = new Vector2(Mathf.Max(Mathf.Min(armInput.x, 0.5f), -0.5f), Mathf.Max(Mathf.Min(armInput.y, 0.5f), -0.5f));
-            armAngle = armInput.x;
-            inputRange = 0.5f;
-        }
-
-        armRotation = Map(-inputRange, inputRange, maxArmAngle, -maxArmAngle, armAngle);
-
-        characterArm.localRotation = Quaternion.Euler(35.874f, 0, armRotation);
-
-        //Right Tilt
-        if (armAngle > cartAngleDeadZone)
-        {
-            float cartRotation = Map(cartAngleDeadZone, inputRange, 0, -maxCartAngle, armAngle);
-
-            cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
-            cartRightTilt.localRotation = Quaternion.Euler(0, 0, cartRotation);
-        }
-        //Left Tilt
-        else if (armAngle < -cartAngleDeadZone)
-        {
-            float cartRotation = Map(-inputRange, -cartAngleDeadZone, maxCartAngle, 0, armAngle);
-
-            cartLeftTilt.localRotation = Quaternion.Euler(0, 0, cartRotation);
-            cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-        else
-        {
-            cartLeftTilt.localRotation = Quaternion.Euler(0, 0, 0);
-            cartRightTilt.localRotation = Quaternion.Euler(0, 0, 0);
-        }
 
         //POLE GRAB -----------
 
