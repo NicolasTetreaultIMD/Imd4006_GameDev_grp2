@@ -19,7 +19,9 @@ public class vfxHandler : MonoBehaviour
     public VisualEffect rightTireSmoke;
     public ParticleSystem[] smokeEffect;
     public ParticleSystem[] sparks;
+    public ParticleSystem[] fireTrail;
     public ParticleSystem grabEffect;
+
 
     private float speed;
     private float minTime = 0.0005f; // min/maxTime is used for Trail renderer for wind trails ( VFX )
@@ -137,6 +139,16 @@ public class vfxHandler : MonoBehaviour
             {
                 sparks[i].gameObject.SetActive(false);
             }
+        }
+
+    }
+
+    // Toggle Fire Trail
+    public void PlayFireTrail()
+    {
+        for (int i = 0; i < fireTrail.Length; i++)
+        {
+            fireTrail[i].Play(); // Play fire trail effect
         }
 
     }

@@ -179,6 +179,12 @@ public class armController : MonoBehaviour
         {
             Debug.Log("pole out");
             grabablePoles.Remove(oldItem);
+            
+            // PLAYER RELEASED THE POLE
+            if (carController.cartState != CarController.CartState.PoleHolding)
+            {
+                vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+            }
         }
     }
 

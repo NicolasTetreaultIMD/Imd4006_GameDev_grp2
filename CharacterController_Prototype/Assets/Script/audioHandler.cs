@@ -59,6 +59,7 @@ public class audioHandler : MonoBehaviour
         if(carController.speed > 0)
         {
             source[0].pitch = carController.speed/90;
+            if (source[0].pitch < 0.75) source[0].pitch = (float)0.75; // Create a min pitch value 
             if (source[0].isPlaying == false)
             {
                 source[0].Play();
