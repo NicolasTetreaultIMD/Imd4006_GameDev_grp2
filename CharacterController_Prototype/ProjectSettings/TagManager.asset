@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - wind_trail
-  - right_trails
-  - left_trails
+  - wheel_left_sparks
+  - wheel_right_sparks
   layers:
   - Default
   - TransparentFX
@@ -16,7 +15,7 @@ TagManager:
   - UI
   - Pole
   - Obstacle
-  - 
+  - Vehicle
   - 
   - 
   - 
