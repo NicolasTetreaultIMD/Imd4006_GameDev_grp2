@@ -19,6 +19,9 @@ public class vfxHandler : MonoBehaviour
     public VisualEffect rightTireSmoke;
     public ParticleSystem[] smokeEffect;
     public ParticleSystem[] sparks;
+    public ParticleSystem[] fireTrail;
+    public ParticleSystem grabEffect;
+
 
     private float speed;
     private float minTime = 0.0005f; // min/maxTime is used for Trail renderer for wind trails ( VFX )
@@ -29,7 +32,7 @@ public class vfxHandler : MonoBehaviour
     {
         speed = 0;
         ToggleSparks(false);
-        ToggleVolumetricSmoke(true);
+        ToggleVolumetricSmoke(false);
         ToggleParticleSmoke(false);
     }
 
@@ -37,7 +40,7 @@ public class vfxHandler : MonoBehaviour
     void Update()
     {
         speed = cartController.speed;
-
+        
 
         // SHOW wind lines when player speed is greater than 20
         if (speed >= 20)
@@ -58,6 +61,15 @@ public class vfxHandler : MonoBehaviour
             ToggleTrailEffect(false);
         }
 
+        if (cartController.speed > 0)
+        {
+            ToggleVolumetricSmoke(true);
+        }
+        else
+        {
+            ToggleVolumetricSmoke(false);
+        }
+
 
         // SWITCH smokes depending on states
         // Player is running / sitting in cart
@@ -65,7 +77,6 @@ public class vfxHandler : MonoBehaviour
         {
             ToggleSparks(false);
             ToggleParticleSmoke(false);
-            ToggleVolumetricSmoke(true);
         }
         // Player is grabing pole
         else if(cartController.cartState == CarController.CartState.PoleHolding)
@@ -119,16 +130,37 @@ public class vfxHandler : MonoBehaviour
         {
             for (int i = 0; i < sparks.Length; i++)
             {
-                sparks[i].Play(); // Play particle effect
+                sparks[i].gameObject.SetActive(true); // Play particle effect
             }
         }
         else // Player released
         {
             for (int i = 0; i < sparks.Length; i++)
             {
-                sparks[i].Stop();
+                sparks[i].gameObject.SetActive(false);
             }
         }
 
+    }
+
+    // Toggle Fire Trail
+    public void PlayFireTrail()
+    {
+        for (int i = 0; i < fireTrail.Length; i++)
+        {
+            fireTrail[i].Play(); // Play fire trail effect
+        }
+
+    }
+
+    // GRAB effect
+    public void PlayGrabEffect()
+    {   
+       // if(!grabEffect.isPlaying)
+        //{
+        grabEffect.Play();
+        Debug.Log("GRABBED");
+
+        // }
     }
 }

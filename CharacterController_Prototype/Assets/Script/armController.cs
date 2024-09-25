@@ -9,6 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class armController : MonoBehaviour
 {
     public vfxHandler vfxHandler;
+    public audioHandler audioHandler;
 
     PlayerInput playerControls;
     List<GameObject> grabableItems = new List<GameObject>();
@@ -39,10 +40,6 @@ public class armController : MonoBehaviour
 
     private float armAngle;
     private float inputRange;
-
-    //Audio
-
-    public AudioSource pickupAudio;
 
     void Start()
     {
@@ -146,13 +143,15 @@ public class armController : MonoBehaviour
     //ITEM GRAB --------------------------
     private void Grab(InputAction.CallbackContext context)
     {
-        Debug.Log("GRAB");
         int itemCount = grabableItems.Count - 1;
         for (int i = itemCount; i > -1; i--)
         {
             GameObject temp = grabableItems[i];
             grabableItems.Remove(temp);
             Destroy(temp);
+            audioHandler.grabItem(); // Play grab audio cue
+            Debug.Log("GRAB");
+            vfxHandler.PlayGrabEffect(); // Play grab particle animation
         }
     }
 
@@ -162,7 +161,6 @@ public class armController : MonoBehaviour
         {
             Debug.Log("item");
             grabableItems.Add(newItem);
-            pickupAudio.Play();
 
         }
         else if (newItem.layer == LayerMask.NameToLayer("Pole"))
@@ -181,6 +179,12 @@ public class armController : MonoBehaviour
         {
             Debug.Log("pole out");
             grabablePoles.Remove(oldItem);
+            
+            // PLAYER RELEASED THE POLE
+            if (carController.cartState != CarController.CartState.PoleHolding)
+            {
+                vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+            }
         }
     }
 

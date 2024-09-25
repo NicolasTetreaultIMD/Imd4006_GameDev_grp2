@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour
 
     PlayerInput playerInput;
     private InputAction increase;
+    public Vector2 leftStick;
 
     public Transform testCharTrans;
     public Transform testCharTransNoAnim;
@@ -51,11 +52,6 @@ public class CarController : MonoBehaviour
 
 
 
-    // AUDIO
-
-    public AudioSource cartAudio;
-    public AudioSource stepAudio;
-    public AudioSource wheelAudio;
 
 
     private void Start()
@@ -82,12 +78,7 @@ public class CarController : MonoBehaviour
             featherEffect.Stop();
         }
 
-        //init audio
-        cartAudio = GetComponent<AudioSource>();
-
-        // stop audio at the start
-        cartAudio.Pause();
-        stepAudio.Pause();
+        
 
     }
 
@@ -111,14 +102,7 @@ public class CarController : MonoBehaviour
 
        
 
-        ToggleFeatherEffect(); //call feather effect function
-
-        CartAudioEffect(); //call cart audio effect function
-
-        stepAudioEffect(); //call step audio effect function
-
-        wheelAudioEffect(); //call wheel audio effect function
-
+        
     }
     private void FixedUpdate()
     {
@@ -155,7 +139,7 @@ public class CarController : MonoBehaviour
             maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
 
             //JOYSTICK CONTROLS FOR TURNING
-            Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+            leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
             if(Math.Abs(leftStick.x) > 0.05f)
             {
                 if (currentTurnSpeed < maxTurnSpeed)
@@ -296,91 +280,5 @@ public class CarController : MonoBehaviour
         }
     }
 
-    //function to turn on cart audio
-    private void CartAudioEffect()
-    {
-        //Debug.Log("CartAudio enabled: " + cartAudio.enabled);
-        if (cartAudio.enabled)
-        {
-            float fadeSpeed = 1.7f;
-
-            if (speed == 0) // Player is not moving, pause the audio
-            {
-                if (cartAudio.volume > 0)
-                {
-                    //fade out the audio but slightly longer by multiplying time by the fadeSpeed constant 
-                    cartAudio.volume -= Time.deltaTime*fadeSpeed; 
-                    if (cartAudio.volume < 0)
-                    {
-                        cartAudio.volume = 0;
-                        cartAudio.Pause(); //pause the audio when the volume is fully faded out 
-                    }
-                }
-            }
-            else // Player is moving
-            {
-                if (!cartAudio.isPlaying)
-                {
-                    cartAudio.volume = 0;
-                    cartAudio.Play();
-                }
-
-                if (cartAudio.volume < 0.4f)
-                {
-                    //fade in the audio by adjusting the volume over time
-                    cartAudio.volume += Time.deltaTime; 
-                    if (cartAudio.volume > 0.4f)
-                    {
-                        //play at full volume
-                        cartAudio.volume = 0.4f;
-                    }
-                }
-
-                //map the pitch of the audio to the speed of the cart
-                cartAudio.pitch = Mathf.Lerp(1.5f, 4f, speed / 37.5f);
-            }
-        }
-    }
-
-    //function for step audio
-    private void stepAudioEffect()
-    {
-        if (speed == 0) // Player is not moving, pause audio
-        {
-            if (stepAudio.isPlaying)
-            {
-                stepAudio.Pause();
-            }
-        }
-        else // Player is moving, audio plays
-        {
-            //play audio when player is moving
-            if (!stepAudio.isPlaying)
-            {
-                stepAudio.Play();
-            }
-            //map speed to pitch
-            stepAudio.pitch = Mathf.Lerp(0f, 1.49f, speed / 37.5f); //this should be synced as close as possible to the steps of the character
-        }
-    }
-
-    //function for wheel audio
-    private void wheelAudioEffect()
-    {
-        //if the player is going fast and turning, play the audio
-        if (speed >= 20f && (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed))
-        {
-            if (!wheelAudio.isPlaying)
-            {
-                wheelAudio.Play();
-            }
-        }
-        else
-        {       
-            if (wheelAudio.isPlaying)
-            {
-                wheelAudio.Pause();
-            }
-        }
-    }
+   
 }

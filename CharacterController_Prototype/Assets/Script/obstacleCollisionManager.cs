@@ -5,6 +5,7 @@ using UnityEngine;
 public class obstacleCollisionManager : MonoBehaviour
 {
     public CarController carController;
+    public audioHandler audioHandler;
 
     public float cameraShakeDuration;
     public float cameraShakeStrength;
@@ -41,6 +42,7 @@ public class obstacleCollisionManager : MonoBehaviour
                 Debug.Log("end hit");
                 hit = false;
             }
+            audioHandler.cartCrash();
         }
     }
 
