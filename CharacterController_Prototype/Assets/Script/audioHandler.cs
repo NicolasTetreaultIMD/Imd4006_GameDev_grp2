@@ -25,14 +25,10 @@ public class audioHandler : MonoBehaviour
         speed = carController.speed;
         wheelAudioEffect();
         cartMovement();
-        //CartAudioEffect(); //call cart audio effect function
-        //stepAudioEffect(); //call step audio effect function
-        //wheelAudioEffect(); //call wheel audio effect function
-
     }
 
 
-    //Play step audio
+    //Play step audio. Random range 
     public void stepAudioEffect()
     {
         source[1].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
@@ -62,6 +58,7 @@ public class audioHandler : MonoBehaviour
     {
         if(carController.speed > 0)
         {
+            source[0].pitch = carController.speed/90;
             if (source[0].isPlaying == false)
             {
                 source[0].Play();
@@ -78,6 +75,14 @@ public class audioHandler : MonoBehaviour
         if (source[2].isPlaying == false)
         {
             source[2].Play();
+        }
+    }
+
+    public void cartCrash()
+    {
+        if (source[4].isPlaying == false)
+        {
+            source[4].Play();
         }
     }
     

@@ -19,6 +19,7 @@ public class vfxHandler : MonoBehaviour
     public VisualEffect rightTireSmoke;
     public ParticleSystem[] smokeEffect;
     public ParticleSystem[] sparks;
+    public ParticleSystem grabEffect;
 
     private float speed;
     private float minTime = 0.0005f; // min/maxTime is used for Trail renderer for wind trails ( VFX )
@@ -115,12 +116,10 @@ public class vfxHandler : MonoBehaviour
     // Toggle Sparks (in world space) 
     public void ToggleSparks(bool value)
     {
-        Debug.Log("ToggleSparks");
         if (value) // If player is holding the pole
         {
             for (int i = 0; i < sparks.Length; i++)
             {
-                Debug.Log("PlayAnimation");
                 sparks[i].gameObject.SetActive(true); // Play particle effect
             }
         }
@@ -132,5 +131,16 @@ public class vfxHandler : MonoBehaviour
             }
         }
 
+    }
+
+    // GRAB effect
+    public void PlayGrabEffect()
+    {   
+       // if(!grabEffect.isPlaying)
+        //{
+        grabEffect.Play();
+        Debug.Log("GRABBED");
+
+        // }
     }
 }

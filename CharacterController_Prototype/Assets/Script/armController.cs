@@ -143,14 +143,15 @@ public class armController : MonoBehaviour
     //ITEM GRAB --------------------------
     private void Grab(InputAction.CallbackContext context)
     {
-        Debug.Log("GRAB");
         int itemCount = grabableItems.Count - 1;
         for (int i = itemCount; i > -1; i--)
         {
             GameObject temp = grabableItems[i];
             grabableItems.Remove(temp);
             Destroy(temp);
-            audioHandler.grabItem();
+            audioHandler.grabItem(); // Play grab audio cue
+            Debug.Log("GRAB");
+            vfxHandler.PlayGrabEffect(); // Play grab particle animation
         }
     }
 
