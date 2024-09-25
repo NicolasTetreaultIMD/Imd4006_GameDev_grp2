@@ -30,7 +30,7 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 2f * Time.deltaTime);
+            targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
         }
         currentDistance = targetPos;
         camDisplacement.z -= targetPos;

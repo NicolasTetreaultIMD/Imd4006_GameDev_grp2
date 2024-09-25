@@ -5483,26 +5483,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle
       objectReference: {fileID: 0}
-    - target: {fileID: 4059979257838699943, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4292864966658628480, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4383597082315310074, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1912240810}
-    - target: {fileID: 4876081273646826042, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_Mesh
@@ -5511,7 +5496,7 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 77
+      value: 83
       objectReference: {fileID: 0}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
@@ -5528,21 +5513,6 @@ PrefabInstance:
       propertyPath: stationaryCamRef
       value: 
       objectReference: {fileID: 1264690044}
-    - target: {fileID: 7788533004468129562, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8629335479673642614, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9189983427753156688, guid: a01f2d67a0cecaf43977b4a51d0ca769,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
