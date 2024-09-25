@@ -130,7 +130,18 @@
                 {
                     "name": "",
                     "id": "6dec3cb9-b97b-4ea8-bb2e-116f2264b4c2",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ItemGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9f277382-366b-4545-86da-4f61b0904516",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
