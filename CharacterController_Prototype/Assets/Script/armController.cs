@@ -9,6 +9,7 @@ using static UnityEngine.Rendering.DebugUI;
 public class armController : MonoBehaviour
 {
     public vfxHandler vfxHandler;
+    public audioHandler audioHandler;
 
     PlayerInput playerControls;
     List<GameObject> grabableItems = new List<GameObject>();
@@ -39,10 +40,6 @@ public class armController : MonoBehaviour
 
     private float armAngle;
     private float inputRange;
-
-    //Audio
-
-    public AudioSource pickupAudio;
 
     void Start()
     {
@@ -153,6 +150,7 @@ public class armController : MonoBehaviour
             GameObject temp = grabableItems[i];
             grabableItems.Remove(temp);
             Destroy(temp);
+            audioHandler.grabItem();
         }
     }
 
@@ -162,7 +160,6 @@ public class armController : MonoBehaviour
         {
             Debug.Log("item");
             grabableItems.Add(newItem);
-            pickupAudio.Play();
 
         }
         else if (newItem.layer == LayerMask.NameToLayer("Pole"))

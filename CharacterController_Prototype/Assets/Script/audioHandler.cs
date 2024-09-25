@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,7 @@ public class audioHandler : MonoBehaviour
     public CarController carController;
     public armController armController;
 
-    public AudioSource source;
-    public AudioClip cartAudio;
-    public AudioClip stepAudio;
-    public AudioClip wheelAudio;
+    public AudioSource[] source;
 
     private float speed;
 
@@ -25,93 +23,62 @@ public class audioHandler : MonoBehaviour
     void Update()
     {
         speed = carController.speed;
-
+        wheelAudioEffect();
+        cartMovement();
         //CartAudioEffect(); //call cart audio effect function
         //stepAudioEffect(); //call step audio effect function
         //wheelAudioEffect(); //call wheel audio effect function
 
     }
 
-    //function to turn on cart audio
-    //private void CartAudioEffect()
-    //{
-    //    //Debug.Log("CartAudio enabled: " + cartAudio.enabled);
-    //    if (cartAudio.enabled)
-    //    {
-    //        float fadeSpeed = 1.7f;
-
-    //        if (speed == 0) // Player is not moving, pause the audio
-    //        {
-    //            if (cartAudio.volume > 0)
-    //            {
-    //                //fade out the audio but slightly longer by multiplying time by the fadeSpeed constant 
-    //                cartAudio.volume -= Time.deltaTime * fadeSpeed;
-    //                if (cartAudio.volume < 0)
-    //                {
-    //                    cartAudio.volume = 0;
-    //                    cartAudio.Pause(); //pause the audio when the volume is fully faded out 
-    //                }
-    //            }
-    //        }
-    //        else // Player is moving
-    //        {
-    //            if (!cartAudio.isPlaying)
-    //            {
-    //                cartAudio.volume = 0;
-    //                cartAudio.Play();
-    //            }
-
-    //            if (cartAudio.volume < 0.4f)
-    //            {
-    //                //fade in the audio by adjusting the volume over time
-    //                cartAudio.volume += Time.deltaTime;
-    //                if (cartAudio.volume > 0.4f)
-    //                {
-    //                    //play at full volume
-    //                    cartAudio.volume = 0.4f;
-    //                }
-    //            }
-
-    //            //map the pitch of the audio to the speed of the cart
-    //            cartAudio.pitch = Mathf.Lerp(1.5f, 4f, speed / 37.5f);
-    //        }
-    //    }
-    //}
 
     //Play step audio
     public void stepAudioEffect()
     {
-        source.pitch = Random.Range(0.25f,0.75f);
-        Debug.Log(source.pitch);
-        source.clip = stepAudio;
-        source.Play();
+        source[1].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+        source[1].Play();
     }
 
-    private void wheelAudioEffect()
+    public void wheelAudioEffect()
     {
         if (speed >= 20f)
         {
-
+            if (Math.Abs(carController.leftStick.x) > 0.05f)
+            {
+                source[3].pitch = 1;
+                if (source[3].isPlaying == false)
+                {
+                    source[3].Play();
+                }
+            }
+            else
+            {
+                source[3].Stop();
+            }
         }
     }
 
-    //function for wheel audio
-    //private void wheelAudioEffect()
-    //{
-    //    //if the player is going fast and turning, play the audio
-    //    if (speed >= 20f && (Keyboard.current.aKey.isPressed || Keyboard.current.dKey.isPressed))
-    //    {
-    //        if (!wheelAudio.isPlaying)
-    //        {
-    //            wheelAudio.Play();
-    //        }
-    //    }
-    //    else
-    //    {
-    //        if (wheelAudio.isPlaying)
-    //        {
-    //            wheelAudio.Pause();
-    //        }
-    //    }
-    //}
+    public void cartMovement()
+    {
+        if(carController.speed > 0)
+        {
+            if (source[0].isPlaying == false)
+            {
+                source[0].Play();
+            }
+        }
+        else
+        {
+            source[0].Stop();
+        }
+    }
+
+    public void grabItem()
+    {
+        if (source[2].isPlaying == false)
+        {
+            source[2].Play();
+        }
+    }
+    
 }

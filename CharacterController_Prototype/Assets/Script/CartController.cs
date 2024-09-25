@@ -17,6 +17,7 @@ public class CarController : MonoBehaviour
 
     PlayerInput playerInput;
     private InputAction increase;
+    public Vector2 leftStick;
 
     public Transform testCharTrans;
     public Transform testCharTransNoAnim;
@@ -138,7 +139,7 @@ public class CarController : MonoBehaviour
             maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
 
             //JOYSTICK CONTROLS FOR TURNING
-            Vector2 leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+            leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
             if(Math.Abs(leftStick.x) > 0.05f)
             {
                 if (currentTurnSpeed < maxTurnSpeed)
