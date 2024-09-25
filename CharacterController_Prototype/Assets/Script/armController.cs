@@ -128,6 +128,8 @@ public class armController : MonoBehaviour
                 Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
             }
 
+            vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
 
@@ -180,12 +182,7 @@ public class armController : MonoBehaviour
         {
             Debug.Log("pole out");
             grabablePoles.Remove(oldItem);
-            
-            // PLAYER RELEASED THE POLE
-            if (carController.cartState != CarController.CartState.PoleHolding)
-            {
-                vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
-            }
+           
         }
     }
 
