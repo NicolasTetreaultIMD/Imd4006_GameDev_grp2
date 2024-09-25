@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865292f60aaaef4a8ae8a91265d73dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfxHandler: {fileID: 0}
   carController: {fileID: 2139778172}
   characterArm: {fileID: 797494267}
   cartLeftTilt: {fileID: 1658923564}
@@ -272,7 +273,6 @@ MonoBehaviour:
   armMoveSpeed: 5
   mouseMode: 1
   stationaryCam: 0
-  smokeEffect: []
   pickupAudio: {fileID: 0}
 --- !u!4 &121084681
 Transform:
@@ -289,6 +289,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &139738409 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7796921387282427588, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &295028455
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +449,18 @@ MonoBehaviour:
   maxCamDistance: 0
   cameraShakeAmount: 0
   camDisplacement: {x: 0, y: 0, z: 0}
+--- !u!2083052967 &549915903 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 668236240621014993, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &640053434 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 9122498866040493976, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &640682747
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,10 +763,6 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 1
-  topLeft_TRL: {fileID: 0}
-  topRight_TRL: {fileID: 0}
-  botLeft_TRL: {fileID: 0}
-  botRight_TRL: {fileID: 0}
   featherEffect: {fileID: 0}
   cartAudio: {fileID: 0}
   stepAudio: {fileID: 0}
@@ -1258,10 +1272,6 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 1
-  topLeft_TRL: {fileID: 0}
-  topRight_TRL: {fileID: 0}
-  botLeft_TRL: {fileID: 0}
-  botRight_TRL: {fileID: 0}
   featherEffect: {fileID: 0}
   cartAudio: {fileID: 0}
   stepAudio: {fileID: 0}
@@ -3122,6 +3132,12 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!2083052967 &1585932253 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 1934579637418762395, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1601195223
 GameObject:
   m_ObjectHideFlags: 0
@@ -4959,6 +4975,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7021541461510723589}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1786410791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+    type: 3}
+  m_PrefabInstance: {fileID: 7021541461510723589}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f865292f60aaaef4a8ae8a91265d73dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1894581594
 GameObject:
   m_ObjectHideFlags: 0
@@ -5492,8 +5520,38 @@ PrefabInstance:
     - target: {fileID: 6373057381752353294, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 731
+      value: 791
       objectReference: {fileID: 0}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: armController
+      value: 
+      objectReference: {fileID: 1786410791}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: leftTireSmoke
+      value: 
+      objectReference: {fileID: 1585932253}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: rightTireSmoke
+      value: 
+      objectReference: {fileID: 549915903}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: smokeEffect.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: smokeEffect.Array.data[0]
+      value: 
+      objectReference: {fileID: 139738409}
+    - target: {fileID: 7072181241362066525, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
+      propertyPath: smokeEffect.Array.data[1]
+      value: 
+      objectReference: {fileID: 640053434}
     - target: {fileID: 7543207487933112963, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
       propertyPath: poleRotateLookatRef

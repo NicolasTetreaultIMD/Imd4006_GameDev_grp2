@@ -820,6 +820,7 @@ GameObject:
   - component: {fileID: 4876081273646826042}
   - component: {fileID: 8691506017781683440}
   - component: {fileID: 7543207487933112963}
+  - component: {fileID: 7072181241362066525}
   m_Layer: 8
   m_Name: Vehicle
   m_TagString: Untagged
@@ -929,14 +930,33 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 0.0005
-  topLeft_TRL: {fileID: 4403146706418960238}
-  topRight_TRL: {fileID: 4864601636670459267}
-  botLeft_TRL: {fileID: 8928800816927317117}
-  botRight_TRL: {fileID: 2958124863827630012}
   featherEffect: {fileID: 0}
   cartAudio: {fileID: 0}
   stepAudio: {fileID: 0}
   wheelAudio: {fileID: 0}
+--- !u!114 &7072181241362066525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3208308213684094190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7014da5e2bc36684fbad77ff50b4e425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cartController: {fileID: 7543207487933112963}
+  armController: {fileID: 7568480206308709136}
+  topLeft_TRL: {fileID: 4403146706418960238}
+  topRight_TRL: {fileID: 4864601636670459267}
+  botLeft_TRL: {fileID: 8928800816927317117}
+  botRight_TRL: {fileID: 2958124863827630012}
+  leftTireSmoke: {fileID: 1934579637418762395}
+  rightTireSmoke: {fileID: 668236240621014993}
+  smokeEffect:
+  - {fileID: 7796921387282427588}
+  - {fileID: 9122498866040493976}
 --- !u!1 &3243752452315730768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3266,6 +3286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f865292f60aaaef4a8ae8a91265d73dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vfxHandler: {fileID: 0}
   carController: {fileID: 7543207487933112963}
   characterArm: {fileID: 6244861630378672491}
   cartLeftTilt: {fileID: 6974182314487456050}
@@ -3279,9 +3300,6 @@ MonoBehaviour:
   armMoveSpeed: 10
   mouseMode: 0
   stationaryCam: 1
-  smokeEffect:
-  - {fileID: 7796921387282427588}
-  - {fileID: 9122498866040493976}
   pickupAudio: {fileID: 0}
 --- !u!4 &6244861630378672491 stripped
 Transform:
@@ -3819,6 +3837,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5521487348717955606}
   m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &668236240621014993 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5036799198379877831, guid: 8d90475bfde99a84a89cf1f728a7a931,
+    type: 3}
+  m_PrefabInstance: {fileID: 5521487348717955606}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5589586568536838778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3984,6 +4008,12 @@ PrefabInstance:
 --- !u!4 &1466696054527327163 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5432906353024335591, guid: 8d90475bfde99a84a89cf1f728a7a931,
+    type: 3}
+  m_PrefabInstance: {fileID: 6863292049604150620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &1934579637418762395 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5036799198379877831, guid: 8d90475bfde99a84a89cf1f728a7a931,
     type: 3}
   m_PrefabInstance: {fileID: 6863292049604150620}
   m_PrefabAsset: {fileID: 0}

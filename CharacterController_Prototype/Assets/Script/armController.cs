@@ -8,6 +8,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class armController : MonoBehaviour
 {
+    public vfxHandler vfxHandler;
+
     PlayerInput playerControls;
     List<GameObject> grabableItems = new List<GameObject>();
     List<GameObject> grabablePoles = new List<GameObject>();
@@ -37,8 +39,6 @@ public class armController : MonoBehaviour
 
     private float armAngle;
     private float inputRange;
-
-    public ParticleSystem[] smokeEffect;
 
     //Audio
 
@@ -133,9 +133,6 @@ public class armController : MonoBehaviour
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
-
-            ToggleSmoke(false); // Toggle smoke effects off
-
         }
     }
 
@@ -202,29 +199,6 @@ public class armController : MonoBehaviour
             }
 
             carController.SwitchCartState(CarController.CartState.PoleHolding);
-
-            ToggleSmoke(true); // Toggle smoke effects on
-
         }
-    }
-
-    // TOGGLE SMOKE EFFECT
-    private void ToggleSmoke(bool hold)
-    {
-        if (hold) // If player is holding the pole
-        {
-            for (int i = 0; i < smokeEffect.Length; i++)
-            {
-                smokeEffect[i].Play(); // Play particle effect
-            }
-        }
-        else // Player released
-        {
-            for (int i = 0; i < smokeEffect.Length; i++)
-            {
-                smokeEffect[i].Stop();
-            }
-        }
-
     }
 }
