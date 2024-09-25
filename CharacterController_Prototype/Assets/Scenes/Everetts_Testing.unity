@@ -10033,6 +10033,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
         type: 3}
+      propertyPath: armMoveSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7568480206308709136, guid: a01f2d67a0cecaf43977b4a51d0ca769,
+        type: 3}
       propertyPath: stationaryCamRef
       value: 
       objectReference: {fileID: 1264690044}
