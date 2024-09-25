@@ -6,6 +6,7 @@ TagManager:
   tags:
   - wheel_left_sparks
   - wheel_right_sparks
+  - smoke_drag
   layers:
   - Default
   - TransparentFX
