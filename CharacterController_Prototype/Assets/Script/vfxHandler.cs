@@ -115,18 +115,20 @@ public class vfxHandler : MonoBehaviour
     // Toggle Sparks (in world space) 
     public void ToggleSparks(bool value)
     {
+        Debug.Log("ToggleSparks");
         if (value) // If player is holding the pole
         {
             for (int i = 0; i < sparks.Length; i++)
             {
-                sparks[i].Play(); // Play particle effect
+                Debug.Log("PlayAnimation");
+                sparks[i].gameObject.SetActive(true); // Play particle effect
             }
         }
         else // Player released
         {
             for (int i = 0; i < sparks.Length; i++)
             {
-                sparks[i].Stop();
+                sparks[i].gameObject.SetActive(false);
             }
         }
 

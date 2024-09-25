@@ -9,6 +9,8 @@ public class FootStepVFX : MonoBehaviour
     public ParticleSystem left;
     public ParticleSystem right;
 
+    public audioHandler audioHandler;
+
     public void CreateFootImpact(string foot)
     {
 
@@ -20,5 +22,8 @@ public class FootStepVFX : MonoBehaviour
         {
             left.Play();
         }
+
+        // Play step audio effect
+        audioHandler.stepAudioEffect();
     }
 }
