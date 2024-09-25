@@ -34,6 +34,7 @@ public class CarController : MonoBehaviour
     public float currentTurnSpeed;
     public float minInCartSpeed = 10f;
     public float maxSpeed = 37.5f;
+    public bool turnSpeedToggle;
     public float maxTurnSpeed;
     float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
@@ -136,7 +137,14 @@ public class CarController : MonoBehaviour
             }
 
             //Forumla to synchronize the player's maximum turn speed relative to their current speed.
-            maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
+            if (turnSpeedToggle == false)
+            {
+                maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
+            }
+            else
+            {
+                maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 1.2f;
+            }
 
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
