@@ -116,7 +116,6 @@ public class armController : MonoBehaviour
         if (poleHoldValue > 0.6f && carController.cartState != CarController.CartState.PoleHolding)
         {
             PoleHold();
-            ToggleSmoke(true); // Toggle smoke effects on
         }
         else if (poleHoldValue < 0.6f && carController.cartState == CarController.CartState.PoleHolding)
         {
@@ -199,6 +198,7 @@ public class armController : MonoBehaviour
 
             carController.SwitchCartState(CarController.CartState.PoleHolding);
 
+            ToggleSmoke(true); // Toggle smoke effects on
 
         }
     }
