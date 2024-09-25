@@ -22,6 +22,8 @@ public class vfxHandler : MonoBehaviour
 
     public ParticleSystem[] smokeEffect;
 
+    public ParticleSystem[] sparks;
+
     // minTime is used for Trail renderer for wind trails ( VFX )
     private float minTime = 0.0005f;
     private float maxTime = 0.5f;
@@ -41,7 +43,7 @@ public class vfxHandler : MonoBehaviour
         speed = cartController.speed;
 
 
-        // Show speed lines when the player exceeds a certain speed
+        // SHOW wind lines when player speed is greater than 20
         if (speed >= 20)
         {
             // LERP the TrailRenderer.Time to ease the trail in when it appears
@@ -55,26 +57,30 @@ public class vfxHandler : MonoBehaviour
             ToggleTrailEffect(true);
 
         }
-        else
+        else // no wind lines when speed < 20
         {
             ToggleTrailEffect(false);
         }
 
 
+        // SWITCH smokes depending on states
+        // If player is running or moving in cart, show volumetric smoke
         if (cartController.cartState == CarController.CartState.Running || cartController.cartState == CarController.CartState.InCart)
         {
             ToggleParticleSmoke(false);
             ToggleVolumetricSmoke(true);
+            ToggleSparks(false);
         }
+        // Player is grabbing a pole, show particle smoke
         else if(cartController.cartState == CarController.CartState.PoleHolding)
         {
             ToggleParticleSmoke(true);
             ToggleVolumetricSmoke(false);
+            ToggleSparks(true);
         }
-
-
     }
 
+    // Toggle wind trail effect
     public void ToggleTrailEffect (bool value)
     {
         topLeft_TRL.enabled = value;
@@ -83,13 +89,14 @@ public class vfxHandler : MonoBehaviour
         botRight_TRL.enabled = value;
     }
 
+    // Toggle 3D tire smoke
     public void ToggleVolumetricSmoke (bool value)
     {
         leftTireSmoke.enabled = value;
         rightTireSmoke.enabled = value;
     }
 
-    // TOGGLE SMOKE EFFECT
+    // Toggle particle smoke (in world space) 
     public void ToggleParticleSmoke(bool value)
     {
         if (value) // If player is holding the pole
@@ -104,6 +111,26 @@ public class vfxHandler : MonoBehaviour
             for (int i = 0; i < smokeEffect.Length; i++)
             {
                 smokeEffect[i].Stop();
+            }
+        }
+
+    }
+
+    // Toggle Sparks (in world space) 
+    public void ToggleSparks(bool value)
+    {
+        if (value) // If player is holding the pole
+        {
+            for (int i = 0; i < sparks.Length; i++)
+            {
+                sparks[i].Play(); // Play particle effect
+            }
+        }
+        else // Player released
+        {
+            for (int i = 0; i < sparks.Length; i++)
+            {
+                sparks[i].Stop();
             }
         }
 
