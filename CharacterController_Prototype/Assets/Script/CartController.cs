@@ -46,8 +46,8 @@ public class CarController : MonoBehaviour
     public float cartShakeAmount = 1;
 
     // VISUAL EFFECTS
-    public VisualEffect leftWheelSmoke;
-    public VisualEffect rightWheelSmoke;
+    //public VisualEffect leftWheelSmoke;
+    //public VisualEffect rightWheelSmoke;
 
     public TrailRenderer topLeft_TRL;
     public TrailRenderer topRight_TRL;
@@ -58,7 +58,7 @@ public class CarController : MonoBehaviour
 
     // minTime is used for Trail renderer for wind trails ( VFX )
     private float minTime = 0.0005f;
-    private float maxTime = 0.035f;
+    private float maxTime = 0.5f;
 
     // AUDIO
 
@@ -122,7 +122,7 @@ public class CarController : MonoBehaviour
 
 
         // Show speed lines when the player exceeds a certain speed
-        if (speed >= 27)
+        if (speed >= 20)
         {
             // LERP the TrailRenderer.Time to ease the trail in when it appears
             float time = Mathf.Lerp(minTime, maxTime, Mathf.InverseLerp(30.0f, 40.0f, speed));
@@ -146,39 +146,39 @@ public class CarController : MonoBehaviour
             botRight_TRL.enabled = false;
         }
 
-        // Check input to determine visual effects when turning
-        if (Keyboard.current.aKey.isPressed)
-        {
-            // Turning left, show left wheel smoke
-            if (leftWheelSmoke != null)
-                leftWheelSmoke.enabled = true;
+        //// Check input to determine visual effects when turning
+        //if (Keyboard.current.aKey.isPressed)
+        //{
+        //    // Turning left, show left wheel smoke
+        //    if (leftWheelSmoke != null)
+        //        leftWheelSmoke.enabled = true;
 
-            // Hide right wheel smoke
-            if (rightWheelSmoke != null)
-                rightWheelSmoke.enabled = false;
+        //    // Hide right wheel smoke
+        //    if (rightWheelSmoke != null)
+        //        rightWheelSmoke.enabled = false;
 
 
-        }
-        else if (Keyboard.current.dKey.isPressed)
-        {
-            // Turning right, show right wheel smoke
-            if (rightWheelSmoke != null)
-                rightWheelSmoke.enabled = true;
+        //}
+        //else if (Keyboard.current.dKey.isPressed)
+        //{
+        //    // Turning right, show right wheel smoke
+        //    if (rightWheelSmoke != null)
+        //        rightWheelSmoke.enabled = true;
 
-            // Hide left wheel smoke
-            if (leftWheelSmoke != null)
-                leftWheelSmoke.enabled = false;
+        //    // Hide left wheel smoke
+        //    if (leftWheelSmoke != null)
+        //        leftWheelSmoke.enabled = false;
 
-        }
-        else // Neither key pressed, hide both wheel smokes
-        {
-            if (leftWheelSmoke != null)
-                leftWheelSmoke.enabled = false;
+        //}
+        //else // Neither key pressed, hide both wheel smokes
+        //{
+        //    if (leftWheelSmoke != null)
+        //        leftWheelSmoke.enabled = false;
 
-            if (rightWheelSmoke != null)
-                rightWheelSmoke.enabled = false;
+        //    if (rightWheelSmoke != null)
+        //        rightWheelSmoke.enabled = false;
 
-        }
+        //}
 
         ToggleFeatherEffect(); //call feather effect function
 

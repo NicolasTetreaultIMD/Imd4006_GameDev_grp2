@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -37,6 +38,8 @@ public class armController : MonoBehaviour
     private float armAngle;
     private float inputRange;
 
+    public ParticleSystem[] smokeEffect;
+
     //Audio
 
     public AudioSource pickupAudio;
@@ -51,6 +54,7 @@ public class armController : MonoBehaviour
         grab.performed += Grab;
 
         armAngle = 0;
+
     }
 
     // Update is called once per frame
@@ -112,6 +116,7 @@ public class armController : MonoBehaviour
         if (poleHoldValue > 0.6f && carController.cartState != CarController.CartState.PoleHolding)
         {
             PoleHold();
+            ToggleSmoke(true); // Toggle smoke effects on
         }
         else if (poleHoldValue < 0.6f && carController.cartState == CarController.CartState.PoleHolding)
         {
@@ -124,8 +129,13 @@ public class armController : MonoBehaviour
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
+
+            ToggleSmoke(false); // Toggle smoke effects off
+
         }
     }
+
+    
 
     public static float Map(float a, float b, float c, float d, float x)
     {
@@ -188,6 +198,28 @@ public class armController : MonoBehaviour
             }
 
             carController.SwitchCartState(CarController.CartState.PoleHolding);
+
+
         }
+    }
+
+    // TOGGLE SMOKE EFFECT
+    private void ToggleSmoke(bool hold)
+    {
+        if (hold) // If player is holding the pole
+        {
+            for (int i = 0; i < smokeEffect.Length; i++)
+            {
+                smokeEffect[i].Play(); // Play particle effect
+            }
+        }
+        else // Player released
+        {
+            for (int i = 0; i < smokeEffect.Length; i++)
+            {
+                smokeEffect[i].Stop();
+            }
+        }
+
     }
 }
