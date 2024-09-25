@@ -86,5 +86,14 @@ public class audioHandler : MonoBehaviour
             source[4].Play();
         }
     }
+
+    // Tire screech when grabbing pole
+    public void cartScreech()
+    {
+        if (source[5].isPlaying == false)
+        {
+            source[4].Play();
+        }
+    }
     
 }
