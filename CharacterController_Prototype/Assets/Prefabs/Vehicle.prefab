@@ -2733,7 +2733,7 @@ PrefabInstance:
     - target: {fileID: 1977972122558735986, guid: da68b87688ff7a844b1bb013d92cb5fc,
         type: 3}
       propertyPath: m_Name
-      value: wheel_trail
+      value: bk_rgt_wheel_trail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3280,7 +3280,7 @@ PrefabInstance:
     - target: {fileID: 1977972122558735986, guid: da68b87688ff7a844b1bb013d92cb5fc,
         type: 3}
       propertyPath: m_Name
-      value: wheel_trail (1)
+      value: bk_lft_wheel_trail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3434,7 +3434,7 @@ PrefabInstance:
     - target: {fileID: 1977972122558735986, guid: da68b87688ff7a844b1bb013d92cb5fc,
         type: 3}
       propertyPath: m_Name
-      value: wheel_trail (2)
+      value: ft_lft_wheel_trail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3628,7 +3628,7 @@ PrefabInstance:
     - target: {fileID: 9094256011062095409, guid: 8d90475bfde99a84a89cf1f728a7a931,
         type: 3}
       propertyPath: m_Name
-      value: vfx_Smoke
+      value: rgt_volumetricSmoke
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3802,7 +3802,7 @@ PrefabInstance:
     - target: {fileID: 9094256011062095409, guid: 8d90475bfde99a84a89cf1f728a7a931,
         type: 3}
       propertyPath: m_Name
-      value: vfx_Smoke
+      value: lft_volumetricSmoke
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3962,7 +3962,7 @@ PrefabInstance:
     - target: {fileID: 1977972122558735986, guid: da68b87688ff7a844b1bb013d92cb5fc,
         type: 3}
       propertyPath: m_Name
-      value: wheel_trail (1)
+      value: ft_rgt_wheel_trail
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4056,7 +4056,7 @@ PrefabInstance:
     - target: {fileID: 7424361181682515903, guid: 5adde542fffd3954599e799b432fdbba,
         type: 3}
       propertyPath: m_Name
-      value: smokeEffect_particle_world (2)
+      value: rgt_particleSmoke
       objectReference: {fileID: 0}
     - target: {fileID: 7424361181682515903, guid: 5adde542fffd3954599e799b432fdbba,
         type: 3}
@@ -4346,7 +4346,7 @@ PrefabInstance:
     - target: {fileID: 7424361181682515903, guid: 5adde542fffd3954599e799b432fdbba,
         type: 3}
       propertyPath: m_Name
-      value: smokeEffect_particle_world (1)
+      value: lft_particleSmoke
       objectReference: {fileID: 0}
     - target: {fileID: 7424361181682515903, guid: 5adde542fffd3954599e799b432fdbba,
         type: 3}

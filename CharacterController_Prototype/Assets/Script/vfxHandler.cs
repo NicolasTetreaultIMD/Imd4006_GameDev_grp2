@@ -9,32 +9,28 @@ public class vfxHandler : MonoBehaviour
     public CarController cartController;
     public armController armController;
 
-    private float speed;
 
     // Trails
     public TrailRenderer topLeft_TRL;
     public TrailRenderer topRight_TRL;
     public TrailRenderer botLeft_TRL;
     public TrailRenderer botRight_TRL;
-
     public VisualEffect leftTireSmoke;
     public VisualEffect rightTireSmoke;
-
     public ParticleSystem[] smokeEffect;
-
     public ParticleSystem[] sparks;
 
-    // minTime is used for Trail renderer for wind trails ( VFX )
-    private float minTime = 0.0005f;
+    private float speed;
+    private float minTime = 0.0005f; // min/maxTime is used for Trail renderer for wind trails ( VFX )
     private float maxTime = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 0;
-
+        ToggleSparks(false);
         ToggleVolumetricSmoke(true);
-        ToggleParticleSmoke(true);
+        ToggleParticleSmoke(false);
     }
 
     // Update is called once per frame
@@ -64,19 +60,19 @@ public class vfxHandler : MonoBehaviour
 
 
         // SWITCH smokes depending on states
-        // If player is running or moving in cart, show volumetric smoke
+        // Player is running / sitting in cart
         if (cartController.cartState == CarController.CartState.Running || cartController.cartState == CarController.CartState.InCart)
         {
+            ToggleSparks(false);
             ToggleParticleSmoke(false);
             ToggleVolumetricSmoke(true);
-            ToggleSparks(false);
         }
-        // Player is grabbing a pole, show particle smoke
+        // Player is grabing pole
         else if(cartController.cartState == CarController.CartState.PoleHolding)
         {
+            ToggleSparks(true);
             ToggleParticleSmoke(true);
             ToggleVolumetricSmoke(false);
-            ToggleSparks(true);
         }
     }
 
