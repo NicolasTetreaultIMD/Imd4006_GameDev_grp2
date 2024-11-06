@@ -17,9 +17,8 @@ public class CarController : MonoBehaviour
 
     PlayerInput playerInput;
     private InputAction increase;
-    private InputAction shoot;
     public Vector2 leftStick;
-    public Vector2 rightStick;
+    public Cannon cannon;
 
     public Transform testCharTrans;
     public Transform testCharTransNoAnim;
@@ -49,17 +48,6 @@ public class CarController : MonoBehaviour
     private int poleTurnDirection = 1;
     public float cartShakeAmount = 1;
 
-    public GameObject cannon;
-    public float cannonRotationSpeed;
-
-    public GameObject projectile;
-    public GameObject shootingPoint;
-    public float shootForce;
-
-    public LineRenderer lineRenderer;
-    public int linePoints = 175;
-    public float timeIntervalinPoints = 0.01f;
-
     private void Start()
     {
         speed = 0;
@@ -73,10 +61,6 @@ public class CarController : MonoBehaviour
         increase = playerInput.Gameplay.SpeedIncrease;
         increase.Enable();
         increase.performed += Increase;
-
-        shoot = playerInput.Gameplay.CannonShoot;
-        shoot.Enable();
-        shoot.performed += Shoot;
 
         dynamicTurnBool = true;
 
@@ -135,10 +119,6 @@ public class CarController : MonoBehaviour
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
             TurnCart();
-
-            //AIMING CANNON
-            rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
-            AimCannon();
 
             //MOVES CART
             Move();
@@ -225,58 +205,6 @@ public class CarController : MonoBehaviour
         }
     }
 
-    private void AimCannon()
-    {
-        rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
-        
-        Vector3 currentLocalRotation = cannon.transform.localEulerAngles; // Get the current local rotation of the cannon (relative to the car)
-        if (currentLocalRotation.y > 180) // Convert to -180 to 180 range for clamping
-        {
-            currentLocalRotation.y -= 360; // Convert angle to the range -180 to 180
-        }
-
-        if (rightStick.x > 0)
-        {
-            currentLocalRotation.y += cannonRotationSpeed * Time.deltaTime;
-        }
-        else if (rightStick.x < 0)
-        {
-            currentLocalRotation.y -= cannonRotationSpeed * Time.deltaTime;
-        }
-
-        currentLocalRotation.y = Mathf.Clamp(currentLocalRotation.y, -45f, 45f); // Clamp the Y rotation between -45 and 45 degrees
-        if (currentLocalRotation.y < 0) // Convert back to 0 to 360 range if necessary
-        {
-            currentLocalRotation.y += 360; // Convert to 0 to 360 range if negative
-        }
-
-        // Apply the clamped local rotation to the cannon
-        cannon.transform.localEulerAngles = currentLocalRotation;
-
-        DrawTrajectory();
-    }
-
-    void DrawTrajectory()
-    {
-        Vector3 startVelocity = shootForce * shootingPoint.transform.up;
-    }
-
-    private void Shoot(InputAction.CallbackContext context)
-    {
-        if(projectile != null)
-        {
-            var bullet = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
-            bullet.GetComponent<Rigidbody>().velocity = shootingPoint.transform.forward * shootForce;
-        }
-
-        projectile = null;
-    }
-
-    public void LoadCannon(GameObject newProjectile)
-    {
-        projectile = newProjectile;
-    }
-
     //Controls the current state of the controller
     public void SwitchCartState(CartState newState)
     {
@@ -335,7 +263,7 @@ public class CarController : MonoBehaviour
         if(other.tag == "ItemBox")
         {
             Debug.Log("Item loaded");
-            LoadCannon(GameObject.Find(other.name + " Item"));
+            cannon.LoadCannon(GameObject.Find(other.name + " Item"));
             Destroy(other.gameObject);
         }
     }
