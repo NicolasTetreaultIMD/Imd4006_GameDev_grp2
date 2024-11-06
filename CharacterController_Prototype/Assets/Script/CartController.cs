@@ -17,7 +17,9 @@ public class CarController : MonoBehaviour
 
     PlayerInput playerInput;
     private InputAction increase;
+    private InputAction shoot;
     public Vector2 leftStick;
+    public Vector2 rightStick;
 
     public Transform testCharTrans;
     public Transform testCharTransNoAnim;
@@ -47,13 +49,16 @@ public class CarController : MonoBehaviour
     private int poleTurnDirection = 1;
     public float cartShakeAmount = 1;
 
-    
+    public GameObject cannon;
+    public float cannonRotationSpeed;
 
-    public ParticleSystem featherEffect; 
+    public GameObject projectile;
+    public GameObject shootingPoint;
+    public float shootForce;
 
-
-
-
+    public LineRenderer lineRenderer;
+    public int linePoints = 175;
+    public float timeIntervalinPoints = 0.01f;
 
     private void Start()
     {
@@ -69,18 +74,13 @@ public class CarController : MonoBehaviour
         increase.Enable();
         increase.performed += Increase;
 
+        shoot = playerInput.Gameplay.CannonShoot;
+        shoot.Enable();
+        shoot.performed += Shoot;
+
         dynamicTurnBool = true;
 
         cartState = CartState.Running;
-
-        // make sure the feather effect is stopped when game starts
-        if (featherEffect != null)
-        {
-            featherEffect.Stop();
-        }
-
-        
-
     }
 
     private void Update()
@@ -99,15 +99,11 @@ public class CarController : MonoBehaviour
             animationController.SetBool("IsIdle", false);
             //animationController.Play("Run_LowerBody", 1);
         }
-
-
-       
-
-        
     }
+
     private void FixedUpdate()
     {
-        //cart shake
+        //Cart Shake
         Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * cartShakeAmount * speed + new Vector3(-0.467f, 0.359f, 0);
         cartBodyCtrl.localPosition = randomPoint;
 
@@ -136,41 +132,16 @@ public class CarController : MonoBehaviour
                 SwitchCartState(CartState.Running);
             }
 
-            //Forumla to synchronize the player's maximum turn speed relative to their current speed.
-            if (turnSpeedToggle == false)
-            {
-                maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
-            }
-            else
-            {
-                maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 1.2f;
-            }
-
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
-            if(Math.Abs(leftStick.x) > 0.05f)
-            {
-                if (currentTurnSpeed < maxTurnSpeed)
-                {
-                    currentTurnSpeed += (maxTurnSpeed / 10);
-                }
-            }
-            else
-            {
-                currentTurnSpeed = 0;
-            }
+            TurnCart();
 
+            //AIMING CANNON
+            rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+            AimCannon();
 
-            moveInput = 1f; // 0 = Don't Move & 1 = Move
-            float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
-
-            rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
-
-            if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
-            {
-                Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
-            }
+            //MOVES CART
+            Move();
         }
         else
         {
@@ -187,6 +158,20 @@ public class CarController : MonoBehaviour
             poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
         }
 
+    }
+
+    private void Move()
+    {
+        moveInput = 1f; // 0 = Don't Move & 1 = Move
+        float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
+
+        rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
+
+        if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
+        }
     }
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
@@ -213,6 +198,83 @@ public class CarController : MonoBehaviour
         {
             currentTurnSpeed = maxTurnSpeed;
         }    
+    }
+
+    private void TurnCart()
+    {
+        //Forumla to synchronize the player's maximum turn speed relative to their current speed.
+        if (turnSpeedToggle == false)
+        {
+            maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 0.6f;
+        }
+        else
+        {
+            maxTurnSpeed = (0.2f * ((37.5f - speed) / 2.5f)) + 1.2f;
+        }
+
+        if (Math.Abs(leftStick.x) > 0.05f)
+        {
+            if (currentTurnSpeed < maxTurnSpeed)
+            {
+                currentTurnSpeed += (maxTurnSpeed / 10);
+            }
+        }
+        else
+        {
+            currentTurnSpeed = 0;
+        }
+    }
+
+    private void AimCannon()
+    {
+        rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+        
+        Vector3 currentLocalRotation = cannon.transform.localEulerAngles; // Get the current local rotation of the cannon (relative to the car)
+        if (currentLocalRotation.y > 180) // Convert to -180 to 180 range for clamping
+        {
+            currentLocalRotation.y -= 360; // Convert angle to the range -180 to 180
+        }
+
+        if (rightStick.x > 0)
+        {
+            currentLocalRotation.y += cannonRotationSpeed * Time.deltaTime;
+        }
+        else if (rightStick.x < 0)
+        {
+            currentLocalRotation.y -= cannonRotationSpeed * Time.deltaTime;
+        }
+
+        currentLocalRotation.y = Mathf.Clamp(currentLocalRotation.y, -45f, 45f); // Clamp the Y rotation between -45 and 45 degrees
+        if (currentLocalRotation.y < 0) // Convert back to 0 to 360 range if necessary
+        {
+            currentLocalRotation.y += 360; // Convert to 0 to 360 range if negative
+        }
+
+        // Apply the clamped local rotation to the cannon
+        cannon.transform.localEulerAngles = currentLocalRotation;
+
+        DrawTrajectory();
+    }
+
+    void DrawTrajectory()
+    {
+        Vector3 startVelocity = shootForce * shootingPoint.transform.up;
+    }
+
+    private void Shoot(InputAction.CallbackContext context)
+    {
+        if(projectile != null)
+        {
+            var bullet = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
+            bullet.GetComponent<Rigidbody>().velocity = shootingPoint.transform.forward * shootForce;
+        }
+
+        projectile = null;
+    }
+
+    public void LoadCannon(GameObject newProjectile)
+    {
+        projectile = newProjectile;
     }
 
     //Controls the current state of the controller
@@ -268,25 +330,13 @@ public class CarController : MonoBehaviour
         };
     }
 
-    //function to turn on and off the effect
-    private void ToggleFeatherEffect() 
+    private void OnTriggerEnter(Collider other)
     {
-        //play feather effect when running above 5 speed
-        if (speed >= 5f) 
+        if(other.tag == "ItemBox")
         {
-            if (featherEffect != null && !featherEffect.isPlaying)
-            {
-                featherEffect.Play(); //start the feather effect 
-            }
-        }
-        else
-        {
-            if (featherEffect != null && featherEffect.isPlaying)
-            {
-                featherEffect.Stop(); //stop the feather effect if it is playing and speed is under 5
-            }
+            Debug.Log("Item loaded");
+            LoadCannon(GameObject.Find(other.name + " Item"));
+            Destroy(other.gameObject);
         }
     }
-
-   
 }
