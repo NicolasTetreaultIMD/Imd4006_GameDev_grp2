@@ -37,18 +37,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""PoleGrab"",
+                    ""name"": ""PoleGrabRight"",
                     ""type"": ""Value"",
                     ""id"": ""16a1bdeb-e24c-4c37-aee9-bcc1699ab575"",
-                    ""expectedControlType"": ""Axis"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ItemGrab"",
+                    ""name"": ""PoleGrabLeft"",
                     ""type"": ""Value"",
-                    ""id"": ""3627d632-c6c2-4e34-8487-f724d05cfcf5"",
+                    ""id"": ""c0955d46-6ad3-4ae5-97a8-2bc73457f187"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -64,7 +64,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ArmMovement"",
+                    ""name"": ""CanonAim"",
                     ""type"": ""Value"",
                     ""id"": ""09a31375-3962-4559-953c-7dde326c1c32"",
                     ""expectedControlType"": ""Vector2"",
@@ -73,10 +73,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""ArmMovementMouse"",
+                    ""name"": ""CanonShoot"",
                     ""type"": ""Value"",
-                    ""id"": ""293b3b26-9985-4dc7-8148-04224f41d4ba"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""id"": ""1263d790-2233-42f2-bb20-e7d998b43cea"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -107,67 +107,23 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cad632cf-989a-4085-abd5-fa323b195fe4"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PoleGrab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""ae16b3e7-983b-41dd-9f6a-21d32c9ba8c5"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PoleGrab"",
+                    ""action"": ""PoleGrabRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""c4fda088-7cd6-4aef-b00b-0bbfd297a13b"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PoleGrab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""31041ec4-08a3-475f-81e8-186da57c2139"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ItemGrab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6dec3cb9-b97b-4ea8-bb2e-116f2264b4c2"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ItemGrab"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9f277382-366b-4545-86da-4f61b0904516"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ItemGrab"",
+                    ""action"": ""PoleGrabRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -244,18 +200,117 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmMovement"",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""389db2ce-3add-4bb7-853b-85b2398c70b0"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""88fa06cf-0482-4d81-b32b-780db0a02c98"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4cec3e37-c994-4028-92dd-6fb7b4b62436"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8e79dc95-d198-4a51-ada9-0d31951838e9"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""66662dc1-54ca-4acc-b821-c98ade53403b"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""877f40a1-b820-452c-9a6b-fca8e36b7257"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PoleGrabLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8aedd422-f925-4acd-b8f5-66752c339586"",
-                    ""path"": ""<Mouse>/position"",
+                    ""id"": ""1c0afbf7-6b2f-4345-a1f0-67d6a4b49845"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ArmMovementMouse"",
+                    ""action"": ""PoleGrabLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52c3059e-b5b1-42f4-bdb7-459d1d974190"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dc543ae3-ea57-4df6-8b6d-a1371bc0aea2"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonShoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c0f8295-b6ff-4744-a160-33a6989685d8"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CanonShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -267,11 +322,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_SpeedIncrease = m_Gameplay.FindAction("SpeedIncrease", throwIfNotFound: true);
-        m_Gameplay_PoleGrab = m_Gameplay.FindAction("PoleGrab", throwIfNotFound: true);
-        m_Gameplay_ItemGrab = m_Gameplay.FindAction("ItemGrab", throwIfNotFound: true);
+        m_Gameplay_PoleGrabRight = m_Gameplay.FindAction("PoleGrabRight", throwIfNotFound: true);
+        m_Gameplay_PoleGrabLeft = m_Gameplay.FindAction("PoleGrabLeft", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
-        m_Gameplay_ArmMovement = m_Gameplay.FindAction("ArmMovement", throwIfNotFound: true);
-        m_Gameplay_ArmMovementMouse = m_Gameplay.FindAction("ArmMovementMouse", throwIfNotFound: true);
+        m_Gameplay_CanonAim = m_Gameplay.FindAction("CanonAim", throwIfNotFound: true);
+        m_Gameplay_CanonShoot = m_Gameplay.FindAction("CanonShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -334,21 +389,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_SpeedIncrease;
-    private readonly InputAction m_Gameplay_PoleGrab;
-    private readonly InputAction m_Gameplay_ItemGrab;
+    private readonly InputAction m_Gameplay_PoleGrabRight;
+    private readonly InputAction m_Gameplay_PoleGrabLeft;
     private readonly InputAction m_Gameplay_Movement;
-    private readonly InputAction m_Gameplay_ArmMovement;
-    private readonly InputAction m_Gameplay_ArmMovementMouse;
+    private readonly InputAction m_Gameplay_CanonAim;
+    private readonly InputAction m_Gameplay_CanonShoot;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
         public GameplayActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @SpeedIncrease => m_Wrapper.m_Gameplay_SpeedIncrease;
-        public InputAction @PoleGrab => m_Wrapper.m_Gameplay_PoleGrab;
-        public InputAction @ItemGrab => m_Wrapper.m_Gameplay_ItemGrab;
+        public InputAction @PoleGrabRight => m_Wrapper.m_Gameplay_PoleGrabRight;
+        public InputAction @PoleGrabLeft => m_Wrapper.m_Gameplay_PoleGrabLeft;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
-        public InputAction @ArmMovement => m_Wrapper.m_Gameplay_ArmMovement;
-        public InputAction @ArmMovementMouse => m_Wrapper.m_Gameplay_ArmMovementMouse;
+        public InputAction @CanonAim => m_Wrapper.m_Gameplay_CanonAim;
+        public InputAction @CanonShoot => m_Wrapper.m_Gameplay_CanonShoot;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -361,21 +416,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedIncrease.started += instance.OnSpeedIncrease;
             @SpeedIncrease.performed += instance.OnSpeedIncrease;
             @SpeedIncrease.canceled += instance.OnSpeedIncrease;
-            @PoleGrab.started += instance.OnPoleGrab;
-            @PoleGrab.performed += instance.OnPoleGrab;
-            @PoleGrab.canceled += instance.OnPoleGrab;
-            @ItemGrab.started += instance.OnItemGrab;
-            @ItemGrab.performed += instance.OnItemGrab;
-            @ItemGrab.canceled += instance.OnItemGrab;
+            @PoleGrabRight.started += instance.OnPoleGrabRight;
+            @PoleGrabRight.performed += instance.OnPoleGrabRight;
+            @PoleGrabRight.canceled += instance.OnPoleGrabRight;
+            @PoleGrabLeft.started += instance.OnPoleGrabLeft;
+            @PoleGrabLeft.performed += instance.OnPoleGrabLeft;
+            @PoleGrabLeft.canceled += instance.OnPoleGrabLeft;
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @ArmMovement.started += instance.OnArmMovement;
-            @ArmMovement.performed += instance.OnArmMovement;
-            @ArmMovement.canceled += instance.OnArmMovement;
-            @ArmMovementMouse.started += instance.OnArmMovementMouse;
-            @ArmMovementMouse.performed += instance.OnArmMovementMouse;
-            @ArmMovementMouse.canceled += instance.OnArmMovementMouse;
+            @CanonAim.started += instance.OnCanonAim;
+            @CanonAim.performed += instance.OnCanonAim;
+            @CanonAim.canceled += instance.OnCanonAim;
+            @CanonShoot.started += instance.OnCanonShoot;
+            @CanonShoot.performed += instance.OnCanonShoot;
+            @CanonShoot.canceled += instance.OnCanonShoot;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -383,21 +438,21 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @SpeedIncrease.started -= instance.OnSpeedIncrease;
             @SpeedIncrease.performed -= instance.OnSpeedIncrease;
             @SpeedIncrease.canceled -= instance.OnSpeedIncrease;
-            @PoleGrab.started -= instance.OnPoleGrab;
-            @PoleGrab.performed -= instance.OnPoleGrab;
-            @PoleGrab.canceled -= instance.OnPoleGrab;
-            @ItemGrab.started -= instance.OnItemGrab;
-            @ItemGrab.performed -= instance.OnItemGrab;
-            @ItemGrab.canceled -= instance.OnItemGrab;
+            @PoleGrabRight.started -= instance.OnPoleGrabRight;
+            @PoleGrabRight.performed -= instance.OnPoleGrabRight;
+            @PoleGrabRight.canceled -= instance.OnPoleGrabRight;
+            @PoleGrabLeft.started -= instance.OnPoleGrabLeft;
+            @PoleGrabLeft.performed -= instance.OnPoleGrabLeft;
+            @PoleGrabLeft.canceled -= instance.OnPoleGrabLeft;
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @ArmMovement.started -= instance.OnArmMovement;
-            @ArmMovement.performed -= instance.OnArmMovement;
-            @ArmMovement.canceled -= instance.OnArmMovement;
-            @ArmMovementMouse.started -= instance.OnArmMovementMouse;
-            @ArmMovementMouse.performed -= instance.OnArmMovementMouse;
-            @ArmMovementMouse.canceled -= instance.OnArmMovementMouse;
+            @CanonAim.started -= instance.OnCanonAim;
+            @CanonAim.performed -= instance.OnCanonAim;
+            @CanonAim.canceled -= instance.OnCanonAim;
+            @CanonShoot.started -= instance.OnCanonShoot;
+            @CanonShoot.performed -= instance.OnCanonShoot;
+            @CanonShoot.canceled -= instance.OnCanonShoot;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -418,10 +473,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IGameplayActions
     {
         void OnSpeedIncrease(InputAction.CallbackContext context);
-        void OnPoleGrab(InputAction.CallbackContext context);
-        void OnItemGrab(InputAction.CallbackContext context);
+        void OnPoleGrabRight(InputAction.CallbackContext context);
+        void OnPoleGrabLeft(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnArmMovement(InputAction.CallbackContext context);
-        void OnArmMovementMouse(InputAction.CallbackContext context);
+        void OnCanonAim(InputAction.CallbackContext context);
+        void OnCanonShoot(InputAction.CallbackContext context);
     }
 }

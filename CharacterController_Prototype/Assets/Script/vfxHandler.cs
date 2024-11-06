@@ -7,7 +7,7 @@ public class vfxHandler : MonoBehaviour
 {
 
     public CarController cartController;
-    public armController armController;
+    //public armController armController;
 
 
     // Trails

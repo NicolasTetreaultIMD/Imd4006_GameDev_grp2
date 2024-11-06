@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class grabColliderManager : MonoBehaviour
 {
-    public armController armManager;
+    /*public armController armManager;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,5 +14,5 @@ public class grabColliderManager : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         armManager.RemoveGrab(other.gameObject);
-    }
+    }*/
 }

@@ -15,18 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PoleGrab",
+                    "name": "PoleGrabRight",
                     "type": "Value",
                     "id": "16a1bdeb-e24c-4c37-aee9-bcc1699ab575",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ItemGrab",
+                    "name": "PoleGrabLeft",
                     "type": "Value",
-                    "id": "3627d632-c6c2-4e34-8487-f724d05cfcf5",
+                    "id": "c0955d46-6ad3-4ae5-97a8-2bc73457f187",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ArmMovement",
+                    "name": "CanonAim",
                     "type": "Value",
                     "id": "09a31375-3962-4559-953c-7dde326c1c32",
                     "expectedControlType": "Vector2",
@@ -51,10 +51,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ArmMovementMouse",
+                    "name": "CanonShoot",
                     "type": "Value",
-                    "id": "293b3b26-9985-4dc7-8148-04224f41d4ba",
-                    "expectedControlType": "Vector2",
+                    "id": "1263d790-2233-42f2-bb20-e7d998b43cea",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -85,67 +85,23 @@
                 },
                 {
                     "name": "",
-                    "id": "cad632cf-989a-4085-abd5-fa323b195fe4",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PoleGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "ae16b3e7-983b-41dd-9f6a-21d32c9ba8c5",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PoleGrab",
+                    "action": "PoleGrabRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "c4fda088-7cd6-4aef-b00b-0bbfd297a13b",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PoleGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "31041ec4-08a3-475f-81e8-186da57c2139",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ItemGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6dec3cb9-b97b-4ea8-bb2e-116f2264b4c2",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ItemGrab",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9f277382-366b-4545-86da-4f61b0904516",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ItemGrab",
+                    "action": "PoleGrabRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -222,18 +178,117 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmMovement",
+                    "action": "CanonAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "389db2ce-3add-4bb7-853b-85b2398c70b0",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonAim",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "88fa06cf-0482-4d81-b32b-780db0a02c98",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "4cec3e37-c994-4028-92dd-6fb7b4b62436",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "8e79dc95-d198-4a51-ada9-0d31951838e9",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "66662dc1-54ca-4acc-b821-c98ade53403b",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonAim",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "877f40a1-b820-452c-9a6b-fca8e36b7257",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PoleGrabLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8aedd422-f925-4acd-b8f5-66752c339586",
-                    "path": "<Mouse>/position",
+                    "id": "1c0afbf7-6b2f-4345-a1f0-67d6a4b49845",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ArmMovementMouse",
+                    "action": "PoleGrabLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "52c3059e-b5b1-42f4-bdb7-459d1d974190",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc543ae3-ea57-4df6-8b6d-a1371bc0aea2",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c0f8295-b6ff-4744-a160-33a6989685d8",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CanonShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
