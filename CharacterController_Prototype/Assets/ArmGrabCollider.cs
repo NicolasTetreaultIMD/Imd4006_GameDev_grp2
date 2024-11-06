@@ -7,11 +7,9 @@ public class ArmGrabCollider : MonoBehaviour
 {
     public GrabManager grabManager;
 
-    //0 = left; 1 = right
-    public int armType;
-
     private void OnTriggerEnter(Collider other)
     {
+        //If a pole is collided with send the collided pole to start the pole hold state
         if (other.gameObject.layer == LayerMask.NameToLayer("Pole"))
         {
             grabManager.GrabPole(other.gameObject.transform);
