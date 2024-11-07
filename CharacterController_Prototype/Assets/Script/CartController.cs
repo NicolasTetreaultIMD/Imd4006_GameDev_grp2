@@ -219,12 +219,12 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
 
             //right turn
-            if (turnInput > 0)
+            if (leftStick.x > 0)
             {
                 turnTilt = -turnTiltStrength * speed;
             }
             //left turn
-            else if (turnInput < 0)
+            else if (leftStick.x < 0)
             {
                 turnTilt = turnTiltStrength * speed;
             }
