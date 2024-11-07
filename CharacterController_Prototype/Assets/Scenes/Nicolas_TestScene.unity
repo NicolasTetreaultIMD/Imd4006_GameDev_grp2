@@ -270,8 +270,8 @@ MonoBehaviour:
   maxRotationAngle: 20
   maxRotationInput: 10
   rotationSpeed: 3
-  maxHeight: 3
-  minHeight: -3
+  maxHeight: 0.2
+  minHeight: -0.2
   sinkSpeed: 2
 --- !u!1 &512401438
 GameObject:
@@ -2560,13 +2560,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationController: {fileID: 5412188070291490483}
+  centerMassManager: {fileID: 176807698}
   leftStick: {x: 0, y: 0}
   testCharTrans: {fileID: 2160558539882962121}
   testCharTransNoAnim: {fileID: 5939588144169502488}
   rb: {fileID: 2511553751872002623}
-  cartLeftCtrl: {fileID: 124063518282496311}
-  cartRightCtrl: {fileID: 1523086600702523900}
-  cartBodyCtrl: {fileID: 6804156185305126647}
   poleRotateLookatRef: {fileID: 1717715941}
   moveInput: 0
   speed: 0

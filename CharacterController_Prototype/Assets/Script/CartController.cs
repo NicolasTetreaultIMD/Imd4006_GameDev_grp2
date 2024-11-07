@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     public enum CartState { Running, InCart, PoleHolding };
 
     public Animator animationController;
+    public CenterMassManager centerMassManager;
 
     PlayerInput playerInput;
     private InputAction increase;
@@ -23,9 +24,9 @@ public class CarController : MonoBehaviour
     public Transform testCharTransNoAnim;
     public Rigidbody rb;
 
-    public Transform cartLeftCtrl;
+    /*public Transform cartLeftCtrl;
     public Transform cartRightCtrl;
-    public Transform cartBodyCtrl;
+    public Transform cartBodyCtrl;*/
 
     public Transform poleRotateLookatRef;
 
@@ -46,13 +47,10 @@ public class CarController : MonoBehaviour
 
     private int poleTurnDirection = 1;
     public float cartShakeAmount = 1;
-
+    private float prevCartShakePos = 0;
     
 
     public ParticleSystem featherEffect; 
-
-
-
 
 
     private void Start()
@@ -108,8 +106,11 @@ public class CarController : MonoBehaviour
     private void FixedUpdate()
     {
         //cart shake
-        Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * cartShakeAmount * speed + new Vector3(-0.467f, 0.359f, 0);
-        cartBodyCtrl.localPosition = randomPoint;
+        float shakePos = speed * (UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / maxSpeed);
+        float motorShake = UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / 4;
+
+        centerMassManager.massCenter.y += shakePos + motorShake - prevCartShakePos;
+        prevCartShakePos = shakePos + motorShake;
 
         float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
         //Debug.Log(shakeAngle);
@@ -227,8 +228,7 @@ public class CarController : MonoBehaviour
                 testCharTrans.gameObject.SetActive(true);
                 testCharTransNoAnim.gameObject.SetActive(false);
 
-                cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
-                cartRightCtrl.localRotation = Quaternion.Euler(0, 0, 0);
+                centerMassManager.massCenter.x = 0;
 
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", false);

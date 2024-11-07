@@ -41,9 +41,9 @@ public class CenterMassManager : MonoBehaviour
     //IN THE FUTUR INTEGRATE CAR SHAKE USING THE CENTER OF MASS
     private void carSink()
     {
-        /*massCenter.y = Mathf.Min(Mathf.Max(massCenter.y, minHeight), maxHeight);
+        massCenter.y = Mathf.Min(Mathf.Max(massCenter.y, minHeight), maxHeight);
 
-        carBody.localPosition = Vector3.Lerp(carBody.localPosition, new Vector3(origBodyPos.x, origBodyPos.y + massCenter.y, origBodyPos.z), Time.deltaTime * sinkSpeed);*/
+        carBody.localPosition = Vector3.Lerp(carBody.localPosition, new Vector3(origBodyPos.x, origBodyPos.y + massCenter.y, origBodyPos.z), Time.deltaTime * sinkSpeed);
     }
 
     //Tilts the body of the car depending on the position of the x component of the center of mass
