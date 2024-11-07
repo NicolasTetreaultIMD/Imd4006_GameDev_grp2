@@ -143,13 +143,12 @@ public class CarController : MonoBehaviour
     private void Move()
     {
         moveInput = 1f; // 0 = Don't Move & 1 = Move
-        float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
 
         rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
 
-        if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
+        if (leftStick.x != 0) //Spherical rotation to simulate steering and not sharp turns.
         {
-            Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
         }
     }
