@@ -14,6 +14,7 @@ public class CarController : MonoBehaviour
     public enum CartState { Running, InCart, PoleHolding };
 
     public Animator animationController;
+    public CenterMassManager centerMassManager;
 
     PlayerInput playerInput;
     private InputAction increase;
@@ -24,9 +25,9 @@ public class CarController : MonoBehaviour
     public Transform testCharTransNoAnim;
     public Rigidbody rb;
 
-    public Transform cartLeftCtrl;
+    /*public Transform cartLeftCtrl;
     public Transform cartRightCtrl;
-    public Transform cartBodyCtrl;
+    public Transform cartBodyCtrl;*/
 
     public Transform poleRotateLookatRef;
 
@@ -47,6 +48,14 @@ public class CarController : MonoBehaviour
 
     private int poleTurnDirection = 1;
     public float cartShakeAmount = 1;
+    private float prevCartShakePos = 0;
+
+    public float turnTiltStrength;
+    private float turnTilt;
+    private float prevTurnTilt;
+
+    public ParticleSystem featherEffect; 
+
 
     private void Start()
     {
@@ -87,9 +96,14 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Cart Shake
-        Vector3 randomPoint = UnityEngine.Random.insideUnitSphere * cartShakeAmount * speed + new Vector3(-0.467f, 0.359f, 0);
-        cartBodyCtrl.localPosition = randomPoint;
+        turnTilt = 0;
+
+        //cart shake
+        float shakePos = speed * (UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / maxSpeed);
+        float motorShake = UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / 4;
+
+        centerMassManager.massCenter.y += shakePos + motorShake - prevCartShakePos;
+        prevCartShakePos = shakePos + motorShake;
 
         float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
         //Debug.Log(shakeAngle);
@@ -106,7 +120,7 @@ public class CarController : MonoBehaviour
                     speedDecreaseCooldown = Time.time + 0.5f;
                 }
             }
-            else if(speed < 0) 
+            else if (speed < 0)
             {
                 speed = 0;
             }
@@ -118,6 +132,43 @@ public class CarController : MonoBehaviour
 
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+            // if (Math.Abs(leftStick.x) > 0.05f)
+            // {
+            //     if (currentTurnSpeed < maxTurnSpeed)
+            //     {
+            //         currentTurnSpeed += (maxTurnSpeed / 10);
+            //     }
+            // }
+            // else
+            // {
+            //     currentTurnSpeed = 0;
+            // }
+
+
+            // moveInput = 1f; // 0 = Don't Move & 1 = Move
+            // float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
+
+            // rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
+
+            // if (speed != 0) //Spherical rotation to simulate steering and not sharp turns.
+            // {
+            //     /*Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);*/
+
+            //     Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45 + centerMassManager.turnIncrease, 0) * transform.rotation;
+            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
+
+            //     //right turn
+            //     if (turnInput > 0)
+            //     {
+            //         turnTilt = -turnTiltStrength * speed;
+            //     }
+            //     //left turn
+            //     else if (turnInput < 0)
+            //     {
+            //         turnTilt = turnTiltStrength * speed;
+            //     }
+            // }
             TurnCart();
 
             //MOVES CART
@@ -135,9 +186,22 @@ public class CarController : MonoBehaviour
                 speed = maxSpeed;
             }
 
+            //right turn
+            if (poleTurnDirection > 0)
+            {
+                turnTilt = -turnTiltStrength * 1.5f * speed;
+            }
+            //left turn
+            else if (poleTurnDirection < 0)
+            {
+                turnTilt = turnTiltStrength * 1.5f * speed;
+            }
+
             poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
         }
 
+        centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
+        prevTurnTilt = turnTilt;
     }
 
     private void Move()
@@ -146,10 +210,24 @@ public class CarController : MonoBehaviour
 
         rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
 
-        if (leftStick.x != 0) //Spherical rotation to simulate steering and not sharp turns.
+        if (speed != 0) //Spherical rotation to simulate steering and not sharp turns.
         {
-            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
+            // Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
+            // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
+
+            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45 + centerMassManager.turnIncrease, 0) * transform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
+
+            //right turn
+            if (leftStick.x > 0)
+            {
+                turnTilt = -turnTiltStrength * speed;
+            }
+            //left turn
+            else if (leftStick.x < 0)
+            {
+                turnTilt = turnTiltStrength * speed;
+            }
         }
     }
 
@@ -216,8 +294,7 @@ public class CarController : MonoBehaviour
                 testCharTrans.gameObject.SetActive(true);
                 testCharTransNoAnim.gameObject.SetActive(false);
 
-                cartLeftCtrl.localRotation = Quaternion.Euler(0, 0, 0);
-                cartRightCtrl.localRotation = Quaternion.Euler(0, 0, 0);
+                /*centerMassManager.massCenter.x = 0;*/
 
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", false);

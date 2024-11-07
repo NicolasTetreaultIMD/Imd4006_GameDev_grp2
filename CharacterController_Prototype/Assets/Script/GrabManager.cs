@@ -24,6 +24,9 @@ public class GrabManager : MonoBehaviour
     private InputAction leftGrab;       //Left trigger pressed
     private InputAction rightGrab;      //Right trigger presseed
 
+    public CenterMassManager centerMassManager;
+    public float armMassShift;          //By how much does the arm causes the mass to shift
+
 
     // Input manager setup
     void Start()
@@ -40,6 +43,8 @@ public class GrabManager : MonoBehaviour
         rightGrab.Enable();
         rightGrab.performed += StartRightPoleGrabInput;
         rightGrab.canceled += ExitRightPoleGrabInput;
+
+        armMassShift = Mathf.Min(armMassShift, centerMassManager.maxRotationInput);
     }
 
     // Update is called once per frame
@@ -66,6 +71,7 @@ public class GrabManager : MonoBehaviour
             leftArmDefault.SetActive(false);
             leftArmGrab.SetActive(true);
 
+            centerMassManager.massCenter.x -= armMassShift;
             activeHand = leftArmGrab;
         }
     }
@@ -73,17 +79,21 @@ public class GrabManager : MonoBehaviour
     //deactivate left arm; enable other arm if its button is already pressed
     private void ExitLeftPoleGrab()
     {
-        //Debug.Log("Exit Left");
-        leftArmDefault.SetActive(true);
-        leftArmGrab.SetActive(false);
-
-        activeHand = null;
-        if (rightGrab.IsPressed())
+        if (activeHand == leftArmGrab)
         {
-            StartRightPoleGrab();
-        }
+            //Debug.Log("Exit Left");
+            leftArmDefault.SetActive(true);
+            leftArmGrab.SetActive(false);
 
-        StopGrabPole();
+            centerMassManager.massCenter.x += armMassShift;
+            activeHand = null;
+            if (rightGrab.IsPressed())
+            {
+                StartRightPoleGrab();
+            }
+
+            StopGrabPole();
+        }
     }
 
     //If no arm currently active, activate right arm
@@ -95,6 +105,7 @@ public class GrabManager : MonoBehaviour
             rightArmDefault.SetActive(false);
             rightArmGrab.SetActive(true);
 
+            centerMassManager.massCenter.x += armMassShift;
             activeHand = rightArmGrab;
         }
     }
@@ -102,17 +113,21 @@ public class GrabManager : MonoBehaviour
     //deactivate right arm; enable other arm if its button is already pressed
     private void ExitRightPoleGrab()
     {
-        //Debug.Log("Exit Right");
-        rightArmDefault.SetActive(true);
-        rightArmGrab.SetActive(false);
-
-        activeHand = null;
-        if (leftGrab.IsPressed())
+        if (activeHand == rightArmGrab)
         {
-            StartLeftPoleGrab();
-        }
+            //Debug.Log("Exit Right");
+            rightArmDefault.SetActive(true);
+            rightArmGrab.SetActive(false);
 
-        StopGrabPole();
+            centerMassManager.massCenter.x -= armMassShift;
+            activeHand = null;
+            if (leftGrab.IsPressed())
+            {
+                StartLeftPoleGrab();
+            }
+
+            StopGrabPole();
+        }
     }
 
     //Inititate the pole holding state

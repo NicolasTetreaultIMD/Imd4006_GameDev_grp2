@@ -250,6 +250,8 @@ MonoBehaviour:
   rightArmGrab: {fileID: 672983002}
   lookatRef: {fileID: 1717715941}
   stationaryCamRef: {fileID: 1264690044}
+  centerMassManager: {fileID: 176807698}
+  armMassShift: 2
 --- !u!114 &176807698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,11 +269,13 @@ MonoBehaviour:
   leftRotation: {fileID: 124063518282496311}
   rightRotation: {fileID: 1523086600702523900}
   rotationDeadZone: 0
+  maxTurnIncrease: 30
+  turnIncrease: 0
   maxRotationAngle: 20
   maxRotationInput: 10
-  rotationSpeed: 3
-  maxHeight: 3
-  minHeight: -3
+  rotationSpeed: 5
+  maxHeight: 0.2
+  minHeight: -0.2
   sinkSpeed: 2
 --- !u!1 &512401438
 GameObject:
@@ -2560,13 +2564,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationController: {fileID: 5412188070291490483}
+  centerMassManager: {fileID: 176807698}
   leftStick: {x: 0, y: 0}
   testCharTrans: {fileID: 2160558539882962121}
   testCharTransNoAnim: {fileID: 5939588144169502488}
   rb: {fileID: 2511553751872002623}
-  cartLeftCtrl: {fileID: 124063518282496311}
-  cartRightCtrl: {fileID: 1523086600702523900}
-  cartBodyCtrl: {fileID: 6804156185305126647}
   poleRotateLookatRef: {fileID: 1717715941}
   moveInput: 0
   speed: 0
@@ -2580,6 +2582,7 @@ MonoBehaviour:
   dynamicTurnBool: 0
   cartState: 0
   cartShakeAmount: 0.0005
+  turnTiltStrength: 0.2
   featherEffect: {fileID: 0}
 --- !u!137 &712110645913945500
 SkinnedMeshRenderer:
@@ -53168,7 +53171,7 @@ Transform:
   m_GameObject: {fileID: 5618158705340964075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.443, y: -0.167, z: -10.809}
+  m_LocalPosition: {x: 0.443, y: 0, z: -10.809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -14,6 +14,9 @@ public class CenterMassManager : MonoBehaviour
     public Transform rightRotation; //right tilt
 
     public float rotationDeadZone;  //Minimum value until the car starts tilting
+    public float maxTurnIncrease;   //Max amount that the tilt can influence the angle of car
+    public float turnIncrease;      //Amount that the tilt is currently influencing the angle of the car
+
     public float maxRotationAngle;  //Max tilt the car can have
     public float maxRotationInput;  //Max center of mass value
     public float rotationSpeed;     //Speed for the rotation lerp
@@ -41,9 +44,9 @@ public class CenterMassManager : MonoBehaviour
     //IN THE FUTUR INTEGRATE CAR SHAKE USING THE CENTER OF MASS
     private void carSink()
     {
-        /*massCenter.y = Mathf.Min(Mathf.Max(massCenter.y, minHeight), maxHeight);
+        float massShiftY = Mathf.Min(Mathf.Max(massCenter.y, minHeight), maxHeight);
 
-        carBody.localPosition = Vector3.Lerp(carBody.localPosition, new Vector3(origBodyPos.x, origBodyPos.y + massCenter.y, origBodyPos.z), Time.deltaTime * sinkSpeed);*/
+        carBody.localPosition = Vector3.Lerp(carBody.localPosition, new Vector3(origBodyPos.x, origBodyPos.y + massShiftY, origBodyPos.z), Time.deltaTime * sinkSpeed);
     }
 
     //Tilts the body of the car depending on the position of the x component of the center of mass
@@ -51,28 +54,34 @@ public class CenterMassManager : MonoBehaviour
     {
         if (Mathf.Abs(massCenter.x) > rotationDeadZone)
         {
-            massCenter.x = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput);
+            float massShiftX = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput);
 
             //Right Tilt
-            if (massCenter.x > 0)
+            if (massShiftX > 0)
             {
-                float cartRotation = Map(rotationDeadZone, maxRotationInput, 0, -maxRotationAngle, massCenter.x);
+                float cartRotation = Map(rotationDeadZone, maxRotationInput, 0, -maxRotationAngle, massShiftX);
 
                 leftRotation.localRotation = Quaternion.Lerp(leftRotation.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
                 rightRotation.localRotation = Quaternion.Lerp(rightRotation.localRotation, Quaternion.Euler(0, 0, cartRotation), Time.deltaTime * rotationSpeed);
+
+                turnIncrease = Map(rotationDeadZone, maxRotationInput, 0, maxTurnIncrease, massShiftX);
             }
             //Left Tilt
-            else if (massCenter.x < 0)
+            else if (massShiftX < 0)
             {
-                float cartRotation = Map(-maxRotationInput, -rotationDeadZone, maxRotationAngle, 0, massCenter.x);
+                float cartRotation = Map(-maxRotationInput, -rotationDeadZone, maxRotationAngle, 0, massShiftX);
 
                 leftRotation.localRotation = Quaternion.Lerp(leftRotation.localRotation, Quaternion.Euler(0, 0, cartRotation), Time.deltaTime * rotationSpeed);
                 rightRotation.localRotation = Quaternion.Lerp(rightRotation.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
+
+                turnIncrease = Map(-maxRotationInput, -rotationDeadZone, -maxTurnIncrease, 0, massShiftX);
             }
 
         }
         else
         {
+            turnIncrease = 0;
+
             leftRotation.localRotation = Quaternion.Lerp(leftRotation.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
             rightRotation.localRotation = Quaternion.Lerp(rightRotation.localRotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * rotationSpeed);
         }
