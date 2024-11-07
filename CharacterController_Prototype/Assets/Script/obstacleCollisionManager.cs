@@ -35,11 +35,11 @@ public class obstacleCollisionManager : MonoBehaviour
                 //Camera.main.transform.localPosition = new Vector3(initLocalCamPos.x + randomPoint.x, initLocalCamPos.y + randomPoint.y, initLocalCamPos.z);
 
                 timeElapsed += Time.deltaTime;
-                Debug.Log(timeElapsed);
+                //Debug.Log(timeElapsed);
             }
             else
             {
-                Debug.Log("end hit");
+                //Debug.Log("end hit");
                 hit = false;
             }
             audioHandler.cartCrash();
@@ -48,7 +48,7 @@ public class obstacleCollisionManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("BANG");
+        //Debug.Log("BANG");
         if (carController.speed > minHitSpeed)
         {
             impactSpeed = carController.speed;

@@ -48,7 +48,10 @@ public class CarController : MonoBehaviour
     private int poleTurnDirection = 1;
     public float cartShakeAmount = 1;
     private float prevCartShakePos = 0;
-    
+
+    public float turnTiltStrength;
+    private float turnTilt;
+    private float prevTurnTilt;
 
     public ParticleSystem featherEffect; 
 
@@ -97,14 +100,11 @@ public class CarController : MonoBehaviour
             animationController.SetBool("IsIdle", false);
             //animationController.Play("Run_LowerBody", 1);
         }
-
-
-       
-
-        
     }
     private void FixedUpdate()
     {
+        turnTilt = 0;
+
         //cart shake
         float shakePos = speed * (UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / maxSpeed);
         float motorShake = UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / 4;
@@ -127,7 +127,7 @@ public class CarController : MonoBehaviour
                     speedDecreaseCooldown = Time.time + 0.5f;
                 }
             }
-            else if(speed < 0) 
+            else if (speed < 0)
             {
                 speed = 0;
             }
@@ -149,7 +149,7 @@ public class CarController : MonoBehaviour
 
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
-            if(Math.Abs(leftStick.x) > 0.05f)
+            if (Math.Abs(leftStick.x) > 0.05f)
             {
                 if (currentTurnSpeed < maxTurnSpeed)
                 {
@@ -167,10 +167,24 @@ public class CarController : MonoBehaviour
 
             rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
 
-            if (turnInput != 0) //Spherical rotation to simulate steering and not sharp turns.
+            if (speed != 0) //Spherical rotation to simulate steering and not sharp turns.
             {
-                Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
+                /*Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);*/
+
+                Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45 + centerMassManager.turnIncrease, 0) * transform.rotation;
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
+
+                //right turn
+                if (turnInput > 0)
+                {
+                    turnTilt = -turnTiltStrength * speed;
+                }
+                //left turn
+                else if (turnInput < 0)
+                {
+                    turnTilt = turnTiltStrength * speed;
+                }
             }
         }
         else
@@ -185,9 +199,22 @@ public class CarController : MonoBehaviour
                 speed = maxSpeed;
             }
 
+            //right turn
+            if (poleTurnDirection > 0)
+            {
+                turnTilt = -turnTiltStrength * 1.5f * speed;
+            }
+            //left turn
+            else if (poleTurnDirection < 0)
+            {
+                turnTilt = turnTiltStrength * 1.5f * speed;
+            }
+
             poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
         }
 
+        centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
+        prevTurnTilt = turnTilt;
     }
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
@@ -228,7 +255,7 @@ public class CarController : MonoBehaviour
                 testCharTrans.gameObject.SetActive(true);
                 testCharTransNoAnim.gameObject.SetActive(false);
 
-                centerMassManager.massCenter.x = 0;
+                /*centerMassManager.massCenter.x = 0;*/
 
                 //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
                 //animationController.SetBool("IsInCart", false);
