@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CanonAim",
+                    "name": "CannonAim",
                     "type": "Value",
                     "id": "09a31375-3962-4559-953c-7dde326c1c32",
                     "expectedControlType": "Vector2",
@@ -51,7 +51,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "CanonShoot",
+                    "name": "CannonShoot",
                     "type": "Value",
                     "id": "1263d790-2233-42f2-bb20-e7d998b43cea",
                     "expectedControlType": "",
@@ -178,7 +178,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -189,7 +189,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -200,7 +200,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -211,7 +211,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -222,7 +222,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -233,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonAim",
+                    "action": "CannonAim",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -266,7 +266,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonShoot",
+                    "action": "CannonShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -277,7 +277,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonShoot",
+                    "action": "CannonShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -288,7 +288,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CanonShoot",
+                    "action": "CannonShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

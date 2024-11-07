@@ -64,7 +64,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""CanonAim"",
+                    ""name"": ""CannonAim"",
                     ""type"": ""Value"",
                     ""id"": ""09a31375-3962-4559-953c-7dde326c1c32"",
                     ""expectedControlType"": ""Vector2"",
@@ -73,7 +73,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""CanonShoot"",
+                    ""name"": ""CannonShoot"",
                     ""type"": ""Value"",
                     ""id"": ""1263d790-2233-42f2-bb20-e7d998b43cea"",
                     ""expectedControlType"": """",
@@ -200,7 +200,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -211,7 +211,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -222,7 +222,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -233,7 +233,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -244,7 +244,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -255,7 +255,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonAim"",
+                    ""action"": ""CannonAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -288,7 +288,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonShoot"",
+                    ""action"": ""CannonShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -299,7 +299,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonShoot"",
+                    ""action"": ""CannonShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -310,7 +310,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CanonShoot"",
+                    ""action"": ""CannonShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -325,8 +325,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_PoleGrabRight = m_Gameplay.FindAction("PoleGrabRight", throwIfNotFound: true);
         m_Gameplay_PoleGrabLeft = m_Gameplay.FindAction("PoleGrabLeft", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
-        m_Gameplay_CanonAim = m_Gameplay.FindAction("CanonAim", throwIfNotFound: true);
-        m_Gameplay_CanonShoot = m_Gameplay.FindAction("CanonShoot", throwIfNotFound: true);
+        m_Gameplay_CannonAim = m_Gameplay.FindAction("CannonAim", throwIfNotFound: true);
+        m_Gameplay_CannonShoot = m_Gameplay.FindAction("CannonShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,8 +392,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_PoleGrabRight;
     private readonly InputAction m_Gameplay_PoleGrabLeft;
     private readonly InputAction m_Gameplay_Movement;
-    private readonly InputAction m_Gameplay_CanonAim;
-    private readonly InputAction m_Gameplay_CanonShoot;
+    private readonly InputAction m_Gameplay_CannonAim;
+    private readonly InputAction m_Gameplay_CannonShoot;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -402,8 +402,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @PoleGrabRight => m_Wrapper.m_Gameplay_PoleGrabRight;
         public InputAction @PoleGrabLeft => m_Wrapper.m_Gameplay_PoleGrabLeft;
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
-        public InputAction @CanonAim => m_Wrapper.m_Gameplay_CanonAim;
-        public InputAction @CanonShoot => m_Wrapper.m_Gameplay_CanonShoot;
+        public InputAction @CannonAim => m_Wrapper.m_Gameplay_CannonAim;
+        public InputAction @CannonShoot => m_Wrapper.m_Gameplay_CannonShoot;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,12 +425,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @CanonAim.started += instance.OnCanonAim;
-            @CanonAim.performed += instance.OnCanonAim;
-            @CanonAim.canceled += instance.OnCanonAim;
-            @CanonShoot.started += instance.OnCanonShoot;
-            @CanonShoot.performed += instance.OnCanonShoot;
-            @CanonShoot.canceled += instance.OnCanonShoot;
+            @CannonAim.started += instance.OnCannonAim;
+            @CannonAim.performed += instance.OnCannonAim;
+            @CannonAim.canceled += instance.OnCannonAim;
+            @CannonShoot.started += instance.OnCannonShoot;
+            @CannonShoot.performed += instance.OnCannonShoot;
+            @CannonShoot.canceled += instance.OnCannonShoot;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -447,12 +447,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @CanonAim.started -= instance.OnCanonAim;
-            @CanonAim.performed -= instance.OnCanonAim;
-            @CanonAim.canceled -= instance.OnCanonAim;
-            @CanonShoot.started -= instance.OnCanonShoot;
-            @CanonShoot.performed -= instance.OnCanonShoot;
-            @CanonShoot.canceled -= instance.OnCanonShoot;
+            @CannonAim.started -= instance.OnCannonAim;
+            @CannonAim.performed -= instance.OnCannonAim;
+            @CannonAim.canceled -= instance.OnCannonAim;
+            @CannonShoot.started -= instance.OnCannonShoot;
+            @CannonShoot.performed -= instance.OnCannonShoot;
+            @CannonShoot.canceled -= instance.OnCannonShoot;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -476,7 +476,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnPoleGrabRight(InputAction.CallbackContext context);
         void OnPoleGrabLeft(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnCanonAim(InputAction.CallbackContext context);
-        void OnCanonShoot(InputAction.CallbackContext context);
+        void OnCannonAim(InputAction.CallbackContext context);
+        void OnCannonShoot(InputAction.CallbackContext context);
     }
 }
