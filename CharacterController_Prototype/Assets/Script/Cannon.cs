@@ -133,7 +133,7 @@ public class Cannon : MonoBehaviour
         projectileRb = projectile.GetComponent<Rigidbody>();
     }
 
-    //CREATING THE LINE OF TRAJECTORY FOR PROJECTILES
+    //CREATING THE LINE OF TRAJECTORY FOR THE PROJECTILE
     void DrawTrajectory()
     {
         Vector3 velocity = direction * (shootForce / projectileRb.mass); // Formula for trajectory
