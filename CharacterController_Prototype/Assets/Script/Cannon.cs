@@ -30,6 +30,11 @@ public class Cannon : MonoBehaviour
 
     public bool isShooting;
 
+    [Header("Center of Mass")]
+    public CenterMassManager centerMassManager;
+    public float maxCarTiltInfluence;
+    private float prevMassChange;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +95,10 @@ public class Cannon : MonoBehaviour
             rotationY -= cannonRotationSpeed * Time.deltaTime;
         }
         rotationY = Mathf.Clamp(rotationY, -maxHorizontalTurn, maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
+
+        MassShift(rotationY);
+
+
         if (rotationY < 0)
         {
             rotationY += 360; // Convert back to 0-360 range if negative
@@ -111,7 +120,15 @@ public class Cannon : MonoBehaviour
         }
         rotationX = Mathf.Clamp(rotationX, maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
         gameObject.transform.localEulerAngles = new Vector3(rotationX, rotationY, currentLocalRotation.z); // Apply both clamped X and Y rotations to the cannon
+    }
 
+    private void MassShift(float angle)
+    {
+        //Car tilt
+        float massChange = maxCarTiltInfluence * (angle / maxHorizontalTurn);
+        Debug.Log(angle);
+        centerMassManager.massCenter.x += massChange - prevMassChange;
+        prevMassChange = massChange;
     }
 
     //SHOOTING THE CANNONM

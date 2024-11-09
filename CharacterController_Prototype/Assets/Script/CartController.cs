@@ -146,7 +146,6 @@ public class CarController : MonoBehaviour
             globalVolume.profile.TryGet(out motionBlur);
             {
                 float motionBlurChange = (speed / maxSpeed) * maxMotionBlurIntensity;
-                Debug.Log(motionBlurChange);
                 motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
                 prevMotionBlurChange = motionBlurChange;
             }
