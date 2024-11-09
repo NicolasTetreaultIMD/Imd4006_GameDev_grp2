@@ -230,18 +230,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &149684321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1370763553124177861, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 768362544}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &176807697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,21 +499,6 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 1956036560}
-    - target: {fileID: 801626553046947589, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: maxMotionBlurIntensity
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2961702757614569642, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: centerMassManager
-      value: 
-      objectReference: {fileID: 149684321}
-    - target: {fileID: 2961702757614569642, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: maxCarTiltInfluence
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4293879777589554102, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
       propertyPath: m_Mesh
@@ -534,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 4293879777589554102, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 134
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 4394656062007673396, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
@@ -591,21 +564,6 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 1956036560}
-    - target: {fileID: 5462265658334376366, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: motionBlurDuration
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462265658334376366, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: maxMotionBlurIntensity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462265658334376366, guid: f2e37b077d8aa7e4a965abacacfbcac0,
-        type: 3}
-      propertyPath: motionBlurDecreaseSpeed
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6721352815477232458, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
       propertyPath: m_Name

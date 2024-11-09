@@ -16900,7 +16900,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 101
+  m_VersionIndex: 137
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -40791,27 +40791,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cartState: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 2961702757614569642}
   testCharTrans: {fileID: 1762870116267918351}
   testCharTransNoAnim: {fileID: 1392468098864337890}
   rb: {fileID: 7532332460872952815}
-  poleRotateLookatRef: {fileID: 783740173699448326}
   moveInput: 0
   speed: 0
-  currentTurnSpeed: 0
   minInCartSpeed: 10
   maxSpeed: 37.5
+  speedDecreaseValue: 0
+  currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
-  speedDecreaseValue: 0
-  speedPoleIncreaseRate: 0.1
   dynamicTurnBool: 0
-  cartState: 0
-  cartShakeAmount: 0.0005
-  turnTiltStrength: 0.2
-  animationController: {fileID: 8901319888725193215}
+  poleRotateLookatRef: {fileID: 783740173699448326}
+  speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 1370763553124177861}
+  turnTiltStrength: 0.2
+  cartShakeAmount: 0.0005
+  globalVolume: {fileID: 0}
+  maxMotionBlurIntensity: 0.3
+  animationController: {fileID: 8901319888725193215}
   featherEffect: {fileID: 0}
 --- !u!114 &8425624606198365811
 MonoBehaviour:
@@ -40865,6 +40867,9 @@ MonoBehaviour:
   stationaryCamRef: {fileID: 916040648033064246}
   centerMassManager: {fileID: 1370763553124177861}
   armMassShift: 2
+  globalVolume: {fileID: 0}
+  maxMotionBlurIntensity: 1
+  motionBlurDuration: 5
   vfxHandler: {fileID: 8425624606198365811}
 --- !u!114 &1370763553124177861
 MonoBehaviour:
@@ -40883,11 +40888,11 @@ MonoBehaviour:
   leftRotation: {fileID: 1487081333896962083}
   rightRotation: {fileID: 1272066448169674846}
   rotationDeadZone: 0
-  maxTurnIncrease: 30
-  turnIncrease: 0
   maxRotationAngle: 20
   maxRotationInput: 10
   rotationSpeed: 5
+  maxTurnIncrease: 30
+  turnIncrease: 0
   maxHeight: 0.2
   minHeight: -0.2
   sinkSpeed: 2
@@ -47234,6 +47239,8 @@ MonoBehaviour:
   maxPoints: 100
   increment: 0.1
   isShooting: 0
+  centerMassManager: {fileID: 1370763553124177861}
+  maxCarTiltInfluence: 8
 --- !u!120 &7203083659067477249
 LineRenderer:
   serializedVersion: 2
