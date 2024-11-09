@@ -762,6 +762,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204615651}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &227569230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7480431401180789957, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8255591555976474652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &227569237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227569230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  massCenter: {x: 0, y: 0, z: 0}
+  carBody: {fileID: 2112959801}
+  leftRotation: {fileID: 2070204352}
+  rightRotation: {fileID: 1060637622}
+  rotationDeadZone: 0
+  maxRotationAngle: 20
+  maxRotationInput: 10
+  rotationSpeed: 5
+  maxTurnIncrease: 30
+  turnIncrease: 0
+  maxHeight: 0.2
+  minHeight: -0.2
+  sinkSpeed: 2
 --- !u!1001 &232406179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3255,11 +3286,13 @@ MonoBehaviour:
   projectileRb: {fileID: 0}
   shootingPoint: {fileID: 361229719}
   shootForce: 50
+  isShooting: 0
   trajectoryLine: {fileID: 913046473}
   hitMarker: {fileID: 2139172748}
   maxPoints: 100
   increment: 0.1
-  isShooting: 0
+  centerMassManager: {fileID: 0}
+  maxCarTiltInfluence: 0
 --- !u!120 &913046473
 LineRenderer:
   serializedVersion: 2
@@ -3547,27 +3580,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 0}
-  centerMassManager: {fileID: 0}
+  cartState: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 0}
   testCharTrans: {fileID: 5939588144169502488}
   testCharTransNoAnim: {fileID: 0}
   rb: {fileID: 941737918}
-  poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
-  currentTurnSpeed: 0
   minInCartSpeed: 20
   maxSpeed: 37.5
+  speedDecreaseValue: 0
+  currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
-  speedDecreaseValue: 0
-  speedPoleIncreaseRate: 0
   dynamicTurnBool: 0
-  cartState: 0
-  cartShakeAmount: 1
+  poleRotateLookatRef: {fileID: 0}
+  speedPoleIncreaseRate: 0
+  centerMassManager: {fileID: 0}
   turnTiltStrength: 0
+  cartShakeAmount: 1
+  globalVolume: {fileID: 0}
+  maxMotionBlurIntensity: 0
+  animationController: {fileID: 0}
   featherEffect: {fileID: 0}
 --- !u!4 &941737916
 Transform:
@@ -4518,6 +4553,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1056084612}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1060637622 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1272066448169674846, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8255591555976474652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1062726912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5169,27 +5210,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 1957103038}
-  centerMassManager: {fileID: 0}
+  cartState: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 0}
   testCharTrans: {fileID: 1957103039}
   testCharTransNoAnim: {fileID: 0}
   rb: {fileID: 1192316230}
-  poleRotateLookatRef: {fileID: 0}
   moveInput: 0
   speed: 0
-  currentTurnSpeed: 0
   minInCartSpeed: 20
   maxSpeed: 37.5
+  speedDecreaseValue: 0
+  currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
-  speedDecreaseValue: 0
-  speedPoleIncreaseRate: 0
   dynamicTurnBool: 0
-  cartState: 0
-  cartShakeAmount: 1
+  poleRotateLookatRef: {fileID: 0}
+  speedPoleIncreaseRate: 0
+  centerMassManager: {fileID: 0}
   turnTiltStrength: 0
+  cartShakeAmount: 1
+  globalVolume: {fileID: 0}
+  maxMotionBlurIntensity: 0
+  animationController: {fileID: 1957103038}
   featherEffect: {fileID: 0}
 --- !u!65 &1192316229
 BoxCollider:
@@ -10636,6 +10679,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a55f49ab8dbb294bac28655bbe11557, type: 3}
+--- !u!4 &2070204352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1487081333896962083, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8255591555976474652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2082677913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10747,6 +10796,12 @@ Transform:
   - {fileID: 7995558452605683689}
   m_Father: {fileID: 7115835515469622836}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &2112959801 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4908159445678658439, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+    type: 3}
+  m_PrefabInstance: {fileID: 8255591555976474652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2130141788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6262186320313543687, guid: 7a55f49ab8dbb294bac28655bbe11557,
@@ -11591,27 +11646,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b4c675c2c27dd4587340ed1503d7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationController: {fileID: 5412188070291490483}
-  centerMassManager: {fileID: 7115835515469622838}
+  cartState: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 913046472}
   testCharTrans: {fileID: 2160558539882962121}
   testCharTransNoAnim: {fileID: 5939588144169502488}
   rb: {fileID: 2511553751872002623}
-  poleRotateLookatRef: {fileID: 1717715941}
   moveInput: 0
   speed: 0
-  currentTurnSpeed: 0
   minInCartSpeed: 10
   maxSpeed: 37.5
+  speedDecreaseValue: 0
+  currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
-  speedDecreaseValue: 0
-  speedPoleIncreaseRate: 0.1
   dynamicTurnBool: 0
-  cartState: 0
-  cartShakeAmount: 0.0005
+  poleRotateLookatRef: {fileID: 1717715941}
+  speedPoleIncreaseRate: 0.1
+  centerMassManager: {fileID: 7115835515469622838}
   turnTiltStrength: 0
+  cartShakeAmount: 0.0005
+  globalVolume: {fileID: 0}
+  maxMotionBlurIntensity: 0
+  animationController: {fileID: 5412188070291490483}
   featherEffect: {fileID: 0}
 --- !u!137 &712110645913945500
 SkinnedMeshRenderer:
@@ -32421,10 +32478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carController: {fileID: 711390617226705542}
-  audioHandler: {fileID: 1953370931595570460}
   cameraShakeDuration: 0.8
   cameraShakeStrength: 0.002
   minHitSpeed: 10
+  audioHandler: {fileID: 1953370931595570460}
 --- !u!1 &2550894439269406227
 GameObject:
   m_ObjectHideFlags: 0
@@ -62396,11 +62453,11 @@ MonoBehaviour:
   leftRotation: {fileID: 0}
   rightRotation: {fileID: 1523086600702523900}
   rotationDeadZone: 0
-  maxTurnIncrease: 0
-  turnIncrease: 0
   maxRotationAngle: 0
   maxRotationInput: 0
   rotationSpeed: 0
+  maxTurnIncrease: 0
+  turnIncrease: 0
   maxHeight: 0
   minHeight: 0
   sinkSpeed: 0
@@ -72657,9 +72714,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 801626553046947589, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 1956036560}
+    - target: {fileID: 801626553046947589, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+        type: 3}
       propertyPath: poleRotateLookatRef
       value: 
       objectReference: {fileID: 1717715941}
+    - target: {fileID: 2961702757614569642, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+        type: 3}
+      propertyPath: centerMassManager
+      value: 
+      objectReference: {fileID: 227569237}
     - target: {fileID: 4293879777589554102, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
       propertyPath: m_Mesh
@@ -72727,6 +72794,11 @@ PrefabInstance:
       objectReference: {fileID: 1717715941}
     - target: {fileID: 5462265658334376366, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 1956036560}
+    - target: {fileID: 5462265658334376366, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+        type: 3}
       propertyPath: stationaryCamRef
       value: 
       objectReference: {fileID: 1264690044}
@@ -72734,6 +72806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vehicle-MAINCONTROLLER
+      objectReference: {fileID: 0}
+    - target: {fileID: 7203083659067477249, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8184765066303885768, guid: f2e37b077d8aa7e4a965abacacfbcac0,
         type: 3}
@@ -72743,7 +72820,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7480431401180789957, guid: f2e37b077d8aa7e4a965abacacfbcac0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 227569237}
   m_SourcePrefab: {fileID: 100100000, guid: f2e37b077d8aa7e4a965abacacfbcac0, type: 3}
 --- !u!1 &8276049866857671883
 GameObject:

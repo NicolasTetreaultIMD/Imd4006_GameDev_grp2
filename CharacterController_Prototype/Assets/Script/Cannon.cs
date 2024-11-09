@@ -9,26 +9,31 @@ using UnityEngine.Timeline;
 
 public class Cannon : MonoBehaviour
 {
+    [Header("Player Input")]
     PlayerInput playerInput;
     private InputAction shoot;
     public Vector2 rightStick;
+
+    [Header("Cannon Movement")]
     public float cannonRotationSpeed;
     public float maxHorizontalTurn;
     public float maxVerticalTurn;
 
+    [Header("Projectile")]
     public GameObject projectile;
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
     Vector3 direction;
+    public bool isShooting;
 
+    [Header("Line of Trajectory")]
     public LineRenderer trajectoryLine;
     public Transform hitMarker;
     public int maxPoints;
     public float increment;
     float rayOverlap = 1.1f;
 
-    public bool isShooting;
 
     [Header("Center of Mass")]
     public CenterMassManager centerMassManager;
