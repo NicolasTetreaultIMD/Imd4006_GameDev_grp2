@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using static UnityEngine.Rendering.DebugUI;
@@ -60,6 +62,10 @@ public class CarController : MonoBehaviour
 
 
     [Header("Audio & VFX")]
+    public Volume globalVolume;
+    public float maxMotionBlurIntensity;
+    private float prevMotionBlurChange;
+    private MotionBlur motionBlur;
     public Animator animationController;
     public ParticleSystem featherEffect;
 
@@ -134,6 +140,15 @@ public class CarController : MonoBehaviour
             if (speed < minInCartSpeed && cartState == CartState.InCart)
             {
                 SwitchCartState(CartState.Running);
+            }
+
+            //Update MotionBlur
+            globalVolume.profile.TryGet(out motionBlur);
+            {
+                float motionBlurChange = (speed / maxSpeed) * maxMotionBlurIntensity;
+                Debug.Log(motionBlurChange);
+                motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
+                prevMotionBlurChange = motionBlurChange;
             }
 
             //JOYSTICK CONTROLS FOR TURNING

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 //Controls the arms for the pole grab mechanic
 public class GrabManager : MonoBehaviour
@@ -28,6 +30,17 @@ public class GrabManager : MonoBehaviour
     [Header("Center Mass")]
     public CenterMassManager centerMassManager;
     public float armMassShift;          //By how much does the arm causes the mass to shift
+
+    [Header("Motion Blur")]
+    public Volume globalVolume;
+    public float maxMotionBlurIntensity;
+    public float motionBlurDuration;
+    private float motionBlurChange;
+    private float prevMotionBlurChange;
+    private bool motionBlurActive;
+    private MotionBlur motionBlur;
+
+    private float timeElapsed;
 
     [Header("Audio & VFX")]
     public vfxHandler vfxHandler;
@@ -58,6 +71,29 @@ public class GrabManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (motionBlurActive)
+        {
+            timeElapsed += Time.deltaTime;
+
+            if (timeElapsed > motionBlurDuration)
+            {
+                motionBlurChange = 0;
+                motionBlurActive = false;
+            }
+            else
+            {
+                motionBlurChange -= maxMotionBlurIntensity * (Time.deltaTime / motionBlurDuration);
+            }
+        }
+
+        //Update MotionBlur
+        globalVolume.profile.TryGet(out motionBlur);
+        {
+            motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
+            prevMotionBlurChange = motionBlurChange;
+        }
+
         //If needed can add code that will run in update if one of the arm is active
 
         /*if (rightGrab.IsPressed() && activeHand == rightArmGrab)
@@ -176,6 +212,10 @@ public class GrabManager : MonoBehaviour
             Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
 
             vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+            //Start Motion Blur
+            timeElapsed = 0;
+            motionBlurActive = true;
+            motionBlurChange = maxMotionBlurIntensity;
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
