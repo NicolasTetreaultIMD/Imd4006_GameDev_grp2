@@ -5,9 +5,12 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public CarController carController;
+
+    [Header("Cam Properties")]
     public float maxCamDistance;
     public float cameraShakeAmount;
 
+    [Header("Cam Position")]
     public Vector3 camDisplacement;
 
     private Vector3 initLocalPos;

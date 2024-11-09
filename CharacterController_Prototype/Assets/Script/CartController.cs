@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using static UnityEngine.Rendering.DebugUI;
@@ -12,50 +14,60 @@ using static UnityEngine.Rendering.DebugUI;
 public class CarController : MonoBehaviour
 {
     public enum CartState { Running, InCart, PoleHolding };
+    [Header("Car State")]
+    public CartState cartState;
 
-    public Animator animationController;
-    public CenterMassManager centerMassManager;
-
+    [Header("Player Input")]
+    public Vector2 leftStick;
     PlayerInput playerInput;
     private InputAction increase;
-    public Vector2 leftStick;
+
+    [Header("Cannon")]
     public Cannon cannon;
 
+    [Header("Character")]
     public Transform testCharTrans;
     public Transform testCharTransNoAnim;
     public Rigidbody rb;
 
-    /*public Transform cartLeftCtrl;
-    public Transform cartRightCtrl;
-    public Transform cartBodyCtrl;*/
-
-    public Transform poleRotateLookatRef;
-
+    [Header("Movement")]
     public float moveInput;
     public float speed;
-    public float currentTurnSpeed;
     public float minInCartSpeed = 10f;
     public float maxSpeed = 37.5f;
-    public bool turnSpeedToggle;
-    public float maxTurnSpeed;
     float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
-    public float speedPoleIncreaseRate;
 
+    [Header("Turning")]
+    public float currentTurnSpeed;
+    public bool turnSpeedToggle;
+    public float maxTurnSpeed;
     public bool dynamicTurnBool;
 
-    public CartState cartState;
-
+    [Header("Pole Rotation")]
+    public Transform poleRotateLookatRef;
+    public float speedPoleIncreaseRate;
     private int poleTurnDirection = 1;
-    public float cartShakeAmount = 1;
-    private float prevCartShakePos = 0;
 
+    [Header("Mass Shift")]
+    public CenterMassManager centerMassManager;
     public float turnTiltStrength;
     private float turnTilt;
     private float prevTurnTilt;
 
-    public ParticleSystem featherEffect; 
+    [Header("Car Shake")]
+    public float cartShakeAmount = 1;
+    private float prevCartShakePos = 0;
 
+
+
+    [Header("Audio & VFX")]
+    public Volume globalVolume;
+    public float maxMotionBlurIntensity;
+    private float prevMotionBlurChange;
+    private MotionBlur motionBlur;
+    public Animator animationController;
+    public ParticleSystem featherEffect;
 
     private void Start()
     {
@@ -130,45 +142,17 @@ public class CarController : MonoBehaviour
                 SwitchCartState(CartState.Running);
             }
 
+            //Update MotionBlur
+            globalVolume.profile.TryGet(out motionBlur);
+            {
+                float motionBlurChange = (speed / maxSpeed) * maxMotionBlurIntensity;
+                motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
+                prevMotionBlurChange = motionBlurChange;
+            }
+
             //JOYSTICK CONTROLS FOR TURNING
             leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
-            // if (Math.Abs(leftStick.x) > 0.05f)
-            // {
-            //     if (currentTurnSpeed < maxTurnSpeed)
-            //     {
-            //         currentTurnSpeed += (maxTurnSpeed / 10);
-            //     }
-            // }
-            // else
-            // {
-            //     currentTurnSpeed = 0;
-            // }
 
-
-            // moveInput = 1f; // 0 = Don't Move & 1 = Move
-            // float turnInput = Input.GetAxis("Horizontal"); // Left/Right, we can replace this with leftStick.x for joystick
-
-            // rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
-
-            // if (speed != 0) //Spherical rotation to simulate steering and not sharp turns.
-            // {
-            //     /*Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45, 0) * transform.rotation;
-            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);*/
-
-            //     Quaternion targetRotation = Quaternion.Euler(0, turnInput * 45 + centerMassManager.turnIncrease, 0) * transform.rotation;
-            //     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
-
-            //     //right turn
-            //     if (turnInput > 0)
-            //     {
-            //         turnTilt = -turnTiltStrength * speed;
-            //     }
-            //     //left turn
-            //     else if (turnInput < 0)
-            //     {
-            //         turnTilt = turnTiltStrength * speed;
-            //     }
-            // }
             TurnCart();
 
             //MOVES CART

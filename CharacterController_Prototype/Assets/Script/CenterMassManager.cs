@@ -9,18 +9,22 @@ public class CenterMassManager : MonoBehaviour
     //x = rotation; y = up down; z = ???
     public Vector3 massCenter;
 
+    [Header("Car Ctrls")]
     public Transform carBody;       //Main body of the car (seperate from wheels)
     public Transform leftRotation;  //Left tilt
     public Transform rightRotation; //right tilt
 
+    [Header("(X) Tilt Properties")]
     public float rotationDeadZone;  //Minimum value until the car starts tilting
-    public float maxTurnIncrease;   //Max amount that the tilt can influence the angle of car
-    public float turnIncrease;      //Amount that the tilt is currently influencing the angle of the car
-
     public float maxRotationAngle;  //Max tilt the car can have
     public float maxRotationInput;  //Max center of mass value
     public float rotationSpeed;     //Speed for the rotation lerp
 
+    [Header("(X) Tilt Influence Properties")]
+    public float maxTurnIncrease;   //Max amount that the tilt can influence the angle of car
+    public float turnIncrease;      //Amount that the tilt is currently influencing the angle of the car
+
+    [Header("(Y) Sink Properties")]
     public float maxHeight;         //Max height of body
     public float minHeight;         //Minimum height of body
     public float sinkSpeed;         //Speed for the sink lerp
