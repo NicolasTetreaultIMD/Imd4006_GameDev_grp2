@@ -5,10 +5,12 @@ using UnityEngine;
 public class obstacleCollisionManager : MonoBehaviour
 {
     public CarController carController;
-    public audioHandler audioHandler;
 
+    [Header("Camera Shake Properties")]
     public float cameraShakeDuration;
     public float cameraShakeStrength;
+
+    [Header("Collision Properties")]
     public float minHitSpeed;
 
     private bool hit = false;
@@ -16,6 +18,9 @@ public class obstacleCollisionManager : MonoBehaviour
 
     private float impactSpeed;
     private Camera mainCam;
+
+    [Header("Audio & VFX")]
+    public audioHandler audioHandler;
 
     private void Start()
     {

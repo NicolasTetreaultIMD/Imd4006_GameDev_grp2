@@ -9,13 +9,14 @@ public class GrabManager : MonoBehaviour
     PlayerInput playerControls;
 
     public CarController carController;
-    public vfxHandler vfxHandler;
 
+    [Header("Arms Objects")]
     public GameObject leftArmDefault;   //left arm in default state
     public GameObject leftArmGrab;      //left arm in grab state
     public GameObject rightArmDefault;  //right arm in default state
     public GameObject rightArmGrab;     //right arm in grab state
 
+    [Header("Transform References")]
     public Transform lookatRef;         //Transform reference for lookat while pole grabbing
     public Transform stationaryCamRef;  //Stationary cam reference for when grabbing the pole
 
@@ -24,8 +25,12 @@ public class GrabManager : MonoBehaviour
     private InputAction leftGrab;       //Left trigger pressed
     private InputAction rightGrab;      //Right trigger presseed
 
+    [Header("Center Mass")]
     public CenterMassManager centerMassManager;
     public float armMassShift;          //By how much does the arm causes the mass to shift
+
+    [Header("Audio & VFX")]
+    public vfxHandler vfxHandler;
 
 
     // Input manager setup
@@ -45,6 +50,9 @@ public class GrabManager : MonoBehaviour
         rightGrab.canceled += ExitRightPoleGrabInput;
 
         armMassShift = Mathf.Min(armMassShift, centerMassManager.maxRotationInput);
+
+        lookatRef.parent = null;
+        stationaryCamRef.parent = null;
     }
 
     // Update is called once per frame
