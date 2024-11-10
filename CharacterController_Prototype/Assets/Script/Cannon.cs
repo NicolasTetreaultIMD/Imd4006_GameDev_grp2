@@ -131,7 +131,7 @@ public class Cannon : MonoBehaviour
     {
         //Car tilt
         float massChange = maxCarTiltInfluence * (angle / maxHorizontalTurn);
-        Debug.Log(angle);
+        //Debug.Log(angle);
         centerMassManager.massCenter.x += massChange - prevMassChange;
         prevMassChange = massChange;
     }
