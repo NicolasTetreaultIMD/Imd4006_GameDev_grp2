@@ -948,7 +948,7 @@ Transform:
   m_GameObject: {fileID: 796057933025127832}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028000116, y: 0.26700002, z: 1.0240002}
+  m_LocalPosition: {x: 0.027999878, y: 0.34899998, z: 2.3130002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1144,7 +1144,7 @@ Transform:
   m_GameObject: {fileID: 1346413577629601976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.028000116, y: 0.26700002, z: -1.2670012}
+  m_LocalPosition: {x: 0.027999878, y: 0.34899998, z: 0.021998804}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1894,15 +1894,15 @@ Transform:
   m_GameObject: {fileID: 2845141874056435367}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3, y: -0.01, z: 0}
+  m_LocalPosition: {x: 1.3000002, y: 0.013, z: 0.006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6694883144079239165}
-  - {fileID: 4251422606503522590}
-  - {fileID: 8000158882521895621}
-  - {fileID: 3223140342219036799}
   - {fileID: 8142228407101803065}
+  - {fileID: 3223140342219036799}
+  - {fileID: 8000158882521895621}
+  - {fileID: 4251422606503522590}
+  - {fileID: 6694883144079239165}
   m_Father: {fileID: 4366704046470065028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2860983879156234180
@@ -2137,7 +2137,7 @@ Transform:
   m_GameObject: {fileID: 3180553392054232206}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4560001, y: 0.26700002, z: 1.0240002}
+  m_LocalPosition: {x: -1.4560003, y: 0.34899998, z: 2.3130002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8580,8 +8580,8 @@ Transform:
   m_GameObject: {fileID: 5251340421549887696}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: -0.879, z: -0.41}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.02, y: -1.14, z: -0.41}
+  m_LocalScale: {x: 1.2475, y: 1.2475, z: 1.2475}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1009505404272222806}
@@ -8781,7 +8781,7 @@ Transform:
   m_GameObject: {fileID: 5582745337739595368}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.71999997, y: 0.7, z: 0}
+  m_LocalPosition: {x: -0.7200002, y: 0.78199995, z: 1.2889999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10048,7 +10048,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 98
+  m_VersionIndex: 419
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -10139,7 +10139,6 @@ GameObject:
   - component: {fileID: 9067130238198068865}
   - component: {fileID: 1511075263869951291}
   - component: {fileID: 1261066217549320708}
-  - component: {fileID: 5241491659523258381}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -10252,7 +10251,7 @@ MonoBehaviour:
   hitMarker: {fileID: 1237103490473235937}
   maxPoints: 100
   increment: 0.1
-  centerMassManager: {fileID: 5241491659523258381}
+  centerMassManager: {fileID: 2770271665567294070}
   maxCarTiltInfluence: 8
 --- !u!120 &1261066217549320708
 LineRenderer:
@@ -10358,31 +10357,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &5241491659523258381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5680463811132339904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  massCenter: {x: 0, y: 0, z: 0}
-  carBody: {fileID: 8142228407101803065}
-  leftRotation: {fileID: 4366704046470065028}
-  rightRotation: {fileID: 2549190151233409740}
-  rotationDeadZone: 0
-  maxRotationAngle: 20
-  maxRotationInput: 10
-  rotationSpeed: 5
-  maxTurnIncrease: 30
-  turnIncrease: 0
-  maxHeight: 0.2
-  minHeight: -0.2
-  sinkSpeed: 2
 --- !u!1 &5720764872477693153
 GameObject:
   m_ObjectHideFlags: 0
@@ -10408,7 +10382,7 @@ Transform:
   m_GameObject: {fileID: 5720764872477693153}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.58, y: -0.69, z: 0}
+  m_LocalPosition: {x: -0.58, y: -0.795, z: -1.295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11392,7 +11366,7 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
-  poleRotateLookatRef: {fileID: 0}
+  poleRotateLookatRef: {fileID: 3220791805318518674}
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 2770271665567294070}
   turnTiltStrength: 0.2
@@ -11449,8 +11423,8 @@ MonoBehaviour:
   leftArmGrab: {fileID: 5903197400066390026}
   rightArmDefault: {fileID: 5581193600887088195}
   rightArmGrab: {fileID: 7699650887351016747}
-  lookatRef: {fileID: 0}
-  stationaryCamRef: {fileID: 0}
+  lookatRef: {fileID: 3220791805318518674}
+  stationaryCamRef: {fileID: 6058718745303651620}
   centerMassManager: {fileID: 2770271665567294070}
   armMassShift: 2
   globalVolume: {fileID: 0}
@@ -11474,7 +11448,7 @@ MonoBehaviour:
   leftRotation: {fileID: 4366704046470065028}
   rightRotation: {fileID: 2549190151233409740}
   rotationDeadZone: 0
-  maxRotationAngle: 20
+  maxRotationAngle: 30
   maxRotationInput: 10
   rotationSpeed: 5
   maxTurnIncrease: 30
@@ -13259,7 +13233,7 @@ Transform:
   m_GameObject: {fileID: 8300532590337262650}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4560001, y: 0.26700002, z: -1.2669992}
+  m_LocalPosition: {x: -1.4560003, y: 0.34899998, z: 0.022000711}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
