@@ -21,6 +21,7 @@ public class GrabManager : MonoBehaviour
     [Header("Transform References")]
     public Transform lookatRef;         //Transform reference for lookat while pole grabbing
     public Transform stationaryCamRef;  //Stationary cam reference for when grabbing the pole
+    public Transform cameraPivotRef;
 
     private GameObject activeHand;      //Which hand is currently active
 
@@ -66,6 +67,7 @@ public class GrabManager : MonoBehaviour
 
         lookatRef.parent = null;
         stationaryCamRef.parent = null;
+        cameraPivotRef.parent = null;
     }
 
     // Update is called once per frame
@@ -191,10 +193,14 @@ public class GrabManager : MonoBehaviour
             //Set the lookat ref to the hand trigger
             lookatRef.position = activeHand.GetComponentInChildren<ArmGrabCollider>().gameObject.transform.position;
 
+            cameraPivotRef.position = lookatRef.position;
+
             //Save the camera position to the position it was when the pole was grabbed
             stationaryCamRef.position = carController.gameObject.transform.position;
             stationaryCamRef.rotation = carController.gameObject.transform.rotation;
             Camera.main.transform.parent = stationaryCamRef;
+
+            stationaryCamRef.parent = cameraPivotRef;
 
             //Switch state to the pole holding
             carController.SwitchCartState(CarController.CartState.PoleHolding);
@@ -206,6 +212,11 @@ public class GrabManager : MonoBehaviour
     {
         if (carController.cartState == CarController.CartState.PoleHolding)
         {
+            carController.gameObject.transform.position = stationaryCamRef.position;
+            carController.gameObject.transform.rotation = stationaryCamRef.rotation;
+
+            stationaryCamRef.parent = null;
+
             //Reset camera to follow the car
             carController.transform.parent = null;
             Camera.main.transform.parent = carController.transform;

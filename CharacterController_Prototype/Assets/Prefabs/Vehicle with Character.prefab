@@ -2186,7 +2186,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 455
+  m_VersionIndex: 464
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2636,6 +2636,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7727916480370050978}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1429899035087371171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7331343766560483611}
+  m_Layer: 0
+  m_Name: CameraPivotRef
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7331343766560483611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429899035087371171}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.24, y: 1.082, z: -0.19099998}
+  m_LocalScale: {x: 0.54038, y: 0.54038, z: 0.54038}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3516804644110949683}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1479471586427783530
 GameObject:
@@ -10809,6 +10840,7 @@ Transform:
   m_Children:
   - {fileID: 4867351733174225393}
   - {fileID: 6074846908844351146}
+  - {fileID: 7331343766560483611}
   - {fileID: 8132413866281212589}
   - {fileID: 375989707026178935}
   - {fileID: 763499988894207006}
@@ -10899,6 +10931,7 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  cameraPivotRef: {fileID: 7331343766560483611}
   poleRotateLookatRef: {fileID: 6074846908844351146}
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 5765062419517420129}
@@ -10958,6 +10991,7 @@ MonoBehaviour:
   rightArmGrab: {fileID: 8441230708288412607}
   lookatRef: {fileID: 6074846908844351146}
   stationaryCamRef: {fileID: 4867351733174225393}
+  cameraPivotRef: {fileID: 7331343766560483611}
   centerMassManager: {fileID: 5765062419517420129}
   armMassShift: 2
   globalVolume: {fileID: 0}
