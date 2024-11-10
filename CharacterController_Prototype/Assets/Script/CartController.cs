@@ -56,6 +56,7 @@ public class CarController : MonoBehaviour
     [Header("Pole Rotation")]
     public Transform cameraPivotRef;
     public Transform poleRotateLookatRef;
+    public float cameraPivotSpeed;
     public float speedPoleIncreaseRate;
     private int poleTurnDirection = 1;
 
@@ -152,6 +153,9 @@ public class CarController : MonoBehaviour
         //Debug.Log(shakeAngle);
         transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
 
+        //JOYSTICK CONTROLS FOR TURNING
+        leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+
         if (cartState != CartState.PoleHolding)
         {
             //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
@@ -181,8 +185,6 @@ public class CarController : MonoBehaviour
                 prevMotionBlurChange = motionBlurChange;
             }
 
-            //JOYSTICK CONTROLS FOR TURNING
-            leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
 
             TurnCart();
 
@@ -191,6 +193,8 @@ public class CarController : MonoBehaviour
         }
         else
         {
+            CameraPivot();
+
             //Gradually increases the player's speed while on the pole
             if (speed < maxSpeed)
             {
@@ -217,6 +221,14 @@ public class CarController : MonoBehaviour
 
         centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
         prevTurnTilt = turnTilt;
+    }
+
+    //Pivots the camera around the pole when in pole grabbing mode
+    private void CameraPivot()
+    {
+        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 10, 0) * cameraPivotRef.rotation;
+
+        cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);
     }
 
     private void Move()
