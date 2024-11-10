@@ -1872,6 +1872,7 @@ Transform:
   - {fileID: 8000158882521895621}
   - {fileID: 4251422606503522590}
   - {fileID: 6694883144079239165}
+  - {fileID: 561904358758192337}
   m_Father: {fileID: 4366704046470065028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2860983879156234180
@@ -10139,7 +10140,6 @@ GameObject:
   - component: {fileID: 9067130238198068865}
   - component: {fileID: 1511075263869951291}
   - component: {fileID: 1261066217549320708}
-  - component: {fileID: 5241491659523258381}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Untagged
@@ -10156,13 +10156,13 @@ Transform:
   m_GameObject: {fileID: 5680463811132339904}
   serializedVersion: 2
   m_LocalRotation: {x: -0.18914618, y: 0.016535897, z: -0.0024240916, w: 0.98180676}
-  m_LocalPosition: {x: 0.011, y: 1.264, z: -0.943}
-  m_LocalScale: {x: 0.2996, y: 0.29409, z: 2.2558}
+  m_LocalPosition: {x: -0.45600015, y: 1.6229999, z: -0.94299984}
+  m_LocalScale: {x: 0.29959998, y: 0.29409, z: 2.2558}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5650957055366462544}
   - {fileID: 5814972807339991529}
-  m_Father: {fileID: 2617704811727075045}
+  m_Father: {fileID: 2549190151233409740}
   m_LocalEulerAnglesHint: {x: -21.798, y: 2.061, z: -0.68}
 --- !u!23 &7634096418543694797
 MeshRenderer:
@@ -10247,12 +10247,14 @@ MonoBehaviour:
   projectileRb: {fileID: 0}
   shootingPoint: {fileID: 6608509130364815498}
   shootForce: 50
+  maxShootForce: 0
+  shootForceIncreaseSpeed: 0
   isShooting: 0
   trajectoryLine: {fileID: 1261066217549320708}
   hitMarker: {fileID: 1237103490473235937}
   maxPoints: 100
   increment: 0.1
-  centerMassManager: {fileID: 5241491659523258381}
+  centerMassManager: {fileID: 0}
   maxCarTiltInfluence: 8
 --- !u!120 &1261066217549320708
 LineRenderer:
@@ -10358,31 +10360,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &5241491659523258381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5680463811132339904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  massCenter: {x: 0, y: 0, z: 0}
-  carBody: {fileID: 8142228407101803065}
-  leftRotation: {fileID: 4366704046470065028}
-  rightRotation: {fileID: 2549190151233409740}
-  rotationDeadZone: 0
-  maxRotationAngle: 20
-  maxRotationInput: 10
-  rotationSpeed: 5
-  maxTurnIncrease: 30
-  turnIncrease: 0
-  maxHeight: 0.2
-  minHeight: -0.2
-  sinkSpeed: 2
 --- !u!1 &5720764872477693153
 GameObject:
   m_ObjectHideFlags: 0
@@ -11392,7 +11369,6 @@ Transform:
   - {fileID: 6058718745303651620}
   - {fileID: 3220791805318518674}
   - {fileID: 1237103490473235937}
-  - {fileID: 561904358758192337}
   - {fileID: 7828782829152418356}
   - {fileID: 5806116577134523203}
   - {fileID: 4366704046470065028}

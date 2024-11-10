@@ -18,12 +18,15 @@ public class Cannon : MonoBehaviour
     public float cannonRotationSpeed;
     public float maxHorizontalTurn;
     public float maxVerticalTurn;
+    bool carLoaded;
 
     [Header("Projectile")]
     public GameObject projectile;
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
+    public float maxShootForce;
+    public float shootForceIncreaseSpeed;
     Vector3 direction;
     public bool isShooting;
 
@@ -49,9 +52,22 @@ public class Cannon : MonoBehaviour
 
         shoot = playerInput.Gameplay.CannonShoot;
         shoot.Enable();
-        shoot.performed += ctx => isShooting = true;
-        shoot.canceled += ctx => isShooting = false;
-        shoot.canceled += Shoot;
+
+        shoot.performed += ctx =>
+        {
+            isShooting = true; 
+            shootForce = 20;
+        };
+
+        shoot.canceled += ctx =>
+        {
+            Shoot();
+            isShooting = false;
+        };
+
+        carLoaded = false;
+        shootForceIncreaseSpeed = 2;
+        maxShootForce = 125;
 
     }
 
@@ -60,10 +76,16 @@ public class Cannon : MonoBehaviour
     {
         direction = (shootingPoint.transform.position - transform.position).normalized;
 
+        //Controls whether the Hit Marker is shown or hidden
         if (isShooting && projectile != null)
         {
             trajectoryLine.enabled = true;
             hitMarker.GetComponent<MeshRenderer>().enabled = true;
+
+            if (shootForce < maxShootForce)
+            {
+                shootForce = Mathf.Lerp(shootForce, maxShootForce, shootForceIncreaseSpeed * Time.deltaTime);
+            }
             DrawTrajectory();
         }
         else
@@ -71,6 +93,7 @@ public class Cannon : MonoBehaviour
             trajectoryLine.enabled = false;
             hitMarker.GetComponent<MeshRenderer>().enabled = false;
         }
+
     }
 
     private void FixedUpdate()
@@ -91,11 +114,11 @@ public class Cannon : MonoBehaviour
         {
             rotationY -= 360; // Normalize to -180 to 180
         }
-        if (rightStick.x > 0)
+        if (rightStick.x > 0.25)
         {
             rotationY += cannonRotationSpeed * Time.deltaTime;
         }
-        else if (rightStick.x < 0)
+        else if (rightStick.x < -0.25)
         {
             rotationY -= cannonRotationSpeed * Time.deltaTime;
         }
@@ -115,11 +138,11 @@ public class Cannon : MonoBehaviour
         {
             rotationX -= 360; // Normalize to -180 to 180
         }
-        if (rightStick.y > 0)
+        if (rightStick.y > 0.25)
         {
             rotationX -= (cannonRotationSpeed /4) * Time.deltaTime; // Move upward (toward 0)
         }
-        else if (rightStick.y < 0)
+        else if (rightStick.y < -0.25)
         {
             rotationX += (cannonRotationSpeed/4) * Time.deltaTime; // Move downward (toward -20)
         }
@@ -131,14 +154,16 @@ public class Cannon : MonoBehaviour
     {
         //Car tilt
         float massChange = maxCarTiltInfluence * (angle / maxHorizontalTurn);
-        Debug.Log(angle);
+        //Debug.Log(angle);
         centerMassManager.massCenter.x += massChange - prevMassChange;
         prevMassChange = massChange;
     }
 
     //SHOOTING THE CANNONM
-    private void Shoot(InputAction.CallbackContext context)
+    private void Shoot()
     {
+        Debug.Log("SHOT");
+
         if (projectile != null)
         {
             var bullet = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
@@ -146,6 +171,8 @@ public class Cannon : MonoBehaviour
         }
 
         projectile = null;
+        carLoaded = false;
+
     }
 
     //LOADING THE CANNON
@@ -153,6 +180,8 @@ public class Cannon : MonoBehaviour
     {
         projectile = newProjectile;
         projectileRb = projectile.GetComponent<Rigidbody>();
+
+        carLoaded = true;
     }
 
     //CREATING THE LINE OF TRAJECTORY FOR THE PROJECTILE
