@@ -54,6 +54,7 @@ public class CarController : MonoBehaviour
     public bool dynamicTurnBool;
 
     [Header("Pole Rotation")]
+    public Transform cameraPivotRef;
     public Transform poleRotateLookatRef;
     public float speedPoleIncreaseRate;
     private int poleTurnDirection = 1;
