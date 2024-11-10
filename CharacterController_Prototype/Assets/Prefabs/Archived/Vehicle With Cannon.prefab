@@ -16900,7 +16900,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 143
+  m_VersionIndex: 137
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -47234,11 +47234,11 @@ MonoBehaviour:
   projectileRb: {fileID: 0}
   shootingPoint: {fileID: 6622341074186463184}
   shootForce: 50
-  isShooting: 0
   trajectoryLine: {fileID: 7203083659067477249}
   hitMarker: {fileID: 6444722700348638555}
   maxPoints: 100
   increment: 0.1
+  isShooting: 0
   centerMassManager: {fileID: 1370763553124177861}
   maxCarTiltInfluence: 8
 --- !u!120 &7203083659067477249

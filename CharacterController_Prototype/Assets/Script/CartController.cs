@@ -26,9 +26,18 @@ public class CarController : MonoBehaviour
     public Cannon cannon;
 
     [Header("Character")]
-    public Transform testCharTrans;
-    public Transform testCharTransNoAnim;
+    public Transform Runner;
+    public Transform Sitter;
     public Rigidbody rb;
+
+    [Header("Animation")]
+    public AnimationController runnerAnimController;
+    public AnimationController sitterAnimController;
+    public Transform runnerSpot;
+    public Transform shooterSpot;
+    private float transitionProgress = 0f;
+    public bool goingToRunnerSpot;
+    public bool goingToShooterSpot;
 
     [Header("Movement")]
     public float moveInput;
@@ -94,15 +103,36 @@ public class CarController : MonoBehaviour
         float newLowerBodySpeed = speed / 18.75f;
         animationController.SetFloat("LowerBodySpeed",newLowerBodySpeed);
 
-        if (speed == 0)
+        //Transition for the runner to go to the shooter position
+        if(goingToShooterSpot)
         {
-            animationController.SetBool("IsIdle", true);
-            //animationController.Play("Idle", 1);
+            transitionProgress += Time.deltaTime * 0.5f;
+            Runner.position = Vector3.Lerp(Runner.position, shooterSpot.position, transitionProgress);
+            
+            if(Runner.position == shooterSpot.position)
+            {
+                runnerAnimController.ChangeAnimation("Idle", 1);
+                goingToShooterSpot = false;
+            }
+
+            if(goingToRunnerSpot) //Safety net if both happen at same time
+            {
+                goingToShooterSpot = false;
+            }
         }
-        else
+        //Transition for the runner to go to the running position
+        if (goingToRunnerSpot)
         {
-            animationController.SetBool("IsIdle", false);
-            //animationController.Play("Run_LowerBody", 1);
+            transitionProgress += Time.deltaTime * 0.25f;
+            Runner.position = Vector3.Lerp(Runner.position, runnerSpot.position, transitionProgress);
+
+            if (Runner.position == runnerSpot.position)
+            {
+                goingToRunnerSpot = false;
+                runnerAnimController.ChangeWeight(1, 1);
+                runnerAnimController.ChangeAnimation("Idle", 1);
+                runnerAnimController.ChangeAnimation("Run_LowerBody", 0);
+            }
         }
     }
 
@@ -270,31 +300,24 @@ public class CarController : MonoBehaviour
     public void SwitchCartState(CartState newState)
     {
         cartState = newState;
+        transitionProgress = 0f; 
 
         //Perfoms different actions based on the new state
         switch (newState){
             case CartState.Running:
                 Debug.Log("RUNNING");
-                testCharTrans.gameObject.SetActive(true);
-                testCharTransNoAnim.gameObject.SetActive(false);
-
-                /*centerMassManager.massCenter.x = 0;*/
-
-                //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
-                //animationController.SetBool("IsInCart", false);
-                //testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z - 1);
-
+                runnerAnimController.ChangeWeight(0, 1);
+                runnerAnimController.ChangeAnimation("JumpBack", 0);
+                goingToRunnerSpot = true;
                 break;
+
             case CartState.InCart:
                 Debug.Log("IN CART");
-                testCharTrans.gameObject.SetActive(false);
-                testCharTransNoAnim.gameObject.SetActive(true);
-
-
-                //CODE FOR CREATING A TRANSITION BETWEEN THE TWO STATES:
-                //animationController.SetBool("IsInCart", true);
-                //testCharTrans.localPosition = new Vector3(testCharTrans.localPosition.x, testCharTrans.localPosition.y, testCharTrans.localPosition.z + 1);
+                runnerAnimController.ChangeWeight(0, 1);
+                runnerAnimController.ChangeAnimation("Jump", 0);
+                goingToShooterSpot = true;
                 break;
+
             case CartState.PoleHolding:
                 Debug.Log("Holding Pole");
 
