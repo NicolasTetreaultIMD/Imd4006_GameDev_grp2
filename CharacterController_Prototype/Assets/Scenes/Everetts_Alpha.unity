@@ -1808,7 +1808,7 @@ PrefabInstance:
     - target: {fileID: 1539717884112471417, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 356
+      value: 452
       objectReference: {fileID: 0}
     - target: {fileID: 2424181473399796159, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -3791,7 +3791,9 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  cameraPivotRef: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
+  cameraPivotSpeed: 0
   speedPoleIncreaseRate: 0
   centerMassManager: {fileID: 0}
   turnTiltStrength: 0
@@ -5512,7 +5514,9 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  cameraPivotRef: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
+  cameraPivotSpeed: 0
   speedPoleIncreaseRate: 0
   centerMassManager: {fileID: 0}
   turnTiltStrength: 0
@@ -11522,16 +11526,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7014da5e2bc36684fbad77ff50b4e425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CenterMassManager: {fileID: 0}
   cartController: {fileID: 711390617226705542}
-  topLeft_TRL: {fileID: 6659302503534731115}
-  topRight_TRL: {fileID: 2518373847007286662}
-  botLeft_TRL: {fileID: 1916562878826906744}
-  botRight_TRL: {fileID: 5223287325038235577}
+  windTrails: []
+  tireTrails: []
   leftTireSmoke: {fileID: 8910520501957998750}
   rightTireSmoke: {fileID: 7509624371053598676}
-  smokeEffect:
-  - {fileID: 956377689195509441}
-  - {fileID: 2299130092824645533}
+  particleSmokeEffect: []
   sparks:
   - {fileID: 8128032347968797166}
   - {fileID: 4078537315685187814}
@@ -12152,7 +12153,9 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  cameraPivotRef: {fileID: 0}
   poleRotateLookatRef: {fileID: 1717715941}
+  cameraPivotSpeed: 0
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 7115835515469622838}
   turnTiltStrength: 0
