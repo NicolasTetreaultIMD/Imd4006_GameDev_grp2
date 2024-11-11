@@ -14,6 +14,7 @@ public class Cannon : MonoBehaviour
     PlayerInput playerInput;
     private InputAction shoot;
     public Vector2 rightStick;
+    public CarController cart; 
 
     [Header("Cannon Movement")]
     public float cannonRotationSpeed;
@@ -72,6 +73,8 @@ public class Cannon : MonoBehaviour
 
         carLoaded = false;
         shootForceIncreaseSpeed = 2;
+        hitMarker.GetComponent<MeshRenderer>().enabled = false;
+
 
     }
 
@@ -80,17 +83,27 @@ public class Cannon : MonoBehaviour
     {
         direction = (shootingPoint.transform.position - transform.position).normalized;
 
-        //Controls whether the Hit Marker is shown or hidden
-        if (isShooting && projectile.Count > 0)
-        {
-            trajectoryLine.enabled = true;
-            hitMarker.GetComponent<MeshRenderer>().enabled = true;
 
-            if (shootForce < maxShootForce)
+        Debug.Log(cart.cartState);
+        if (cart.cartState != CarController.CartState.Running)
+        {
+            //Controls whether the Hit Marker is shown or hidden
+            if (isShooting && projectile.Count > 0)
             {
-                shootForce = Mathf.Lerp(shootForce, maxShootForce, shootForceIncreaseSpeed * Time.deltaTime);
+                trajectoryLine.enabled = true;
+                hitMarker.GetComponent<MeshRenderer>().enabled = true;
+
+                if (shootForce < maxShootForce)
+                {
+                    shootForce = Mathf.Lerp(shootForce, maxShootForce, shootForceIncreaseSpeed * Time.deltaTime);
+                }
+                DrawTrajectory();
             }
-            DrawTrajectory();
+            else
+            {
+                trajectoryLine.enabled = false;
+                hitMarker.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
         else
         {
@@ -102,15 +115,18 @@ public class Cannon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //AIMING CANNON
-        rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
-
-        if (carLoaded)
+        if (cart.cartState != CarController.CartState.Running)
         {
-            projectileRb = projectile[0].GetComponent<Rigidbody>();
-        }
+            //AIMING CANNON
+            rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
 
-        AimCannon();
+            if (carLoaded)
+            {
+                projectileRb = projectile[0].GetComponent<Rigidbody>();
+            }
+
+            AimCannon();
+        }
     }
 
     private void AimCannon()
