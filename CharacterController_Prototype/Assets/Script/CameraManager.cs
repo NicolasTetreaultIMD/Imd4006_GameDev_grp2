@@ -15,21 +15,25 @@ public class CameraManager : MonoBehaviour
     public float maxCamDistance;
     public float cameraShakeAmount;
 
+    [Header("Camera Shake Properties")]
+    public float amplitudeChange;
+    public float amplitudeChangeSpeed;
+    public float maxAmplitude;
+    public float frequencyChange;
+    public float frequencyChangeSpeed;
+    public float maxFrequency;
+
+    private float prevAmplitude;
+    private float prevFrequency;
+
     [Header("Cam Position")]
     public Vector3 camDisplacement;
-
-    private Vector3 initLocalPos;
-    private float currentDistance;
-    private float targetPos;
 
     // Start is called before the first frame update
     void Start()
     {
         transform.parent = null;
         cinemachine.transform.parent = null;
-
-        initLocalPos = transform.localPosition;
-        currentDistance = 0;
     }
 
     void Update()
@@ -46,6 +50,17 @@ public class CameraManager : MonoBehaviour
             Debug.Log(cinemachine.m_Lens.FieldOfView);
             //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
         }
+
+        float newAmp = (carController.speed / carController.maxSpeed) * (maxAmplitude * 0.7f);
+        amplitudeChange += newAmp - prevAmplitude;
+        prevAmplitude = newAmp;
+
+        float newFreq = (carController.speed / carController.maxSpeed) * (maxFrequency * 0.5f);
+        frequencyChange += newFreq - prevFrequency;
+        prevFrequency = newFreq;
+
+        cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = Mathf.Lerp(cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain, Mathf.Min(amplitudeChange, maxAmplitude), amplitudeChangeSpeed * Time.deltaTime);
+        cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = Mathf.Lerp(cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain, Mathf.Min(frequencyChange, maxFrequency), frequencyChangeSpeed * Time.deltaTime);
 
     }
 }
