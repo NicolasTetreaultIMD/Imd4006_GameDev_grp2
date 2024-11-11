@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraManager : MonoBehaviour
 {
     public CarController carController;
+    public CinemachineVirtualCamera cinemachine;
 
     [Header("Cam Properties")]
+    public float minFOV;
+    public float maxFOX;
+    public float FOVChangeSpeed;
     public float maxCamDistance;
     public float cameraShakeAmount;
 
@@ -29,27 +34,15 @@ public class CameraManager : MonoBehaviour
         //Zoom out based on speed
         if (carController.cartState == CarController.CartState.PoleHolding)
         {
-            targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance * 2, 1f * Time.deltaTime);
+            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX * 1.5f, minFOV), FOVChangeSpeed * Time.deltaTime);
+            //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance * 2, 1f * Time.deltaTime);
         }
         else
         {
-            targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
+            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX, minFOV), FOVChangeSpeed * Time.deltaTime);
+            Debug.Log(cinemachine.m_Lens.FieldOfView);
+            //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
         }
-        currentDistance = targetPos;
-        camDisplacement.z -= targetPos;
 
-        //Camera Shake based on speed
-        Vector3 randomPoint = Random.insideUnitSphere * cameraShakeAmount * carController.speed;
-
-        camDisplacement.x += randomPoint.x;
-        camDisplacement.y += randomPoint.y;
-
-        //transform.localPosition = new Vector3(initLocalPos.x + randomPoint.x, initLocalPos.y + randomPoint.y, initLocalPos.z - targetPos);
-    }
-
-    private void LateUpdate()
-    {
-        transform.localPosition = new Vector3(initLocalPos.x + camDisplacement.x, initLocalPos.y + camDisplacement.y, initLocalPos.z + camDisplacement.z);
-        camDisplacement = new Vector3();
     }
 }
