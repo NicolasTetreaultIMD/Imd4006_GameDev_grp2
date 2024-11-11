@@ -5,17 +5,26 @@ using UnityEngine.VFX;
 
 public class vfxHandler : MonoBehaviour
 {
+    [Header("Car Controllers")]
     public CenterMassManager CenterMassManager;
     public CarController cartController; // This is the master car obj
 
+    [Header("Trails")]
     public TrailRenderer[] windTrails; // Wind Trails
     public TrailRenderer[] tireTrails; // Tire trails on the ground
+    public ParticleSystem[] fireTrail; // fire trail when releasing from pole
+
+    [Header("Smoke Effects")]
     public VisualEffect leftTireSmoke;
     public VisualEffect rightTireSmoke;
     public ParticleSystem[] particleSmokeEffect; //particle smoke when spinning around a pole
     public ParticleSystem[] sparks; // sparks while spinning around pole
-    public ParticleSystem[] fireTrail; // fire trail when releasing from pole
     public ParticleSystem grabEffect;
+
+    [Header("Item Effects")]
+    public VisualEffect itemPickup;
+    // Impact VFX from items (explosions, smokes etc..) goes below
+
 
 
     private float speed;
@@ -26,6 +35,7 @@ public class vfxHandler : MonoBehaviour
     void Start()
     {
         speed = 0;
+        itemPickup.enabled = false;
         ToggleSparks(false);
         ToggleVolumetricSmoke(3); // both trails off
         ToggleParticleSmoke(false);
@@ -222,6 +232,23 @@ public class vfxHandler : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    // Player collides with an item - show smoke VFX
+    public void PickupItem()
+    {
+        itemPickup.enabled = true;
+        StartCoroutine(DisableEffectAfterDelay(0.5f)); // VFX only plays for small duration
+    }
+
+    // Delay VFX after item pickup
+    private IEnumerator DisableEffectAfterDelay(float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Disable the visual effect after the delay
+        itemPickup.enabled = false;
     }
 
     // GRAB effect
