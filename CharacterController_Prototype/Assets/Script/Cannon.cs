@@ -251,7 +251,7 @@ public class Cannon : MonoBehaviour
         
     }
     
-    //CALCULATE CURRENT VELOCITY FROM POINT ON THE LINE RENDERED
+    //CALCULATE CURRENT VELOCITY FROM CURRENT POINT ON THE LINE RENDERER
     private Vector3 CalculateNewVelocity(Vector3 velocity, float drag, float increment)
     {
         velocity += Physics.gravity * increment;
@@ -259,7 +259,7 @@ public class Cannon : MonoBehaviour
         return velocity;
     }
 
-    //REDRAW THE LINE RENDERER
+    //ADD THE NEW POINT TO THE LINE RENDERER
     private void UpdateLineRender(int count, (int point, Vector3 pos) pointPos)
     {
         trajectoryLine.positionCount = count;
