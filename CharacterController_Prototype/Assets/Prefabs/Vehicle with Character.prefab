@@ -1987,7 +1987,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 488
+  m_VersionIndex: 500
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -2443,6 +2443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 3540732877812006221}
   cinemachine: {fileID: 1414738762450003993}
+  camManager: {fileID: 6258676324617368472}
   cameraShakeDuration: 0.8
   cameraShakeStrength: 0.002
   minHitSpeed: 10
@@ -8091,7 +8092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09588985, y: -0.00014488041, z: 0.010580423, w: 0.99533576}
+  m_LocalRotation: {x: 0.09588985, y: -0.00014489752, z: 0.010580425, w: 0.99533576}
   m_LocalPosition: {x: -0.06505122, y: 3.101466, z: -8.20975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8220,6 +8221,12 @@ MonoBehaviour:
   FOVChangeSpeed: 4
   maxCamDistance: 2
   cameraShakeAmount: 0.002
+  amplitudeChange: 0.1
+  amplitudeChangeSpeed: 1
+  maxAmplitude: 3
+  frequencyChange: 1
+  frequencyChangeSpeed: 3
+  maxFrequency: 5
   camDisplacement: {x: 0, y: 0, z: 0}
 --- !u!114 &4738357525252104890
 MonoBehaviour:
@@ -20936,7 +20943,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09588985, y: -0.00014488041, z: 0.010580423, w: 0.99533576}
+  m_LocalRotation: {x: 0.09588985, y: -0.00014489752, z: 0.010580425, w: 0.99533576}
   m_LocalPosition: {x: -0.06505122, y: 3.101466, z: -8.20975}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -350,18 +350,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28c56a5359bbf654dbf1dff9d773fc58, type: 3}
---- !u!114 &237983135 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-    type: 3}
-  m_PrefabInstance: {fileID: 975322517}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ad376c6ae43f674f924b4a08ce0c46b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &239783226 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3799723449451651483, guid: 28c56a5359bbf654dbf1dff9d773fc58,
@@ -1324,7 +1312,7 @@ PrefabInstance:
     - target: {fileID: 1539717884112471417, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 497
+      value: 503
       objectReference: {fileID: 0}
     - target: {fileID: 2424181473399796159, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -1386,65 +1374,10 @@ PrefabInstance:
       propertyPath: globalVolume
       value: 
       objectReference: {fileID: 1956036560}
-    - target: {fileID: 5163347391411395093, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00014488041
-      objectReference: {fileID: 0}
-    - target: {fileID: 5163347391411395093, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.010580423
-      objectReference: {fileID: 0}
-    - target: {fileID: 5712716779442330082, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00014488041
-      objectReference: {fileID: 0}
-    - target: {fileID: 5712716779442330082, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.010580423
-      objectReference: {fileID: 0}
     - target: {fileID: 5783729222558518289, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_Name
       value: Vehicle with Character
-      objectReference: {fileID: 0}
-    - target: {fileID: 5865110744635011796, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: camManager
-      value: 
-      objectReference: {fileID: 237983135}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: maxAmplitude
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: maxFrequency
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: amplitudeChange
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: frequencyChange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: amplitudeChangeSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6258676324617368472, guid: 216bc1d968a2b0040b986ecd230d7426,
-        type: 3}
-      propertyPath: frequencyChangeSpeed
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
