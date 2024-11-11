@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class obstacleCollisionManager : MonoBehaviour
 {
     public CarController carController;
+    public CinemachineVirtualCamera cinemachine;
 
     [Header("Camera Shake Properties")]
     public float cameraShakeDuration;
@@ -12,6 +14,7 @@ public class obstacleCollisionManager : MonoBehaviour
 
     [Header("Collision Properties")]
     public float minHitSpeed;
+    public float FOVImpact;
 
     private bool hit = false;
     private float timeElapsed;
@@ -58,6 +61,8 @@ public class obstacleCollisionManager : MonoBehaviour
         {
             impactSpeed = carController.speed;
             carController.speed = 0;
+
+            cinemachine.m_Lens.FieldOfView = FOVImpact;
 
             timeElapsed = 0;
             hit = true;

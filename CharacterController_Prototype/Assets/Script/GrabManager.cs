@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using Cinemachine;
 
 //Controls the arms for the pole grab mechanic
 public class GrabManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GrabManager : MonoBehaviour
     PlayerInput playerControls;
 
     public CarController carController;
+    public CinemachineVirtualCamera cinemachine;
 
     [Header("Arms Objects")]
     public GameObject leftArmDefault;   //left arm in default state
@@ -198,7 +200,10 @@ public class GrabManager : MonoBehaviour
             //Save the camera position to the position it was when the pole was grabbed
             stationaryCamRef.position = carController.gameObject.transform.position;
             stationaryCamRef.rotation = carController.gameObject.transform.rotation;
-            Camera.main.transform.parent = stationaryCamRef;
+            //Camera.main.transform.parent = stationaryCamRef;
+
+            cinemachine.Follow = stationaryCamRef;
+            cinemachine.LookAt = stationaryCamRef;
 
             stationaryCamRef.parent = cameraPivotRef;
 
@@ -219,8 +224,11 @@ public class GrabManager : MonoBehaviour
 
             //Reset camera to follow the car
             carController.transform.parent = null;
-            Camera.main.transform.parent = carController.transform;
-            Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
+
+            cinemachine.Follow = carController.transform;
+            cinemachine.LookAt = carController.transform;
+            //Camera.main.transform.parent = carController.transform;
+            //Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
 
             vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
             //Start Motion Blur
