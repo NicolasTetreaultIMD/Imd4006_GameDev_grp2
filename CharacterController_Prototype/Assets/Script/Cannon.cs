@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder;
@@ -18,10 +19,12 @@ public class Cannon : MonoBehaviour
     public float cannonRotationSpeed;
     public float maxHorizontalTurn;
     public float maxVerticalTurn;
+    public float startingX;
+    public float startingY;
     bool carLoaded;
 
     [Header("Projectile")]
-    public GameObject projectile;
+    public List<GameObject> projectile;
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
@@ -29,6 +32,8 @@ public class Cannon : MonoBehaviour
     public float shootForceIncreaseSpeed;
     Vector3 direction;
     public bool isShooting;
+    public bool aritime;
+    Vector3 positionAtTime;
 
     [Header("Line of Trajectory")]
     public LineRenderer trajectoryLine;
@@ -67,7 +72,6 @@ public class Cannon : MonoBehaviour
 
         carLoaded = false;
         shootForceIncreaseSpeed = 2;
-        maxShootForce = 125;
 
     }
 
@@ -77,7 +81,7 @@ public class Cannon : MonoBehaviour
         direction = (shootingPoint.transform.position - transform.position).normalized;
 
         //Controls whether the Hit Marker is shown or hidden
-        if (isShooting && projectile != null)
+        if (isShooting && projectile.Count > 0)
         {
             trajectoryLine.enabled = true;
             hitMarker.GetComponent<MeshRenderer>().enabled = true;
@@ -100,6 +104,12 @@ public class Cannon : MonoBehaviour
     {
         //AIMING CANNON
         rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+
+        if (carLoaded)
+        {
+            projectileRb = projectile[0].GetComponent<Rigidbody>();
+        }
+
         AimCannon();
     }
 
@@ -114,15 +124,23 @@ public class Cannon : MonoBehaviour
         {
             rotationY -= 360; // Normalize to -180 to 180
         }
-        if (rightStick.x > 0.25)
+
+        if (rightStick.x > 0.5)
         {
             rotationY += cannonRotationSpeed * Time.deltaTime;
         }
-        else if (rightStick.x < -0.25)
+        else if (rightStick.x < -0.5)
         {
             rotationY -= cannonRotationSpeed * Time.deltaTime;
         }
-        rotationY = Mathf.Clamp(rotationY, -maxHorizontalTurn, maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
+
+        //RESET CANNON ROTATION
+        if (Mathf.Abs(rightStick.y) <= 0.02f)
+        {
+            rotationY = Mathf.Lerp(rotationY, startingY, Time.deltaTime * 6f);
+        }
+
+        rotationY = Mathf.Clamp(rotationY, startingY-maxHorizontalTurn, startingY + maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
 
         MassShift(rotationY);
 
@@ -138,16 +156,27 @@ public class Cannon : MonoBehaviour
         {
             rotationX -= 360; // Normalize to -180 to 180
         }
-        if (rightStick.y > 0.25)
+
+        if (rightStick.y > 0.5)
         {
-            rotationX -= (cannonRotationSpeed /4) * Time.deltaTime; // Move upward (toward 0)
+            rotationX -= (cannonRotationSpeed /2) * Time.deltaTime; // Move upward (toward 0)
         }
-        else if (rightStick.y < -0.25)
+        else if (rightStick.y < -0.5)
         {
-            rotationX += (cannonRotationSpeed/4) * Time.deltaTime; // Move downward (toward -20)
+            rotationX += (cannonRotationSpeed/2) * Time.deltaTime; // Move downward (toward -20)
         }
-        rotationX = Mathf.Clamp(rotationX, maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
+
+        if (Mathf.Abs(rightStick.x) <= 0.02f)
+        {
+            rotationX = Mathf.Lerp(rotationX, startingX, Time.deltaTime * 6f);
+        }
+
+        rotationX = Mathf.Clamp(rotationX, startingX + maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
+
         gameObject.transform.localEulerAngles = new Vector3(rotationX, rotationY, currentLocalRotation.z); // Apply both clamped X and Y rotations to the cannon
+
+        
+
     }
 
     private void MassShift(float angle)
@@ -162,26 +191,32 @@ public class Cannon : MonoBehaviour
     //SHOOTING THE CANNONM
     private void Shoot()
     {
-        Debug.Log("SHOT");
 
-        if (projectile != null)
+        if (projectile.Count > 0)
         {
-            var bullet = Instantiate(projectile, shootingPoint.transform.position, shootingPoint.transform.rotation);
-            bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
+            var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
+            bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce);     
+            bullet.GetComponent<Projectile>().forcesApplied = true;
+            projectile.RemoveAt(0);
+            //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
+        }
+        
+        if (projectile.Count == 0)
+        {
+            carLoaded = false;
         }
 
-        projectile = null;
-        carLoaded = false;
+        Debug.Log(projectile.Count);
 
     }
 
     //LOADING THE CANNON
     public void LoadCannon(GameObject newProjectile)
     {
-        projectile = newProjectile;
-        projectileRb = projectile.GetComponent<Rigidbody>();
-
+        
+        projectile.Add(newProjectile);
         carLoaded = true;
+
     }
 
     //CREATING THE LINE OF TRAJECTORY FOR THE PROJECTILE
@@ -216,7 +251,7 @@ public class Cannon : MonoBehaviour
         
     }
     
-    //CALCULATE CURRENT VELOCITY FROM POINT ON THE LINE RENDERED
+    //CALCULATE CURRENT VELOCITY FROM CURRENT POINT ON THE LINE RENDERER
     private Vector3 CalculateNewVelocity(Vector3 velocity, float drag, float increment)
     {
         velocity += Physics.gravity * increment;
@@ -224,7 +259,7 @@ public class Cannon : MonoBehaviour
         return velocity;
     }
 
-    //REDRAW THE LINE RENDERER
+    //ADD THE NEW POINT TO THE LINE RENDERER
     private void UpdateLineRender(int count, (int point, Vector3 pos) pointPos)
     {
         trajectoryLine.positionCount = count;
