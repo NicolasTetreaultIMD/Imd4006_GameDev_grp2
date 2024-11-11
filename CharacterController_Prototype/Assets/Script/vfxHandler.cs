@@ -60,13 +60,13 @@ public class vfxHandler : MonoBehaviour
         if (cartController.speed > 0) // IF cart is MOVING
         {
             // Check TILT angle and toggle tire smokes/trails
-            if (CenterMassManager.massCenter.x > 0) // RIGHT wheels are ON the ground
+            if (CenterMassManager.massCenter.x > CenterMassManager.rotationDeadZone) // RIGHT wheels are ON the ground
             {
                 ToggleVolumetricSmoke(2); // Show RIGHT tire smoke
                 ToggleTireTrails(2); // Show RIGHT tire trails
             }
 
-            else if (CenterMassManager.massCenter.x < 0)
+            else if (CenterMassManager.massCenter.x < -CenterMassManager.rotationDeadZone)
             {
                 ToggleVolumetricSmoke(1); // Show RIGHT tire smoke
                 ToggleTireTrails(1); // Show RIGHT tire trails
