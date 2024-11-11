@@ -7,6 +7,7 @@ public class obstacleCollisionManager : MonoBehaviour
 {
     public CarController carController;
     public CinemachineVirtualCamera cinemachine;
+    public CameraManager camManager;
 
     [Header("Camera Shake Properties")]
     public float cameraShakeDuration;
@@ -63,7 +64,8 @@ public class obstacleCollisionManager : MonoBehaviour
             carController.speed = 0;
 
             cinemachine.m_Lens.FieldOfView = FOVImpact;
-
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude;
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency;
             timeElapsed = 0;
             hit = true;
         }
