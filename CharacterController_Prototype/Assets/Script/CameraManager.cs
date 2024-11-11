@@ -25,6 +25,9 @@ public class CameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.parent = null;
+        cinemachine.transform.parent = null;
+
         initLocalPos = transform.localPosition;
         currentDistance = 0;
     }
