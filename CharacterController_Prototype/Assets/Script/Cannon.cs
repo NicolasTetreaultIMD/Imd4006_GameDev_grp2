@@ -24,7 +24,7 @@ public class Cannon : MonoBehaviour
     bool carLoaded;
 
     [Header("Projectile")]
-    public List<GameObject> projectile;
+    public List<GameObject> projectile; // Current inventory of projectiles
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
