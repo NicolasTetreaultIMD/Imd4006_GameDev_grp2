@@ -79,6 +79,7 @@ public class CarController : MonoBehaviour
     private MotionBlur motionBlur;
     public Animator animationController;
     public ParticleSystem featherEffect;
+    public vfxHandler vfxHandler;
 
     private void Start()
     {
@@ -226,7 +227,7 @@ public class CarController : MonoBehaviour
     //Pivots the camera around the pole when in pole grabbing mode
     private void CameraPivot()
     {
-        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 10, 0) * cameraPivotRef.rotation;
+        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * -10, 0) * cameraPivotRef.rotation;
 
         cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);
     }
@@ -360,6 +361,7 @@ public class CarController : MonoBehaviour
         {
             Debug.Log("Item loaded");
             cannon.LoadCannon(GameObject.Find(other.name + " Item"));
+            vfxHandler.PickupItem(); // Play Item Pickup VFX
             Destroy(other.gameObject);
         }
     }
