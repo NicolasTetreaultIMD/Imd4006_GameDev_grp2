@@ -14,7 +14,8 @@ public class Cannon : MonoBehaviour
     PlayerInput playerInput;
     private InputAction shoot;
     public Vector2 rightStick;
-    public CarController cart; 
+    public CarController cart;
+    public HapticFeedback haptics;
 
     [Header("Cannon Movement")]
     public float cannonRotationSpeed;
@@ -84,7 +85,7 @@ public class Cannon : MonoBehaviour
         direction = (shootingPoint.transform.position - transform.position).normalized;
 
 
-        Debug.Log(cart.cartState);
+        //Debug.Log(cart.cartState);
         if (cart.cartState != CarController.CartState.Running)
         {
             //Controls whether the Hit Marker is shown or hidden
@@ -127,6 +128,11 @@ public class Cannon : MonoBehaviour
 
             AimCannon();
         }
+        else
+        {
+            MassShift(0);
+            gameObject.transform.localEulerAngles = new Vector3(startingX, startingY, gameObject.transform.localEulerAngles.z); // Apply both clamped X and Y rotations to the cannon
+        }
     }
 
     private void AimCannon()
@@ -141,64 +147,67 @@ public class Cannon : MonoBehaviour
             rotationY -= 360; // Normalize to -180 to 180
         }
 
-        if (rightStick.x > 0.5)
-        {
-            rotationY += cannonRotationSpeed * Time.deltaTime;
-        }
-        else if (rightStick.x < -0.5)
-        {
-            rotationY -= cannonRotationSpeed * Time.deltaTime;
-        }
+
+
+
+        //rotationY += cannonRotationSpeed * Time.deltaTime;
+
+        //else if (rightStick.x < -0.5)
+        //{
+        //    rotationY -= cannonRotationSpeed * Time.deltaTime;
+        //}
 
         //RESET CANNON ROTATION
-        if (Mathf.Abs(rightStick.y) <= 0.02f)
+        /*if (Mathf.Abs(rightStick.y) <= 0.02f)
         {
             rotationY = Mathf.Lerp(rotationY, startingY, Time.deltaTime * 6f);
-        }
+        }*/
 
-        rotationY = Mathf.Clamp(rotationY, startingY-maxHorizontalTurn, startingY + maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
+        //rotationY = Mathf.Clamp(rotationY, startingY-maxHorizontalTurn, startingY + maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
 
-        MassShift(rotationY);
+        /*MassShift(rotationY);
 
 
         if (rotationY < 0)
         {
             rotationY += 360; // Convert back to 0-360 range if negative
-        }
+        }*/
 
-        // VERTICAL CANNON MOVEMENT
-        float rotationX = currentLocalRotation.x;
-        if (rotationX > 180)
-        {
-            rotationX -= 360; // Normalize to -180 to 180
-        }
+        //// VERTICAL CANNON MOVEMENT
+        //float rotationX = currentLocalRotation.x;
+        //if (rotationX > 180)
+        //{
+        //    rotationX -= 360; // Normalize to -180 to 180
+        //}
 
-        if (rightStick.y > 0.5)
-        {
-            rotationX -= (cannonRotationSpeed /2) * Time.deltaTime; // Move upward (toward 0)
-        }
-        else if (rightStick.y < -0.5)
-        {
-            rotationX += (cannonRotationSpeed/2) * Time.deltaTime; // Move downward (toward -20)
-        }
+        //if (rightStick.y > 0.5)
+        //{
+        //    rotationX -= (cannonRotationSpeed /2) * Time.deltaTime; // Move upward (toward 0)
+        //}
+        //else if (rightStick.y < -0.5)
+        //{
+        //    rotationX += (cannonRotationSpeed/2) * Time.deltaTime; // Move downward (toward -20)
+        //}
 
-        if (Mathf.Abs(rightStick.x) <= 0.02f)
-        {
-            rotationX = Mathf.Lerp(rotationX, startingX, Time.deltaTime * 6f);
-        }
+        //if (Mathf.Abs(rightStick.x) <= 0.02f)
+        //{
+        //    rotationX = Mathf.Lerp(rotationX, startingX, Time.deltaTime * 6f);
+        //}
 
-        rotationX = Mathf.Clamp(rotationX, startingX + maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
+        //rotationX = Mathf.Clamp(rotationX, startingX + maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
 
-        gameObject.transform.localEulerAngles = new Vector3(rotationX, rotationY, currentLocalRotation.z); // Apply both clamped X and Y rotations to the cannon
+        MassShift(rightStick.x);
+        gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, Quaternion.Euler(startingX, rightStick.x * maxHorizontalTurn, currentLocalRotation.z), Time.deltaTime * cannonRotationSpeed);
+        //gameObject.transform.localEulerAngles = new Vector3(startingX, rightStick.x * maxHorizontalTurn, currentLocalRotation.z); // Apply both clamped X and Y rotations to the cannon
 
         
 
     }
 
-    private void MassShift(float angle)
+    private void MassShift(float stickInput)
     {
         //Car tilt
-        float massChange = maxCarTiltInfluence * (angle / maxHorizontalTurn);
+        float massChange = maxCarTiltInfluence * stickInput;
         //Debug.Log(angle);
         centerMassManager.massCenter.x += massChange - prevMassChange;
         prevMassChange = massChange;
@@ -219,6 +228,7 @@ public class Cannon : MonoBehaviour
 
                 // VFX for shooting
                 cart.vfxHandler.ShootItem();
+                haptics.CannonHaptics();
 
             }
 
@@ -227,7 +237,7 @@ public class Cannon : MonoBehaviour
                 carLoaded = false;
             }
 
-            Debug.Log(projectile.Count);
+            //Debug.Log(projectile.Count);
         }
 
     }
