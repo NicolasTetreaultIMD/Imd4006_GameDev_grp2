@@ -14,7 +14,8 @@ public class Cannon : MonoBehaviour
     PlayerInput playerInput;
     private InputAction shoot;
     public Vector2 rightStick;
-    public CarController cart; 
+    public CarController cart;
+    public HapticFeedback haptics;
 
     [Header("Cannon Movement")]
     public float cannonRotationSpeed;
@@ -84,7 +85,7 @@ public class Cannon : MonoBehaviour
         direction = (shootingPoint.transform.position - transform.position).normalized;
 
 
-        Debug.Log(cart.cartState);
+        //Debug.Log(cart.cartState);
         if (cart.cartState != CarController.CartState.Running)
         {
             //Controls whether the Hit Marker is shown or hidden
@@ -227,6 +228,7 @@ public class Cannon : MonoBehaviour
 
                 // VFX for shooting
                 cart.vfxHandler.ShootItem();
+                haptics.CannonHaptics();
 
             }
 
@@ -235,7 +237,7 @@ public class Cannon : MonoBehaviour
                 carLoaded = false;
             }
 
-            Debug.Log(projectile.Count);
+            //Debug.Log(projectile.Count);
         }
 
     }
