@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public MeshRenderer bombMesh;
+
     [Header("Projectile Movement")]
     float totalTime = 0f;
-    public Transform shootingPoint;
+    public Vector3 shootingPoint;
     public Vector3 direction;
     public float shootForce;
     public float mass;
@@ -17,6 +19,7 @@ public class Projectile : MonoBehaviour
     public bool forcesApplied;
     public bool madeContact;
     public GameObject explosion;
+    public HapticFeedback haptics;
 
     // Start is called before the first frame update
     void Start()
@@ -38,21 +41,24 @@ public class Projectile : MonoBehaviour
         if (forcesApplied == true && madeContact == false)
         {
             totalTime += Time.deltaTime * projectileSpeed; // Accumulate time each frame
-            Vector3 positionAtTime = shootingPoint.position
+            Vector3 positionAtTime = shootingPoint
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
+
+            transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
 
             transform.position = positionAtTime;
         }
     }
 
     //Applies the properties from the Cannon to shoot the Projectile accordingly
-    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce)
+    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce, HapticFeedback newHaptics)
     {
-        shootingPoint = newShootingPoint;
+        shootingPoint = newShootingPoint.position;
         direction = newDirection;
         shootForce = newShootForce;
-        
+        haptics = newHaptics;
         forcesApplied = true;
     }
 
@@ -65,6 +71,18 @@ public class Projectile : MonoBehaviour
             madeContact = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
+            bombMesh.enabled = false;
+
+            haptics.ExplosionHaptics();
+
+            StartCoroutine(FadeOut());
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

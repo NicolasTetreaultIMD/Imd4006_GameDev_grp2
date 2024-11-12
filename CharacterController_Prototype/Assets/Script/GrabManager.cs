@@ -13,11 +13,10 @@ public class GrabManager : MonoBehaviour
 
     public CarController carController;
     public CinemachineVirtualCamera cinemachine;
+    public HapticFeedback haptics;
 
     [Header("Arms Objects")]
-    public GameObject leftArmDefault;   //left arm in default state
     public GameObject leftArmGrab;      //left arm in grab state
-    public GameObject rightArmDefault;  //right arm in default state
     public GameObject rightArmGrab;     //right arm in grab state
 
     [Header("Transform References")]
@@ -47,6 +46,7 @@ public class GrabManager : MonoBehaviour
 
     [Header("Audio & VFX")]
     public vfxHandler vfxHandler;
+    public audioHandler audioHandler;
 
 
     // Input manager setup
@@ -113,10 +113,9 @@ public class GrabManager : MonoBehaviour
     //If no arm currently active, activate left arm
     private void StartLeftPoleGrab()
     {
-        if (activeHand == null)
+        if (activeHand == null && carController.cartState != CarController.CartState.Running)
         {
             //Debug.Log("Start Left");
-            leftArmDefault.SetActive(false);
             leftArmGrab.SetActive(true);
 
             centerMassManager.massCenter.x -= armMassShift;
@@ -130,7 +129,6 @@ public class GrabManager : MonoBehaviour
         if (activeHand == leftArmGrab)
         {
             //Debug.Log("Exit Left");
-            leftArmDefault.SetActive(true);
             leftArmGrab.SetActive(false);
 
             centerMassManager.massCenter.x += armMassShift;
@@ -147,10 +145,9 @@ public class GrabManager : MonoBehaviour
     //If no arm currently active, activate right arm
     private void StartRightPoleGrab()
     {
-        if (activeHand == null)
+        if (activeHand == null && carController.cartState != CarController.CartState.Running)
         {
             //Debug.Log("Right");
-            rightArmDefault.SetActive(false);
             rightArmGrab.SetActive(true);
 
             centerMassManager.massCenter.x += armMassShift;
@@ -164,7 +161,6 @@ public class GrabManager : MonoBehaviour
         if (activeHand == rightArmGrab)
         {
             //Debug.Log("Exit Right");
-            rightArmDefault.SetActive(true);
             rightArmGrab.SetActive(false);
 
             centerMassManager.massCenter.x -= armMassShift;
@@ -209,6 +205,8 @@ public class GrabManager : MonoBehaviour
 
             //Switch state to the pole holding
             carController.SwitchCartState(CarController.CartState.PoleHolding);
+
+            haptics.GrabPole();
         }
     }
 
@@ -230,7 +228,9 @@ public class GrabManager : MonoBehaviour
             //Camera.main.transform.parent = carController.transform;
             //Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
 
-            vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+            vfxHandler.PlayFireTrail(); // VFX - PLAY FIRE TRAIL (1.5 seconds long)
+            audioHandler.poleRelease(); // AFX - Play tire squeal upon release
+
             //Start Motion Blur
             timeElapsed = 0;
             motionBlurActive = true;
@@ -238,6 +238,8 @@ public class GrabManager : MonoBehaviour
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
+
+            haptics.ReleasePole();
         }
     }
 

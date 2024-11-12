@@ -80,6 +80,7 @@ public class CarController : MonoBehaviour
     public Animator animationController;
     public ParticleSystem featherEffect;
     public vfxHandler vfxHandler;
+    public audioHandler audioHandler;
 
     private void Start()
     {
@@ -362,6 +363,7 @@ public class CarController : MonoBehaviour
             Debug.Log("Item loaded");
             cannon.LoadCannon(GameObject.Find(other.name + " Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
+            audioHandler.PickupItem(); // Play Item Pickup AFX
             Destroy(other.gameObject);
         }
     }
