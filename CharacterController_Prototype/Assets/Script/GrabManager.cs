@@ -47,6 +47,7 @@ public class GrabManager : MonoBehaviour
 
     [Header("Audio & VFX")]
     public vfxHandler vfxHandler;
+    public audioHandler audioHandler;
 
 
     // Input manager setup
@@ -230,7 +231,9 @@ public class GrabManager : MonoBehaviour
             //Camera.main.transform.parent = carController.transform;
             //Camera.main.transform.rotation = Quaternion.Euler(Camera.main.transform.rotation.eulerAngles.x, carController.transform.rotation.eulerAngles.y, Camera.main.transform.rotation.eulerAngles.z);
 
-            vfxHandler.PlayFireTrail(); // PLAY FIRE TRAIL (1.5 seconds long)
+            vfxHandler.PlayFireTrail(); // VFX - PLAY FIRE TRAIL (1.5 seconds long)
+            audioHandler.poleRelease(); // AFX - Play tire squeal upon release
+
             //Start Motion Blur
             timeElapsed = 0;
             motionBlurActive = true;

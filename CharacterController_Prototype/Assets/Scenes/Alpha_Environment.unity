@@ -4347,7 +4347,7 @@ PrefabInstance:
     - target: {fileID: 1539717884112471417, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 662
+      value: 905
       objectReference: {fileID: 0}
     - target: {fileID: 2424181473399796159, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -4442,12 +4442,12 @@ PrefabInstance:
     - target: {fileID: 5163347391411395093, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000019136449
+      value: -0.000000019136449
       objectReference: {fileID: 0}
     - target: {fileID: 5163347391411395093, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000019674298
+      value: 0.0000000019674298
       objectReference: {fileID: 0}
     - target: {fileID: 5389336201825611776, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -4477,12 +4477,12 @@ PrefabInstance:
     - target: {fileID: 5712716779442330082, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000019136449
+      value: -0.000000019136449
       objectReference: {fileID: 0}
     - target: {fileID: 5712716779442330082, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000019674298
+      value: 0.0000000019674298
       objectReference: {fileID: 0}
     - target: {fileID: 5783729222558518289, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -8120,6 +8120,7 @@ MonoBehaviour:
   animationController: {fileID: 0}
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 0}
+  audioHandler: {fileID: 0}
 --- !u!4 &941737916
 Transform:
   m_ObjectHideFlags: 0
@@ -10689,6 +10690,7 @@ MonoBehaviour:
   animationController: {fileID: 1957103038}
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 0}
+  audioHandler: {fileID: 0}
 --- !u!65 &1192316229
 BoxCollider:
   m_ObjectHideFlags: 0
