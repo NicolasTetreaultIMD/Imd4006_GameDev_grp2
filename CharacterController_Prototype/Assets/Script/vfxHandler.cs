@@ -234,7 +234,7 @@ public class vfxHandler : MonoBehaviour
         }
     }
 
-    // Player collides with an item - show smoke VFX
+    // Player collides with ITEM BOX - turn on VFX for a very small duration
     public void PickupItem()
     {
         itemPickup.enabled = true;
