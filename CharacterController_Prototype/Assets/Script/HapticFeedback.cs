@@ -57,6 +57,11 @@ public class HapticFeedback : MonoBehaviour
         StartCoroutine(ExplosionHapticsCoroutine());
     }
 
+    public void CrateHaptics()
+    {
+        StartCoroutine(CrateHapticsCoroutine());
+    }
+
     private IEnumerator CannonHapticsCoroutine()
     {
         Gamepad.current.SetMotorSpeeds(1f, 1f); // Left and Right motor
@@ -81,6 +86,13 @@ public class HapticFeedback : MonoBehaviour
     {
         Gamepad.current.SetMotorSpeeds(1f, 1f); // Left and Right motor
         yield return new WaitForSeconds(0.5f);
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
+    }
+
+    private IEnumerator CrateHapticsCoroutine()
+    {
+        Gamepad.current.SetMotorSpeeds(0.75f, 0.75f); // Left and Right motor
+        yield return new WaitForSeconds(0.25f);
         Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
     }
 }
