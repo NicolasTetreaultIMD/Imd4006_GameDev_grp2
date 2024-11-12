@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public MeshRenderer bombMesh;
+
     [Header("Projectile Movement")]
     float totalTime = 0f;
-    public Transform shootingPoint;
+    public Vector3 shootingPoint;
     public Vector3 direction;
     public float shootForce;
     public float mass;
@@ -37,9 +39,8 @@ public class Projectile : MonoBehaviour
         //Make the Projectile follow the path designated by the Cannon
         if (forcesApplied == true && madeContact == false)
         {
-
             totalTime += Time.deltaTime * projectileSpeed; // Accumulate time each frame
-            Vector3 positionAtTime = shootingPoint.position
+            Vector3 positionAtTime = shootingPoint
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
 
@@ -53,7 +54,7 @@ public class Projectile : MonoBehaviour
     //Applies the properties from the Cannon to shoot the Projectile accordingly
     public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce)
     {
-        shootingPoint = newShootingPoint;
+        shootingPoint = newShootingPoint.position;
         direction = newDirection;
         shootForce = newShootForce;
         
@@ -69,6 +70,7 @@ public class Projectile : MonoBehaviour
             madeContact = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
+            bombMesh.enabled = false;
             StartCoroutine(FadeOut());
         }
     }

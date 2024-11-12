@@ -23,6 +23,8 @@ public class obstacleCollisionManager : MonoBehaviour
     private float impactSpeed;
     private Camera mainCam;
 
+    public HapticFeedback haptics;
+
     [Header("Audio & VFX")]
     public audioHandler audioHandler;
 
@@ -52,6 +54,7 @@ public class obstacleCollisionManager : MonoBehaviour
                 hit = false;
             }
             audioHandler.cartCrash();
+            haptics.CrashHaptics();
         }
     }
 
