@@ -219,6 +219,7 @@ public class Cannon : MonoBehaviour
 
                 // VFX for shooting
                 cart.vfxHandler.ShootItem();
+
             }
 
             if (projectile.Count == 0)

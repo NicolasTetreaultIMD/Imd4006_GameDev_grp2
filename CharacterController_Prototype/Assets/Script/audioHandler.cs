@@ -11,12 +11,22 @@ public class audioHandler : MonoBehaviour
 
     public AudioSource[] source;
 
+    // Source   [0] - Background Arena Music (Plays automatically on awake)
+    //          [1] - Engine Running (vehicle is moving)
+    //          [2] - Cart Crashing (When the player hits another player or a wall)
+    //          [3] - Item Pickup (collect a projectile)
+    //          [4] - Tire Squeal (after releasing from a pole)
+    //          [5] -
+    //          [6] -
+    //          [7] -
+
     private float speed;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 0;
+
     }
 
     // Update is called once per frame
@@ -31,47 +41,56 @@ public class audioHandler : MonoBehaviour
     //Play step audio. Random range 
     public void stepAudioEffect()
     {
-        source[1].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
-        source[1].Play();
+        //source[1].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+        //source[1].Play();
     }
 
     public void wheelAudioEffect()
     {
         if (speed >= 20f)
         {
-            if (Math.Abs(carController.leftStick.x) > 0.05f)
-            {
-                source[3].pitch = 1;
-                if (source[3].isPlaying == false)
-                {
-                    source[3].Play();
-                }
-            }
-            else
-            {
-                source[3].Stop();
-            }
+            //if (Math.Abs(carController.leftStick.x) > 0.05f)
+            //{
+            //    source[3].pitch = 1;
+            //    if (source[3].isPlaying == false)
+            //    {
+            //        source[3].Play();
+            //    }
+            //}
+            //else
+            //{
+            //    source[3].Stop();
+            //}
         }
     }
 
+    // Vehicle is moving
     public void cartMovement()
     {
         if(carController.speed > 0)
         {
-            source[0].pitch = carController.speed/90;
-            if (source[0].pitch < 0.75) source[0].pitch = (float)0.75; // Create a min pitch value 
-            if (source[0].isPlaying == false)
+            source[1].pitch = carController.speed / 90;
+            if (source[1].pitch < 0.75) source[1].pitch = (float)0.75; // Create a min pitch value 
+            if (source[1].isPlaying == false)
             {
-                source[0].Play();
+                source[1].Play();
             }
         }
         else
         {
-            source[0].Stop();
+            source[1].Stop();
         }
     }
 
-    public void grabItem()
+    public void PickupItem()
+    {
+        if (source[3].isPlaying == false)
+        {
+            source[3].Play();
+        }
+    }
+
+    public void cartCrash()
     {
         if (source[2].isPlaying == false)
         {
@@ -79,18 +98,10 @@ public class audioHandler : MonoBehaviour
         }
     }
 
-    public void cartCrash()
+    // Tire squeal after releasing a pole
+    public void poleRelease()
     {
         if (source[4].isPlaying == false)
-        {
-            source[4].Play();
-        }
-    }
-
-    // Tire screech when grabbing pole
-    public void cartScreech()
-    {
-        if (source[5].isPlaying == false)
         {
             source[4].Play();
         }
