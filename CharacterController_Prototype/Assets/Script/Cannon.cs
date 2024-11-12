@@ -245,10 +245,9 @@ public class Cannon : MonoBehaviour
     //LOADING THE CANNON
     public void LoadCannon(GameObject newProjectile)
     {
-        
         projectile.Add(newProjectile);
         carLoaded = true;
-
+        haptics.CrateHaptics();
     }
 
     //CREATING THE LINE OF TRAJECTORY FOR THE PROJECTILE
