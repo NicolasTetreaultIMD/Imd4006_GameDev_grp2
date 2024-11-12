@@ -8092,8 +8092,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
-  m_LocalPosition: {x: 3.7494967, y: 3.2799997, z: -9.935385}
+  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
+  m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9509,6 +9509,7 @@ MonoBehaviour:
   - {fileID: 2971967006637520176}
   grabEffect: {fileID: 7404519082495849549}
   itemPickup: {fileID: 5106358129945173819}
+  shootItem: {fileID: 5829566315581542998}
 --- !u!114 &63081826649961554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21061,7 +21062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21167,13 +21168,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8085519878487273766}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.061167356, y: -0.0151778255, z: 0.007210357, w: 0.9979861}
-  m_LocalPosition: {x: -0.21, y: -0.19, z: 0.366}
-  m_LocalScale: {x: 3.3167448, y: 3.0938005, z: 0.44948626}
+  m_LocalRotation: {x: -0.018878108, y: 0.03783687, z: 0.006991234, w: 0.99908113}
+  m_LocalPosition: {x: -0.11, y: 0.28, z: 0.493}
+  m_LocalScale: {x: 2.68, y: 2.03, z: 0.52}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7727916480370050978}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.192, y: 4.324, z: 0.719}
 --- !u!2083052967 &5829566315581542998
 VisualEffect:
   m_ObjectHideFlags: 0
@@ -21191,7 +21192,10 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.27
+        m_Name: Speed
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

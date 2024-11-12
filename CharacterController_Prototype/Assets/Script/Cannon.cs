@@ -216,6 +216,9 @@ public class Cannon : MonoBehaviour
                 bullet.GetComponent<Projectile>().forcesApplied = true;
                 projectile.RemoveAt(0);
                 //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
+
+                // VFX for shooting
+                cart.vfxHandler.ShootItem();
             }
 
             if (projectile.Count == 0)

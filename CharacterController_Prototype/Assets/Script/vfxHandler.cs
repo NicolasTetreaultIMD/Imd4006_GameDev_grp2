@@ -25,21 +25,24 @@ public class vfxHandler : MonoBehaviour
     public VisualEffect itemPickup;
     // Impact VFX from items (explosions, smokes etc..) goes below
 
-
+    [Header("Shooting Effects")]
+    public VisualEffect shootItem;
 
     private float speed;
-    private float minTime = 0.0005f; // min/maxTime is used for Trail renderer for wind trails ( VFX )
+    private float minTime = 0.0005f; // time is used for Trail renderer for wind trails ( VFX )
     private float maxTime = 0.5f;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = 0;
+        // Disable VFX
         itemPickup.enabled = false;
+        shootItem.enabled = false;
         ToggleSparks(false);
-        ToggleVolumetricSmoke(3); // both trails off
+        ToggleVolumetricSmoke(3); // 3 = both trails off
         ToggleParticleSmoke(false);
-        ToggleTireTrails(0); // Both trails on
+        ToggleTireTrails(0); // 0 = Both trails on
     }
 
     // Update is called once per frame
@@ -238,18 +241,26 @@ public class vfxHandler : MonoBehaviour
     public void PickupItem()
     {
         itemPickup.enabled = true;
-        StartCoroutine(DisableEffectAfterDelay(0.5f)); // VFX only plays for small duration
+        StartCoroutine(DisableEffectAfterDelay(itemPickup, 0.5f)); // VFX only plays for small duration
     }
 
-    // Delay VFX after item pickup
-    private IEnumerator DisableEffectAfterDelay(float delay)
+    // Shooting a projectile
+    public void ShootItem()
+    {
+        shootItem.enabled = true;
+        StartCoroutine(DisableEffectAfterDelay(shootItem, 0.2f));
+    }
+
+    // Delay VFX (VisualEffect vfx) after delay interval (float delay)
+    private IEnumerator DisableEffectAfterDelay(VisualEffect vfx, float delay)
     {
         // Wait for the specified delay
         yield return new WaitForSeconds(delay);
 
         // Disable the visual effect after the delay
-        itemPickup.enabled = false;
+        vfx.enabled = false;
     }
+
 
     // GRAB effect
     public void PlayGrabEffect()
