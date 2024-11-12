@@ -149,7 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1f2e2a2fc5ce349a7dcd841f95bb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingPoint: {fileID: 0}
+  bombMesh: {fileID: 5784302545097378280}
+  shootingPoint: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   shootForce: 0
   mass: 0
@@ -330,6 +331,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3005932116712009306}
     m_Modifications:
+    - target: {fileID: 6936657533107355764, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -408,6 +414,12 @@ PrefabInstance:
 --- !u!4 &4615860142623502983 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+    type: 3}
+  m_PrefabInstance: {fileID: 3460468493047826844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5784302545097378280 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6936657533107355764, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
     type: 3}
   m_PrefabInstance: {fileID: 3460468493047826844}
   m_PrefabAsset: {fileID: 0}

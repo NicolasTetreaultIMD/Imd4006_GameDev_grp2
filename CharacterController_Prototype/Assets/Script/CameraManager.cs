@@ -47,7 +47,6 @@ public class CameraManager : MonoBehaviour
         else
         {
             cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX, minFOV), FOVChangeSpeed * Time.deltaTime);
-            Debug.Log(cinemachine.m_Lens.FieldOfView);
             //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
         }
 
