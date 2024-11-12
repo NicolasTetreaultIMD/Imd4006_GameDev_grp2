@@ -7082,7 +7082,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
+  m_LocalRotation: {x: 0.102271535, y: 0.00000001764294, z: -0.0000000018138814, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7852,6 +7852,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   speed: 0
   isHoldingPole: 0
+  rumble: 0
 --- !u!1 &5769026557977079155
 GameObject:
   m_ObjectHideFlags: 0
@@ -8089,6 +8090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 3540732877812006221}
   cinemachine: {fileID: 1414738762450003993}
+  haptics: {fileID: 7620939574385055543}
   leftArmGrab: {fileID: 2477829005733427674}
   rightArmGrab: {fileID: 8441230708288412607}
   lookatRef: {fileID: 6074846908844351146}
@@ -14056,7 +14058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
+  m_LocalRotation: {x: 0.102271535, y: 0.00000001764294, z: -0.0000000018138814, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
