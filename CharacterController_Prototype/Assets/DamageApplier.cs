@@ -23,4 +23,6 @@ public class DamageApplier : MonoBehaviour
             other.gameObject.GetComponent<DamageHandler>().Hit();
         }
     }
+
+   
 }

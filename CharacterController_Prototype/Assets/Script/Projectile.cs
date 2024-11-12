@@ -37,10 +37,14 @@ public class Projectile : MonoBehaviour
         //Make the Projectile follow the path designated by the Cannon
         if (forcesApplied == true && madeContact == false)
         {
+
             totalTime += Time.deltaTime * projectileSpeed; // Accumulate time each frame
             Vector3 positionAtTime = shootingPoint.position
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
+
+            transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
 
             transform.position = positionAtTime;
         }
@@ -65,6 +69,14 @@ public class Projectile : MonoBehaviour
             madeContact = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
+            StartCoroutine(FadeOut());
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

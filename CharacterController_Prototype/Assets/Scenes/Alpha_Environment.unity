@@ -4347,7 +4347,7 @@ PrefabInstance:
     - target: {fileID: 1539717884112471417, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_VersionIndex
-      value: 908
+      value: 917
       objectReference: {fileID: 0}
     - target: {fileID: 2424181473399796159, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
@@ -4494,6 +4494,16 @@ PrefabInstance:
       propertyPath: cart
       value: 
       objectReference: {fileID: 391864776}
+    - target: {fileID: 7109027333012153915, guid: 216bc1d968a2b0040b986ecd230d7426,
+        type: 3}
+      propertyPath: cannonRotationReset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7109027333012153915, guid: 216bc1d968a2b0040b986ecd230d7426,
+        type: 3}
+      propertyPath: maxCarTiltInfluence
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8221049244378272908, guid: 216bc1d968a2b0040b986ecd230d7426,
         type: 3}
       propertyPath: m_LocalPosition.x
