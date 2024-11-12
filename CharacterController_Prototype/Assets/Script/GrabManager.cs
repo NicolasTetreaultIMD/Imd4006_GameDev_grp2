@@ -13,6 +13,7 @@ public class GrabManager : MonoBehaviour
 
     public CarController carController;
     public CinemachineVirtualCamera cinemachine;
+    public HapticFeedback haptics;
 
     [Header("Arms Objects")]
     public GameObject leftArmGrab;      //left arm in grab state
@@ -204,6 +205,8 @@ public class GrabManager : MonoBehaviour
 
             //Switch state to the pole holding
             carController.SwitchCartState(CarController.CartState.PoleHolding);
+
+            haptics.GrabPole();
         }
     }
 
@@ -235,6 +238,8 @@ public class GrabManager : MonoBehaviour
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
+
+            haptics.ReleasePole();
         }
     }
 

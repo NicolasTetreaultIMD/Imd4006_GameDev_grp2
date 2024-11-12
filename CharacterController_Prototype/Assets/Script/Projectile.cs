@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     public bool forcesApplied;
     public bool madeContact;
     public GameObject explosion;
+    public HapticFeedback haptics;
 
     // Start is called before the first frame update
     void Start()
@@ -52,12 +53,12 @@ public class Projectile : MonoBehaviour
     }
 
     //Applies the properties from the Cannon to shoot the Projectile accordingly
-    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce)
+    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce, HapticFeedback newHaptics)
     {
         shootingPoint = newShootingPoint.position;
         direction = newDirection;
         shootForce = newShootForce;
-        
+        haptics = newHaptics;
         forcesApplied = true;
     }
 
@@ -71,6 +72,9 @@ public class Projectile : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
             bombMesh.enabled = false;
+
+            haptics.ExplosionHaptics();
+
             StartCoroutine(FadeOut());
         }
     }

@@ -221,7 +221,7 @@ public class Cannon : MonoBehaviour
             if (projectile.Count > 0)
             {
                 var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
-                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce);
+                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce, haptics);
                 bullet.GetComponent<Projectile>().forcesApplied = true;
                 projectile.RemoveAt(0);
                 //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
