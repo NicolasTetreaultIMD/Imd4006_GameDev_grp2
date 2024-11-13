@@ -21,6 +21,9 @@ public class Projectile : MonoBehaviour
     public GameObject explosion;
     public HapticFeedback haptics;
 
+    private CarController carController;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class Projectile : MonoBehaviour
         forcesApplied = false;
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
+
+         
     }
 
     // Update is called once per frame
@@ -53,13 +58,15 @@ public class Projectile : MonoBehaviour
     }
 
     //Applies the properties from the Cannon to shoot the Projectile accordingly
-    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce, HapticFeedback newHaptics)
+    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce, HapticFeedback newHaptics, CarController newCart)
     {
         shootingPoint = newShootingPoint.position;
         direction = newDirection;
         shootForce = newShootForce;
         haptics = newHaptics;
+        carController = newCart;
         forcesApplied = true;
+
     }
 
 
@@ -73,6 +80,8 @@ public class Projectile : MonoBehaviour
             explosion.gameObject.SetActive(true);
             bombMesh.enabled = false;
 
+            carController.audioHandler.impactExplosion();
+            Debug.Log("explosion");
             haptics.ExplosionHaptics();
 
             StartCoroutine(FadeOut());
