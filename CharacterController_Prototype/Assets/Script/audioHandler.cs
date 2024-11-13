@@ -19,6 +19,7 @@ public class audioHandler : MonoBehaviour
     //          [5] - cannon shoot 
     //          [6] - explosion
     //          [7] - drift
+    //          [8] - success (player hits a target)
 
     private float speed;
 
@@ -130,5 +131,12 @@ public class audioHandler : MonoBehaviour
         }
     }
 
+    public void HitTarget()
+    {
+        if (source[8].isPlaying == false)
+        {
+            source[8].Play();
+        }
+    }
 
 }

@@ -63,7 +63,7 @@ public class Cannon : MonoBehaviour
         shoot.performed += ctx =>
         {
             isShooting = true; 
-            shootForce = 20;
+            shootForce = 40;
         };
 
         shoot.canceled += ctx =>
