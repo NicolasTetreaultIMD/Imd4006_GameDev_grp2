@@ -16,9 +16,10 @@ public class audioHandler : MonoBehaviour
     //          [2] - Cart Crashing (When the player hits another player or a wall)
     //          [3] - Item Pickup (collect a projectile)
     //          [4] - Tire Squeal (after releasing from a pole)
-    //          [5] -
-    //          [6] -
-    //          [7] -
+    //          [5] - cannon shoot 
+    //          [6] - explosion
+    //          [7] - drift
+    //          [8] - success (player hits a target)
 
     private float speed;
 
@@ -106,5 +107,36 @@ public class audioHandler : MonoBehaviour
             source[4].Play();
         }
     }
-    
+
+    public void ShootItem()
+    {
+        if (source[5].isPlaying == false)
+        {
+            source[5].Play();
+        }
+    }
+
+    public void impactExplosion()
+    {
+        source[6].Play();
+
+    }
+
+    public void carDrift()
+    {
+
+        if (source[7].isPlaying == false)
+        {
+            source[7].Play();
+        }
+    }
+
+    public void HitTarget()
+    {
+        if (source[8].isPlaying == false)
+        {
+            source[8].Play();
+        }
+    }
+
 }

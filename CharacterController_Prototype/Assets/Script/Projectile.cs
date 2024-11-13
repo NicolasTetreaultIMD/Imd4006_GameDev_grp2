@@ -1,13 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public MeshRenderer bombMesh;
+
     [Header("Projectile Movement")]
     float totalTime = 0f;
-    public Transform shootingPoint;
+    public Vector3 shootingPoint;
     public Vector3 direction;
     public float shootForce;
     public float mass;
@@ -17,6 +17,10 @@ public class Projectile : MonoBehaviour
     public bool forcesApplied;
     public bool madeContact;
     public GameObject explosion;
+    public HapticFeedback haptics;
+
+    private CarController carController;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,8 @@ public class Projectile : MonoBehaviour
         forcesApplied = false;
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
+
+         
     }
 
     // Update is called once per frame
@@ -38,22 +44,27 @@ public class Projectile : MonoBehaviour
         if (forcesApplied == true && madeContact == false)
         {
             totalTime += Time.deltaTime * projectileSpeed; // Accumulate time each frame
-            Vector3 positionAtTime = shootingPoint.position
+            Vector3 positionAtTime = shootingPoint
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
+
+            transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
+            transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
 
             transform.position = positionAtTime;
         }
     }
 
     //Applies the properties from the Cannon to shoot the Projectile accordingly
-    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce)
+    public void applyProperties(Transform newShootingPoint, Vector3 newDirection, float newShootForce, HapticFeedback newHaptics, CarController newCart)
     {
-        shootingPoint = newShootingPoint;
+        shootingPoint = newShootingPoint.position;
         direction = newDirection;
         shootForce = newShootForce;
-        
+        haptics = newHaptics;
+        carController = newCart;
         forcesApplied = true;
+
     }
 
 
@@ -65,6 +76,20 @@ public class Projectile : MonoBehaviour
             madeContact = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
+            bombMesh.enabled = false;
+
+            carController.audioHandler.impactExplosion();
+            Debug.Log("explosion");
+            haptics.ExplosionHaptics();
+
+            StartCoroutine(FadeOut());
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
     }
 }

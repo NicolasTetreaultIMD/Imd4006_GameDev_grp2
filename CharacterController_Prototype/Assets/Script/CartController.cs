@@ -1,15 +1,8 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
-using UnityEngine.VFX;
-using static UnityEngine.Rendering.DebugUI;
 
 public class CarController : MonoBehaviour
 {
