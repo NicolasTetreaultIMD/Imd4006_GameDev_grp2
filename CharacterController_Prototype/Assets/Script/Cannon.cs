@@ -63,7 +63,7 @@ public class Cannon : MonoBehaviour
         shoot.performed += ctx =>
         {
             isShooting = true; 
-            shootForce = 20;
+            shootForce = 40;
         };
 
         shoot.canceled += ctx =>
@@ -221,13 +221,15 @@ public class Cannon : MonoBehaviour
             if (projectile.Count > 0)
             {
                 var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
-                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce, haptics);
+                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce, haptics, cart);
                 bullet.GetComponent<Projectile>().forcesApplied = true;
                 projectile.RemoveAt(0);
                 //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
 
                 // VFX for shooting
                 cart.vfxHandler.ShootItem();
+                cart.audioHandler.ShootItem();
+
                 haptics.CannonHaptics();
 
             }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.VFX;
 
 public class vfxHandler : MonoBehaviour
@@ -108,6 +109,8 @@ public class vfxHandler : MonoBehaviour
             ToggleSparks(true);
             ToggleParticleSmoke(true);
             ToggleVolumetricSmoke(3); // none
+            cartController.audioHandler.carDrift(); // Play drift noise
+
         }
     }
 

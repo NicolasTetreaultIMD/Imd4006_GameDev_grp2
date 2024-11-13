@@ -158,6 +158,8 @@ MonoBehaviour:
   forcesApplied: 0
   madeContact: 0
   explosion: {fileID: 6328175146990307752}
+  haptics: {fileID: 0}
+  carController: {fileID: 0}
 --- !u!1 &6328175146990307752
 GameObject:
   m_ObjectHideFlags: 0

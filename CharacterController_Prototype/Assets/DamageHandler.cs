@@ -8,6 +8,8 @@ public class DamageHandler : MonoBehaviour
     public Material testMaterial;
     public Material currentMaterial;
 
+    public CarController carController;
+
     public bool isProjectile;
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class DamageHandler : MonoBehaviour
         if (!isProjectile)
         {
             gameObject.GetComponent<Renderer>().material = testMaterial;
+            carController.audioHandler.HitTarget();
         }
     }
 
