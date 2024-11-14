@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1640
+  m_VersionIndex: 1646
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6869,7 +6869,6 @@ GameObject:
   - component: {fileID: 8822049216727360134}
   - component: {fileID: 4681412964428292388}
   - component: {fileID: 4392697160072098753}
-  - component: {fileID: 6538719262996535796}
   m_Layer: 0
   m_Name: LeftArmGrab
   m_TagString: Untagged
@@ -6944,29 +6943,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6538719262996535796
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477829005733427674}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3125949512453422951
 GameObject:
   m_ObjectHideFlags: 0
@@ -7083,7 +7059,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8020,15 +7996,18 @@ MonoBehaviour:
   goingToShooterSpot: 0
   moveInput: 0
   speed: 0
-  minInCartSpeed: 10
+  minInCartSpeed: 15
   maxSpeed: 37.5
+  speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  grabManager: {fileID: 63081826649961554}
   cameraPivotRef: {fileID: 7331343766560483611}
   poleRotateLookatRef: {fileID: 6074846908844351146}
+  hasBoostGrace: 0
   cameraPivotSpeed: 20
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 5765062419517420129}
@@ -8100,6 +8079,8 @@ MonoBehaviour:
   lookatRef: {fileID: 6074846908844351146}
   stationaryCamRef: {fileID: 4867351733174225393}
   cameraPivotRef: {fileID: 7331343766560483611}
+  gracePeriod: 0.5
+  additionalSpeed: 1.1
   centerMassManager: {fileID: 5765062419517420129}
   armMassShift: 0.8
   globalVolume: {fileID: 0}
@@ -14450,7 +14431,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14752,7 +14733,6 @@ GameObject:
   - component: {fileID: 1157350323784439077}
   - component: {fileID: 1014506301685209541}
   - component: {fileID: 6623128915342692621}
-  - component: {fileID: 8081170897223098477}
   m_Layer: 0
   m_Name: RightArmGrab
   m_TagString: Untagged
@@ -14827,29 +14807,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8081170897223098477
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441230708288412607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8526304804889483243
 GameObject:
   m_ObjectHideFlags: 0
