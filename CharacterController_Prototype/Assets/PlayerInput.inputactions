@@ -58,6 +58,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "BumpLeft",
+                    "type": "Value",
+                    "id": "57c8de5a-bd0f-4dc9-9cea-29bc8a9d1800",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "BumpRight",
+                    "type": "Value",
+                    "id": "61bd7637-d02b-4a66-97aa-f80b6d6321ed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -86,7 +104,7 @@
                 {
                     "name": "",
                     "id": "ae16b3e7-983b-41dd-9f6a-21d32c9ba8c5",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -240,7 +258,7 @@
                 {
                     "name": "",
                     "id": "877f40a1-b820-452c-9a6b-fca8e36b7257",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -262,7 +280,7 @@
                 {
                     "name": "",
                     "id": "52c3059e-b5b1-42f4-bdb7-459d1d974190",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -273,7 +291,7 @@
                 {
                     "name": "",
                     "id": "dc543ae3-ea57-4df6-8b6d-a1371bc0aea2",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -289,6 +307,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "CannonShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6b075d68-4f3b-440f-b1e5-8e40deffb1f2",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BumpLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9acce4bc-dde1-4b99-8fdd-ffdec916ad09",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BumpLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dd797154-85ce-46d4-be87-070c34b4bfc6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BumpRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ae1d33d-db6e-496a-b76c-d25d65a128d0",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BumpRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
