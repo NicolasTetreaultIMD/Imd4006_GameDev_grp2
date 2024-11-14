@@ -353,6 +353,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7727916480370050978}
   - {fileID: 6915550335596034573}
   - {fileID: 6797013980733931484}
   - {fileID: 1157350323784439077}
@@ -1616,7 +1617,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1586
+  m_VersionIndex: 1655
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6868,7 +6869,6 @@ GameObject:
   - component: {fileID: 8822049216727360134}
   - component: {fileID: 4681412964428292388}
   - component: {fileID: 4392697160072098753}
-  - component: {fileID: 6538719262996535796}
   m_Layer: 0
   m_Name: LeftArmGrab
   m_TagString: Untagged
@@ -6943,29 +6943,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6538719262996535796
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477829005733427674}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3125949512453422951
 GameObject:
   m_ObjectHideFlags: 0
@@ -7082,8 +7059,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
-  m_LocalPosition: {x: 3.7494967, y: 3.2799997, z: -9.935385}
+  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
+  m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7938,7 +7915,6 @@ Transform:
   - {fileID: 7331343766560483611}
   - {fileID: 8132413866281212589}
   - {fileID: 7044025674143784753}
-  - {fileID: 7727916480370050978}
   - {fileID: 4007543269535868360}
   - {fileID: 7088342936513529347}
   - {fileID: 5500599408797059080}
@@ -8020,15 +7996,18 @@ MonoBehaviour:
   goingToShooterSpot: 0
   moveInput: 0
   speed: 0
-  minInCartSpeed: 10
+  minInCartSpeed: 15
   maxSpeed: 37.5
+  speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  grabManager: {fileID: 63081826649961554}
   cameraPivotRef: {fileID: 7331343766560483611}
   poleRotateLookatRef: {fileID: 6074846908844351146}
+  hasBoostGrace: 0
   cameraPivotSpeed: 20
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 5765062419517420129}
@@ -8100,6 +8079,8 @@ MonoBehaviour:
   lookatRef: {fileID: 6074846908844351146}
   stationaryCamRef: {fileID: 4867351733174225393}
   cameraPivotRef: {fileID: 7331343766560483611}
+  gracePeriod: 0.5
+  additionalSpeed: 1.1
   centerMassManager: {fileID: 5765062419517420129}
   armMassShift: 0.8
   globalVolume: {fileID: 0}
@@ -8119,6 +8100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carController: {fileID: 3540732877812006221}
   massCenter: {x: 0, y: 0, z: 0}
   carBody: {fileID: 4558845017961633462}
   leftRotation: {fileID: 4007543269535868360}
@@ -8127,7 +8109,7 @@ MonoBehaviour:
   maxRotationAngle: 30
   maxRotationInput: 10
   rotationSpeed: 5
-  maxTurnIncrease: 30
+  maxTurnIncrease: 15
   turnIncrease: 0
   maxHeight: 0.2
   minHeight: -0.2
@@ -9182,14 +9164,14 @@ Transform:
   m_GameObject: {fileID: 6949542324518687100}
   serializedVersion: 2
   m_LocalRotation: {x: -0.061167356, y: 0.0151778255, z: -0.007210357, w: 0.9979861}
-  m_LocalPosition: {x: 0.024000168, y: 1.0230001, z: -0.90999985}
-  m_LocalScale: {x: 0.2995999, y: 0.29408997, z: 2.2557998}
+  m_LocalPosition: {x: 0.024000168, y: 1.0230002, z: -0.9099999}
+  m_LocalScale: {x: 0.2995999, y: 0.29408994, z: 2.2557995}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4801888773186510468}
   - {fileID: 4743831326137047337}
   - {fileID: 744528173522100982}
-  m_Father: {fileID: 3516804644110949683}
+  m_Father: {fileID: 4558845017961633462}
   m_LocalEulerAnglesHint: {x: -7, y: 1.8, z: -0.938}
 --- !u!23 &6312768899154378528
 MeshRenderer:
@@ -14450,7 +14432,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: -0.00000001764293, z: 0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14752,7 +14734,6 @@ GameObject:
   - component: {fileID: 1157350323784439077}
   - component: {fileID: 1014506301685209541}
   - component: {fileID: 6623128915342692621}
-  - component: {fileID: 8081170897223098477}
   m_Layer: 0
   m_Name: RightArmGrab
   m_TagString: Untagged
@@ -14827,29 +14808,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8081170897223098477
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441230708288412607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8526304804889483243
 GameObject:
   m_ObjectHideFlags: 0

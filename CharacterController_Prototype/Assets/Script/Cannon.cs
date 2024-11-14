@@ -116,7 +116,7 @@ public class Cannon : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (cart.cartState != CarController.CartState.Running)
+        if (cart.cartState != CarController.CartState.Running && cart.cartState != CarController.CartState.PoleHolding)
         {
             //AIMING CANNON
             rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();

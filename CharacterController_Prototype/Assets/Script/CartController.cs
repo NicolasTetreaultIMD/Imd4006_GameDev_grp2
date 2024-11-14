@@ -37,7 +37,7 @@ public class CarController : MonoBehaviour
     public float speed;
     public float minInCartSpeed = 10f;
     public float maxSpeed = 37.5f;
-    float speedDecreaseCooldown; //The time in which a speed will decrease
+    public float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
 
     [Header("Turning")]
@@ -47,8 +47,10 @@ public class CarController : MonoBehaviour
     public bool dynamicTurnBool;
 
     [Header("Pole Rotation")]
+    public GrabManager grabManager;
     public Transform cameraPivotRef;
     public Transform poleRotateLookatRef;
+    public bool hasBoostGrace;
     public float cameraPivotSpeed;
     public float speedPoleIncreaseRate;
     private int poleTurnDirection = 1;
@@ -156,7 +158,7 @@ public class CarController : MonoBehaviour
             //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
             if (speed > 0)
             {
-                if (Time.time >= speedDecreaseCooldown)
+                if (Time.time >= speedDecreaseCooldown && !hasBoostGrace)
                 {
                     speed -= speedDecreaseValue;
                     speedDecreaseCooldown = Time.time + 0.5f;
@@ -188,40 +190,47 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            CameraPivot();
-
-            //Gradually increases the player's speed while on the pole
-            if (speed < maxSpeed)
-            {
-                speed += speedPoleIncreaseRate;
-            }
-            else if (speed > maxSpeed)
-            {
-                speed = maxSpeed;
-            }
-
-            //right turn
-            if (poleTurnDirection > 0)
-            {
-                turnTilt = -turnTiltStrength * 1.5f * speed;
-            }
-            //left turn
-            else if (poleTurnDirection < 0)
-            {
-                turnTilt = turnTiltStrength * 1.5f * speed;
-            }
-
-            poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
+            PoleGrabIncrease();
         }
 
         centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
         prevTurnTilt = turnTilt;
     }
 
+    private void PoleGrabIncrease()
+    {
+        CameraPivot();
+
+        //Gradually increases the player's speed while on the pole
+
+        if (speed < maxSpeed * grabManager.additionalSpeed)
+        {
+            speed += 2.5f;
+        }
+        else if (speed >= maxSpeed * grabManager.additionalSpeed)
+        {
+            speed = maxSpeed * grabManager.additionalSpeed;
+        }
+
+        //right turn
+        if (poleTurnDirection > 0)
+        {
+            turnTilt = -turnTiltStrength * 1.5f * speed;
+        }
+        //left turn
+        else if (poleTurnDirection < 0)
+        {
+            turnTilt = turnTiltStrength * 1.5f * speed;
+        }
+
+        poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
+    }
+
     //Pivots the camera around the pole when in pole grabbing mode
     private void CameraPivot()
     {
-        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * -10, 0) * cameraPivotRef.rotation;
+        Vector3 rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+        Quaternion targetRotation = Quaternion.Euler(0, rightStick.x * -10, 0) * cameraPivotRef.rotation;
 
         cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);
     }
@@ -255,7 +264,7 @@ public class CarController : MonoBehaviour
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        if (cartState == CartState.Running || cartState == CartState.PoleHolding)
+        if (cartState == CartState.Running)
         {
             speedDecreaseCooldown = Time.time + 0.15f;
             if (speed < maxSpeed)
