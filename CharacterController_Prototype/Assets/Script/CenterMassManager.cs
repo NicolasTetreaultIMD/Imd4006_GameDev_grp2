@@ -7,6 +7,7 @@ public class CenterMassManager : MonoBehaviour
 {
     //Center of mass
     //x = rotation; y = up down; z = ???
+    public CarController carController;
     public Vector3 massCenter;
 
     [Header("Car Ctrls")]
@@ -58,7 +59,7 @@ public class CenterMassManager : MonoBehaviour
     {
         if (Mathf.Abs(massCenter.x) > rotationDeadZone)
         {
-            float massShiftX = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput);
+            float massShiftX = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput) * (carController.speed / carController.maxSpeed);
 
             //Right Tilt
             if (massShiftX > 0)
