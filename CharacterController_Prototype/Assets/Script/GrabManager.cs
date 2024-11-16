@@ -57,16 +57,16 @@ public class GrabManager : MonoBehaviour
     // Input manager setup
     void Start()
     {
-        playerControls = new PlayerInput();
-        playerControls.Enable();
+        playerControls = GetComponentInParent<PlayerInput>();
 
-        leftGrab = playerControls.Gameplay.PoleGrabLeft;
-        leftGrab.Enable();
+        globalVolume = GameObject.Find("Global Volume").GetComponent<Volume>();
+
+
+        leftGrab = playerControls.actions["PoleGrabLeft"];
         leftGrab.performed += StartLeftPoleGrabInput;
         leftGrab.canceled += ExitLeftPoleGrabInput;
 
-        rightGrab = playerControls.Gameplay.PoleGrabRight;
-        rightGrab.Enable();
+        rightGrab = playerControls.actions["PoleGrabRight"];
         rightGrab.performed += StartRightPoleGrabInput;
         rightGrab.canceled += ExitRightPoleGrabInput;
 

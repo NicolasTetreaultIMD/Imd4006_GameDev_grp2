@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -6,11 +7,13 @@ using UnityEngine.Rendering.Universal;
 
 public class CarController : MonoBehaviour
 {
+
     public enum CartState { Running, InCart, PoleHolding };
     [Header("Car State")]
     public CartState cartState;
 
     [Header("Player Input")]
+    int playerId;
     public Vector2 leftStick;
     PlayerInput playerInput;
     private InputAction increase;
@@ -65,8 +68,6 @@ public class CarController : MonoBehaviour
     public float cartShakeAmount = 1;
     private float prevCartShakePos = 0;
 
-
-
     [Header("Audio & VFX")]
     public Volume globalVolume;
     public float maxMotionBlurIntensity;
@@ -79,17 +80,16 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        FindNeededObjects();
+        playerInput = GetComponent<PlayerInput>();
+
+        increase = playerInput.actions["SpeedIncrease"]; // Use PlayerInput actions
+        increase.performed += Increase;
+
         speed = 0;
         currentTurnSpeed = 0;
         maxTurnSpeed = 3.6f;
         speedDecreaseValue = 0.5f;
-
-        playerInput = new PlayerInput();
-        playerInput.Enable();
-
-        increase = playerInput.Gameplay.SpeedIncrease;
-        increase.Enable();
-        increase.performed += Increase;
 
         dynamicTurnBool = true;
 
@@ -151,7 +151,7 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
 
         //JOYSTICK CONTROLS FOR TURNING
-        leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+        leftStick = playerInput.actions["Movement"].ReadValue<Vector2>();
 
         if (cartState != CartState.PoleHolding)
         {
@@ -182,7 +182,7 @@ public class CarController : MonoBehaviour
                 prevMotionBlurChange = motionBlurChange;
             }
 
-
+            //APPLIES TURN TO CART
             TurnCart();
 
             //MOVES CART
@@ -229,7 +229,7 @@ public class CarController : MonoBehaviour
     //Pivots the camera around the pole when in pole grabbing mode
     private void CameraPivot()
     {
-        Vector3 rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+        Vector3 rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
         Quaternion targetRotation = Quaternion.Euler(0, rightStick.x * -10, 0) * cameraPivotRef.rotation;
 
         cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);
@@ -274,7 +274,7 @@ public class CarController : MonoBehaviour
             else if (speed >= maxSpeed)
             {
                 speed = maxSpeed;
-            
+
                 if (cartState == CartState.Running)
                 {
                     SwitchCartState(CartState.InCart);
@@ -282,10 +282,10 @@ public class CarController : MonoBehaviour
             }
         }
 
-        if(currentTurnSpeed > maxTurnSpeed) //Makes sure the current turn speed does not exceed the max turn speed
+        if (currentTurnSpeed > maxTurnSpeed) // Ensure current turn speed does not exceed the max
         {
             currentTurnSpeed = maxTurnSpeed;
-        }    
+        }
     }
 
     private void TurnCart()
@@ -356,6 +356,11 @@ public class CarController : MonoBehaviour
                 transform.parent = poleRotateLookatRef;
                 break;
         };
+    }
+
+    public void FindNeededObjects()
+    {
+        globalVolume = GameObject.Find("Global Volume").GetComponent<Volume>();
     }
 
     private void OnTriggerEnter(Collider other)

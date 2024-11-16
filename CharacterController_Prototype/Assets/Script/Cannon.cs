@@ -11,7 +11,7 @@ using UnityEngine.Timeline;
 public class Cannon : MonoBehaviour
 {
     [Header("Player Input")]
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
     private InputAction shoot;
     public Vector2 rightStick;
     public CarController cart;
@@ -54,16 +54,14 @@ public class Cannon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerInput = new PlayerInput();
-        playerInput.Enable();
+        playerInput = GetComponentInParent<PlayerInput>();
 
-        shoot = playerInput.Gameplay.CannonShoot;
+        shoot = playerInput.actions["CannonShoot"];
         shoot.Enable();
 
         shoot.performed += ctx =>
         {
             isShooting = true; 
-            shootForce = 40;
         };
 
         shoot.canceled += ctx =>
@@ -119,7 +117,7 @@ public class Cannon : MonoBehaviour
         if (cart.cartState != CarController.CartState.Running && cart.cartState != CarController.CartState.PoleHolding)
         {
             //AIMING CANNON
-            rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();
+            rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
 
             if (carLoaded)
             {
@@ -137,7 +135,7 @@ public class Cannon : MonoBehaviour
 
     private void AimCannon()
     {
-        rightStick = playerInput.Gameplay.CannonAim.ReadValue<Vector2>();    
+        rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
         Vector3 currentLocalRotation = gameObject.transform.localEulerAngles; // Get current local rotation (normalized to -180 to 180 for Y and X adjustments)
 
         //HORIZONTAL CANNON MOVEMENT
@@ -147,61 +145,9 @@ public class Cannon : MonoBehaviour
             rotationY -= 360; // Normalize to -180 to 180
         }
 
-
-
-
-        //rotationY += cannonRotationSpeed * Time.deltaTime;
-
-        //else if (rightStick.x < -0.5)
-        //{
-        //    rotationY -= cannonRotationSpeed * Time.deltaTime;
-        //}
-
-        //RESET CANNON ROTATION
-        /*if (Mathf.Abs(rightStick.y) <= 0.02f)
-        {
-            rotationY = Mathf.Lerp(rotationY, startingY, Time.deltaTime * 6f);
-        }*/
-
-        //rotationY = Mathf.Clamp(rotationY, startingY-maxHorizontalTurn, startingY + maxHorizontalTurn); // Clamp the Y rotation between -45 and 45 degrees
-
-        /*MassShift(rotationY);
-
-
-        if (rotationY < 0)
-        {
-            rotationY += 360; // Convert back to 0-360 range if negative
-        }*/
-
-        //// VERTICAL CANNON MOVEMENT
-        //float rotationX = currentLocalRotation.x;
-        //if (rotationX > 180)
-        //{
-        //    rotationX -= 360; // Normalize to -180 to 180
-        //}
-
-        //if (rightStick.y > 0.5)
-        //{
-        //    rotationX -= (cannonRotationSpeed /2) * Time.deltaTime; // Move upward (toward 0)
-        //}
-        //else if (rightStick.y < -0.5)
-        //{
-        //    rotationX += (cannonRotationSpeed/2) * Time.deltaTime; // Move downward (toward -20)
-        //}
-
-        //if (Mathf.Abs(rightStick.x) <= 0.02f)
-        //{
-        //    rotationX = Mathf.Lerp(rotationX, startingX, Time.deltaTime * 6f);
-        //}
-
-        //rotationX = Mathf.Clamp(rotationX, startingX + maxVerticalTurn, 0f); // Clamp the X rotation between 0 and -20 degrees
-
         MassShift(rightStick.x);
         gameObject.transform.localRotation = Quaternion.Lerp(gameObject.transform.localRotation, Quaternion.Euler(startingX, rightStick.x * maxHorizontalTurn, currentLocalRotation.z), Time.deltaTime * cannonRotationSpeed);
         //gameObject.transform.localEulerAngles = new Vector3(startingX, rightStick.x * maxHorizontalTurn, currentLocalRotation.z); // Apply both clamped X and Y rotations to the cannon
-
-        
-
     }
 
     private void MassShift(float stickInput)
@@ -231,7 +177,7 @@ public class Cannon : MonoBehaviour
                 cart.audioHandler.ShootItem();
 
                 haptics.CannonHaptics();
-
+                shootForce = 40;
             }
 
             if (projectile.Count == 0)

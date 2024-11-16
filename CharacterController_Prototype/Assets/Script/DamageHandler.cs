@@ -27,10 +27,15 @@ public class DamageHandler : MonoBehaviour
     public void Hit()
     {
         //If object is the projectile, then don't do anything
-        if (!isProjectile)
+        if (gameObject.tag == "Target")
         {
             gameObject.GetComponent<Renderer>().material = testMaterial;
             carController.audioHandler.HitTarget();
+        }
+
+        if(gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
         }
     }
 
