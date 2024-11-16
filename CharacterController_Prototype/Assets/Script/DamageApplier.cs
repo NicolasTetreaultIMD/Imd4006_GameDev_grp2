@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DamageApplier : MonoBehaviour
 {
+    public int playerId;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class DamageApplier : MonoBehaviour
     {
         if (other.gameObject.GetComponent<DamageHandler>() != null)
         {
-            other.gameObject.GetComponent<DamageHandler>().Hit();
+            other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
         }
     }
 

@@ -7978,6 +7978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cartState: 0
+  playerId: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 7109027333012153915}
   Runner: {fileID: 1049513407836598789}
@@ -9063,6 +9064,7 @@ MonoBehaviour:
   testMaterial: {fileID: 0}
   currentMaterial: {fileID: 0}
   carController: {fileID: 0}
+  playerId: 0
   isProjectile: 0
 --- !u!1 &5852804974894918557
 GameObject:

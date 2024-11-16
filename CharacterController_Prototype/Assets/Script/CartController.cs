@@ -13,7 +13,7 @@ public class CarController : MonoBehaviour
     public CartState cartState;
 
     [Header("Player Input")]
-    int playerId;
+    public int playerId;
     public Vector2 leftStick;
     PlayerInput playerInput;
     private InputAction increase;
@@ -82,6 +82,7 @@ public class CarController : MonoBehaviour
     {
         FindNeededObjects();
         playerInput = GetComponent<PlayerInput>();
+        playerId = playerInput.playerIndex;
 
         increase = playerInput.actions["SpeedIncrease"]; // Use PlayerInput actions
         increase.performed += Increase;
@@ -367,7 +368,6 @@ public class CarController : MonoBehaviour
     {
         if(other.tag == "ItemBox")
         {
-            Debug.Log("Item loaded");
             cannon.LoadCannon(GameObject.Find(other.name + " Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX

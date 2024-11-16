@@ -8,6 +8,7 @@ TagManager:
   - wheel_right_sparks
   - smoke_drag
   - ItemBox
+  - Target
   layers:
   - Default
   - TransparentFX
