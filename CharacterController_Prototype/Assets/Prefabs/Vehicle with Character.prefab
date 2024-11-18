@@ -7870,8 +7870,8 @@ GameObject:
   - component: {fileID: 63081826649961554}
   - component: {fileID: 5765062419517420129}
   - component: {fileID: 1925852497329918559}
-  - component: {fileID: 6327136028987886717}
   - component: {fileID: 6865223610390682851}
+  - component: {fileID: 6327136028987886717}
   - component: {fileID: 2720123174008112113}
   - component: {fileID: 8603376827519860676}
   - component: {fileID: 3581780095859238643}
@@ -8127,29 +8127,6 @@ MonoBehaviour:
   carController: {fileID: 0}
   playerId: 0
   isProjectile: 0
---- !u!114 &6327136028987886717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783729222558518289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2efc0e4e97b316a4888337075f8f9f43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carController: {fileID: 3540732877812006221}
-  source:
-  - {fileID: 2720123174008112113}
-  - {fileID: 8603376827519860676}
-  - {fileID: 3581780095859238643}
-  - {fileID: 8807686608555824918}
-  - {fileID: 7004489672287488406}
-  - {fileID: 179659006929537247}
-  - {fileID: 463238467816764207}
-  - {fileID: 8125616406963050921}
-  - {fileID: 8089995802583774801}
 --- !u!114 &6865223610390682851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8181,6 +8158,29 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 8249817056745206384}
+--- !u!114 &6327136028987886717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2efc0e4e97b316a4888337075f8f9f43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carController: {fileID: 3540732877812006221}
+  source:
+  - {fileID: 2720123174008112113}
+  - {fileID: 8603376827519860676}
+  - {fileID: 3581780095859238643}
+  - {fileID: 8807686608555824918}
+  - {fileID: 7004489672287488406}
+  - {fileID: 179659006929537247}
+  - {fileID: 463238467816764207}
+  - {fileID: 8125616406963050921}
+  - {fileID: 8089995802583774801}
 --- !u!82 &2720123174008112113
 AudioSource:
   m_ObjectHideFlags: 0
