@@ -7058,7 +7058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7869,7 +7869,9 @@ GameObject:
   - component: {fileID: 5186815258538668321}
   - component: {fileID: 63081826649961554}
   - component: {fileID: 5765062419517420129}
+  - component: {fileID: 1925852497329918559}
   - component: {fileID: 6327136028987886717}
+  - component: {fileID: 6865223610390682851}
   - component: {fileID: 2720123174008112113}
   - component: {fileID: 8603376827519860676}
   - component: {fileID: 3581780095859238643}
@@ -7880,8 +7882,6 @@ GameObject:
   - component: {fileID: 463238467816764207}
   - component: {fileID: 8125616406963050921}
   - component: {fileID: 8089995802583774801}
-  - component: {fileID: 6865223610390682851}
-  - component: {fileID: 1925852497329918559}
   m_Layer: 8
   m_Name: Vehicle with Character
   m_TagString: Player
@@ -8110,6 +8110,23 @@ MonoBehaviour:
   maxHeight: 0.2
   minHeight: -0.2
   sinkSpeed: 2
+--- !u!114 &1925852497329918559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2330d80aa0f74d958795161ceca03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMaterial: {fileID: 0}
+  currentMaterial: {fileID: 0}
+  carController: {fileID: 0}
+  playerId: 0
+  isProjectile: 0
 --- !u!114 &6327136028987886717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8133,6 +8150,37 @@ MonoBehaviour:
   - {fileID: 463238467816764207}
   - {fileID: 8125616406963050921}
   - {fileID: 8089995802583774801}
+--- !u!114 &6865223610390682851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f30dbbb192f7e8747ac71f27e8e78123,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8249817056745206384}
 --- !u!82 &2720123174008112113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9018,54 +9066,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6865223610390682851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783729222558518289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: f30dbbb192f7e8747ac71f27e8e78123,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 8249817056745206384}
---- !u!114 &1925852497329918559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783729222558518289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6b2330d80aa0f74d958795161ceca03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testMaterial: {fileID: 0}
-  currentMaterial: {fileID: 0}
-  carController: {fileID: 0}
-  playerId: 0
-  isProjectile: 0
 --- !u!1 &5852804974894918557
 GameObject:
   m_ObjectHideFlags: 0
@@ -14477,7 +14477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
