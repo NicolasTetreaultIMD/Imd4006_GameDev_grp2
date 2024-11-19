@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 public class CarController : MonoBehaviour
 {
 
-    public enum CartState { Running, InCart, PoleHolding };
+    public enum CartState { Running, InCart, PoleHolding, InAir };
     [Header("Car State")]
     public CartState cartState;
 
@@ -355,6 +355,9 @@ public class CarController : MonoBehaviour
                 }
 
                 transform.parent = poleRotateLookatRef;
+                break;
+
+            case CartState.InAir:
                 break;
         };
     }
