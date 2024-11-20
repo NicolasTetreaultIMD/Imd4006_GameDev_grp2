@@ -108,6 +108,7 @@ public class vfxHandler : MonoBehaviour
             ToggleSparks(false);
             ToggleParticleSmoke(false);
             aimDirection.SetActive(false);
+            aimDirection.transform.localScale = Vector3.one; // reset scale each pole grab
 
         }
         // Particle smoke if - Player is grabing pole
@@ -288,11 +289,10 @@ public class vfxHandler : MonoBehaviour
     public void scaleDirectionalArrow()
     {
         // calculate the target scale based on the speed of the cart
-        targetScale = 1;
         targetScale = new Vector3(cartController.speed / 10, 1, cartController.speed / 4);
 
         // Smoothly transition  the scale of the aimDirection obj
-        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 2 * Time.deltaTime);
+        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 1 * Time.deltaTime);
     }
     public void ToggleAimDirectionOff()
     {

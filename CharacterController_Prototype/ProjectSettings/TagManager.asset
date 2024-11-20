@@ -9,6 +9,7 @@ TagManager:
   - smoke_drag
   - ItemBox
   - Target
+  - Pole
   layers:
   - Default
   - TransparentFX
