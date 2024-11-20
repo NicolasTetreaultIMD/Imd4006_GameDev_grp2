@@ -8276,6 +8276,7 @@ MonoBehaviour:
   cartState: 0
   playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -11019,6 +11020,7 @@ MonoBehaviour:
   cartState: 0
   playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
