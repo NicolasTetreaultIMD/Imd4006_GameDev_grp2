@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1655
+  m_VersionIndex: 1679
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1831,8 +1831,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.7486251, y: 1, z: 0.28356266}
-  m_Center: {x: 0, y: 0, z: 0.58758116}
+  m_Size: {x: 0.7486251, y: 1.330679, z: 0.68815327}
+  m_Center: {x: 0, y: 0.02, z: 1.17}
 --- !u!114 &5865110744635011796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7043,7 +7043,7 @@ GameObject:
   - component: {fileID: 7158144778810440424}
   - component: {fileID: 6258676324617368472}
   - component: {fileID: 4738357525252104890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7058,7 +7058,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7104,7 +7104,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2047
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7872,6 +7872,7 @@ GameObject:
   - component: {fileID: 1925852497329918559}
   - component: {fileID: 6865223610390682851}
   - component: {fileID: 6327136028987886717}
+  - component: {fileID: 5070999425607689068}
   - component: {fileID: 2720123174008112113}
   - component: {fileID: 8603376827519860676}
   - component: {fileID: 3581780095859238643}
@@ -7963,8 +7964,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.9002501, y: 1.1303611, z: 1.4086561}
-  m_Center: {x: 0, y: -0.14187112, z: -0.01832819}
+  m_Size: {x: 1.3293207, y: 1.1303611, z: 2.7472258}
+  m_Center: {x: 0, y: -0.1418711, z: -0.386436}
 --- !u!114 &3540732877812006221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7980,6 +7981,7 @@ MonoBehaviour:
   cartState: 0
   playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0.3
   cannon: {fileID: 7109027333012153915}
   Runner: {fileID: 1049513407836598789}
   Sitter: {fileID: 8221049244378272908}
@@ -8105,7 +8107,8 @@ MonoBehaviour:
   maxRotationAngle: 30
   maxRotationInput: 10
   rotationSpeed: 5
-  maxTurnIncrease: 15
+  overideTiltScale: 0
+  maxTurnIncrease: 10
   turnIncrease: 0
   maxHeight: 0.2
   minHeight: -0.2
@@ -8181,6 +8184,23 @@ MonoBehaviour:
   - {fileID: 463238467816764207}
   - {fileID: 8125616406963050921}
   - {fileID: 8089995802583774801}
+--- !u!114 &5070999425607689068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f120ee8797ea75645b120a3e43d4015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannon: {fileID: 7109027333012153915}
+  carController: {fileID: 3540732877812006221}
+  centerMassManager: {fileID: 5765062419517420129}
+  jumpStrengthY: 1.5
+  jumpStrengthX: 0.8
 --- !u!82 &2720123174008112113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9079,7 +9099,7 @@ GameObject:
   - component: {fileID: 7325228659114278191}
   - component: {fileID: 3435528319546102544}
   - component: {fileID: 5250189145121196548}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9314,7 +9334,7 @@ MonoBehaviour:
   maxPoints: 100
   increment: 0.1
   centerMassManager: {fileID: 5765062419517420129}
-  maxCarTiltInfluence: 7.9
+  maxCarTiltInfluence: 9
 --- !u!120 &5912467148217001049
 LineRenderer:
   serializedVersion: 2
@@ -14462,7 +14482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5163347391411395093}
   - component: {fileID: 1414738762450003993}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CinemachineCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14477,7 +14497,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
