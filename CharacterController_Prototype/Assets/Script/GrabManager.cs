@@ -29,6 +29,10 @@ public class GrabManager : MonoBehaviour
     private InputAction leftGrab;       //Left trigger pressed
     private InputAction rightGrab;      //Right trigger presseed
 
+    [Header("Boost Properties")]
+    public float gracePeriod;
+    public float additionalSpeed;
+
     [Header("Center Mass")]
     public CenterMassManager centerMassManager;
     public float armMassShift;          //By how much does the arm causes the mass to shift
@@ -42,7 +46,8 @@ public class GrabManager : MonoBehaviour
     private bool motionBlurActive;
     private MotionBlur motionBlur;
 
-    private float timeElapsed;
+    private float timeElapsedMB;
+    private float timeElapsedG;
 
     [Header("Audio & VFX")]
     public vfxHandler vfxHandler;
@@ -52,16 +57,16 @@ public class GrabManager : MonoBehaviour
     // Input manager setup
     void Start()
     {
-        playerControls = new PlayerInput();
-        playerControls.Enable();
+        playerControls = GetComponentInParent<PlayerInput>();
 
-        leftGrab = playerControls.Gameplay.PoleGrabLeft;
-        leftGrab.Enable();
+        globalVolume = GameObject.Find("Global Volume").GetComponent<Volume>();
+
+
+        leftGrab = playerControls.actions["PoleGrabLeft"];
         leftGrab.performed += StartLeftPoleGrabInput;
         leftGrab.canceled += ExitLeftPoleGrabInput;
 
-        rightGrab = playerControls.Gameplay.PoleGrabRight;
-        rightGrab.Enable();
+        rightGrab = playerControls.actions["PoleGrabRight"];
         rightGrab.performed += StartRightPoleGrabInput;
         rightGrab.canceled += ExitRightPoleGrabInput;
 
@@ -78,9 +83,9 @@ public class GrabManager : MonoBehaviour
 
         if (motionBlurActive)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsedMB += Time.deltaTime;
 
-            if (timeElapsed > motionBlurDuration)
+            if (timeElapsedMB > motionBlurDuration)
             {
                 motionBlurChange = 0;
                 motionBlurActive = false;
@@ -91,11 +96,27 @@ public class GrabManager : MonoBehaviour
             }
         }
 
+        if (carController.hasBoostGrace)
+        {
+            timeElapsedG += Time.deltaTime;
+
+            if (timeElapsedG > gracePeriod)
+            {
+                carController.hasBoostGrace = false;
+            }
+        }
+
         //Update MotionBlur
         globalVolume.profile.TryGet(out motionBlur);
         {
             motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
             prevMotionBlurChange = motionBlurChange;
+        }
+
+        if ((leftArmGrab.activeSelf || rightArmGrab.activeSelf) && carController.cartState == CarController.CartState.Running)
+        {
+            leftArmGrab.SetActive(false);
+            rightArmGrab.SetActive(false);
         }
 
         //If needed can add code that will run in update if one of the arm is active
@@ -232,12 +253,15 @@ public class GrabManager : MonoBehaviour
             audioHandler.poleRelease(); // AFX - Play tire squeal upon release
 
             //Start Motion Blur
-            timeElapsed = 0;
+            timeElapsedMB = 0;
             motionBlurActive = true;
             motionBlurChange = maxMotionBlurIntensity;
 
             lookatRef.gameObject.SetActive(false);
             carController.SwitchCartState(CarController.CartState.InCart);
+
+            carController.hasBoostGrace = true;
+            timeElapsedG = 0;
 
             haptics.ReleasePole();
         }

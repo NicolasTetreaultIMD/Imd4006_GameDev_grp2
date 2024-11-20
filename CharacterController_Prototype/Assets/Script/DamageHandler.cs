@@ -9,28 +9,36 @@ public class DamageHandler : MonoBehaviour
     public Material currentMaterial;
 
     public CarController carController;
+    public int playerId;
 
     public bool isProjectile;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        carController = GetComponent<CarController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (carController != null)
+        {
+            playerId = carController.playerId;
+        }
     }
 
-    public void Hit()
+    public void Hit(int explosivePlayerId)
     {
-        //If object is the projectile, then don't do anything
-        if (!isProjectile)
+        if (gameObject.tag == "Target")
         {
             gameObject.GetComponent<Renderer>().material = testMaterial;
             carController.audioHandler.HitTarget();
+        }
+
+        if(gameObject.tag == "Player" && playerId != explosivePlayerId)
+        {
+            Destroy(gameObject);
         }
     }
 

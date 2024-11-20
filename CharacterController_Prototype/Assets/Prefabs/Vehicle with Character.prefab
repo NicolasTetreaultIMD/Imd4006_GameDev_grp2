@@ -353,6 +353,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7727916480370050978}
   - {fileID: 6915550335596034573}
   - {fileID: 6797013980733931484}
   - {fileID: 1157350323784439077}
@@ -1616,7 +1617,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1586
+  m_VersionIndex: 1655
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -6868,7 +6869,6 @@ GameObject:
   - component: {fileID: 8822049216727360134}
   - component: {fileID: 4681412964428292388}
   - component: {fileID: 4392697160072098753}
-  - component: {fileID: 6538719262996535796}
   m_Layer: 0
   m_Name: LeftArmGrab
   m_TagString: Untagged
@@ -6943,29 +6943,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6538719262996535796
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2477829005733427674}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3125949512453422951
 GameObject:
   m_ObjectHideFlags: 0
@@ -7063,7 +7040,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5712716779442330082}
   - component: {fileID: 8249817056745206384}
-  - component: {fileID: 3123622896276555577}
   - component: {fileID: 7158144778810440424}
   - component: {fileID: 6258676324617368472}
   - component: {fileID: 4738357525252104890}
@@ -7082,8 +7058,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227152, y: -0.000000019136449, z: 0.0000000019674298, w: 0.9947565}
-  m_LocalPosition: {x: 3.7494967, y: 3.2799997, z: -9.935385}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7140,14 +7116,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3123622896276555577
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3670632720333668319}
-  m_Enabled: 1
 --- !u!114 &7158144778810440424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7844,11 +7812,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4952504852051320120}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 726511e6a542d834e87c87242d55ea99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  playerId: 0
   controller: {fileID: 3540732877812006221}
   speed: 0
   isHoldingPole: 0
@@ -7899,6 +7869,8 @@ GameObject:
   - component: {fileID: 5186815258538668321}
   - component: {fileID: 63081826649961554}
   - component: {fileID: 5765062419517420129}
+  - component: {fileID: 1925852497329918559}
+  - component: {fileID: 6865223610390682851}
   - component: {fileID: 6327136028987886717}
   - component: {fileID: 2720123174008112113}
   - component: {fileID: 8603376827519860676}
@@ -7912,7 +7884,7 @@ GameObject:
   - component: {fileID: 8089995802583774801}
   m_Layer: 8
   m_Name: Vehicle with Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7938,7 +7910,6 @@ Transform:
   - {fileID: 7331343766560483611}
   - {fileID: 8132413866281212589}
   - {fileID: 7044025674143784753}
-  - {fileID: 7727916480370050978}
   - {fileID: 4007543269535868360}
   - {fileID: 7088342936513529347}
   - {fileID: 5500599408797059080}
@@ -8007,6 +7978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cartState: 0
+  playerId: 0
   leftStick: {x: 0, y: 0}
   cannon: {fileID: 7109027333012153915}
   Runner: {fileID: 1049513407836598789}
@@ -8020,15 +7992,18 @@ MonoBehaviour:
   goingToShooterSpot: 0
   moveInput: 0
   speed: 0
-  minInCartSpeed: 10
+  minInCartSpeed: 15
   maxSpeed: 37.5
+  speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  grabManager: {fileID: 63081826649961554}
   cameraPivotRef: {fileID: 7331343766560483611}
   poleRotateLookatRef: {fileID: 6074846908844351146}
+  hasBoostGrace: 0
   cameraPivotSpeed: 20
   speedPoleIncreaseRate: 0.1
   centerMassManager: {fileID: 5765062419517420129}
@@ -8100,6 +8075,8 @@ MonoBehaviour:
   lookatRef: {fileID: 6074846908844351146}
   stationaryCamRef: {fileID: 4867351733174225393}
   cameraPivotRef: {fileID: 7331343766560483611}
+  gracePeriod: 0.5
+  additionalSpeed: 1.1
   centerMassManager: {fileID: 5765062419517420129}
   armMassShift: 0.8
   globalVolume: {fileID: 0}
@@ -8119,6 +8096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e21f604d8a282ac438231f87da09fe45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carController: {fileID: 3540732877812006221}
   massCenter: {x: 0, y: 0, z: 0}
   carBody: {fileID: 4558845017961633462}
   leftRotation: {fileID: 4007543269535868360}
@@ -8127,11 +8105,59 @@ MonoBehaviour:
   maxRotationAngle: 30
   maxRotationInput: 10
   rotationSpeed: 5
-  maxTurnIncrease: 30
+  maxTurnIncrease: 15
   turnIncrease: 0
   maxHeight: 0.2
   minHeight: -0.2
   sinkSpeed: 2
+--- !u!114 &1925852497329918559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b2330d80aa0f74d958795161ceca03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testMaterial: {fileID: 0}
+  currentMaterial: {fileID: 0}
+  carController: {fileID: 0}
+  playerId: 0
+  isProjectile: 0
+--- !u!114 &6865223610390682851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783729222558518289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f30dbbb192f7e8747ac71f27e8e78123,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8249817056745206384}
 --- !u!114 &6327136028987886717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9152,7 +9178,7 @@ MonoBehaviour:
   m_PivotOffset: {x: 0, y: 0, z: 0}
   m_AmplitudeGain: 0
   m_FrequencyGain: 0
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
+  mNoiseOffsets: {x: -685.8363, y: -91.11487, z: 5.760071}
 --- !u!1 &6949542324518687100
 GameObject:
   m_ObjectHideFlags: 0
@@ -9182,14 +9208,14 @@ Transform:
   m_GameObject: {fileID: 6949542324518687100}
   serializedVersion: 2
   m_LocalRotation: {x: -0.061167356, y: 0.0151778255, z: -0.007210357, w: 0.9979861}
-  m_LocalPosition: {x: 0.024000168, y: 1.0230001, z: -0.90999985}
-  m_LocalScale: {x: 0.2995999, y: 0.29408997, z: 2.2557998}
+  m_LocalPosition: {x: 0.024000168, y: 1.0230002, z: -0.9099999}
+  m_LocalScale: {x: 0.2995999, y: 0.29408994, z: 2.2557995}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4801888773186510468}
   - {fileID: 4743831326137047337}
   - {fileID: 744528173522100982}
-  m_Father: {fileID: 3516804644110949683}
+  m_Father: {fileID: 4558845017961633462}
   m_LocalEulerAnglesHint: {x: -7, y: 1.8, z: -0.938}
 --- !u!23 &6312768899154378528
 MeshRenderer:
@@ -9266,6 +9292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cacc18d26c4eddb4399163e96d03d3ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 6865223610390682851}
   rightStick: {x: 0, y: 0}
   cart: {fileID: 3540732877812006221}
   haptics: {fileID: 7620939574385055543}
@@ -14450,7 +14477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8011379026549445904}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: -0.00000001764293, z: 0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14752,7 +14779,6 @@ GameObject:
   - component: {fileID: 1157350323784439077}
   - component: {fileID: 1014506301685209541}
   - component: {fileID: 6623128915342692621}
-  - component: {fileID: 8081170897223098477}
   m_Layer: 0
   m_Name: RightArmGrab
   m_TagString: Untagged
@@ -14827,29 +14853,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8081170897223098477
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8441230708288412607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8526304804889483243
 GameObject:
   m_ObjectHideFlags: 0

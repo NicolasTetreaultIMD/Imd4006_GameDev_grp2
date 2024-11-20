@@ -76,6 +76,7 @@ public class Projectile : MonoBehaviour
             madeContact = true;
             gameObject.GetComponent<Rigidbody>().isKinematic = true;
             explosion.gameObject.SetActive(true);
+            explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
             bombMesh.enabled = false;
 
             carController.audioHandler.impactExplosion();

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
@@ -6,12 +7,15 @@ using UnityEngine.Rendering.Universal;
 
 public class CarController : MonoBehaviour
 {
-    public enum CartState { Running, InCart, PoleHolding };
+
+    public enum CartState { Running, InCart, PoleHolding, InAir };
     [Header("Car State")]
     public CartState cartState;
 
     [Header("Player Input")]
+    public int playerId;
     public Vector2 leftStick;
+    public float stickDeadzone;
     PlayerInput playerInput;
     private InputAction increase;
 
@@ -37,7 +41,7 @@ public class CarController : MonoBehaviour
     public float speed;
     public float minInCartSpeed = 10f;
     public float maxSpeed = 37.5f;
-    float speedDecreaseCooldown; //The time in which a speed will decrease
+    public float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
 
     [Header("Turning")]
@@ -47,8 +51,10 @@ public class CarController : MonoBehaviour
     public bool dynamicTurnBool;
 
     [Header("Pole Rotation")]
+    public GrabManager grabManager;
     public Transform cameraPivotRef;
     public Transform poleRotateLookatRef;
+    public bool hasBoostGrace;
     public float cameraPivotSpeed;
     public float speedPoleIncreaseRate;
     private int poleTurnDirection = 1;
@@ -63,8 +69,6 @@ public class CarController : MonoBehaviour
     public float cartShakeAmount = 1;
     private float prevCartShakePos = 0;
 
-
-
     [Header("Audio & VFX")]
     public Volume globalVolume;
     public float maxMotionBlurIntensity;
@@ -77,17 +81,17 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        FindNeededObjects();
+        playerInput = GetComponent<PlayerInput>();
+        playerId = playerInput.playerIndex;
+
+        increase = playerInput.actions["SpeedIncrease"]; // Use PlayerInput actions
+        increase.performed += Increase;
+
         speed = 0;
         currentTurnSpeed = 0;
         maxTurnSpeed = 3.6f;
         speedDecreaseValue = 0.5f;
-
-        playerInput = new PlayerInput();
-        playerInput.Enable();
-
-        increase = playerInput.Gameplay.SpeedIncrease;
-        increase.Enable();
-        increase.performed += Increase;
 
         dynamicTurnBool = true;
 
@@ -149,14 +153,16 @@ public class CarController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
 
         //JOYSTICK CONTROLS FOR TURNING
-        leftStick = playerInput.Gameplay.Movement.ReadValue<Vector2>();
+        leftStick = playerInput.actions["Movement"].ReadValue<Vector2>();
+
+        leftStick = StickDeadzone(leftStick);
 
         if (cartState != CartState.PoleHolding)
         {
             //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
             if (speed > 0)
             {
-                if (Time.time >= speedDecreaseCooldown)
+                if (Time.time >= speedDecreaseCooldown && !hasBoostGrace)
                 {
                     speed -= speedDecreaseValue;
                     speedDecreaseCooldown = Time.time + 0.5f;
@@ -180,7 +186,7 @@ public class CarController : MonoBehaviour
                 prevMotionBlurChange = motionBlurChange;
             }
 
-
+            //APPLIES TURN TO CART
             TurnCart();
 
             //MOVES CART
@@ -188,40 +194,64 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            CameraPivot();
-
-            //Gradually increases the player's speed while on the pole
-            if (speed < maxSpeed)
-            {
-                speed += speedPoleIncreaseRate;
-            }
-            else if (speed > maxSpeed)
-            {
-                speed = maxSpeed;
-            }
-
-            //right turn
-            if (poleTurnDirection > 0)
-            {
-                turnTilt = -turnTiltStrength * 1.5f * speed;
-            }
-            //left turn
-            else if (poleTurnDirection < 0)
-            {
-                turnTilt = turnTiltStrength * 1.5f * speed;
-            }
-
-            poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
+            PoleGrabIncrease();
         }
 
         centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
         prevTurnTilt = turnTilt;
     }
 
+    //Makes sure the stickInputs follow the deadzone set
+    private Vector2 StickDeadzone (Vector2 stickInput)
+    {
+        if (stickInput.x < stickDeadzone && stickInput.x > -stickDeadzone)
+        {
+            stickInput.x = 0;
+        }
+        if (stickInput.y < stickDeadzone && stickInput.y > -stickDeadzone)
+        {
+            stickInput.y = 0;
+        }
+
+        return stickInput;
+    }
+
+    private void PoleGrabIncrease()
+    {
+        CameraPivot();
+
+        //Gradually increases the player's speed while on the pole
+
+        if (speed < maxSpeed * grabManager.additionalSpeed)
+        {
+            speed += 2.5f;
+        }
+        else if (speed >= maxSpeed * grabManager.additionalSpeed)
+        {
+            speed = maxSpeed * grabManager.additionalSpeed;
+        }
+
+        //right turn
+        if (poleTurnDirection > 0)
+        {
+            turnTilt = -turnTiltStrength * 1.5f * speed;
+        }
+        //left turn
+        else if (poleTurnDirection < 0)
+        {
+            turnTilt = turnTiltStrength * 1.5f * speed;
+        }
+
+        poleRotateLookatRef.rotation = Quaternion.Euler(0, 15 * Time.fixedDeltaTime * speed * poleTurnDirection, 0) * poleRotateLookatRef.rotation;
+    }
+
     //Pivots the camera around the pole when in pole grabbing mode
     private void CameraPivot()
     {
-        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * -10, 0) * cameraPivotRef.rotation;
+        Vector2 rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
+        rightStick = StickDeadzone(rightStick);
+
+        Quaternion targetRotation = Quaternion.Euler(0, rightStick.x * -10, 0) * cameraPivotRef.rotation;
 
         cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);
     }
@@ -255,7 +285,7 @@ public class CarController : MonoBehaviour
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        if (cartState == CartState.Running || cartState == CartState.PoleHolding)
+        if (cartState == CartState.Running)
         {
             speedDecreaseCooldown = Time.time + 0.15f;
             if (speed < maxSpeed)
@@ -265,7 +295,7 @@ public class CarController : MonoBehaviour
             else if (speed >= maxSpeed)
             {
                 speed = maxSpeed;
-            
+
                 if (cartState == CartState.Running)
                 {
                     SwitchCartState(CartState.InCart);
@@ -273,10 +303,10 @@ public class CarController : MonoBehaviour
             }
         }
 
-        if(currentTurnSpeed > maxTurnSpeed) //Makes sure the current turn speed does not exceed the max turn speed
+        if (currentTurnSpeed > maxTurnSpeed) // Ensure current turn speed does not exceed the max
         {
             currentTurnSpeed = maxTurnSpeed;
-        }    
+        }
     }
 
     private void TurnCart()
@@ -346,14 +376,21 @@ public class CarController : MonoBehaviour
 
                 transform.parent = poleRotateLookatRef;
                 break;
+
+            case CartState.InAir:
+                break;
         };
+    }
+
+    public void FindNeededObjects()
+    {
+        globalVolume = GameObject.Find("Global Volume").GetComponent<Volume>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "ItemBox")
         {
-            Debug.Log("Item loaded");
             cannon.LoadCannon(GameObject.Find(other.name + " Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
