@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using Cinemachine;
+using UnityEngine.UIElements;
 
 //Controls the arms for the pole grab mechanic
 public class GrabManager : MonoBehaviour
@@ -214,6 +215,8 @@ public class GrabManager : MonoBehaviour
 
             cameraPivotRef.position = lookatRef.position;
 
+            cameraPivotRef.rotation = carController.gameObject.transform.rotation;
+
             //Save the camera position to the position it was when the pole was grabbed
             stationaryCamRef.position = carController.gameObject.transform.position;
             stationaryCamRef.rotation = carController.gameObject.transform.rotation;
@@ -251,6 +254,7 @@ public class GrabManager : MonoBehaviour
 
             vfxHandler.PlayFireTrail(); // VFX - PLAY FIRE TRAIL (1.5 seconds long)
             audioHandler.poleRelease(); // AFX - Play tire squeal upon release
+
 
             //Start Motion Blur
             timeElapsedMB = 0;

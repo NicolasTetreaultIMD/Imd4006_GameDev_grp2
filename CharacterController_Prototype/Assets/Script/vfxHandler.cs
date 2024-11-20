@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UIElements;
 using UnityEngine.VFX;
 
 public class vfxHandler : MonoBehaviour
@@ -33,6 +34,10 @@ public class vfxHandler : MonoBehaviour
     private float minTime = 0.0005f; // time is used for Trail renderer for wind trails ( VFX )
     private float maxTime = 0.5f;
 
+    [Header("UI")]
+    public GameObject aimDirection;
+    private Vector3 targetScale;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +45,7 @@ public class vfxHandler : MonoBehaviour
         // Disable VFX
         itemPickup.enabled = false;
         shootItem.enabled = false;
+        aimDirection.SetActive(false);
         ToggleSparks(false);
         ToggleVolumetricSmoke(3); // 3 = both trails off
         ToggleParticleSmoke(false);
@@ -50,7 +56,6 @@ public class vfxHandler : MonoBehaviour
     void Update()
     {
         speed = cartController.speed;
-        
 
         // SHOW wind lines when player speed is greater than 20
         if (speed >= 20)
@@ -102,6 +107,9 @@ public class vfxHandler : MonoBehaviour
         {
             ToggleSparks(false);
             ToggleParticleSmoke(false);
+            aimDirection.SetActive(false);
+            aimDirection.transform.localScale = Vector3.one; // reset scale each pole grab
+
         }
         // Particle smoke if - Player is grabing pole
         else if(cartController.cartState == CarController.CartState.PoleHolding)
@@ -109,6 +117,8 @@ public class vfxHandler : MonoBehaviour
             ToggleSparks(true);
             ToggleParticleSmoke(true);
             ToggleVolumetricSmoke(3); // none
+            aimDirection.SetActive(true);
+            scaleDirectionalArrow(); // show directional arrow
             cartController.audioHandler.carDrift(); // Play drift noise
 
         }
@@ -274,5 +284,18 @@ public class vfxHandler : MonoBehaviour
         Debug.Log("GRABBED");
 
         // }
+    }
+    
+    public void scaleDirectionalArrow()
+    {
+        // calculate the target scale based on the speed of the cart
+        targetScale = new Vector3(cartController.speed / 10, 1, cartController.speed / 4);
+
+        // Smoothly transition  the scale of the aimDirection obj
+        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 1 * Time.deltaTime);
+    }
+    public void ToggleAimDirectionOff()
+    {
+        aimDirection.SetActive(false);
     }
 }
