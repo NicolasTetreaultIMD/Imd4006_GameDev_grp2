@@ -30,6 +30,8 @@ public class Cannon : MonoBehaviour
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
+    private List<float> prevShootForce = new List<float>();
+    public int shootForceMemory;
     public float maxShootForce;
     public float shootForceIncreaseSpeed;
     Vector3 direction;
@@ -94,7 +96,8 @@ public class Cannon : MonoBehaviour
 
                 if (shootForce < maxShootForce)
                 {
-                    shootForce = Mathf.Lerp(shootForce, maxShootForce, shootForceIncreaseSpeed * Time.deltaTime);
+                    shootForce = Mathf.Lerp(shootForce, maxShootForce * playerInput.actions["CannonShoot"].ReadValue<float>(), shootForceIncreaseSpeed * Time.deltaTime);
+                    RememberShootForce(shootForce);
                 }
                 DrawTrajectory();
             }
@@ -133,6 +136,19 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    private void RememberShootForce(float shootForce)
+    {
+        if (prevShootForce.Count < shootForceMemory)
+        {
+            prevShootForce.Add(shootForce);
+        }
+        else
+        {
+            prevShootForce.RemoveAt(0);
+            prevShootForce.Add(shootForce);
+        }
+    }
+
     private void AimCannon()
     {
         rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
@@ -167,8 +183,10 @@ public class Cannon : MonoBehaviour
             if (projectile.Count > 0)
             {
                 var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
-                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce, haptics, cart);
+                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, prevShootForce[0], haptics, cart);
                 bullet.GetComponent<Projectile>().forcesApplied = true;
+                //Debug.Log(prevShootForce[0] + " ; " + prevShootForce[shootForceMemory - 1]);
+                prevShootForce = new List<float>();
                 projectile.RemoveAt(0);
                 //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
 
