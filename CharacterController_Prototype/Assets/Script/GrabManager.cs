@@ -113,6 +113,12 @@ public class GrabManager : MonoBehaviour
             prevMotionBlurChange = motionBlurChange;
         }
 
+        if ((leftArmGrab.activeSelf || rightArmGrab.activeSelf) && carController.cartState == CarController.CartState.Running)
+        {
+            leftArmGrab.SetActive(false);
+            rightArmGrab.SetActive(false);
+        }
+
         //If needed can add code that will run in update if one of the arm is active
 
         /*if (rightGrab.IsPressed() && activeHand == rightArmGrab)
