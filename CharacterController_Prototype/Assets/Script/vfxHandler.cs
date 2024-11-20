@@ -45,6 +45,7 @@ public class vfxHandler : MonoBehaviour
         // Disable VFX
         itemPickup.enabled = false;
         shootItem.enabled = false;
+        aimDirection.SetActive(false);
         ToggleSparks(false);
         ToggleVolumetricSmoke(3); // 3 = both trails off
         ToggleParticleSmoke(false);
@@ -106,6 +107,7 @@ public class vfxHandler : MonoBehaviour
         {
             ToggleSparks(false);
             ToggleParticleSmoke(false);
+            aimDirection.SetActive(false);
 
         }
         // Particle smoke if - Player is grabing pole
@@ -286,10 +288,11 @@ public class vfxHandler : MonoBehaviour
     public void scaleDirectionalArrow()
     {
         // calculate the target scale based on the speed of the cart
-        targetScale = new Vector3(1, 1, cartController.speed / 3);
+        targetScale = 1;
+        targetScale = new Vector3(cartController.speed / 10, 1, cartController.speed / 4);
 
         // Smoothly transition  the scale of the aimDirection obj
-        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 5 * Time.deltaTime);
+        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 2 * Time.deltaTime);
     }
     public void ToggleAimDirectionOff()
     {
