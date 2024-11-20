@@ -16,6 +16,7 @@ public class CarBump : MonoBehaviour
     [Header("Bump Properties")]
     public float jumpStrengthY;
     public float jumpStrengthX;
+    public float bumpSpeed;
 
     private float initYLevel;
     private int BumpDirection;
@@ -42,12 +43,12 @@ public class CarBump : MonoBehaviour
     {
         if (isBumping)
         {
-            elapsedTime += Time.fixedDeltaTime; // Accumulate time each frame
+            elapsedTime += Time.fixedDeltaTime * bumpSpeed; // Accumulate time each frame
             float positionYAtTime = jumpStrengthY * elapsedTime
                                    + 0.5f * Physics.gravity.y * elapsedTime * elapsedTime;
             float positionXAtTime = jumpStrengthX * elapsedTime * BumpDirection;
 
-            transform.position += positionXAtTime * transform.right + positionYAtTime * transform.up;
+            transform.position += positionXAtTime * transform.right + positionYAtTime * transform.up + transform.forward * carController.moveInput * carController.speed * Time.fixedDeltaTime;
 
             centerMassManager.massCenter.x += 100 * BumpDirection - prevMassChange;
             prevMassChange = 100 * BumpDirection;
