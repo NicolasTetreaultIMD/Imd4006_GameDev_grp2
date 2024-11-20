@@ -119,11 +119,6 @@ public class Cannon : MonoBehaviour
             //AIMING CANNON
             rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
 
-            if (carLoaded)
-            {
-                projectileRb = projectile[0].GetComponent<Rigidbody>();
-            }
-
             AimCannon();
         }
         else
@@ -169,8 +164,8 @@ public class Cannon : MonoBehaviour
                 var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
                 bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, shootForce, haptics, cart);
                 bullet.GetComponent<Projectile>().forcesApplied = true;
+                projectileRb = null;
                 projectile.RemoveAt(0);
-                //bullet.GetComponent<Rigidbody>().AddForce(direction * shootForce, ForceMode.Impulse);
 
                 // VFX for shooting
                 cart.vfxHandler.ShootItem();
@@ -178,11 +173,8 @@ public class Cannon : MonoBehaviour
 
                 haptics.CannonHaptics();
                 shootForce = 40;
-            }
 
-            if (projectile.Count == 0)
-            {
-                carLoaded = false;
+
             }
 
             //Debug.Log(projectile.Count);
@@ -194,6 +186,7 @@ public class Cannon : MonoBehaviour
     public void LoadCannon(GameObject newProjectile)
     {
         projectile.Add(newProjectile);
+        projectileRb = newProjectile.GetComponent<Rigidbody>();
         carLoaded = true;
         haptics.CrateHaptics();
     }
