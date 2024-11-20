@@ -5,16 +5,13 @@ using UnityEngine;
 public class PoleProximityPrompt : MonoBehaviour
 {
     public GameObject player;         // Reference to the player GameObject
-    public float proximityThreshold = 10f;  // Distance threshold for proximity
-    public GameObject promptText;           // The component that shows the prompt
+    public float proximityThreshold = 20f;  // Distance threshold for proximity
 
     private GameObject[] poles;       // Array to store all the poles in the scene
+    private GameObject promptText;
 
     void Start()
     {
-        // Hide the prompt at the start
-        promptText.gameObject.SetActive(false);
-
         // Find all the pole objects in the scene by tag
         poles = GameObject.FindGameObjectsWithTag("Pole");
     }
@@ -35,24 +32,21 @@ public class PoleProximityPrompt : MonoBehaviour
                 return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
             }
         }
-
-        // If no pole is close enough, hide the prompt
-        HidePrompt();
     }
 
     void ShowPrompt(GameObject pole)
     {
         // Show the prompt above the pole
+        foreach(Transform children in pole.transform.GetComponentsInChildren<Transform>())
+        {
+            if (children.gameObject.tag == "ButtonPrompt")
+            {
+                promptText = children.gameObject;
+            }
+        }
         promptText.gameObject.SetActive(true);
 
-        // Convert the world position of the pole to a screen position
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(pole.transform.position + Vector3.up * 2); // Adjust for height above the pole
-        promptText.transform.position = screenPosition;
+        // Everett - Create co-routine to toggle the prompt off after a duration
     }
 
-    void HidePrompt()
-    {
-        // Hide the prompt when no pole is close enough
-        promptText.gameObject.SetActive(false);
-    }
 }
