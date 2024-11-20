@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1682
+  m_VersionIndex: 1691
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8199,8 +8199,9 @@ MonoBehaviour:
   cannon: {fileID: 7109027333012153915}
   carController: {fileID: 3540732877812006221}
   centerMassManager: {fileID: 5765062419517420129}
-  jumpStrengthY: 1.5
-  jumpStrengthX: 0.8
+  jumpStrengthY: 1.7
+  jumpStrengthX: 1
+  bumpSpeed: 1.3
 --- !u!82 &2720123174008112113
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9321,10 +9322,24 @@ MonoBehaviour:
   maxVerticalTurn: -8
   startingX: -7
   startingY: 1.8
-  projectile: []
+  projectile:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   projectileRb: {fileID: 0}
   shootingPoint: {fileID: 1412425228129851316}
   shootForce: 40
+  shootForceMemory: 15
   maxShootForce: 100
   shootForceIncreaseSpeed: 0
   isShooting: 0
