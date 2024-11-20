@@ -20,6 +20,7 @@ public class CenterMassManager : MonoBehaviour
     public float maxRotationAngle;  //Max tilt the car can have
     public float maxRotationInput;  //Max center of mass value
     public float rotationSpeed;     //Speed for the rotation lerp
+    public bool overideTiltScale = false; //Ignores the speed for the tilt scale
 
     [Header("(X) Tilt Influence Properties")]
     public float maxTurnIncrease;   //Max amount that the tilt can influence the angle of car
@@ -59,7 +60,11 @@ public class CenterMassManager : MonoBehaviour
     {
         if (Mathf.Abs(massCenter.x) > rotationDeadZone)
         {
-            float massShiftX = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput) * (carController.speed / carController.maxSpeed);
+            float massShiftX = Mathf.Min(Mathf.Max(massCenter.x, -maxRotationInput), maxRotationInput);
+            if (!overideTiltScale)
+            {
+                massShiftX *= carController.speed / carController.maxSpeed;
+            }
 
             //Right Tilt
             if (massShiftX > 0)

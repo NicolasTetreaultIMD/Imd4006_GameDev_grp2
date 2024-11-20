@@ -15,6 +15,7 @@ public class CarController : MonoBehaviour
     [Header("Player Input")]
     public int playerId;
     public Vector2 leftStick;
+    public float stickDeadzone;
     PlayerInput playerInput;
     private InputAction increase;
 
@@ -154,6 +155,8 @@ public class CarController : MonoBehaviour
         //JOYSTICK CONTROLS FOR TURNING
         leftStick = playerInput.actions["Movement"].ReadValue<Vector2>();
 
+        leftStick = StickDeadzone(leftStick);
+
         if (cartState != CartState.PoleHolding)
         {
             //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
@@ -198,6 +201,21 @@ public class CarController : MonoBehaviour
         prevTurnTilt = turnTilt;
     }
 
+    //Makes sure the stickInputs follow the deadzone set
+    private Vector2 StickDeadzone (Vector2 stickInput)
+    {
+        if (stickInput.x < stickDeadzone && stickInput.x > -stickDeadzone)
+        {
+            stickInput.x = 0;
+        }
+        if (stickInput.y < stickDeadzone && stickInput.y > -stickDeadzone)
+        {
+            stickInput.y = 0;
+        }
+
+        return stickInput;
+    }
+
     private void PoleGrabIncrease()
     {
         CameraPivot();
@@ -230,7 +248,9 @@ public class CarController : MonoBehaviour
     //Pivots the camera around the pole when in pole grabbing mode
     private void CameraPivot()
     {
-        Vector3 rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
+        Vector2 rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
+        rightStick = StickDeadzone(rightStick);
+
         Quaternion targetRotation = Quaternion.Euler(0, rightStick.x * -10, 0) * cameraPivotRef.rotation;
 
         cameraPivotRef.rotation = Quaternion.Slerp(cameraPivotRef.rotation, targetRotation, cameraPivotSpeed * Time.fixedDeltaTime);

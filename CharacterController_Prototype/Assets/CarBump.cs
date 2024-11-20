@@ -11,6 +11,7 @@ public class CarBump : MonoBehaviour
 
     public Cannon cannon;
     public CarController carController;
+    public CenterMassManager centerMassManager;
 
     [Header("Bump Properties")]
     public float jumpStrengthY;
@@ -20,6 +21,7 @@ public class CarBump : MonoBehaviour
     private int BumpDirection;
     private bool isBumping;
     private float elapsedTime;
+    private float prevMassChange;
 
     // Start is called before the first frame update
     void Start()
@@ -43,25 +45,32 @@ public class CarBump : MonoBehaviour
             elapsedTime += Time.fixedDeltaTime; // Accumulate time each frame
             float positionYAtTime = jumpStrengthY * elapsedTime
                                    + 0.5f * Physics.gravity.y * elapsedTime * elapsedTime;
+            float positionXAtTime = jumpStrengthX * elapsedTime * BumpDirection;
 
-            transform.position += new Vector3(0, positionYAtTime, 0);
+            transform.position += positionXAtTime * transform.right + positionYAtTime * transform.up;
+
+            centerMassManager.massCenter.x += 100 * BumpDirection - prevMassChange;
+            prevMassChange = 100 * BumpDirection;
 
             if (transform.position.y < initYLevel)
             {
                 transform.position = new Vector3(transform.position.x, initYLevel, transform.position.z);
                 isBumping = false;
-                carController.SwitchCartState(CarController.CartState.Running);
-                Debug.Log("Done");
+                carController.SwitchCartState(CarController.CartState.InCart);
+                centerMassManager.overideTiltScale = false;
+                centerMassManager.massCenter.x -= prevMassChange;
             }
         }
     }
 
     private void Bump (int direction)
     {
-        if (!isBumping && carController.cartState == CarController.CartState.Running && cannon.projectile.Count > 0)
+        if (!isBumping && cannon.projectile.Count > 0 && carController.cartState == CarController.CartState.InCart)
         {
             BumpDirection = direction;
             elapsedTime = 0;
+            prevMassChange = 0;
+            centerMassManager.overideTiltScale = true;
 
             carController.SwitchCartState(CarController.CartState.InAir);
             cannon.projectile.RemoveAt(0);
@@ -72,13 +81,11 @@ public class CarBump : MonoBehaviour
 
     private void BumpLeft(InputAction.CallbackContext context)
     {
-        Debug.Log("Bump Left");
         Bump(1);
     }
 
     private void BumpRight(InputAction.CallbackContext context) 
     {
-        Debug.Log("Bump Right");
         Bump(-1);
     }
 }
