@@ -79,6 +79,8 @@ public class CarController : MonoBehaviour
     public vfxHandler vfxHandler;
     public audioHandler audioHandler;
 
+    
+
     private void Start()
     {
         FindNeededObjects();
@@ -359,6 +361,7 @@ public class CarController : MonoBehaviour
             case CartState.PoleHolding:
                 Debug.Log("Holding Pole");
 
+
                 //then rotate point to the right of cart
                 if (Vector3.Dot(transform.right, Vector3.Normalize(poleRotateLookatRef.position - transform.position)) > 0)
                 {
@@ -381,6 +384,8 @@ public class CarController : MonoBehaviour
                 break;
         };
     }
+
+    
 
     public void FindNeededObjects()
     {
