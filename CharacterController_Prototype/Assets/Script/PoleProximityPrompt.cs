@@ -44,7 +44,7 @@ public class PoleProximityPrompt : MonoBehaviour
                 promptText = children.gameObject;
             }
         }
-        promptText.gameObject.SetActive(true);
+        promptText.gameObject.SetActive(false);
         // Everett - Create co-routine to toggle the prompt off after a duration
     }
 }
