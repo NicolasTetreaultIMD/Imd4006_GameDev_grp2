@@ -28,7 +28,7 @@ public class HapticFeedback : MonoBehaviour
         if(isHoldingPole)
         {
             rumble = (speed - controller.minInCartSpeed) / (controller.maxSpeed - controller.minInCartSpeed) * (0.6f - 0);
-            Gamepad.all[playerId].SetMotorSpeeds(rumble, rumble);
+            Gamepad.current.SetMotorSpeeds(rumble, rumble);
         }
 
 
@@ -67,35 +67,35 @@ public class HapticFeedback : MonoBehaviour
 
     private IEnumerator CannonHapticsCoroutine()
     {
-        Gamepad.all[playerId].SetMotorSpeeds(1f, 1f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(1f, 1f); // Left and Right motor
         yield return new WaitForSeconds(0.15f);
-        Gamepad.all[playerId].SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
     }
 
     private IEnumerator CrashHapticsCoroutine()
     {
-        Gamepad.all[playerId].SetMotorSpeeds(1f, 1f);
+        Gamepad.current.SetMotorSpeeds(1f, 1f);
         yield return new WaitForSeconds(0.5f);
-        Gamepad.all[playerId].SetMotorSpeeds(0f, 0f);
+        Gamepad.current.SetMotorSpeeds(0f, 0f);
     }
     private IEnumerator ReleasePoleCoroutine()
     {
-        Gamepad.all[playerId].SetMotorSpeeds(1f, 1f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(1f, 1f); // Left and Right motor
         yield return new WaitForSeconds(0.5f);
-        Gamepad.all[playerId].SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
     }
 
     private IEnumerator ExplosionHapticsCoroutine()
     {
-        Gamepad.all[playerId].SetMotorSpeeds(1f, 1f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(1f, 1f); // Left and Right motor
         yield return new WaitForSeconds(0.5f);
-        Gamepad.all[playerId].SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
     }
 
     private IEnumerator CrateHapticsCoroutine()
     {
-        Gamepad.all[playerId].SetMotorSpeeds(0.75f, 0.75f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(0.75f, 0.75f); // Left and Right motor
         yield return new WaitForSeconds(0.25f);
-        Gamepad.all[playerId].SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
+        Gamepad.current.SetMotorSpeeds(0.0f, 0.0f); // Left and Right motor
     }
 }

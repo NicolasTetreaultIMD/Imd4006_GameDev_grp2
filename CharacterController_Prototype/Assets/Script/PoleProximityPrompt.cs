@@ -37,7 +37,7 @@ public class PoleProximityPrompt : MonoBehaviour
     void ShowPrompt(GameObject pole)
     {
         // Show the prompt above the pole
-        foreach(Transform children in pole.transform.GetComponentsInChildren<Transform>())
+        foreach (Transform children in pole.transform.GetComponentsInChildren<Transform>())
         {
             if (children.gameObject.tag == "ButtonPrompt")
             {
@@ -45,8 +45,6 @@ public class PoleProximityPrompt : MonoBehaviour
             }
         }
         promptText.gameObject.SetActive(true);
-
         // Everett - Create co-routine to toggle the prompt off after a duration
     }
-
 }

@@ -1074,6 +1074,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pole (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1857,6 +1862,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pole (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2187,6 +2197,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3774,6 +3789,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5477,6 +5497,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pole (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988601732483598588, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988601732483598588, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 47.14
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6225,6 +6260,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7028,6 +7068,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8276,6 +8321,7 @@ MonoBehaviour:
   cartState: 0
   playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -8826,6 +8872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11019,6 +11070,7 @@ MonoBehaviour:
   cartState: 0
   playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -13204,6 +13256,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pole (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13277,6 +13334,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13430,6 +13492,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14934,6 +15001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19865,6 +19937,7 @@ GameObject:
   - component: {fileID: 1814382214}
   - component: {fileID: 1814382213}
   - component: {fileID: 1814382215}
+  - component: {fileID: 1814382216}
   m_Layer: 0
   m_Name: MultiplayerManager
   m_TagString: Untagged
@@ -19940,6 +20013,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814382212}
   m_Enabled: 1
+--- !u!114 &1814382216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814382212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3d6036b7697aa247bbef37620854558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
 --- !u!1001 &1824249482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20967,6 +21053,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pole (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988601732483598588, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -109.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988601732483598588, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1837
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988601732483598588, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 34.14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22993,6 +23099,11 @@ PrefabInstance:
     - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
         type: 3}
       propertyPath: m_Name
+      value: Pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 8452428073500444279, guid: 43dd03e333ba59a43b61f599d7cf08e5,
+        type: 3}
+      propertyPath: m_TagString
       value: Pole
       objectReference: {fileID: 0}
     m_RemovedComponents: []
