@@ -7867,7 +7867,7 @@ GameObject:
   - component: {fileID: 5770305906044660869}
   - component: {fileID: 6590136537045947275}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: AimDirectionArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8143,7 +8143,9 @@ MonoBehaviour:
   grabEffect: {fileID: 0}
   itemPickup: {fileID: 5106358129945173819}
   shootItem: {fileID: 5829566315581542998}
-  aimDirection: {fileID: 8475531596263778584}
+  aimDirectionParent: {fileID: 8475531596263778584}
+  aimDirectionArrow: {fileID: 5773332873702513315}
+  lerpScale: 0.5
 --- !u!114 &63081826649961554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15000,7 +15002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4665405243251955982}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: AimDirectionParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
