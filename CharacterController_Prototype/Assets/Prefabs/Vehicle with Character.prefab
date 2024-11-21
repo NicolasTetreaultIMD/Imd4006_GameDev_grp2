@@ -7059,8 +7059,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3670632720333668319}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
-  m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
+  m_LocalRotation: {x: 0.10227152, y: 0.000000019136449, z: -0.0000000019674298, w: 0.9947565}
+  m_LocalPosition: {x: 3.7494967, y: 3.2799997, z: -9.935385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7866,7 +7866,6 @@ GameObject:
   - component: {fileID: 6166613938500822098}
   - component: {fileID: 5770305906044660869}
   - component: {fileID: 6590136537045947275}
-  - component: {fileID: 6801185158130283472}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -7939,28 +7938,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6801185158130283472
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5773332873702513315}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5783729222558518289
 GameObject:
   m_ObjectHideFlags: 0
@@ -8309,7 +8286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 5783729222558518289}
   proximityThreshold: 10
-  promptText: {fileID: 0}
 --- !u!114 &6865223610390682851
 MonoBehaviour:
   m_ObjectHideFlags: 0
