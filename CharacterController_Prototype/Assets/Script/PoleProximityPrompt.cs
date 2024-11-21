@@ -31,6 +31,7 @@ public class PoleProximityPrompt : MonoBehaviour
                 Debug.Log("CLOSE!");
                 return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
             }
+
         }
     }
 
@@ -45,6 +46,5 @@ public class PoleProximityPrompt : MonoBehaviour
             }
         }
         promptText.gameObject.SetActive(false);
-        // Everett - Create co-routine to toggle the prompt off after a duration
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
+using static System.TimeZoneInfo;
 
 public class vfxHandler : MonoBehaviour
 {
@@ -35,8 +36,12 @@ public class vfxHandler : MonoBehaviour
     private float maxTime = 0.5f;
 
     [Header("UI")]
-    public GameObject aimDirection;
+    public GameObject aimDirectionParent;
+    public GameObject aimDirectionArrow;
     private Vector3 targetScale;
+    public float lerpScale;
+    private float transitionTime = 4f;  // Time in seconds to transition from red to green
+    private float elapsedTime = 0f;     // Keeps track of the elapsed time
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +50,7 @@ public class vfxHandler : MonoBehaviour
         // Disable VFX
         itemPickup.enabled = false;
         shootItem.enabled = false;
-        aimDirection.SetActive(false);
+        aimDirectionParent.SetActive(false);
         ToggleSparks(false);
         ToggleVolumetricSmoke(3); // 3 = both trails off
         ToggleParticleSmoke(false);
@@ -107,8 +112,9 @@ public class vfxHandler : MonoBehaviour
         {
             ToggleSparks(false);
             ToggleParticleSmoke(false);
-            aimDirection.SetActive(false);
-            aimDirection.transform.localScale = Vector3.one; // reset scale each pole grab
+            aimDirectionParent.SetActive(false);
+            aimDirectionParent.transform.localScale = Vector3.one; // reset scale each pole grab
+            elapsedTime = 0; // reset colour transition on arrow
 
         }
         // Particle smoke if - Player is grabing pole
@@ -117,7 +123,7 @@ public class vfxHandler : MonoBehaviour
             ToggleSparks(true);
             ToggleParticleSmoke(true);
             ToggleVolumetricSmoke(3); // none
-            aimDirection.SetActive(true);
+            aimDirectionParent.SetActive(true);
             scaleDirectionalArrow(); // show directional arrow
             cartController.audioHandler.carDrift(); // Play drift noise
 
@@ -292,10 +298,38 @@ public class vfxHandler : MonoBehaviour
         targetScale = new Vector3(cartController.speed / 10, 1, cartController.speed / 4);
 
         // Smoothly transition  the scale of the aimDirection obj
-        aimDirection.transform.localScale = Vector3.Lerp(aimDirection.transform.localScale, targetScale, 1 * Time.deltaTime);
+        aimDirectionParent.transform.localScale = Vector3.Lerp(aimDirectionParent.transform.localScale, targetScale, lerpScale * Time.deltaTime);
+        ChangeArrowColourBasedOnSpeed(cartController.speed);
     }
-    public void ToggleAimDirectionOff()
+
+    private void ChangeArrowColourBasedOnSpeed(float speed)
     {
-        aimDirection.SetActive(false);
+        Renderer arrowRenderer = aimDirectionArrow.GetComponent<Renderer>();
+
+        //// Lerp the emission color from red to green based on speed (mapped from 0 to 100)
+        //float lerpFactor = Mathf.InverseLerp(0, 100, speed); // Normalize speed to range [0, 1]
+        //Color targetColor = Color.Lerp(Color.red, Color.green, lerpFactor); // Smoothly transition color
+
+        //// Apply the target emission color to the material
+        //arrowRenderer.material.SetColor("_EmissionColor", targetColor);
+
+        //// Ensure the emission keyword is enabled for the effect to show
+        //arrowRenderer.material.EnableKeyword("_EMISSION");
+
+
+        // Increment elapsed time based on deltaTime, but don't go past transitionTime
+        elapsedTime = Mathf.Min(elapsedTime + Time.deltaTime, transitionTime);
+
+        // Lerp between red and green based on elapsed time
+        float lerpFactor = Mathf.InverseLerp(0f, transitionTime, elapsedTime);
+
+        // Smoothly transition from red to green
+        Color targetColor = Color.Lerp(Color.red, Color.green, lerpFactor);
+
+        // Apply the target emission color to the material
+        arrowRenderer.material.SetColor("_EmissionColor", targetColor);
+
+        // Ensure the emission keyword is enabled for the effect to show
+        arrowRenderer.material.EnableKeyword("_EMISSION");
     }
 }
