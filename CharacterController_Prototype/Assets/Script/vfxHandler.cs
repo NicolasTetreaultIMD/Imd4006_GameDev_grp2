@@ -234,21 +234,25 @@ public class vfxHandler : MonoBehaviour
         switch (value)
         {
             case 0: // Both wheels are touching - show ALL trails
-                for (int i = 0; i < tireTrails.Length; i++) { tireTrails[i].enabled = true; }
+                for (int i = 0; i < tireTrails.Length; i++) 
+                { 
+                    //tireTrails[i].enabled = true;
+                    tireTrails[i].time = Time.time;
+                }
                 break;
 
             case 1: // LEFT side is touching the ground
-                tireTrails[0].enabled = true;
-                tireTrails[1].enabled = true;
-                tireTrails[2].enabled = false;
-                tireTrails[3].enabled = false;
+                tireTrails[0].time = Time.time;
+                tireTrails[1].time = Time.time;
+                tireTrails[2].time = 0;
+                tireTrails[3].time = 0;
                 break;
 
             case 2: // RIGHT side is touching the ground
-                tireTrails[0].enabled = false;
-                tireTrails[1].enabled = false;
-                tireTrails[2].enabled = true;
-                tireTrails[3].enabled = true;
+                tireTrails[0].time = 0;
+                tireTrails[1].time = 0;
+                tireTrails[2].time = Time.time;
+                tireTrails[3].time = Time.time;
                 break;
 
             default:
