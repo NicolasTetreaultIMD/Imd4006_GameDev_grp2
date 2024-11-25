@@ -6,7 +6,11 @@ using UnityEngine.InputSystem;
 
 public class MultiplayerManager : MonoBehaviour
 {
+    public PlayerInputManager playerInputManager;
+
     public List<PlayerInput> players = new List<PlayerInput>();
+    public GameObject[] playerPrefabs = new GameObject[4];
+
 
     LayerMask p1OcclusionMask;
     LayerMask p2OcclusionMask;
@@ -40,6 +44,8 @@ public class MultiplayerManager : MonoBehaviour
         GameObject player = playerInput.gameObject;
 
         player = cullingMaskApplier(player, playerInput.playerIndex);
+
+        playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex + 1];
 
         Debug.Log($"Player joined: {playerInput.playerIndex}");
     }
