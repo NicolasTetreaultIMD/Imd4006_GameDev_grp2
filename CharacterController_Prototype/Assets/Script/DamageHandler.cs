@@ -38,7 +38,8 @@ public class DamageHandler : MonoBehaviour
 
         if(gameObject.tag == "Player" && playerId != explosivePlayerId)
         {
-            carController.health = 0;
+            carController.health--;
+            carController.speed = 0;
         }
     }
 

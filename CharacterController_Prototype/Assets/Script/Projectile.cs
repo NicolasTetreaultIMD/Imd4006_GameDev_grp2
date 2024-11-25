@@ -73,24 +73,34 @@ public class Projectile : MonoBehaviour
         //If Projectile collides with either a default layer or an obstacle layer, then stop moving and create explosion.
         if (collision.gameObject.layer == 0 || collision.gameObject.layer == 7)
         {
-            madeContact = true;
-            gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            explosion.gameObject.SetActive(true);
-            explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
-            bombMesh.enabled = false;
+            if (gameObject.tag == "Bomb")
+            {
+                madeContact = true;
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                explosion.gameObject.SetActive(true);
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+                bombMesh.enabled = false;
 
-            carController.audioHandler.impactExplosion();
-            Debug.Log("explosion");
-            haptics.ExplosionHaptics();
+                carController.audioHandler.impactExplosion();
+                haptics.ExplosionHaptics();
 
-            StartCoroutine(FadeOut());
+                StartCoroutine(FadeOut());
+            }
+
+            if(gameObject.tag == "Mine")
+            {
+                madeContact = true;
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+            }
         }
     }
 
     private IEnumerator FadeOut()
     {
         // Wait for 2 seconds before continuing
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.25f);
         Destroy(gameObject);
     }
 }

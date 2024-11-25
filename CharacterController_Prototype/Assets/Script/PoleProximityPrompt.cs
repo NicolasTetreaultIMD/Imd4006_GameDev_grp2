@@ -27,7 +27,7 @@ public class PoleProximityPrompt : MonoBehaviour
             if (distance < proximityThreshold)
             {
                 // If the player is close enough to the pole, show the prompt
-                ShowPrompt(pole);
+                //ShowPrompt(pole);
                 Debug.Log("CLOSE!");
                 return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
             }

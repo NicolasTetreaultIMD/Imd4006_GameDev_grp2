@@ -11,6 +11,12 @@ TagManager:
   - Target
   - Pole
   - ButtonPrompt
+  - Bomb
+  - Mine
+  - Nuke
+  - Bomb Box
+  - Mine Box
+  - Nuke Box
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,7 @@ public class CarController : MonoBehaviour
     private InputAction increase;
 
     [Header("Health")]
+    public GameManager gameManager;
     public int health;
 
     [Header("Cannon")]
@@ -86,6 +87,10 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        health = 3;
+        
         FindNeededObjects();
         playerInput = GetComponent<PlayerInput>();
         playerId = playerInput.playerIndex;
@@ -105,105 +110,116 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        //Syncs the speed of the player's leg animation to the player's actual speed in the game.
-        float newLowerBodySpeed = speed / 18.75f;
-        animationController.SetFloat("LowerBodySpeed",newLowerBodySpeed);
-
-        //Transition for the runner to go to the shooter position
-        if(goingToShooterSpot)
+        if (gameManager.GameOver == false)
         {
-            transitionProgress += Time.deltaTime * 0.5f;
-            Runner.position = Vector3.Lerp(Runner.position, shooterSpot.position, transitionProgress);
-            
-            if(Runner.position == shooterSpot.position)
-            {
-                runnerAnimController.ChangeAnimation("Idle", 1);
-                goingToShooterSpot = false;
-            }
+            //Syncs the speed of the player's leg animation to the player's actual speed in the game.
+            float newLowerBodySpeed = speed / 18.75f;
+            animationController.SetFloat("LowerBodySpeed", newLowerBodySpeed);
 
-            if(goingToRunnerSpot) //Safety net if both happen at same time
+            //Transition for the runner to go to the shooter position
+            if (goingToShooterSpot)
             {
-                goingToShooterSpot = false;
-            }
-        }
-        //Transition for the runner to go to the running position
-        if (goingToRunnerSpot)
-        {
-            transitionProgress += Time.deltaTime * 0.25f;
-            Runner.position = Vector3.Lerp(Runner.position, runnerSpot.position, transitionProgress);
+                transitionProgress += Time.deltaTime * 0.5f;
+                Runner.position = Vector3.Lerp(Runner.position, shooterSpot.position, transitionProgress);
 
-            if (Runner.position == runnerSpot.position)
+                if (Runner.position == shooterSpot.position)
+                {
+                    runnerAnimController.ChangeAnimation("Idle", 1);
+                    goingToShooterSpot = false;
+                }
+
+                if (goingToRunnerSpot) //Safety net if both happen at same time
+                {
+                    goingToShooterSpot = false;
+                }
+            }
+            //Transition for the runner to go to the running position
+            if (goingToRunnerSpot)
             {
-                goingToRunnerSpot = false;
-                runnerAnimController.ChangeWeight(1, 1);
-                runnerAnimController.ChangeAnimation("Idle", 1);
-                runnerAnimController.ChangeAnimation("Run_LowerBody", 0);
+                transitionProgress += Time.deltaTime * 0.25f;
+                Runner.position = Vector3.Lerp(Runner.position, runnerSpot.position, transitionProgress);
+
+                if (Runner.position == runnerSpot.position)
+                {
+                    goingToRunnerSpot = false;
+                    runnerAnimController.ChangeWeight(1, 1);
+                    runnerAnimController.ChangeAnimation("Idle", 1);
+                    runnerAnimController.ChangeAnimation("Run_LowerBody", 0);
+                }
             }
         }
     }
 
     private void FixedUpdate()
     {
-        turnTilt = 0;
-
-        //cart shake
-        float shakePos = speed * (UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / maxSpeed);
-        float motorShake = UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / 4;
-
-        centerMassManager.massCenter.y += shakePos + motorShake - prevCartShakePos;
-        prevCartShakePos = shakePos + motorShake;
-
-        float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
-        //Debug.Log(shakeAngle);
-        transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
-
-        //JOYSTICK CONTROLS FOR TURNING
-        leftStick = playerInput.actions["Movement"].ReadValue<Vector2>();
-
-        leftStick = StickDeadzone(leftStick);
-
-        if (cartState != CartState.PoleHolding)
+        if (gameManager.GameOver == false)
         {
-            //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
-            if (speed > 0)
+            turnTilt = 0;
+
+            //cart shake
+            float shakePos = speed * (UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / maxSpeed);
+            float motorShake = UnityEngine.Random.Range(centerMassManager.minHeight, centerMassManager.maxHeight) / 4;
+
+            centerMassManager.massCenter.y += shakePos + motorShake - prevCartShakePos;
+            prevCartShakePos = shakePos + motorShake;
+
+            float shakeAngle = cartShakeAmount * speed * UnityEngine.Random.Range(-1.0f, 1.0f) * 2;
+            //Debug.Log(shakeAngle);
+            transform.rotation = Quaternion.Euler(0, shakeAngle, 0) * transform.rotation;
+
+            //JOYSTICK CONTROLS FOR TURNING
+            leftStick = playerInput.actions["Movement"].ReadValue<Vector2>();
+
+            leftStick = StickDeadzone(leftStick);
+
+            if (cartState != CartState.PoleHolding)
             {
-                if (Time.time >= speedDecreaseCooldown && !hasBoostGrace)
+                //Gradually decreases the player's speed over time if they aren't clicking the accelerate button.
+                if (speed > 0)
                 {
-                    speed -= speedDecreaseValue;
-                    speedDecreaseCooldown = Time.time + 0.5f;
+                    if (Time.time >= speedDecreaseCooldown && !hasBoostGrace)
+                    {
+                        speed -= speedDecreaseValue;
+                        speedDecreaseCooldown = Time.time + 0.5f;
+                    }
                 }
+                else if (speed < 0)
+                {
+                    speed = 0;
+                }
+
+                if (speed < minInCartSpeed && cartState == CartState.InCart)
+                {
+                    SwitchCartState(CartState.Running);
+                }
+
+                //Update MotionBlur
+                globalVolume.profile.TryGet(out motionBlur);
+                {
+                    float motionBlurChange = (speed / maxSpeed) * maxMotionBlurIntensity;
+                    motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
+                    prevMotionBlurChange = motionBlurChange;
+                }
+
+                //APPLIES TURN TO CART
+                TurnCart();
+
+                //MOVES CART
+                Move();
             }
-            else if (speed < 0)
+            else
             {
-                speed = 0;
+                PoleGrabIncrease();
             }
 
-            if (speed < minInCartSpeed && cartState == CartState.InCart)
+            centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
+            prevTurnTilt = turnTilt;
+
+            if (health <= 0)
             {
-                SwitchCartState(CartState.Running);
+                gameObject.SetActive(false);
             }
-
-            //Update MotionBlur
-            globalVolume.profile.TryGet(out motionBlur);
-            {
-                float motionBlurChange = (speed / maxSpeed) * maxMotionBlurIntensity;
-                motionBlur.intensity.value += motionBlurChange - prevMotionBlurChange;
-                prevMotionBlurChange = motionBlurChange;
-            }
-
-            //APPLIES TURN TO CART
-            TurnCart();
-
-            //MOVES CART
-            Move();
         }
-        else
-        {
-            PoleGrabIncrease();
-        }
-
-        centerMassManager.massCenter.x += turnTilt - prevTurnTilt;
-        prevTurnTilt = turnTilt;
     }
 
     //Makes sure the stickInputs follow the deadzone set
@@ -397,9 +413,25 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "ItemBox")
+        if(other.tag == "Bomb Box")
         {
-            cannon.LoadCannon(GameObject.Find(other.name + " Item"));
+            cannon.LoadCannon(GameObject.Find("Bomb Item"));
+            vfxHandler.PickupItem(); // Play Item Pickup VFX
+            audioHandler.PickupItem(); // Play Item Pickup AFX
+            Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Mine Box")
+        {
+            cannon.LoadCannon(GameObject.Find("Mine Item"));
+            vfxHandler.PickupItem(); // Play Item Pickup VFX
+            audioHandler.PickupItem(); // Play Item Pickup AFX
+            Destroy(other.gameObject);
+        }
+
+        if (other.tag == "Nuke Box")
+        {
+            cannon.LoadCannon(GameObject.Find("Nuke Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
             Destroy(other.gameObject);

@@ -39,6 +39,11 @@ public class Cannon : MonoBehaviour
     public bool aritime;
     Vector3 positionAtTime;
 
+    [Header("Rate of Fire")]
+    public float shootCooldown;
+    public float lastShootTime;
+    public bool canShoot;
+
     [Header("Line of Trajectory")]
     public LineRenderer trajectoryLine;
     public Transform hitMarker;
@@ -76,13 +81,23 @@ public class Cannon : MonoBehaviour
         shootForceIncreaseSpeed = 2;
         hitMarker.GetComponent<MeshRenderer>().enabled = false;
 
-
+        shootCooldown = 2;
+        canShoot = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         direction = (shootingPoint.transform.position - transform.position).normalized;
+
+        if(Time.time > lastShootTime)
+        {
+            canShoot = true;
+        }
+        else
+        {
+            canShoot = false;
+        }
 
 
         //Debug.Log(cart.cartState);
@@ -91,15 +106,18 @@ public class Cannon : MonoBehaviour
             //Controls whether the Hit Marker is shown or hidden
             if (isShooting && projectile.Count > 0)
             {
-                trajectoryLine.enabled = true;
-                hitMarker.GetComponent<MeshRenderer>().enabled = true;
-
-                if (shootForce < maxShootForce)
+                if (canShoot == true)
                 {
-                    shootForce = Mathf.Lerp(shootForce, maxShootForce * playerInput.actions["CannonShoot"].ReadValue<float>(), shootForceIncreaseSpeed * Time.deltaTime);
-                    RememberShootForce(shootForce);
+                    trajectoryLine.enabled = true;
+                    hitMarker.GetComponent<MeshRenderer>().enabled = true;
+
+                    if (shootForce < maxShootForce)
+                    {
+                        shootForce = Mathf.Lerp(shootForce, maxShootForce * playerInput.actions["CannonShoot"].ReadValue<float>(), shootForceIncreaseSpeed * Time.deltaTime);
+                        RememberShootForce(shootForce);
+                    }
+                    DrawTrajectory();
                 }
-                DrawTrajectory();
             }
             else
             {
@@ -119,10 +137,13 @@ public class Cannon : MonoBehaviour
     {
         if (cart.cartState != CarController.CartState.Running && cart.cartState != CarController.CartState.PoleHolding)
         {
-            //AIMING CANNON
-            rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
+            if (canShoot == true)
+            {
+                //AIMING CANNON
+                rightStick = playerInput.actions["CannonAim"].ReadValue<Vector2>();
 
-            AimCannon();
+                AimCannon();
+            }
         }
         else
         {
@@ -191,7 +212,7 @@ public class Cannon : MonoBehaviour
                 haptics.CannonHaptics();
                 shootForce = 40;
 
-
+                lastShootTime = Time.time + shootCooldown;
             }
 
             //Debug.Log(projectile.Count);
