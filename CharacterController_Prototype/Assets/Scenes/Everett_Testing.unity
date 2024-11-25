@@ -241,6 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db0164ab4848545ba671efdec7b9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
 --- !u!1 &48299479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,8 +1264,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carController: {fileID: 0}
+  cinemachine: {fileID: 0}
+  minFOV: 0
+  maxFOX: 0
+  FOVChangeSpeed: 0
   maxCamDistance: 0
   cameraShakeAmount: 0
+  amplitudeChange: 0
+  amplitudeChangeSpeed: 0
+  maxAmplitude: 0
+  frequencyChange: 0
+  frequencyChangeSpeed: 0
+  maxFrequency: 0
   camDisplacement: {x: 0, y: 0, z: 0}
 --- !u!1001 &328578590
 PrefabInstance:
@@ -1934,6 +1945,111 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43dd03e333ba59a43b61f599d7cf08e5, type: 3}
+--- !u!1 &616567113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616567117}
+  - component: {fileID: 616567116}
+  - component: {fileID: 616567115}
+  - component: {fileID: 616567114}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &616567114
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616567113}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &616567115
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616567113}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: cdc0b816457bf554a89c5708a68f3978, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &616567116
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616567113}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &616567117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616567113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -24.589674, y: 154.85548, z: 40.037964}
+  m_LocalScale: {x: 21.647678, y: 21.647678, z: 21.647678}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &652298780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2313,6 +2429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db0164ab4848545ba671efdec7b9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
 --- !u!1001 &790155697
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3172,7 +3289,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cartState: 0
+  playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
+  gameManager: {fileID: 0}
+  health: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -3187,13 +3308,16 @@ MonoBehaviour:
   speed: 0
   minInCartSpeed: 20
   maxSpeed: 37.5
+  speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  grabManager: {fileID: 0}
   cameraPivotRef: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
+  hasBoostGrace: 0
   cameraPivotSpeed: 0
   speedPoleIncreaseRate: 0
   centerMassManager: {fileID: 0}
@@ -3203,6 +3327,8 @@ MonoBehaviour:
   maxMotionBlurIntensity: 0
   animationController: {fileID: 0}
   featherEffect: {fileID: 0}
+  vfxHandler: {fileID: 0}
+  audioHandler: {fileID: 0}
 --- !u!4 &941737916
 Transform:
   m_ObjectHideFlags: 0
@@ -4403,6 +4529,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMaterial: {fileID: 2100000, guid: 5bbc0e93c5a62d54bbd30b86d657e1ec, type: 2}
   currentMaterial: {fileID: 2100000, guid: 18d6a06ca45afd24ba0e202c03e1cae3, type: 2}
+  carController: {fileID: 0}
+  playerId: 0
   isProjectile: 0
 --- !u!65 &1143639495
 BoxCollider:
@@ -4490,6 +4618,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1153844876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3315310145655566286, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310145655566286, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.234
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315310145655566286, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.481
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 8.9812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 8.9812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 8.9812
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -25.052755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 152.49342
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.15603235
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.987752
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 162.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072941589950446363, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881953017835381153, guid: ec5be8498ba3e2c43b348ec6ceda4f29,
+        type: 3}
+      propertyPath: m_Name
+      value: bomb
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec5be8498ba3e2c43b348ec6ceda4f29, type: 3}
 --- !u!1 &1160824522
 GameObject:
   m_ObjectHideFlags: 0
@@ -4820,7 +5046,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cartState: 0
+  playerId: 0
   leftStick: {x: 0, y: 0}
+  stickDeadzone: 0
+  gameManager: {fileID: 0}
+  health: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -4835,13 +5065,16 @@ MonoBehaviour:
   speed: 0
   minInCartSpeed: 20
   maxSpeed: 37.5
+  speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  grabManager: {fileID: 0}
   cameraPivotRef: {fileID: 0}
   poleRotateLookatRef: {fileID: 0}
+  hasBoostGrace: 0
   cameraPivotSpeed: 0
   speedPoleIncreaseRate: 0
   centerMassManager: {fileID: 0}
@@ -4851,6 +5084,8 @@ MonoBehaviour:
   maxMotionBlurIntensity: 0
   animationController: {fileID: 1957103038}
   featherEffect: {fileID: 0}
+  vfxHandler: {fileID: 0}
+  audioHandler: {fileID: 0}
 --- !u!65 &1192316229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6216,6 +6451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMaterial: {fileID: 2100000, guid: 5bbc0e93c5a62d54bbd30b86d657e1ec, type: 2}
   currentMaterial: {fileID: 2100000, guid: 18d6a06ca45afd24ba0e202c03e1cae3, type: 2}
+  carController: {fileID: 0}
+  playerId: 0
   isProjectile: 0
 --- !u!65 &1223650241
 BoxCollider:
@@ -7174,6 +7411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMaterial: {fileID: 2100000, guid: 5bbc0e93c5a62d54bbd30b86d657e1ec, type: 2}
   currentMaterial: {fileID: 2100000, guid: 18d6a06ca45afd24ba0e202c03e1cae3, type: 2}
+  carController: {fileID: 0}
+  playerId: 0
   isProjectile: 0
 --- !u!65 &1420293558
 BoxCollider:
@@ -9577,7 +9816,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1f2e2a2fc5ce349a7dcd841f95bb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingPoint: {fileID: 0}
+  bombMesh: {fileID: 0}
+  shootingPoint: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   shootForce: 0
   mass: 0
@@ -9585,6 +9825,7 @@ MonoBehaviour:
   forcesApplied: 0
   madeContact: 0
   explosion: {fileID: 14532523}
+  haptics: {fileID: 0}
 --- !u!54 &1739899354
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10177,7 +10418,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1f2e2a2fc5ce349a7dcd841f95bb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingPoint: {fileID: 0}
+  bombMesh: {fileID: 0}
+  shootingPoint: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   shootForce: 0
   mass: 0
@@ -10185,6 +10427,7 @@ MonoBehaviour:
   forcesApplied: 0
   madeContact: 0
   explosion: {fileID: 698072687}
+  haptics: {fileID: 0}
 --- !u!4 &1923539425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6194581467289562363, guid: e3b8d590767749941862bee48660fdca,
@@ -10434,6 +10677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testMaterial: {fileID: 2100000, guid: 5bbc0e93c5a62d54bbd30b86d657e1ec, type: 2}
   currentMaterial: {fileID: 2100000, guid: 18d6a06ca45afd24ba0e202c03e1cae3, type: 2}
+  carController: {fileID: 0}
+  playerId: 0
   isProjectile: 0
 --- !u!65 &1990880049
 BoxCollider:
@@ -11220,3 +11465,5 @@ SceneRoots:
   - {fileID: 1223650244}
   - {fileID: 1990880052}
   - {fileID: 1143639498}
+  - {fileID: 616567117}
+  - {fileID: 1153844876}
