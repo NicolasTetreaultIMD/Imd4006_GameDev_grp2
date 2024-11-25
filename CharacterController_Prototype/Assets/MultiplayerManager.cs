@@ -42,7 +42,6 @@ public class MultiplayerManager : MonoBehaviour
         players.Add(playerInput);
 
         GameObject player = playerInput.gameObject;
-
         player = cullingMaskApplier(player, playerInput.playerIndex);
 
         playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex + 1];
@@ -67,6 +66,9 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p1OcclusionMask;
             playerCam.layer = 10;
             playerCine.layer = 10;
+
+            player.GetComponentInChildren<LineRenderer>().gameObject.layer = 14;
+            player.transform.Find("Hitmarker").gameObject.layer = 14;
         }
 
         if(playerId == 1) 
@@ -74,6 +76,9 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p2OcclusionMask;
             playerCam.layer = 11;
             playerCine.layer = 11;
+
+            player.GetComponentInChildren<LineRenderer>().gameObject.layer = 15;
+            player.transform.Find("Hitmarker").gameObject.layer = 15;
         }
 
         if (playerId == 2)
@@ -81,6 +86,9 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p3OcclusionMask;
             playerCam.layer = 12;
             playerCine.layer = 12;
+
+            player.GetComponentInChildren<LineRenderer>().gameObject.layer = 16;
+            player.transform.Find("Hitmarker").gameObject.layer = 16;
         }
 
         if (playerId == 3)
@@ -88,6 +96,9 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p4OcclusionMask;
             playerCam.layer = 14;
             playerCine.layer = 14;
+
+            player.GetComponentInChildren<LineRenderer>().gameObject.layer = 17;
+            player.transform.Find("Hitmarker").gameObject.layer = 17;
         }
 
         return player;

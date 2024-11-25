@@ -19,6 +19,9 @@ public class CarController : MonoBehaviour
     PlayerInput playerInput;
     private InputAction increase;
 
+    [Header("Health")]
+    public int health;
+
     [Header("Cannon")]
     public Cannon cannon;
 
