@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    public GameObject[] players = new GameObject[2];
+    public GameObject[] players = new GameObject[4];
     public bool GameOver;
 
     // Start is called before the first frame update
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void EndGame()
