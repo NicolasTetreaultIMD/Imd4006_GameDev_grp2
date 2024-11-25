@@ -20041,7 +20041,7 @@ MonoBehaviour:
     type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: 2
+  m_FixedNumberOfSplitScreens: -1
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0
@@ -20088,6 +20088,8 @@ MonoBehaviour:
   uiHandler: {fileID: 1536598625}
   players: []
   playerPrefabs:
+  - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
+  - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
   - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
   - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
 --- !u!1001 &1824249482
