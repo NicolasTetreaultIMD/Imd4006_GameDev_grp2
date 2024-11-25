@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -739,7 +739,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2122,7 +2122,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3075,7 +3075,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4161,7 +4161,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4679,7 +4679,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5671,7 +5671,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5755,7 +5755,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6915,7 +6915,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6993,7 +6993,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7916,7 +7916,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8000,7 +8000,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8495,7 +8495,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9228,7 +9228,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9677,7 +9677,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10740,7 +10740,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13012,7 +13012,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14433,7 +14433,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15250,7 +15250,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16529,7 +16529,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18981,7 +18981,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20487,7 +20487,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20855,7 +20855,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22133,7 +22133,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22496,7 +22496,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Bomb Box
+      value: Mine Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22885,74 +22885,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 441edbb43801b4045b31dbefccdc9a43, type: 3}
---- !u!1001 &877164495296445605
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -54.643112
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -77.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 50.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2232278898697530682, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9120690118854440021, guid: 4ee1de7033d6bf9458c0bfd046d5031d,
-        type: 3}
-      propertyPath: m_Name
-      value: Missile Item
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ee1de7033d6bf9458c0bfd046d5031d, type: 3}
 --- !u!1001 &1756834849535285801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23245,6 +23177,84 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0827ab6e072cb114eb9bf92a1e2c0dd7, type: 3}
+--- !u!1001 &4531725785153174344
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6152001054246776513, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: bombMesh
+      value: 
+      objectReference: {fileID: 6661586111076941624}
+    - target: {fileID: 6152001054246776513, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 6661586111076941623}
+    - target: {fileID: 7462038704585002554, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_Name
+      value: Mine Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -53.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -78.525
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 79.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837859868641924224, guid: 1a5d43acda90b3840afcb3c2a37b13b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1a5d43acda90b3840afcb3c2a37b13b2, type: 3}
 --- !u!1001 &5998864142445754635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23421,6 +23431,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a833f4cdabfe1414c86776a781e82203, type: 3}
+--- !u!1 &6661586111076941623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6328175146990307752, guid: a833f4cdabfe1414c86776a781e82203,
+    type: 3}
+  m_PrefabInstance: {fileID: 6661586111076941622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6661586111076941624 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5784302545097378280, guid: a833f4cdabfe1414c86776a781e82203,
+    type: 3}
+  m_PrefabInstance: {fileID: 6661586111076941622}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7848884037006326114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24110,7 +24132,7 @@ SceneRoots:
   - {fileID: 2051317568}
   - {fileID: 669925958}
   - {fileID: 6661586111076941622}
-  - {fileID: 877164495296445605}
+  - {fileID: 4531725785153174344}
   - {fileID: 1108482125}
   - {fileID: 1574753239}
   - {fileID: 823205705}

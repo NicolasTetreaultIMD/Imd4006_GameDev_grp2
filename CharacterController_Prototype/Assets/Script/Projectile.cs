@@ -90,7 +90,8 @@ public class Projectile : MonoBehaviour
             if(gameObject.tag == "Mine")
             {
                 madeContact = true;
-                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                //gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                gameObject.transform.rotation = Quaternion.identity;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
             }
