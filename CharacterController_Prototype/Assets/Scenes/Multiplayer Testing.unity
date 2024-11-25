@@ -16251,7 +16251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62d995010a03fa44bf387eaf6d8c040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carController: {fileID: 0}
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   ammoCountText: {fileID: 824604801}
 --- !u!1001 &1541004656
 PrefabInstance:
@@ -20033,7 +20037,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5783729222558518289, guid: 216bc1d968a2b0040b986ecd230d7426,
+  m_PlayerPrefab: {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694,
     type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
@@ -20080,9 +20084,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputManager: {fileID: 1814382213}
+  gameManager: {fileID: 1670227357}
+  uiHandler: {fileID: 1536598625}
   players: []
   playerPrefabs:
-  - {fileID: 5783729222558518289, guid: 216bc1d968a2b0040b986ecd230d7426, type: 3}
+  - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
   - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
 --- !u!1001 &1824249482
 PrefabInstance:
