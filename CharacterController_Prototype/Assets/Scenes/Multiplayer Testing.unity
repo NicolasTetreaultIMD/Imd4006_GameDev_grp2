@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -739,7 +739,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2122,7 +2122,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3075,7 +3075,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4161,7 +4161,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4679,7 +4679,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5671,7 +5671,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5755,7 +5755,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6915,7 +6915,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6993,7 +6993,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7916,7 +7916,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8000,7 +8000,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8322,6 +8322,8 @@ MonoBehaviour:
   playerId: 0
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0
+  gameManager: {fileID: 0}
+  health: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -8493,7 +8495,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9226,7 +9228,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9675,7 +9677,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10738,7 +10740,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11071,6 +11073,8 @@ MonoBehaviour:
   playerId: 0
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0
+  gameManager: {fileID: 0}
+  health: 0
   cannon: {fileID: 0}
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
@@ -13008,7 +13012,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14429,7 +14433,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15246,7 +15250,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16521,7 +16525,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18852,6 +18856,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 904098142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1670227356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670227358}
+  - component: {fileID: 1670227357}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1670227357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670227356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc353f1fc1655d4429117aa12ff5e623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  GameOver: 0
+--- !u!4 &1670227358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670227356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 145.31938, y: 58.171722, z: -11.518621}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1672906757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18923,7 +18977,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19983,7 +20037,7 @@ MonoBehaviour:
     type: 3}
   m_SplitScreen: 1
   m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: 4
+  m_FixedNumberOfSplitScreens: 2
   m_SplitScreenRect:
     serializedVersion: 2
     x: 0
@@ -20029,9 +20083,7 @@ MonoBehaviour:
   players: []
   playerPrefabs:
   - {fileID: 5783729222558518289, guid: 216bc1d968a2b0040b986ecd230d7426, type: 3}
-  - {fileID: 5783729222558518289, guid: 4f47a2a0534b1994697f72b18619584e, type: 3}
-  - {fileID: 5783729222558518289, guid: 264f5c52c6c6f4e45b82e32015833bfc, type: 3}
-  - {fileID: 5783729222558518289, guid: 3b1b7902481188d4c978f4bc7682c9de, type: 3}
+  - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
 --- !u!1001 &1824249482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20427,7 +20479,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20795,7 +20847,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22073,7 +22125,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22436,7 +22488,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: ItemBox
+      value: Bomb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24055,3 +24107,4 @@ SceneRoots:
   - {fileID: 1574753239}
   - {fileID: 823205705}
   - {fileID: 1814382214}
+  - {fileID: 1670227358}

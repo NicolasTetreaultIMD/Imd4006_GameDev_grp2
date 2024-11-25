@@ -11,6 +11,9 @@ TagManager:
   - Target
   - Pole
   - ButtonPrompt
+  - Bomb
+  - Mine
+  - Nuke
   layers:
   - Default
   - TransparentFX
