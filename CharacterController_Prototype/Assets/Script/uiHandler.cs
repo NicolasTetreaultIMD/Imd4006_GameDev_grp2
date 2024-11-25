@@ -2,33 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem.XR;
 
 
 public class uiHandler : MonoBehaviour
 {
-    //public CarController carController;
     public GameObject[] players = new GameObject[4];
 
     [Header("UI Elements")]
-    public TextMeshProUGUI ammoCountText;
+    public TextMeshProUGUI p1_ammoCount;
+    public TextMeshProUGUI p0_ammoCount;
 
     // Start is called before the first frame update
 
     void Start()
     {
-        ammoCountText = FindObjectOfType<TextMeshProUGUI>();
-        ammoCountText.text = "Ammo: 0";
+        p0_ammoCount = FindObjectOfType<TextMeshProUGUI>();
+        p1_ammoCount = FindObjectOfType<TextMeshProUGUI>();
+
+        p0_ammoCount.text = "Ammo: 0";
+        p1_ammoCount.text = "Ammo: 0";
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // Update the UI text to show the projectile count
-        //ammoCountText.text = "Ammo: " + carController.cannon.projectile.Count.ToString();
+        if (players[0] != null)
+        {
+            p0_ammoCount.text = "Ammo: " + players[0].GetComponent<CarController>().cannon.projectile.Count.ToString();
+        }
 
         if (players[1] != null) 
         {
-            Debug.Log(players[1].GetComponent<CarController>().health);
+            p1_ammoCount.text = "Ammo: " + players[1].GetComponent<CarController>().cannon.projectile.Count.ToString();
+
+            //Debug.Log(players[1].GetComponent<CarController>().health);
+
         }
     }
 
