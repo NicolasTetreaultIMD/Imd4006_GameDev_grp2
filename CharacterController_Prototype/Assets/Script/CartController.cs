@@ -217,7 +217,7 @@ public class CarController : MonoBehaviour
 
             if (health <= 0)
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
@@ -413,7 +413,7 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Bomb")
+        if(other.tag == "Bomb Box")
         {
             cannon.LoadCannon(GameObject.Find("Bomb Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
@@ -421,7 +421,7 @@ public class CarController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.tag == "Mine")
+        if (other.tag == "Mine Box")
         {
             cannon.LoadCannon(GameObject.Find("Mine Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
@@ -429,7 +429,7 @@ public class CarController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.tag == "Nuke")
+        if (other.tag == "Nuke Box")
         {
             cannon.LoadCannon(GameObject.Find("Nuke Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX

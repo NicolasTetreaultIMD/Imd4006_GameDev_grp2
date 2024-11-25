@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9157332950141916137}
   m_Layer: 0
   m_Name: Bomb Item
-  m_TagString: Untagged
+  m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,7 +159,6 @@ MonoBehaviour:
   madeContact: 0
   explosion: {fileID: 6328175146990307752}
   haptics: {fileID: 0}
-  carController: {fileID: 0}
 --- !u!1 &6328175146990307752
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4db0164ab4848545ba671efdec7b9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerId: 0
 --- !u!1001 &155956747922927539
 PrefabInstance:
   m_ObjectHideFlags: 0
