@@ -6,7 +6,11 @@ using UnityEngine.InputSystem;
 
 public class MultiplayerManager : MonoBehaviour
 {
+    public PlayerInputManager playerInputManager;
+
     public List<PlayerInput> players = new List<PlayerInput>();
+    public GameObject[] playerPrefabs = new GameObject[4];
+
 
     LayerMask p1OcclusionMask;
     LayerMask p2OcclusionMask;
@@ -15,10 +19,10 @@ public class MultiplayerManager : MonoBehaviour
 
     private void Start()
     {
-        p1OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player1");
-        p2OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player2");
-        p3OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player3");
-        p4OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player4");
+        p1OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player1", "Player1UI");
+        p2OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player2", "Player2UI");
+        p3OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player3", "Player3UI");
+        p4OcclusionMask = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Item", "Water", "UI", "Pole", "Obstacle", "Vehicle", "Ignore", "Player4", "Player4UI");
     }
 
     private void OnEnable()
@@ -40,6 +44,8 @@ public class MultiplayerManager : MonoBehaviour
         GameObject player = playerInput.gameObject;
 
         player = cullingMaskApplier(player, playerInput.playerIndex);
+
+        playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex + 1];
 
         Debug.Log($"Player joined: {playerInput.playerIndex}");
     }
