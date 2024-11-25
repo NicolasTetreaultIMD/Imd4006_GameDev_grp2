@@ -32,7 +32,7 @@ GameObject:
   - component: {fileID: 2346014837261909008}
   - component: {fileID: 8463912077177013706}
   m_Layer: 8
-  m_Name: Vehicle 2
+  m_Name: Master Vehicle
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

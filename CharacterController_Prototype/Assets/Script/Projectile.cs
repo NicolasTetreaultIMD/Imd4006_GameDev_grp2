@@ -80,7 +80,6 @@ public class Projectile : MonoBehaviour
             bombMesh.enabled = false;
 
             carController.audioHandler.impactExplosion();
-            Debug.Log("explosion");
             haptics.ExplosionHaptics();
 
             StartCoroutine(FadeOut());
