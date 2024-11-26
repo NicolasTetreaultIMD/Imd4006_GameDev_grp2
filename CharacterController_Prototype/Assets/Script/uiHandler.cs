@@ -71,8 +71,13 @@ public class uiHandler : MonoBehaviour
             // PLAYER 1 has AMMO
             if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0) 
             {
-                ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
-                if (players[0].GetComponent<CarController>().cannon.projectile[1] != null)
+                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0)
+                {
+                    ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
+                }
+
+
+                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
                 {
                     ShowNextAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
                 }
