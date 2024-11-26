@@ -93,7 +93,7 @@ public class CarController : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        health = 1;
+        health = 3;
         canPickUpItem = true;
         
         FindNeededObjects();
