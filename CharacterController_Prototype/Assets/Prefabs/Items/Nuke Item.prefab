@@ -289,7 +289,9 @@ MonoBehaviour:
   newTarget: {fileID: 0}
   projectileScript: {fileID: 7331157710501167149}
   playerId: 0
-  speed: 5
+  foundPlayer: 0
+  speed: 20
+  rotationSpeed: 0
 --- !u!114 &7331157710501167149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +314,7 @@ MonoBehaviour:
   madeContact: 0
   explosion: {fileID: 5620928563147722370}
   haptics: {fileID: 0}
+  nukeTracker: {fileID: 6353580514389113169}
 --- !u!1 &3780021220015845529
 GameObject:
   m_ObjectHideFlags: 0

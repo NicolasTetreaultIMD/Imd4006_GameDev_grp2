@@ -110,7 +110,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.3293207, y: 1.1303611, z: 2.7472258}
   m_Center: {x: 0, y: -0.1418711, z: -0.386436}
@@ -2160,6 +2160,9 @@ MonoBehaviour:
   shootForceIncreaseSpeed: 0
   isShooting: 0
   aritime: 0
+  shootCooldown: 0
+  lastShootTime: 0
+  canShoot: 0
   trajectoryLine: {fileID: 199994340255641112}
   hitMarker: {fileID: 2312575403627483372}
   maxPoints: 100
@@ -7425,7 +7428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14360,7 +14363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
+  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

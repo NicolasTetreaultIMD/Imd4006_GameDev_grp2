@@ -36,6 +36,15 @@ public class DamageApplier : MonoBehaviour
                 StartCoroutine(FadeOut());
             }
         }
+
+        if (transform.root.tag == "Nuke")
+        {
+            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            {
+                other.gameObject.GetComponent<DamageHandler>().Hit(playerId); //A parameter of -1 means that even the player who threw it can get damaged by it
+                StartCoroutine(FadeOut());
+            }
+        }
     }
 
     private IEnumerator FadeOut()

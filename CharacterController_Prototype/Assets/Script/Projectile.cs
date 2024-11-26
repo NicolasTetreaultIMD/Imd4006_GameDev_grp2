@@ -18,13 +18,15 @@ public class Projectile : MonoBehaviour
     public bool madeContact;
     public GameObject explosion;
     public HapticFeedback haptics;
+    public NukeTracker nukeTracker;
 
-    private CarController carController;
-    
+    public CarController carController;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     private void Awake()
@@ -33,8 +35,6 @@ public class Projectile : MonoBehaviour
         forcesApplied = false;
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
-
-         
     }
 
     // Update is called once per frame
@@ -103,11 +103,22 @@ public class Projectile : MonoBehaviour
             }
 
             //Nuke Projectile
-            if(gameObject.tag == "Nuke")
+            if (gameObject.tag == "Nuke")
             {
                 gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                explosion.gameObject.SetActive(true);
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+                carController.audioHandler.impactExplosion();
+                haptics.ExplosionHaptics();
+
+                StartCoroutine(FadeOut());
             }
+
             //Beartrap Projectile
         }
     }
