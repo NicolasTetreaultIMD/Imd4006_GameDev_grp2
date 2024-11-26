@@ -38,10 +38,12 @@ public class uiHandler : MonoBehaviour
     public GameObject p0_health3;
     public GameObject p0_health2;
     public GameObject p0_health1;
+    public GameObject p0_health0;
 
     public GameObject p1_health3;
     public GameObject p1_health2;
     public GameObject p1_health1;
+    public GameObject p1_health0;
 
     [Header("Instructions")]
     public GameObject p0_instructions_run;
@@ -61,6 +63,13 @@ public class uiHandler : MonoBehaviour
 
     [Header("PlayerJoin")]
     public int playerCount;
+
+    [Header("WinStates")]
+    public GameObject p0_winner;
+    public GameObject p0_loser;
+
+    public GameObject p1_winner;
+    public GameObject p1_loser;
 
     private bool tutorialFlag;
 
@@ -171,8 +180,11 @@ public class uiHandler : MonoBehaviour
             CurrentHealth(1, players[1].GetComponent<CarController>().health); // Show current player health
 
         }
-
-        
+        // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
+        if(playerCount >=2)
+        {
+            DetectGameState();
+        }
     }
 
     // Function toggles element visibility state using the bool type
@@ -357,18 +369,29 @@ public class uiHandler : MonoBehaviour
                 p0_health3.SetActive(true);
                 p0_health2.SetActive(false);
                 p0_health1.SetActive(false);
+                p0_health0.SetActive(false);
             }
             if (health == 2)
             {
                 p0_health3.SetActive(false);
                 p0_health2.SetActive(true);
                 p0_health1.SetActive(false);
+                p0_health0.SetActive(false);
             }
             if (health == 1)
             {
                 p0_health3.SetActive(false);
                 p0_health2.SetActive(false);
                 p0_health1.SetActive(true);
+                p0_health0.SetActive(false);
+
+            }
+            if (health == 0)
+            {
+                p0_health3.SetActive(false);
+                p0_health2.SetActive(false);
+                p0_health1.SetActive(false);
+                p0_health0.SetActive(true);
             }
         }
 
@@ -379,18 +402,28 @@ public class uiHandler : MonoBehaviour
                 p1_health3.SetActive(true);
                 p1_health2.SetActive(false);
                 p1_health1.SetActive(false);
+                p1_health0.SetActive(false);
             }
             if (health == 2)
             {
                 p1_health3.SetActive(false);
                 p1_health2.SetActive(true);
                 p1_health1.SetActive(false);
+                p1_health0.SetActive(false);
             }
             if (health == 1)
             {
                 p1_health3.SetActive(false);
                 p1_health2.SetActive(false);
                 p1_health1.SetActive(true);
+                p1_health0.SetActive(false);
+            }
+            if (health == 0)
+            {
+                p1_health3.SetActive(false);
+                p1_health2.SetActive(false);
+                p1_health1.SetActive(false);
+                p1_health0.SetActive(true);
             }
         }
     }
@@ -494,5 +527,10 @@ public class uiHandler : MonoBehaviour
         p1_instructions_shoot.SetActive(false);
         p1_instructions_shoot2.SetActive(false);
         p1_instructions_bump.SetActive(false);
+    }
+
+    public void DetectGameState()
+    {
+
     }
 }
