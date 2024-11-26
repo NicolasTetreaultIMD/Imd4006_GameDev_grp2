@@ -128,6 +128,12 @@ public class vfxHandler : MonoBehaviour
             cartController.audioHandler.carDrift(); // Play drift noise
 
         }
+
+        else if (cartController.cartState == CarController.CartState.InAir)
+        {
+            ToggleTireTrails(3); // hide both all tire trails
+
+        }
     }
 
     // Wind Trail Effect
@@ -236,7 +242,6 @@ public class vfxHandler : MonoBehaviour
             case 0: // Both wheels are touching - show ALL trails
                 for (int i = 0; i < tireTrails.Length; i++) 
                 { 
-                    //tireTrails[i].enabled = true;
                     tireTrails[i].time = Time.time;
                 }
                 break;
@@ -253,6 +258,13 @@ public class vfxHandler : MonoBehaviour
                 tireTrails[1].time = 0;
                 tireTrails[2].time = Time.time;
                 tireTrails[3].time = Time.time;
+                break;
+
+            case 3: // NO wheels are touching the ground
+                tireTrails[0].time = 0;
+                tireTrails[1].time = 0;
+                tireTrails[2].time = 0;
+                tireTrails[3].time = 0;
                 break;
 
             default:
