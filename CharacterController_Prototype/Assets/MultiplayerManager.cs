@@ -43,6 +43,7 @@ public class MultiplayerManager : MonoBehaviour
     private void OnPlayerJoined(PlayerInput playerInput)
     {
         players.Add(playerInput);
+        uiHandler.AddPlayer();
 
         GameObject player = playerInput.gameObject;
         player = cullingMaskApplier(player, playerInput.playerIndex);
@@ -55,6 +56,7 @@ public class MultiplayerManager : MonoBehaviour
     private void OnPlayerLeft(PlayerInput playerInput)
     {
         players.Remove(playerInput);
+        uiHandler.RemovePlayer();
         Debug.Log($"Player left: {playerInput.playerIndex}");
     }
 
@@ -117,5 +119,10 @@ public class MultiplayerManager : MonoBehaviour
         }
 
         return player;
+    }
+
+    public List<PlayerInput> getPlayers()
+    {
+        return players;
     }
 }
