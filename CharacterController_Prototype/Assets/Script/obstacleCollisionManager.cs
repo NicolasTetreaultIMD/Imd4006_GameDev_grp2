@@ -61,7 +61,7 @@ public class obstacleCollisionManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("BANG");
-        if (carController.speed > minHitSpeed)
+        if (carController.speed > minHitSpeed && other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
         {
             impactSpeed = carController.speed;
             carController.speed = 0;
