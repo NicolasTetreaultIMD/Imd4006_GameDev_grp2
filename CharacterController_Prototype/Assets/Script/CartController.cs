@@ -22,6 +22,7 @@ public class CarController : MonoBehaviour
     [Header("Health")]
     public GameManager gameManager;
     public DamageHandler damageHandler;
+    public CharacterHider characterHider;
     public int health;
 
     [Header("Cannon")]
@@ -92,7 +93,7 @@ public class CarController : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        health = 3;
+        health = 1;
         canPickUpItem = true;
         
         FindNeededObjects();
@@ -221,7 +222,7 @@ public class CarController : MonoBehaviour
 
             if (health <= 0)
             {
-                gameObject.SetActive(false);
+                characterHider.HideObjects();
             }
         }
     }
