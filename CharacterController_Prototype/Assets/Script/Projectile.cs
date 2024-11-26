@@ -18,13 +18,15 @@ public class Projectile : MonoBehaviour
     public bool madeContact;
     public GameObject explosion;
     public HapticFeedback haptics;
+    public NukeTracker nukeTracker;
 
-    private CarController carController;
-    
+    public CarController carController;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     private void Awake()
@@ -33,8 +35,6 @@ public class Projectile : MonoBehaviour
         forcesApplied = false;
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
-
-         
     }
 
     // Update is called once per frame
@@ -48,8 +48,11 @@ public class Projectile : MonoBehaviour
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
 
-            transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
-            transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
+            if (gameObject.tag != "Nuke")
+            {
+                transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
+            }
 
             transform.position = positionAtTime;
         }
@@ -73,6 +76,7 @@ public class Projectile : MonoBehaviour
         //If Projectile collides with either a default layer or an obstacle layer, then stop moving and create explosion.
         if (collision.gameObject.layer == 0 || collision.gameObject.layer == 7)
         {
+            //Normal Bomb Projectile
             if (gameObject.tag == "Bomb")
             {
                 madeContact = true;
@@ -87,16 +91,50 @@ public class Projectile : MonoBehaviour
                 StartCoroutine(FadeOut());
             }
 
+            //Landmine Projectile
             if(gameObject.tag == "Mine")
             {
-                madeContact = true;
-                //gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                gameObject.transform.rotation = Quaternion.identity;
+                if (collision.gameObject.tag != "Player")
+                {
+                    madeContact = true;
+                    gameObject.transform.rotation = Quaternion.identity;
+                    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+                }
+            }
+
+            //Nuke Projectile
+            if (gameObject.tag == "Nuke")
+            {
+                gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
+
+                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                explosion.gameObject.SetActive(true);
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+                carController.audioHandler.impactExplosion();
+                haptics.ExplosionHaptics();
+
+                StartCoroutine(FadeOut());
+            }
+
+            //Beartrap Projectile
+        }
+    }
+
+    //For non-instant explosion projectiles
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.tag == "Mine")
+        {
+            if (other.gameObject.tag == "Player" && madeContact == true)
+            {
+                explosion.gameObject.SetActive(true);
             }
         }
     }
+
 
     private IEnumerator FadeOut()
     {

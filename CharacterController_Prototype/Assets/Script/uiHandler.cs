@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.VFX;
 
 
 public class uiHandler : MonoBehaviour
@@ -35,6 +36,21 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_health2;
     public GameObject p1_health1;
 
+    [Header("Instructions")]
+    public GameObject p0_instructions_run;
+    public GameObject p0_instructions_aim;
+    public GameObject p0_instructions_shoot;
+    public GameObject p0_instructions_shoot2;
+    public GameObject p0_instructions_bump;
+
+    public GameObject p1_instructions_run;
+    public GameObject p1_instructions_aim;
+    public GameObject p1_instructions_shoot;
+    public GameObject p1_instructions_shoot2;
+    public GameObject p1_instructions_bump;
+
+
+
 
     // Start is called before the first frame update
 
@@ -59,6 +75,22 @@ public class uiHandler : MonoBehaviour
 
         p1_health2.SetActive(false);
         p1_health1.SetActive(false);
+
+        p0_instructions_run.SetActive(false);
+        p0_instructions_aim.SetActive(false);
+        p0_instructions_shoot.SetActive(false);
+        p0_instructions_shoot2.SetActive(false);
+        p0_instructions_bump.SetActive(false);
+
+        p1_instructions_run.SetActive (false);
+        p1_instructions_aim.SetActive (false);
+        p1_instructions_shoot.SetActive (false);
+        p1_instructions_shoot2.SetActive (false);
+        p1_instructions_bump.SetActive(false);
+
+        StartCoroutine(ShowTutorial());
+
+
     }
 
     // Update is called once per frame
@@ -71,15 +103,15 @@ public class uiHandler : MonoBehaviour
             // PLAYER 1 has AMMO
             if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0) 
             {
-                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0)
-                {
-                    ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
-                }
-
+                ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
 
                 if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
                 {
                     ShowNextAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(0, "Empty"); // Show current ammo type
                 }
             }
             else // PLAYER 1 has no ammo
@@ -96,7 +128,15 @@ public class uiHandler : MonoBehaviour
             if (players[1].GetComponent<CarController>().cannon.projectile.Count > 0)
             {
                 ShowCurrentAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
-                ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+
+                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
+                {
+                    ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(1, "Empty"); // Show current ammo type
+                }
             }
             else // PLAYER 2 has no ammo
             {
@@ -277,6 +317,43 @@ public class uiHandler : MonoBehaviour
                 p1_health1.SetActive(true);
             }
         }
+    }
+
+    // TUTORIAL
+    private IEnumerator ShowTutorial()
+    {
+        // Show run instructions
+        p0_instructions_run.SetActive(true);
+        p1_instructions_run.SetActive(true);
+        yield return new WaitForSeconds(12);
+        p0_instructions_run.SetActive(false);
+        p1_instructions_run.SetActive(false);
+
+        // AIM
+        p0_instructions_aim.SetActive(true);
+        p1_instructions_aim.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_aim.SetActive(false);
+        p1_instructions_aim.SetActive(false);
+
+        // SHOOT
+        p0_instructions_shoot.SetActive(true);
+        p0_instructions_shoot2.SetActive(true);
+        p1_instructions_shoot2.SetActive(true);
+        p1_instructions_shoot2.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_shoot.SetActive(false);
+        p0_instructions_shoot2.SetActive(false);
+        p1_instructions_shoot2.SetActive(false);
+        p1_instructions_shoot2.SetActive(false);
+
+        // BUMP
+        p0_instructions_bump.SetActive(true);
+        p1_instructions_bump.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_bump.SetActive(false);
+        p1_instructions_bump.SetActive(false);
+
     }
 
 }

@@ -43,4 +43,9 @@ public class DamageHandler : MonoBehaviour
         }
     }
 
+    public void Stun(int explosivePlayerId) 
+    { 
+    
+    }
+
 }
