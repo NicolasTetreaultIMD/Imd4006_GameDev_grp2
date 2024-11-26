@@ -38,10 +38,10 @@ TagManager:
   - Player2UI
   - Player3UI
   - Player4UI
-  - 
-  - 
-  - 
-  - 
+  - Player1Indicators
+  - Player2Indicators
+  - Player3Indicators
+  - Player4Indicators
   - 
   - 
   - 

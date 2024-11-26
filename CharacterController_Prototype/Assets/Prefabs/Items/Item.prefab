@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 6262186320313543687}
   - component: {fileID: 8062011965313361284}
   - component: {fileID: 776711431571058249}
+  - component: {fileID: 8680852558153168260}
+  - component: {fileID: 2801678182220789664}
   m_Layer: 3
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: Trap Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,9 +28,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8205670214989405333}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.21, y: 1, z: 0}
-  m_LocalScale: {x: 1.72, y: 1.72, z: 1.72}
+  m_LocalScale: {x: 1.7199999, y: 1.7199999, z: 1.7199999}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5870222591931579464}
@@ -91,6 +93,41 @@ MonoBehaviour:
   bobbingHeight: 0.5
   bobbingSpeed: 2
   rotationSpeed: 100
+--- !u!114 &8680852558153168260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205670214989405333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78986459d562fa94695dabd4cae09f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCrate: {fileID: 4700654671802533671}
+  itemCollider: {fileID: 2801678182220789664}
+--- !u!65 &2801678182220789664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205670214989405333}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &6268308252387220387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -174,6 +211,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 338a0834e31be6841ac33e5d93fca33e, type: 3}
+--- !u!23 &4700654671802533671 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 338a0834e31be6841ac33e5d93fca33e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6268308252387220387}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5870222591931579464 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 338a0834e31be6841ac33e5d93fca33e,
