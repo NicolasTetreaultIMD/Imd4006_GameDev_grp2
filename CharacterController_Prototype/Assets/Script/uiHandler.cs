@@ -14,18 +14,22 @@ public class uiHandler : MonoBehaviour
     public GameObject p0_currentBomb;
     public GameObject p0_currentMine;
     public GameObject p0_currentNuke;
+    public GameObject p0_currentTrap;
 
     public GameObject p0_nextBomb;
     public GameObject p0_nextMine;
     public GameObject p0_nextNuke;
+    public GameObject p0_nextTrap;
 
     public GameObject p1_currentBomb;
     public GameObject p1_currentMine;
     public GameObject p1_currentNuke;
+    public GameObject p1_currentTrap;
 
     public GameObject p1_nextBomb;
     public GameObject p1_nextMine;
     public GameObject p1_nextNuke;
+    public GameObject p1_nextTrap;
 
     [Header("Player Health")]
     public GameObject p0_health3;
@@ -60,15 +64,19 @@ public class uiHandler : MonoBehaviour
         p0_currentBomb.SetActive(false);
         p0_currentMine.SetActive(false);
         p0_currentNuke.SetActive(false);
+        p0_currentTrap.SetActive(false);
         p0_nextBomb.SetActive(false);
         p0_nextMine.SetActive(false);
         p0_nextNuke.SetActive(false);
+        p0_nextTrap.SetActive(false);
         p1_currentBomb.SetActive(false);
         p1_currentMine.SetActive(false);
         p1_currentNuke.SetActive(false);
+        p1_currentTrap.SetActive(false);
         p1_nextBomb.SetActive(false);
         p1_nextMine.SetActive(false);
         p1_nextNuke.SetActive(false);
+        p1_nextTrap.SetActive(false);
 
         p0_health2.SetActive(false);
         p0_health1.SetActive(false);
@@ -158,25 +166,39 @@ public class uiHandler : MonoBehaviour
                 p0_currentBomb.SetActive(true);
                 p0_currentMine.SetActive(false);
                 p0_currentNuke.SetActive(false);
+                p0_currentTrap.SetActive(false);
+
             }
             else if (type == "Mine Item")
             {
                 p0_currentBomb.SetActive(false);
                 p0_currentMine.SetActive(true);
                 p0_currentNuke.SetActive(false);
+                p0_currentTrap.SetActive(false);
+
             }
             else if (type == "Nuke Item")
             {
                 p0_currentBomb.SetActive(false);
                 p0_currentMine.SetActive(false);
                 p0_currentNuke.SetActive(true);
+                p0_currentTrap.SetActive(false);
 
             }
+            else if (type == "Bear Trap")
+            {
+                p0_currentBomb.SetActive(false);
+                p0_currentMine.SetActive(false);
+                p0_currentNuke.SetActive(false);
+                p0_currentTrap.SetActive(true);
+            }
+
             else if (type == "Empty") // No ammo is left
             {
                 p0_currentBomb.SetActive(false);
                 p0_currentMine.SetActive(false);
                 p0_currentNuke.SetActive(false);
+                p0_currentTrap.SetActive(false);
             }
         }
         else if (playerID == 1) // SECOND PLAYER
@@ -186,25 +208,38 @@ public class uiHandler : MonoBehaviour
                 p1_currentBomb.SetActive(true);
                 p1_currentMine.SetActive(false);
                 p1_currentNuke.SetActive(false);
+                p1_currentTrap.SetActive(false);
             }
             else if (type == "Mine Item")
             {
                 p1_currentBomb.SetActive(false);
                 p1_currentMine.SetActive(true);
                 p1_currentNuke.SetActive(false);
+                p1_currentTrap.SetActive(false);
             }
             else if (type == "Nuke Item")
             {
                 p1_currentBomb.SetActive(false);
                 p1_currentMine.SetActive(false);
                 p1_currentNuke.SetActive(true);
+                p1_currentTrap.SetActive(false);
 
+
+            }
+            else if (type == "Bear Trap")
+            {
+                p1_currentBomb.SetActive(false);
+                p1_currentMine.SetActive(false);
+                p1_currentNuke.SetActive(false);
+                p1_currentTrap.SetActive(true);
             }
             else if (type == "Empty") // No ammo is left
             {
                 p1_currentBomb.SetActive(false);
                 p1_currentMine.SetActive(false);
                 p1_currentNuke.SetActive(false);
+                p1_currentTrap.SetActive(false);
+
             }
         }
     }
@@ -219,25 +254,36 @@ public class uiHandler : MonoBehaviour
                 p0_nextBomb.SetActive(true);
                 p0_nextMine.SetActive(false);
                 p0_nextNuke.SetActive(false);
+                p0_nextTrap.SetActive(false);
             }
             else if (type == "Mine Item")
             {
                 p0_nextBomb.SetActive(false);
                 p0_nextMine.SetActive(true);
                 p0_nextNuke.SetActive(false);
+                p0_nextTrap.SetActive(false);
             }
             else if (type == "Nuke Item")
             {
                 p0_nextBomb.SetActive(false);
                 p0_nextMine.SetActive(false);
                 p0_nextNuke.SetActive(true);
+                p0_nextTrap.SetActive(false);
 
+            }
+            else if (type == "Bear Trap")
+            {
+                p0_nextBomb.SetActive(false);
+                p0_nextMine.SetActive(false);
+                p0_nextNuke.SetActive(false);
+                p0_nextTrap.SetActive(true);
             }
             else if (type == "Empty") // No ammo is left
             {
                 p0_nextBomb.SetActive(false);
                 p0_nextMine.SetActive(false);
                 p0_nextNuke.SetActive(false);
+                p0_nextTrap.SetActive(false);
             }
         }
 
@@ -248,25 +294,36 @@ public class uiHandler : MonoBehaviour
                 p1_nextBomb.SetActive(true);
                 p1_nextMine.SetActive(false);
                 p1_nextNuke.SetActive(false);
+                p1_nextTrap.SetActive(false);
             }
             else if (type == "Mine Item")
             {
                 p1_nextBomb.SetActive(false);
                 p1_nextMine.SetActive(true);
                 p1_nextNuke.SetActive(false);
+                p1_nextTrap.SetActive(false);
             }
             else if (type == "Nuke Item")
             {
                 p1_nextBomb.SetActive(false);
                 p1_nextMine.SetActive(false);
                 p1_nextNuke.SetActive(true);
+                p1_nextTrap.SetActive(false);
 
+            }
+            else if (type == "Bear Trap")
+            {
+                p1_nextBomb.SetActive(false);
+                p1_nextMine.SetActive(false);
+                p1_nextNuke.SetActive(false);
+                p1_nextTrap.SetActive(true);
             }
             else if (type == "Empty") // No ammo is left
             {
                 p1_nextBomb.SetActive(false);
                 p1_nextMine.SetActive(false);
                 p1_nextNuke.SetActive(false);
+                p1_nextTrap.SetActive(false);
             }
         }
     }
