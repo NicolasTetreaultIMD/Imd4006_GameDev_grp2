@@ -154,6 +154,7 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
+  speedForPeakTurn: 20
   grabManager: {fileID: 5776944967031356947}
   cameraPivotRef: {fileID: 3852233620265509722}
   poleRotateLookatRef: {fileID: 325940681475265771}
@@ -327,6 +328,7 @@ MonoBehaviour:
   jumpStrengthY: 1.7
   jumpStrengthX: 1
   bumpSpeed: 1.3
+  invertBump: 0
 --- !u!114 &5956470940994522726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,7 +590,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: da2f23c43fd51ce499bacb4a3daf205f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d708d0723979e4547b4ce9e1884c5ed8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.63
   m_Pitch: 1
@@ -684,7 +686,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b1477b4637ee2db48bae1d8a7fb544c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 47eb77d0780120040a9456a0384576c0, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
