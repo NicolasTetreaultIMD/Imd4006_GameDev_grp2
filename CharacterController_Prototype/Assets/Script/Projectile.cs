@@ -48,8 +48,11 @@ public class Projectile : MonoBehaviour
                                    + direction * (shootForce / mass) * totalTime
                                    + 0.5f * Physics.gravity * totalTime * totalTime;
 
-            transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
-            transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
+            if (gameObject.tag != "Nuke")
+            {
+                transform.Rotate(Vector3.up, 300 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, 300 * Time.deltaTime, Space.Self);
+            }
 
             transform.position = positionAtTime;
         }
@@ -102,6 +105,7 @@ public class Projectile : MonoBehaviour
             //Nuke Projectile
             if(gameObject.tag == "Nuke")
             {
+                gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
             }
             //Beartrap Projectile
