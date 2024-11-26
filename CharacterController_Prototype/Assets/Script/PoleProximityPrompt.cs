@@ -4,47 +4,68 @@ using UnityEngine;
 
 public class PoleProximityPrompt : MonoBehaviour
 {
-    public GameObject player;         // Reference to the player GameObject
     public float proximityThreshold = 20f;  // Distance threshold for proximity
 
-    private GameObject[] poles;       // Array to store all the poles in the scene
+    public CarController carController;
     private GameObject promptText;
+
+    public GameObject[] playerIndicators;       // Array to store all the poles in the scene
+
 
     void Start()
     {
         // Find all the pole objects in the scene by tag
-        poles = GameObject.FindGameObjectsWithTag("Pole");
+        if(carController.playerId == 0)
+        {
+            playerIndicators[0].SetActive(true);
+            playerIndicators[1].SetActive(false);
+            playerIndicators[2].SetActive(false);
+            playerIndicators[3].SetActive(false);
+        }
+
+        if (carController.playerId == 1)
+        {
+            playerIndicators[0].SetActive(false);
+            playerIndicators[1].SetActive(true);
+            playerIndicators[2].SetActive(false);
+            playerIndicators[3].SetActive(false);
+        }
+
+        if (carController.playerId == 2)
+        {
+            playerIndicators[0].SetActive(false);
+            playerIndicators[1].SetActive(false);
+            playerIndicators[2].SetActive(true);
+            playerIndicators[3].SetActive(false);
+        }
+
+        if (carController.playerId == 3)
+        {
+            playerIndicators[0].SetActive(false);
+            playerIndicators[1].SetActive(false);
+            playerIndicators[2].SetActive(false);
+            playerIndicators[3].SetActive(true);
+        }
+
     }
 
     void Update()
     {
-        // Loop through all poles and check the distance to the player
-        foreach (GameObject pole in poles)
-        {
-            // Calculate the distance from the player to the pole
-            float distance = Vector3.Distance(player.transform.position, pole.transform.position);
 
-            if (distance < proximityThreshold)
-            {
-                // If the player is close enough to the pole, show the prompt
-                //ShowPrompt(pole);
-                //Debug.Log("CLOSE!");
-                return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
-            }
+        // Compare the distances of each player relative to each other
+        //foreach (GameObject players in players)
+        //{
+        //    // Calculate the distance from the player to the pole
+        //    //float distance = Vector3.Distance(players[0].transform.position, players[1].transform.position);
 
-        }
-    }
+        //    if (distance > proximityThreshold)
+        //    {
+        //        // If the player is close enough to the pole, show the prompt
+        //        //ShowPlayerIndicators();
+        //        Debug.Log("OUTSIDE OF DISTANCE!");
+        //        return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
+        //    }
 
-    void ShowPrompt(GameObject pole)
-    {
-        // Show the prompt above the pole
-        foreach (Transform children in pole.transform.GetComponentsInChildren<Transform>())
-        {
-            if (children.gameObject.tag == "ButtonPrompt")
-            {
-                promptText = children.gameObject;
-            }
-        }
-        promptText.gameObject.SetActive(false);
+        //}
     }
 }
