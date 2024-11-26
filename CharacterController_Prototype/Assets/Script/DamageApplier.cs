@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageApplier : MonoBehaviour
 {
     public int playerId;
+    public bool immune;
 
     // Start is called before the first frame update
     void Start()
@@ -20,30 +21,55 @@ public class DamageApplier : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (transform.root.tag == "Bomb")
+        if (immune != true)
         {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            if (transform.root.tag == "Bomb")
             {
-                other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
-            }
-        }
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
+                {
+                    other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
+                    immune = true;
 
-        if (transform.root.tag == "Mine")
-        {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
-            {
-                other.gameObject.GetComponent<DamageHandler>().Hit(-1); //A parameter of -1 means that even the player who threw it can get damaged by it
-                StartCoroutine(FadeOut());
+                    StartCoroutine(ImmunityTime());
+                }
             }
-        }
 
-        if (transform.root.tag == "Nuke")
-        {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            if (transform.root.tag == "Mine")
             {
-                other.gameObject.GetComponent<DamageHandler>().Hit(playerId); //A parameter of -1 means that even the player who threw it can get damaged by it
-                StartCoroutine(FadeOut());
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
+                {
+                    other.gameObject.GetComponent<DamageHandler>().Hit(-1); //A parameter of -1 means that even the player who threw it can get damaged by it
+                    immune = true;
+
+                    StartCoroutine(FadeOut());
+                    StartCoroutine(ImmunityTime());
+                }
             }
+
+            if (transform.root.tag == "Nuke")
+            {
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
+                {
+                    other.gameObject.GetComponent<DamageHandler>().Hit(playerId); //A parameter of -1 means that even the player who threw it can get damaged by it
+                    immune = true;
+
+                    StartCoroutine(ImmunityTime());
+                }
+            }
+
+            if (transform.root.tag == "Trap")
+            {
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
+                {
+                    if (other.gameObject.GetComponent<CarController>().playerId != playerId)
+                    {
+                        Debug.Log("Bye bye trap");
+                        other.gameObject.GetComponent<DamageHandler>().Stun(playerId);
+                        StartCoroutine(TrapFadeOut());
+                    }
+                }
+            }
+
         }
     }
 
@@ -52,5 +78,19 @@ public class DamageApplier : MonoBehaviour
         // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(0.75f);
         Destroy(transform.root.gameObject);
+    }
+
+    private IEnumerator TrapFadeOut()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(3f);
+        Destroy(transform.root.gameObject);
+    }
+
+    private IEnumerator ImmunityTime()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(4f);
+        immune = false;
     }
 }

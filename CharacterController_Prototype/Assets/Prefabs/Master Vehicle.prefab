@@ -112,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.3293207, y: 1.1303611, z: 2.7472258}
-  m_Center: {x: 0, y: -0.1418711, z: -0.386436}
+  m_Size: {x: 0.83, y: 0.6, z: 2.65}
+  m_Center: {x: 0, y: -0.1418711, z: -0.11}
 --- !u!114 &7055167592824403724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0.3
   gameManager: {fileID: 0}
+  damageHandler: {fileID: 5364289520311506974}
   health: 0
   cannon: {fileID: 3630920482399317114}
   Runner: {fileID: 1886665499117190318}
@@ -283,6 +284,7 @@ MonoBehaviour:
   carController: {fileID: 0}
   playerId: 0
   isProjectile: 0
+  isStunned: 0
 --- !u!114 &505890743119021628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7428,7 +7430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14363,7 +14365,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10227153, y: 0.00000001764293, z: -0.0000000018138804, w: 0.9947565}
+  m_LocalRotation: {x: 0.102271535, y: -0.00000001764294, z: 0.0000000018138814, w: 0.9947565}
   m_LocalPosition: {x: 0, y: 3.33, z: -8.120001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

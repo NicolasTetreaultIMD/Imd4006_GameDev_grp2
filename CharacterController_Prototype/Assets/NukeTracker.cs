@@ -7,6 +7,7 @@ public class NukeTracker : MonoBehaviour
     public GameObject target;
     public GameObject newTarget;
     public Projectile projectileScript;
+    public GameObject mesh;
 
     public int playerId;
     public bool foundPlayer;
@@ -47,7 +48,7 @@ public class NukeTracker : MonoBehaviour
 
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Sender PlayerId: " + playerId + " Target PlayerId: " + other.gameObject.GetComponent<CarController>().playerId);
+            //Debug.Log("Sender PlayerId: " + playerId + " Target PlayerId: " + other.gameObject.GetComponent<CarController>().playerId);
             if (other.gameObject.GetComponent<CarController>().playerId != playerId)
             {
                 target = other.gameObject;
@@ -59,12 +60,12 @@ public class NukeTracker : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Yo");
             projectileScript.explosion.SetActive(true);
+            mesh.SetActive(false);
+            StopCoroutine(FadeOut());
+            StartCoroutine(QuickFadeout());
         }
     }
 
@@ -73,6 +74,14 @@ public class NukeTracker : MonoBehaviour
         // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(5f);
         projectileScript.explosion.SetActive(true);
+        mesh.SetActive(false);
+        yield return new WaitForSeconds(0.75f);
+        Destroy(transform.root.gameObject);
+    }
+
+    private IEnumerator QuickFadeout()
+    {
+        // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(0.75f);
         Destroy(transform.root.gameObject);
     }

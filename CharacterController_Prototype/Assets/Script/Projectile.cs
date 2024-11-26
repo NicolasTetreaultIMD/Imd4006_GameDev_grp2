@@ -35,6 +35,8 @@ public class Projectile : MonoBehaviour
         forcesApplied = false;
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
+
+        
     }
 
     // Update is called once per frame
@@ -55,6 +57,14 @@ public class Projectile : MonoBehaviour
             }
 
             transform.position = positionAtTime;
+        }
+
+        if (carController != null)
+        {
+            if (gameObject.tag == "Trap")
+            {
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+            }
         }
     }
 
@@ -108,18 +118,29 @@ public class Projectile : MonoBehaviour
                 gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
+                if (nukeTracker.foundPlayer == false)
+                {
+                    gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                    explosion.gameObject.SetActive(true);
+                    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
-                gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                explosion.gameObject.SetActive(true);
-                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+                    carController.audioHandler.impactExplosion();
+                    haptics.ExplosionHaptics();
 
-                carController.audioHandler.impactExplosion();
-                haptics.ExplosionHaptics();
-
-                StartCoroutine(FadeOut());
+                    StartCoroutine(FadeOut());
+                }
             }
 
             //Beartrap Projectile
+            if (gameObject.tag == "Trap")
+            {
+                if (collision.gameObject.tag != "Player")
+                {
+                    madeContact = true;
+                    gameObject.transform.rotation = Quaternion.identity;
+                }
+            }
+
         }
     }
 
@@ -133,13 +154,21 @@ public class Projectile : MonoBehaviour
                 explosion.gameObject.SetActive(true);
             }
         }
+
+        if (gameObject.tag == "Trap")
+        {
+            if (other.gameObject.tag == "Player" && madeContact == true)
+            {
+                explosion.gameObject.SetActive(true);
+            }
+        }
     }
 
 
     private IEnumerator FadeOut()
     {
         // Wait for 2 seconds before continuing
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 }

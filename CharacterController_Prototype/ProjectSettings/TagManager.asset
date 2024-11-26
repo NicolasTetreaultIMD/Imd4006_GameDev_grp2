@@ -17,6 +17,8 @@ TagManager:
   - Bomb Box
   - Mine Box
   - Nuke Box
+  - Trap
+  - Trap Box
   layers:
   - Default
   - TransparentFX

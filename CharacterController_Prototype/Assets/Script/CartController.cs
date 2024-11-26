@@ -21,6 +21,7 @@ public class CarController : MonoBehaviour
 
     [Header("Health")]
     public GameManager gameManager;
+    public DamageHandler damageHandler;
     public int health;
 
     [Header("Cannon")]
@@ -306,27 +307,30 @@ public class CarController : MonoBehaviour
 
     private void Increase(InputAction.CallbackContext context) //Player Input function for increasing speed
     {
-        if (cartState == CartState.Running)
+        if (damageHandler.isStunned == false)
         {
-            speedDecreaseCooldown = Time.time + 0.15f;
-            if (speed < maxSpeed)
+            if (cartState == CartState.Running)
             {
-                speed += 2.5f;
-            }
-            else if (speed >= maxSpeed)
-            {
-                speed = maxSpeed;
-
-                if (cartState == CartState.Running)
+                speedDecreaseCooldown = Time.time + 0.15f;
+                if (speed < maxSpeed)
                 {
-                    SwitchCartState(CartState.InCart);
+                    speed += 2.5f;
+                }
+                else if (speed >= maxSpeed)
+                {
+                    speed = maxSpeed;
+
+                    if (cartState == CartState.Running)
+                    {
+                        SwitchCartState(CartState.InCart);
+                    }
                 }
             }
-        }
 
-        if (currentTurnSpeed > maxTurnSpeed) // Ensure current turn speed does not exceed the max
-        {
-            currentTurnSpeed = maxTurnSpeed;
+            if (currentTurnSpeed > maxTurnSpeed) // Ensure current turn speed does not exceed the max
+            {
+                currentTurnSpeed = maxTurnSpeed;
+            }
         }
     }
 
@@ -432,6 +436,14 @@ public class CarController : MonoBehaviour
         if (other.tag == "Nuke Box")
         {
             cannon.LoadCannon(GameObject.Find("Nuke Item"));
+            vfxHandler.PickupItem(); // Play Item Pickup VFX
+            audioHandler.PickupItem(); // Play Item Pickup AFX
+            Destroy(other.gameObject);
+        }
+
+        if(other.tag == "Trap Box")
+        {
+            cannon.LoadCannon(GameObject.Find("Trap Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
             Destroy(other.gameObject);

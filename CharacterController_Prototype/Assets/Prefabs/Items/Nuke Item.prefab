@@ -250,7 +250,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 1.25, z: 1.5}
+  m_Size: {x: 2.24, y: 1.25, z: 3.63}
   m_Center: {x: 0, y: 0.15, z: 0}
 --- !u!135 &8615911268836348842
 SphereCollider:
@@ -272,7 +272,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 10
-  m_Center: {x: -12.75, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: 12.45}
 --- !u!114 &6353580514389113169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +288,7 @@ MonoBehaviour:
   target: {fileID: 0}
   newTarget: {fileID: 0}
   projectileScript: {fileID: 7331157710501167149}
+  mesh: {fileID: 7758786440345429834}
   playerId: 0
   foundPlayer: 0
   speed: 20
@@ -315,6 +316,7 @@ MonoBehaviour:
   explosion: {fileID: 5620928563147722370}
   haptics: {fileID: 0}
   nukeTracker: {fileID: 6353580514389113169}
+  carController: {fileID: 0}
 --- !u!1 &3780021220015845529
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 0
+  immune: 0
 --- !u!1 &7074449168504949033
 GameObject:
   m_ObjectHideFlags: 0

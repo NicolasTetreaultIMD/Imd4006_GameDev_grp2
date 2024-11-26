@@ -12,11 +12,13 @@ public class DamageHandler : MonoBehaviour
     public int playerId;
 
     public bool isProjectile;
+    public bool isStunned;
 
     // Start is called before the first frame update
     void Start()
     {
         carController = GetComponent<CarController>();
+        isStunned = false;
     }
 
     // Update is called once per frame
@@ -26,6 +28,12 @@ public class DamageHandler : MonoBehaviour
         {
             playerId = carController.playerId;
         }
+
+        if(isStunned)
+        {
+            carController.speed = 0;
+        }
+
     }
 
     public void Hit(int explosivePlayerId)
@@ -44,8 +52,19 @@ public class DamageHandler : MonoBehaviour
     }
 
     public void Stun(int explosivePlayerId) 
-    { 
-    
+    {
+        if (gameObject.tag == "Player" && playerId != explosivePlayerId)
+        {
+            isStunned = true;
+            StartCoroutine(StunDuration());
+        }
+    }
+
+    private IEnumerator StunDuration()
+    {
+        // Wait for 2 seconds before continuing
+        yield return new WaitForSeconds(3f);
+        isStunned = false;
     }
 
 }
