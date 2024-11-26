@@ -17,6 +17,7 @@ public class CarBump : MonoBehaviour
     public float jumpStrengthY;
     public float jumpStrengthX;
     public float bumpSpeed;
+    public bool invertBump;
 
     private float initYLevel;
     private int BumpDirection;
@@ -36,6 +37,14 @@ public class CarBump : MonoBehaviour
         rightBumpInput.performed += BumpRight;
 
         initYLevel = gameObject.transform.position.y;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown("b"))
+        {
+            invertBump = !invertBump;
+        }
     }
 
     // Update is called once per frame
@@ -82,11 +91,25 @@ public class CarBump : MonoBehaviour
 
     private void BumpLeft(InputAction.CallbackContext context)
     {
-        Bump(1);
+        if (invertBump)
+        {
+            Bump(-1);
+        }
+        else
+        {
+            Bump(1);
+        }
     }
 
     private void BumpRight(InputAction.CallbackContext context) 
     {
-        Bump(-1);
+        if (invertBump)
+        {
+            Bump(1);
+        }
+        else
+        {
+            Bump(-1);
+        }
     }
 }
