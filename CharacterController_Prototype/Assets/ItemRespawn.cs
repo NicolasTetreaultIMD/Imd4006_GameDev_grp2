@@ -50,6 +50,8 @@ public class ItemRespawn : MonoBehaviour
 
     private IEnumerator ItemCooldown()
     {
+        yield return new WaitForSeconds(0.25f);
+
         Debug.Log("Cooldown");
         int randomValue = Random.Range(20, 31);
         int randomTag = Random.Range(1, 5);

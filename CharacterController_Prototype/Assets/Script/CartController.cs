@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,7 +8,6 @@ using UnityEngine.Rendering.Universal;
 
 public class CarController : MonoBehaviour
 {
-
     public enum CartState { Running, InCart, PoleHolding, InAir };
     [Header("Car State")]
     public CartState cartState;
@@ -26,6 +26,7 @@ public class CarController : MonoBehaviour
 
     [Header("Cannon")]
     public Cannon cannon;
+    public bool canPickUpItem;
 
     [Header("Character")]
     public Transform Runner;
@@ -92,6 +93,7 @@ public class CarController : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         health = 3;
+        canPickUpItem = true;
         
         FindNeededObjects();
         playerInput = GetComponent<PlayerInput>();
@@ -418,44 +420,59 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Bomb Box")
+        if (other.gameObject.layer == 3)
         {
-            cannon.LoadCannon(GameObject.Find("Bomb Item"));
-            vfxHandler.PickupItem(); // Play Item Pickup VFX
-            audioHandler.PickupItem(); // Play Item Pickup AFX
+            if (canPickUpItem == true)
+            {
+                if (other.tag == "Bomb Box")
+                {
+                    cannon.LoadCannon(GameObject.Find("Bomb Item"));
+                    canPickUpItem = false;
 
-            other.GetComponent<ItemRespawn>().enabled = false;
-            other.GetComponent<ItemRespawn>().ItemPickedUp();
-        }
+                    vfxHandler.PickupItem(); // Play Item Pickup VFX
+                    audioHandler.PickupItem(); // Play Item Pickup AFX
 
-        if (other.tag == "Mine Box")
-        {
-            cannon.LoadCannon(GameObject.Find("Mine Item"));
-            vfxHandler.PickupItem(); // Play Item Pickup VFX
-            audioHandler.PickupItem(); // Play Item Pickup AFX
+                    other.GetComponent<ItemRespawn>().enabled = false;
+                    other.GetComponent<ItemRespawn>().ItemPickedUp();
+                }
 
-            other.GetComponent<ItemRespawn>().enabled = false;
-            other.GetComponent<ItemRespawn>().ItemPickedUp();
-        }
+                if (other.tag == "Mine Box")
+                {
+                    cannon.LoadCannon(GameObject.Find("Mine Item"));
+                    canPickUpItem = false;
 
-        if (other.tag == "Nuke Box")
-        {
-            cannon.LoadCannon(GameObject.Find("Nuke Item"));
-            vfxHandler.PickupItem(); // Play Item Pickup VFX
-            audioHandler.PickupItem(); // Play Item Pickup AFX
+                    vfxHandler.PickupItem(); // Play Item Pickup VFX
+                    audioHandler.PickupItem(); // Play Item Pickup AFX
 
-            other.GetComponent<ItemRespawn>().enabled = false;
-            other.GetComponent<ItemRespawn>().ItemPickedUp();
-        }
+                    other.GetComponent<ItemRespawn>().enabled = false;
+                    other.GetComponent<ItemRespawn>().ItemPickedUp();
+                }
 
-        if (other.tag == "Trap Box")
-        {
-            cannon.LoadCannon(GameObject.Find("Trap Item"));
-            vfxHandler.PickupItem(); // Play Item Pickup VFX
-            audioHandler.PickupItem(); // Play Item Pickup AFX
+                if (other.tag == "Nuke Box")
+                {
+                    cannon.LoadCannon(GameObject.Find("Nuke Item"));
+                    canPickUpItem = false;
 
-            other.GetComponent<ItemRespawn>().enabled = false;
-            other.GetComponent<ItemRespawn>().ItemPickedUp();
+                    vfxHandler.PickupItem(); // Play Item Pickup VFX
+                    audioHandler.PickupItem(); // Play Item Pickup AFX
+
+                    other.GetComponent<ItemRespawn>().enabled = false;
+                    other.GetComponent<ItemRespawn>().ItemPickedUp();
+                }
+
+                if (other.tag == "Trap Box")
+                {
+                    cannon.LoadCannon(GameObject.Find("Trap Item"));
+                    canPickUpItem = false;
+
+                    vfxHandler.PickupItem(); // Play Item Pickup VFX
+                    audioHandler.PickupItem(); // Play Item Pickup AFX
+
+                    other.GetComponent<ItemRespawn>().enabled = false;
+                    other.GetComponent<ItemRespawn>().ItemPickedUp();
+                }
+            }
         }
     }
 }
+
