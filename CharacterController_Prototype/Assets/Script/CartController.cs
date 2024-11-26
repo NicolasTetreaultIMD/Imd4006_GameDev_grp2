@@ -54,6 +54,7 @@ public class CarController : MonoBehaviour
     public bool turnSpeedToggle;
     public float maxTurnSpeed;
     public bool dynamicTurnBool;
+    public float speedForPeakTurn;
 
     [Header("Pole Rotation")]
     public GrabManager grabManager;
@@ -289,7 +290,7 @@ public class CarController : MonoBehaviour
             // Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
             // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
 
-            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45 + centerMassManager.turnIncrease, 0) * transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45 * (Mathf.Min(1, speed/speedForPeakTurn)) + centerMassManager.turnIncrease, 0) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
 
             //right turn
