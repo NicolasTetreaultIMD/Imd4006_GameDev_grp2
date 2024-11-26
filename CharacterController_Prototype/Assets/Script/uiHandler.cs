@@ -9,6 +9,9 @@ using UnityEngine.VFX;
 public class uiHandler : MonoBehaviour
 {
     public GameObject[] players = new GameObject[4];
+    [Header("Frames")]
+    public GameObject p0_ammoFrame;
+    public GameObject p1_ammoFrame;
 
     [Header("Ammo Types")]
     public GameObject p0_currentBomb;
@@ -53,6 +56,14 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_instructions_shoot2;
     public GameObject p1_instructions_bump;
 
+    public GameObject p0_pressAtoJoin;
+    public GameObject p1_pressAtoJoin;
+
+    [Header("PlayerJoin")]
+    public int playerCount;
+
+    private bool tutorialFlag;
+
 
 
 
@@ -60,43 +71,11 @@ public class uiHandler : MonoBehaviour
 
     void Start()
     {
-        // hide UI's by default
-        p0_currentBomb.SetActive(false);
-        p0_currentMine.SetActive(false);
-        p0_currentNuke.SetActive(false);
-        p0_currentTrap.SetActive(false);
-        p0_nextBomb.SetActive(false);
-        p0_nextMine.SetActive(false);
-        p0_nextNuke.SetActive(false);
-        p0_nextTrap.SetActive(false);
-        p1_currentBomb.SetActive(false);
-        p1_currentMine.SetActive(false);
-        p1_currentNuke.SetActive(false);
-        p1_currentTrap.SetActive(false);
-        p1_nextBomb.SetActive(false);
-        p1_nextMine.SetActive(false);
-        p1_nextNuke.SetActive(false);
-        p1_nextTrap.SetActive(false);
+        playerCount = 0;
+        tutorialFlag = false; // not yet seen tutorial prompts
+        HideP0UI();
+        HideP1UI();
 
-        p0_health2.SetActive(false);
-        p0_health1.SetActive(false);
-
-        p1_health2.SetActive(false);
-        p1_health1.SetActive(false);
-
-        p0_instructions_run.SetActive(false);
-        p0_instructions_aim.SetActive(false);
-        p0_instructions_shoot.SetActive(false);
-        p0_instructions_shoot2.SetActive(false);
-        p0_instructions_bump.SetActive(false);
-
-        p1_instructions_run.SetActive (false);
-        p1_instructions_aim.SetActive (false);
-        p1_instructions_shoot.SetActive (false);
-        p1_instructions_shoot2.SetActive (false);
-        p1_instructions_bump.SetActive(false);
-
-        StartCoroutine(ShowTutorial());
 
 
     }
@@ -104,6 +83,44 @@ public class uiHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // SHOW UI dependent on player count
+
+        if (playerCount == 0)
+        {
+            HideP0UI();
+            HideP1UI();
+        }
+
+        if (playerCount == 1) 
+        {
+            p0_ammoFrame.SetActive(true);
+            p0_pressAtoJoin.SetActive(false); // hide press A to join
+            HideP1UI();
+        }
+
+        if (playerCount == 2)
+        {
+            p1_ammoFrame.SetActive(true);
+            p1_pressAtoJoin.SetActive(false); // hide press A to join
+
+            // Show tutorial if not yet seen 
+            if (!tutorialFlag)
+            {
+                StartCoroutine(ShowTutorial());
+                tutorialFlag=true;
+            }
+        }
+
+        if (playerCount == 3) 
+        {
+
+        }
+
+        if (playerCount == 4)
+        {
+
+        }
+
         // Update the UI text to show the projectile count
         if (players[0] != null)
         {
@@ -154,6 +171,8 @@ public class uiHandler : MonoBehaviour
             CurrentHealth(1, players[1].GetComponent<CarController>().health); // Show current player health
 
         }
+
+        
     }
 
     // Function toggles element visibility state using the bool type
@@ -413,4 +432,67 @@ public class uiHandler : MonoBehaviour
 
     }
 
+    public void AddPlayer()
+    {
+        playerCount++;        
+    }
+
+    public void RemovePlayer()
+    {
+        playerCount--;
+    }
+
+    private void HideP0UI() // HIDE PLAYER 1 PROMPT
+    {
+        p0_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+
+        // hide UI's by default
+        p0_ammoFrame.SetActive(false);
+        p0_currentBomb.SetActive(false);
+        p0_currentMine.SetActive(false);
+        p0_currentNuke.SetActive(false);
+        p0_currentTrap.SetActive(false);
+        p0_nextBomb.SetActive(false);
+        p0_nextMine.SetActive(false);
+        p0_nextNuke.SetActive(false);
+        p0_nextTrap.SetActive(false);
+        
+        p0_health3.SetActive(false);
+        p0_health2.SetActive(false);
+        p0_health1.SetActive(false);
+
+       
+        p0_instructions_run.SetActive(false);
+        p0_instructions_aim.SetActive(false);
+        p0_instructions_shoot.SetActive(false);
+        p0_instructions_shoot2.SetActive(false);
+        p0_instructions_bump.SetActive(false);
+
+       
+    }
+
+    private void HideP1UI() // HIDE PLAYER 2 UI
+    {
+        p1_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+
+        p1_ammoFrame.SetActive(false);
+        p1_currentBomb.SetActive(false);
+        p1_currentMine.SetActive(false);
+        p1_currentNuke.SetActive(false);
+        p1_currentTrap.SetActive(false);
+        p1_nextBomb.SetActive(false);
+        p1_nextMine.SetActive(false);
+        p1_nextNuke.SetActive(false);
+        p1_nextTrap.SetActive(false);
+
+        p1_health3.SetActive(false);
+        p1_health2.SetActive(false);
+        p1_health1.SetActive(false);
+
+        p1_instructions_run.SetActive(false);
+        p1_instructions_aim.SetActive(false);
+        p1_instructions_shoot.SetActive(false);
+        p1_instructions_shoot2.SetActive(false);
+        p1_instructions_bump.SetActive(false);
+    }
 }
