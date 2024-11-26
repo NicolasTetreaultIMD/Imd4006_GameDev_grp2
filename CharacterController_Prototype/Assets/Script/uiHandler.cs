@@ -38,16 +38,16 @@ public class uiHandler : MonoBehaviour
 
     [Header("Instructions")]
     public GameObject p0_instructions_run;
-    public GameObject p0_instruction_aim;
+    public GameObject p0_instructions_aim;
     public GameObject p0_instructions_shoot;
-    public GameObject p0_instructions_shootArrow;
+    public GameObject p0_instructions_shoot2;
     public GameObject p0_instructions_bump;
 
     public GameObject p1_instructions_run;
-    public GameObject p1_instruction_aim;
-    public GameObject p1_instruction_shoot;
-    public GameObject p1_instruction_shootArrow;
-    public GameObject p1_instruction_bump;
+    public GameObject p1_instructions_aim;
+    public GameObject p1_instructions_shoot;
+    public GameObject p1_instructions_shoot2;
+    public GameObject p1_instructions_bump;
 
 
 
@@ -75,6 +75,22 @@ public class uiHandler : MonoBehaviour
 
         p1_health2.SetActive(false);
         p1_health1.SetActive(false);
+
+        p0_instructions_run.SetActive(false);
+        p0_instructions_aim.SetActive(false);
+        p0_instructions_shoot.SetActive(false);
+        p0_instructions_shoot2.SetActive(false);
+        p0_instructions_bump.SetActive(false);
+
+        p1_instructions_run.SetActive (false);
+        p1_instructions_aim.SetActive (false);
+        p1_instructions_shoot.SetActive (false);
+        p1_instructions_shoot2.SetActive (false);
+        p1_instructions_bump.SetActive(false);
+
+        StartCoroutine(ShowTutorial());
+
+
     }
 
     // Update is called once per frame
@@ -303,13 +319,41 @@ public class uiHandler : MonoBehaviour
         }
     }
 
-    private IEnumerator DisableInstructionsAfterDelay(GameObject obj, float delay)
+    // TUTORIAL
+    private IEnumerator ShowTutorial()
     {
-        // Wait for the specified delay
-        yield return new WaitForSeconds(delay);
+        // Show run instructions
+        p0_instructions_run.SetActive(true);
+        p1_instructions_run.SetActive(true);
+        yield return new WaitForSeconds(12);
+        p0_instructions_run.SetActive(false);
+        p1_instructions_run.SetActive(false);
 
-        // Disable the visual effect after the delay
-        obj.SetActive(false);
+        // AIM
+        p0_instructions_aim.SetActive(true);
+        p1_instructions_aim.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_aim.SetActive(false);
+        p1_instructions_aim.SetActive(false);
+
+        // SHOOT
+        p0_instructions_shoot.SetActive(true);
+        p0_instructions_shoot2.SetActive(true);
+        p1_instructions_shoot2.SetActive(true);
+        p1_instructions_shoot2.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_shoot.SetActive(false);
+        p0_instructions_shoot2.SetActive(false);
+        p1_instructions_shoot2.SetActive(false);
+        p1_instructions_shoot2.SetActive(false);
+
+        // BUMP
+        p0_instructions_bump.SetActive(true);
+        p1_instructions_bump.SetActive(true);
+        yield return new WaitForSeconds(9);
+        p0_instructions_bump.SetActive(false);
+        p1_instructions_bump.SetActive(false);
+
     }
 
 }

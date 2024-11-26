@@ -23224,15 +23224,15 @@ MonoBehaviour:
   p1_health2: {fileID: 2025771530}
   p1_health1: {fileID: 30448748}
   p0_instructions_run: {fileID: 844902113}
-  p0_instruction_aim: {fileID: 1694211721}
+  p0_instructions_aim: {fileID: 1694211721}
   p0_instructions_shoot: {fileID: 573489857}
-  p0_instructions_shootArrow: {fileID: 1765057304}
+  p0_instructions_shoot2: {fileID: 1765057304}
   p0_instructions_bump: {fileID: 2021718292}
   p1_instructions_run: {fileID: 1885419112}
-  p1_instruction_aim: {fileID: 1470571144}
-  p1_instruction_shoot: {fileID: 1804268453}
-  p1_instruction_shootArrow: {fileID: 1108385796}
-  p1_instruction_bump: {fileID: 507307077}
+  p1_instructions_aim: {fileID: 1470571144}
+  p1_instructions_shoot: {fileID: 1804268453}
+  p1_instructions_shoot2: {fileID: 1108385796}
+  p1_instructions_bump: {fileID: 507307077}
 --- !u!1001 &1541004656
 PrefabInstance:
   m_ObjectHideFlags: 0
