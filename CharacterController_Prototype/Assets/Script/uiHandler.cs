@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.VFX;
 
 
 public class uiHandler : MonoBehaviour
@@ -34,6 +35,21 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_health3;
     public GameObject p1_health2;
     public GameObject p1_health1;
+
+    [Header("Instructions")]
+    public GameObject p0_instructions_run;
+    public GameObject p0_instruction_aim;
+    public GameObject p0_instructions_shoot;
+    public GameObject p0_instructions_shootArrow;
+    public GameObject p0_instructions_bump;
+
+    public GameObject p1_instructions_run;
+    public GameObject p1_instruction_aim;
+    public GameObject p1_instruction_shoot;
+    public GameObject p1_instruction_shootArrow;
+    public GameObject p1_instruction_bump;
+
+
 
 
     // Start is called before the first frame update
@@ -285,6 +301,15 @@ public class uiHandler : MonoBehaviour
                 p1_health1.SetActive(true);
             }
         }
+    }
+
+    private IEnumerator DisableInstructionsAfterDelay(GameObject obj, float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Disable the visual effect after the delay
+        obj.SetActive(false);
     }
 
 }
