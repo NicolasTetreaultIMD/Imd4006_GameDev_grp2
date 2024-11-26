@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 
 public class PoleProximityPrompt : MonoBehaviour
 {
@@ -9,11 +11,19 @@ public class PoleProximityPrompt : MonoBehaviour
     public CarController carController;
     private GameObject promptText;
 
-    public GameObject[] playerIndicators;       // Array to store all the poles in the scene
+    public GameObject[] playerIndicators;       // Array to store all the indicators
+    public List<PlayerInput> players;
+
+    public bool showPlayer1;
+    public bool showPlayer2;
+    public bool showPlayer3;
+    public bool showPlayer4;
 
 
     void Start()
     {
+        players = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>().getPlayers();
+
         // Find all the pole objects in the scene by tag
         if(carController.playerId == 0)
         {
@@ -51,21 +61,22 @@ public class PoleProximityPrompt : MonoBehaviour
 
     void Update()
     {
-
-        // Compare the distances of each player relative to each other
-        //foreach (GameObject players in players)
+        //foreach (var player in players)
         //{
-        //    // Calculate the distance from the player to the pole
-        //    //float distance = Vector3.Distance(players[0].transform.position, players[1].transform.position);
-
-        //    if (distance > proximityThreshold)
+        //    if (carController.playerId != player.playerIndex)
         //    {
-        //        // If the player is close enough to the pole, show the prompt
-        //        //ShowPlayerIndicators();
-        //        Debug.Log("OUTSIDE OF DISTANCE!");
-        //        return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
+        //        float distance = Vector3.Distance();
         //    }
+        //}
 
+        //float distance = Vector3.Distance();
+
+        //if (distance > proximityThreshold)
+        //{
+        //    If the player is close enough to the pole, show the prompt
+        //    ShowPlayerIndicators();
+        //    Debug.Log("OUTSIDE OF DISTANCE!");
+        //    return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
         //}
     }
 }
