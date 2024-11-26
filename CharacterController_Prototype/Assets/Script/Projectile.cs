@@ -73,6 +73,7 @@ public class Projectile : MonoBehaviour
         //If Projectile collides with either a default layer or an obstacle layer, then stop moving and create explosion.
         if (collision.gameObject.layer == 0 || collision.gameObject.layer == 7)
         {
+            //Normal Bomb Projectile
             if (gameObject.tag == "Bomb")
             {
                 madeContact = true;
@@ -87,6 +88,7 @@ public class Projectile : MonoBehaviour
                 StartCoroutine(FadeOut());
             }
 
+            //Landmine Projectile
             if(gameObject.tag == "Mine")
             {
                 if (collision.gameObject.tag != "Player")
@@ -96,9 +98,17 @@ public class Projectile : MonoBehaviour
                     explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
                 }
             }
+
+            //Nuke Projectile
+            if(gameObject.tag == "Nuke")
+            {
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+            }
+            //Beartrap Projectile
         }
     }
 
+    //For non-instant explosion projectiles
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject.tag == "Mine")
