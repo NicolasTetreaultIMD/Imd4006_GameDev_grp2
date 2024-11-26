@@ -198,21 +198,24 @@ public class Cannon : MonoBehaviour
         {
             if (projectile.Count > 0)
             {
-                var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
-                bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, prevShootForce[0], haptics, cart);
-                bullet.GetComponent<Projectile>().forcesApplied = true;
-                //Debug.Log(prevShootForce[0] + " ; " + prevShootForce[shootForceMemory - 1]);
-                prevShootForce = new List<float>();
-                projectile.RemoveAt(0);
+                if (canShoot == true)
+                {
+                    var bullet = Instantiate(projectile[0], shootingPoint.transform.position, shootingPoint.transform.rotation);
+                    bullet.GetComponent<Projectile>().applyProperties(shootingPoint.transform, direction, prevShootForce[0], haptics, cart);
+                    bullet.GetComponent<Projectile>().forcesApplied = true;
+                    //Debug.Log(prevShootForce[0] + " ; " + prevShootForce[shootForceMemory - 1]);
+                    prevShootForce = new List<float>();
+                    projectile.RemoveAt(0);
 
-                // VFX for shooting
-                cart.vfxHandler.ShootItem();
-                cart.audioHandler.ShootItem();
+                    // VFX for shooting
+                    cart.vfxHandler.ShootItem();
+                    cart.audioHandler.ShootItem();
 
-                haptics.CannonHaptics();
-                shootForce = 40;
+                    haptics.CannonHaptics();
+                    shootForce = 40;
 
-                lastShootTime = Time.time + shootCooldown;
+                    lastShootTime = Time.time + shootCooldown;
+                }
             }
 
             //Debug.Log(projectile.Count);
