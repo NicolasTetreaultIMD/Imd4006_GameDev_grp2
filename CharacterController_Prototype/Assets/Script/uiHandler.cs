@@ -71,15 +71,15 @@ public class uiHandler : MonoBehaviour
             // PLAYER 1 has AMMO
             if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0) 
             {
-                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0)
-                {
-                    ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
-                }
-
+                ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
 
                 if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
                 {
                     ShowNextAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(0, "Empty"); // Show current ammo type
                 }
             }
             else // PLAYER 1 has no ammo
@@ -96,7 +96,15 @@ public class uiHandler : MonoBehaviour
             if (players[1].GetComponent<CarController>().cannon.projectile.Count > 0)
             {
                 ShowCurrentAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
-                ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+
+                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
+                {
+                    ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(1, "Empty"); // Show current ammo type
+                }
             }
             else // PLAYER 2 has no ammo
             {
