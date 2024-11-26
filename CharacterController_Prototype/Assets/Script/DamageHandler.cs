@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class DamageHandler : MonoBehaviour
@@ -48,6 +49,11 @@ public class DamageHandler : MonoBehaviour
         {
             carController.health--;
             carController.speed = 0;
+
+            if (carController.health <= 0)
+            {
+                isStunned=true;
+            }
         }
     }
 
