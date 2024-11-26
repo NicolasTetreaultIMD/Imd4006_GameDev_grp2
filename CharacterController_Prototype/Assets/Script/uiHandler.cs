@@ -185,7 +185,7 @@ public class uiHandler : MonoBehaviour
                 p0_currentTrap.SetActive(false);
 
             }
-            else if (type == "Bear Trap")
+            else if (type == "Trap Item")
             {
                 p0_currentBomb.SetActive(false);
                 p0_currentMine.SetActive(false);
@@ -226,7 +226,7 @@ public class uiHandler : MonoBehaviour
 
 
             }
-            else if (type == "Bear Trap")
+            else if (type == "Trap Item")
             {
                 p1_currentBomb.SetActive(false);
                 p1_currentMine.SetActive(false);
@@ -271,7 +271,7 @@ public class uiHandler : MonoBehaviour
                 p0_nextTrap.SetActive(false);
 
             }
-            else if (type == "Bear Trap")
+            else if (type == "Trap Item")
             {
                 p0_nextBomb.SetActive(false);
                 p0_nextMine.SetActive(false);
@@ -311,7 +311,7 @@ public class uiHandler : MonoBehaviour
                 p1_nextTrap.SetActive(false);
 
             }
-            else if (type == "Bear Trap")
+            else if (type == "Trap Item")
             {
                 p1_nextBomb.SetActive(false);
                 p1_nextMine.SetActive(false);
