@@ -422,7 +422,9 @@ public class CarController : MonoBehaviour
             cannon.LoadCannon(GameObject.Find("Bomb Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
-            Destroy(other.gameObject);
+
+            other.GetComponent<ItemRespawn>().enabled = false;
+            other.GetComponent<ItemRespawn>().ItemPickedUp();
         }
 
         if (other.tag == "Mine Box")
@@ -430,7 +432,9 @@ public class CarController : MonoBehaviour
             cannon.LoadCannon(GameObject.Find("Mine Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
-            Destroy(other.gameObject);
+
+            other.GetComponent<ItemRespawn>().enabled = false;
+            other.GetComponent<ItemRespawn>().ItemPickedUp();
         }
 
         if (other.tag == "Nuke Box")
@@ -438,15 +442,19 @@ public class CarController : MonoBehaviour
             cannon.LoadCannon(GameObject.Find("Nuke Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
-            Destroy(other.gameObject);
+
+            other.GetComponent<ItemRespawn>().enabled = false;
+            other.GetComponent<ItemRespawn>().ItemPickedUp();
         }
 
-        if(other.tag == "Trap Box")
+        if (other.tag == "Trap Box")
         {
             cannon.LoadCannon(GameObject.Find("Trap Item"));
             vfxHandler.PickupItem(); // Play Item Pickup VFX
             audioHandler.PickupItem(); // Play Item Pickup AFX
-            Destroy(other.gameObject);
+
+            other.GetComponent<ItemRespawn>().enabled = false;
+            other.GetComponent<ItemRespawn>().ItemPickedUp();
         }
     }
 }
