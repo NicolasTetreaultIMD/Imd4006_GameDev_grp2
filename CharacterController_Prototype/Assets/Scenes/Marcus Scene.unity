@@ -831,7 +831,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1200,7 +1200,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2890,7 +2890,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3350,7 +3350,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4497,7 +4497,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6260,7 +6260,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6687,7 +6687,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6907,7 +6907,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8239,7 +8239,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8398,7 +8398,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10000,7 +10000,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10078,7 +10078,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10177,7 +10177,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11007,7 +11007,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11106,7 +11106,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11556,7 +11556,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12171,7 +12171,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12439,7 +12439,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13530,7 +13530,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14128,7 +14128,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14418,7 +14418,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15588,7 +15588,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15890,7 +15890,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18318,7 +18318,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20103,7 +20103,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21322,7 +21322,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21967,7 +21967,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -22802,6 +22802,16 @@ MonoBehaviour:
   p1_health3: {fileID: 1159386996}
   p1_health2: {fileID: 2025771530}
   p1_health1: {fileID: 30448748}
+  p0_instructions_run: {fileID: 0}
+  p0_instructions_aim: {fileID: 0}
+  p0_instructions_shoot: {fileID: 0}
+  p0_instructions_shoot2: {fileID: 0}
+  p0_instructions_bump: {fileID: 0}
+  p1_instructions_run: {fileID: 0}
+  p1_instructions_aim: {fileID: 0}
+  p1_instructions_shoot: {fileID: 0}
+  p1_instructions_shoot2: {fileID: 0}
+  p1_instructions_bump: {fileID: 0}
 --- !u!1001 &1541004656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23095,7 +23105,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23179,7 +23189,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23456,7 +23466,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23644,7 +23654,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24313,7 +24323,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26054,7 +26064,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26153,7 +26163,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28295,7 +28305,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29047,7 +29057,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30335,7 +30345,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -30906,7 +30916,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31116,7 +31126,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -31373,7 +31383,7 @@ PrefabInstance:
     - target: {fileID: 8205670214989405333, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_TagString
-      value: Mine Box
+      value: Nuke Box
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32078,6 +32088,74 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43dd03e333ba59a43b61f599d7cf08e5, type: 3}
+--- !u!1001 &3483297905451762461
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3717744572737612140, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_Name
+      value: Nuke Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -41.855415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -77.54361
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 75.841934
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037329448211693364, guid: 481db97c7f0146d44a0d41fd8429469b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 481db97c7f0146d44a0d41fd8429469b, type: 3}
 --- !u!1001 &3491153629990468214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33018,6 +33096,7 @@ SceneRoots:
   - {fileID: 669925958}
   - {fileID: 6661586111076941622}
   - {fileID: 2099660392}
+  - {fileID: 3483297905451762461}
   - {fileID: 1108482125}
   - {fileID: 1574753239}
   - {fileID: 823205705}
