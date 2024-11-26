@@ -89,14 +89,27 @@ public class Projectile : MonoBehaviour
 
             if(gameObject.tag == "Mine")
             {
-                madeContact = true;
-                //gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                gameObject.transform.rotation = Quaternion.identity;
-                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
-
+                if (collision.gameObject.tag != "Player")
+                {
+                    madeContact = true;
+                    gameObject.transform.rotation = Quaternion.identity;
+                    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+                }
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.tag == "Mine")
+        {
+            if (other.gameObject.tag == "Player" && madeContact == true)
+            {
+                explosion.gameObject.SetActive(true);
+            }
+        }
+    }
+
 
     private IEnumerator FadeOut()
     {
