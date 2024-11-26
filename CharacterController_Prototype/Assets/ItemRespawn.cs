@@ -10,7 +10,24 @@ public class ItemRespawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        int randomTag = Random.Range(1, 5);
+
+        if (randomTag == 1)
+        {
+            gameObject.tag = "Bomb Box";
+        }
+        else if (randomTag == 2)
+        {
+            gameObject.tag = "Mine Box";
+        }
+        else if (randomTag == 3)
+        {
+            gameObject.tag = "Nuke Box";
+        }
+        else if (randomTag == 4)
+        {
+            gameObject.tag = "Trap Box";
+        }
     }
 
     // Update is called once per frame
