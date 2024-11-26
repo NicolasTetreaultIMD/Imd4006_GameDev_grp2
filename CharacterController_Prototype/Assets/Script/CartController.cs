@@ -427,7 +427,6 @@ public class CarController : MonoBehaviour
                 if (other.tag == "Bomb Box")
                 {
                     cannon.LoadCannon(GameObject.Find("Bomb Item"));
-                    canPickUpItem = false;
 
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
@@ -439,7 +438,6 @@ public class CarController : MonoBehaviour
                 if (other.tag == "Mine Box")
                 {
                     cannon.LoadCannon(GameObject.Find("Mine Item"));
-                    canPickUpItem = false;
 
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
@@ -451,7 +449,6 @@ public class CarController : MonoBehaviour
                 if (other.tag == "Nuke Box")
                 {
                     cannon.LoadCannon(GameObject.Find("Nuke Item"));
-                    canPickUpItem = false;
 
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
@@ -463,7 +460,6 @@ public class CarController : MonoBehaviour
                 if (other.tag == "Trap Box")
                 {
                     cannon.LoadCannon(GameObject.Find("Trap Item"));
-                    canPickUpItem = false;
 
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
