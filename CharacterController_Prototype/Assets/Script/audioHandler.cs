@@ -35,7 +35,6 @@ public class audioHandler : MonoBehaviour
     void Update()
     {
         speed = carController.speed;
-        wheelAudioEffect();
         cartMovement();
     }
 
@@ -47,24 +46,6 @@ public class audioHandler : MonoBehaviour
         //source[1].Play();
     }
 
-    public void wheelAudioEffect()
-    {
-        if (speed >= 20f)
-        {
-            //if (Math.Abs(carController.leftStick.x) > 0.05f)
-            //{
-            //    source[3].pitch = 1;
-            //    if (source[3].isPlaying == false)
-            //    {
-            //        source[3].Play();
-            //    }
-            //}
-            //else
-            //{
-            //    source[3].Stop();
-            //}
-        }
-    }
 
     // Vehicle is moving
     public void cartMovement()
