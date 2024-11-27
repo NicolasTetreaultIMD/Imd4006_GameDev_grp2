@@ -77,12 +77,12 @@ public class DamageHandler : MonoBehaviour
         {
             if (gameObject.tag == "Player" && playerId != explosivePlayerId)
             {
-                uiHandler.playerAliveIndex[playerId] = false;
                 carController.health--;
                 carController.speed = 0;
 
                 if (carController.health <= 0)
                 {
+                    uiHandler.playerAliveIndex[playerId] = false;
                     shield.SetActive(true);
                     isStunned = true;
                 }

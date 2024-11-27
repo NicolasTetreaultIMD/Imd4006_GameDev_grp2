@@ -423,7 +423,7 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
         {
-            if (canPickUpItem == true)
+            if (canPickUpItem == true && cannon.projectile.Count < 2)
             {
                 if (other.tag == "Bomb Box")
                 {
@@ -432,7 +432,6 @@ public class CarController : MonoBehaviour
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
 
-                    other.GetComponent<ItemRespawn>().enabled = false;
                     other.GetComponent<ItemRespawn>().ItemPickedUp();
                 }
 
@@ -443,7 +442,6 @@ public class CarController : MonoBehaviour
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
 
-                    other.GetComponent<ItemRespawn>().enabled = false;
                     other.GetComponent<ItemRespawn>().ItemPickedUp();
                 }
 
@@ -454,7 +452,6 @@ public class CarController : MonoBehaviour
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
 
-                    other.GetComponent<ItemRespawn>().enabled = false;
                     other.GetComponent<ItemRespawn>().ItemPickedUp();
                 }
 
@@ -465,9 +462,15 @@ public class CarController : MonoBehaviour
                     vfxHandler.PickupItem(); // Play Item Pickup VFX
                     audioHandler.PickupItem(); // Play Item Pickup AFX
 
-                    other.GetComponent<ItemRespawn>().enabled = false;
                     other.GetComponent<ItemRespawn>().ItemPickedUp();
                 }
+            }
+            else
+            {
+                vfxHandler.PickupItem(); // Play Item Pickup VFX
+                audioHandler.PickupItem(); // Play Item Pickup AFX
+
+                other.GetComponent<ItemRespawn>().ItemPickedUp();
             }
         }
     }
