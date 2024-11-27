@@ -50,11 +50,13 @@ public class DamageApplier : MonoBehaviour
 
         if (transform.root.tag == "Nuke")
         {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            if (other.gameObject.GetComponentInParent<DamageHandler>() != null)
             {
-                other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
-                other.gameObject.GetComponent<CarController>().audioHandler.impactExplosion();
-
+                if (other.GetComponentInParent<CarController>().playerId != playerId)
+                {
+                    other.gameObject.GetComponentInParent<DamageHandler>().Hit(playerId);
+                    other.gameObject.GetComponentInParent<CarController>().audioHandler.impactExplosion();
+                }
             }
         }
 

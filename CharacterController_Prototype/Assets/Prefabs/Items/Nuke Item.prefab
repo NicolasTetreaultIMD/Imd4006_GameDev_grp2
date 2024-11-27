@@ -292,7 +292,7 @@ MonoBehaviour:
   mesh: {fileID: 7758786440345429834}
   playerId: 0
   foundPlayer: 0
-  speed: 20
+  speed: 40
   rotationSpeed: 0
 --- !u!114 &7331157710501167149
 MonoBehaviour:
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1f2e2a2fc5ce349a7dcd841f95bb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allMesh: {fileID: 7758786440345429834}
   bombMesh: {fileID: 0}
   shootingPoint: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
@@ -778,6 +779,11 @@ PrefabInstance:
       propertyPath: prewarm
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3064655064461717376, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3810250277177619250, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -792,6 +798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 5.6227
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268003926204897429, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6750156559147565287, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
         type: 3}
@@ -812,6 +823,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: explosionEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297184821529394985, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7395552710183676683, guid: 95bd2b93c9d778f42b8bd5f6ce694023,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -901,6 +922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: itemTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336687291182458043, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

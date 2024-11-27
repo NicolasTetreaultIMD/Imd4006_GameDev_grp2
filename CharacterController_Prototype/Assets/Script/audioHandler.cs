@@ -24,6 +24,7 @@ public class audioHandler : MonoBehaviour
     //          [10] - Trap
     //          [11] - Mine
     //          [12] - Nuke
+    //          [13] - Footsteps
 
     private float speed;
 
@@ -45,8 +46,8 @@ public class audioHandler : MonoBehaviour
     //Play step audio. Random range 
     public void stepAudioEffect()
     {
-        //source[1].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
-        //source[1].Play();
+        source[13].pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+        source[13].Play();
     }
 
 

@@ -13629,7 +13629,7 @@ MonoBehaviour:
   players: []
   playerPrefabs:
   - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
-  - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
+  - {fileID: 38323842053506640, guid: 631e6d26e38517d41a13af53fc8a9b1c, type: 3}
   spawnPoints:
   - {fileID: 2102763137}
   - {fileID: 259803746}

@@ -56,7 +56,7 @@ public class MultiplayerManager : MonoBehaviour
         GameObject player = playerInput.gameObject;
         player = cullingMaskApplier(player, playerInput.playerIndex);
 
-        playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex];
+        playerInputManager.playerPrefab = playerPrefabs[1];
 
         SetSpawnPoint(player.transform, playerInput.playerIndex);
 

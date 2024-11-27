@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject allMesh;
     public MeshRenderer bombMesh;
 
     [Header("Projectile Movement")]
@@ -126,17 +127,40 @@ public class Projectile : MonoBehaviour
             {
                 gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+             
 
                 if (nukeTracker.foundPlayer == false)
                 {
-                    gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    explosion.gameObject.SetActive(true);
-                    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
-                    carController.audioHandler.impactExplosion();
-                    haptics.ExplosionHaptics();
+                    if (collision.gameObject.GetComponent<CarController>() != null)
+                    {
+                        if (collision.gameObject.GetComponent<CarController>().playerId != carController.playerId)
+                        {
+                            madeContact = true;
+                            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                            allMesh.SetActive(false);
+                            explosion.gameObject.SetActive(true);
+                            explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
-                    StartCoroutine(FadeOut());
+                            carController.audioHandler.impactExplosion();
+                            haptics.ExplosionHaptics();
+
+                            StartCoroutine(FadeOut());
+                        }
+                    }
+                    else
+                    {
+                        madeContact = true;
+                        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                        allMesh.SetActive(false);
+                        explosion.gameObject.SetActive(true);
+                        explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+                        carController.audioHandler.impactExplosion();
+                        haptics.ExplosionHaptics();
+
+                        StartCoroutine(FadeOut());
+                    }
                 }
             }
 
