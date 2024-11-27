@@ -52,6 +52,11 @@ public class DamageHandler : MonoBehaviour
         {
             carController.speed = 0;
         }
+
+        if(isImmune)
+        {
+            shield.GetComponent<Material>().color.a = 0;
+        }
     }
 
     public void Hit(int explosivePlayerId)
@@ -66,22 +71,20 @@ public class DamageHandler : MonoBehaviour
         {
             if (gameObject.tag == "Player" && playerId != explosivePlayerId)
             {
- everetts-branch
                 isStunned=true;
                 uiHandler.playerAliveIndex[playerId] = false;
                 carController.health--;
                 carController.speed = 0;
 
                 isImmune = true;
+                shield.SetActive(true);
                 StartCoroutine(ImmunityTime());
-                StartCoroutine(FlashMeshes());
 
                 if (carController.health <= 0)
                 {
                     isStunned = true;
                 }
- main
-            }
+             }
         }
     }
 
@@ -96,38 +99,13 @@ public class DamageHandler : MonoBehaviour
 
     private IEnumerator StunDuration()
     {
-        // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(3f);
         isStunned = false;
     }
 
     private IEnumerator ImmunityTime()
     {
-        // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(4f);
         isImmune = false;
     }
-
-    private IEnumerator FlashMeshes()
-    {
-        float flashDuration = 0.5f;  
-        float flashInterval = 0.2f;  
-
-        while (isImmune)
-        {            for (int i = 0; i < meshRenderers.Length; i++)
-            {
-                meshRenderers[i].material.color = Color.white;
-            }
-
-            yield return new WaitForSeconds(flashDuration);
-
-            for (int i = 0; i < meshRenderers.Length; i++)
-            {
-                meshRenderers[i].material.color = originalColors[i];
-            }
-
-            yield return new WaitForSeconds(flashInterval);
-        }
-    }
-
 }
