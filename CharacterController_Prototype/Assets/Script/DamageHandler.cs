@@ -19,6 +19,9 @@ public class DamageHandler : MonoBehaviour
     public bool isStunned;
 
     public GameObject shield;
+    float lerpDuration ;
+    float lerpStartTime = Time.time;
+    Color originalColor;
 
     private MeshRenderer[] meshRenderers;  // Array to store the mesh renderers
     private Color[] originalColors;        // Array to store original colors of mesh renderers
@@ -29,16 +32,15 @@ public class DamageHandler : MonoBehaviour
         uiHandler = GameObject.Find("Canvas").GetComponent<uiHandler>();
         carController = GetComponent<CarController>();
         isStunned = false;
+        isImmune = true;
+        shield.gameObject.SetActive(true);
 
-        meshRenderers = GetComponentsInChildren<MeshRenderer>();
-        originalColors = new Color[meshRenderers.Length];
-
-        // Save the original colors of all MeshRenderers
-        for (int i = 0; i < meshRenderers.Length; i++)
-        {
-            originalColors[i] = meshRenderers[i].material.color;
-        }
+        lerpDuration = 1f; // Time to complete one lerp cycle
+        lerpStartTime = Time.time;
+        originalColor = shield.GetComponent<Material>().color;
     }
+
+ 
 
     // Update is called once per frame
     void Update()
@@ -53,9 +55,16 @@ public class DamageHandler : MonoBehaviour
             carController.speed = 0;
         }
 
-        if(isImmune)
+        if (isImmune) // Keep looping the alpha lerp back and forth
         {
-            shield.GetComponent<Material>().color.a = 0;
+            // Calculate the new alpha value using Mathf.PingPong to smoothly oscillate between two values
+            float lerpTime = (Time.time - lerpStartTime) / lerpDuration;
+            float alpha = Mathf.Lerp(20f, 70f, Mathf.PingPong(lerpTime, 1));  // PingPong will oscillate between 0 and 1
+
+            // Set the alpha in the material's color
+            Color newColor = originalColor;
+            newColor.a = alpha / 100f; // Divide by 100 to get the alpha between 0 and 1
+            shield.GetComponent<Material>().color = newColor;
         }
     }
 
@@ -107,5 +116,29 @@ public class DamageHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         isImmune = false;
+    }
+
+    private IEnumerator ShieldFlash()
+    {
+        float lerpDuration = 1f; // Time to complete one lerp cycle
+        float lerpStartTime = Time.time;
+
+        Color originalColor;
+
+        originalColor = shield.GetComponent<Material>().color;
+
+        while (isImmune) // Keep looping the alpha lerp back and forth
+        {
+            // Calculate the new alpha value using Mathf.PingPong to smoothly oscillate between two values
+            float lerpTime = (Time.time - lerpStartTime) / lerpDuration;
+            float alpha = Mathf.Lerp(20f, 70f, Mathf.PingPong(lerpTime, 1));  // PingPong will oscillate between 0 and 1
+
+            // Set the alpha in the material's color
+            Color newColor = originalColor;
+            newColor.a = alpha / 100f; // Divide by 100 to get the alpha between 0 and 1
+            shield.GetComponent<Material>().color = newColor;
+
+            yield return null; // Wait for the next frame
+        }
     }
 }
