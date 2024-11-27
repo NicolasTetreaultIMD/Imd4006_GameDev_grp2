@@ -221,6 +221,95 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2983624278667861877}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6764995469663777706
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7837859868641924224}
+    m_Modifications:
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.034951247
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.034949657
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.034949668
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.056
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8336687291182458043, guid: 8d9fdd447ca0b274592f4b2119841572,
+        type: 3}
+      propertyPath: m_Name
+      value: itemTrail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8d9fdd447ca0b274592f4b2119841572, type: 3}
+--- !u!4 &7765385193733047888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3901849254622590458, guid: 8d9fdd447ca0b274592f4b2119841572,
+    type: 3}
+  m_PrefabInstance: {fileID: 6764995469663777706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7732422705039569771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,6 +414,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6a03a4590a8b4d84db18c99770abb11f,
         type: 3}
       insertIndex: 0
+      addedObject: {fileID: 7765385193733047888}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6a03a4590a8b4d84db18c99770abb11f,
+        type: 3}
+      insertIndex: 1
       addedObject: {fileID: 2029948963610703403}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6a03a4590a8b4d84db18c99770abb11f,
@@ -366,9 +459,10 @@ MonoBehaviour:
   projectileSpeed: 0
   forcesApplied: 0
   madeContact: 0
-  readyToDetonate: 0
   explosion: {fileID: 1588627843068459656}
   haptics: {fileID: 0}
+  nukeTracker: {fileID: 0}
+  carController: {fileID: 0}
 --- !u!54 &4780588264917162451
 Rigidbody:
   m_ObjectHideFlags: 0
