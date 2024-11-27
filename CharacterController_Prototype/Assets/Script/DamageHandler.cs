@@ -35,7 +35,7 @@ public class DamageHandler : MonoBehaviour
         shield.gameObject.SetActive(false);
         shieldTerial = shield.GetComponent<Renderer>().material;
 
-        lerpDuration = 1f; // Time to complete one lerp cycle
+        lerpDuration = 0.5f; 
         lerpStartTime = Time.time;
     }
 
@@ -57,7 +57,7 @@ public class DamageHandler : MonoBehaviour
         if (isImmune) // Keep looping the alpha lerp back and forth
         {
             float lerpTime = (Time.time - lerpStartTime) / lerpDuration;
-            float alpha = Mathf.Lerp(40f, 100f, Mathf.PingPong(lerpTime, 1));  // PingPong will oscillate between 0 and 1
+            float alpha = Mathf.Lerp(20f, 120f, Mathf.PingPong(lerpTime, 1));  // PingPong will oscillate between 0 and 1
 
             Color newColor = shieldTerial.color;
             newColor.a = alpha / 255f;
