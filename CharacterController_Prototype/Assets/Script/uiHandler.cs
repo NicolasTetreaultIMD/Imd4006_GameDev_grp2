@@ -65,6 +65,8 @@ public class uiHandler : MonoBehaviour
     public int playerCount;
 
     [Header("WinStates")]
+    public bool[] playerAliveIndex = new bool[4];
+
     public GameObject p0_winner;
     public GameObject p0_loser;
 
@@ -80,11 +82,18 @@ public class uiHandler : MonoBehaviour
 
     void Start()
     {
+        playerAliveIndex[0] = true;
+        playerAliveIndex[1] = true;
+        playerAliveIndex[2] = false;
+        playerAliveIndex[3] = false;
+
         playerCount = 0;
         tutorialFlag = false; // not yet seen tutorial prompts
+        p0_winner.SetActive(false);
+        p1_winner.SetActive(false);
         HideP0UI();
         HideP1UI();
-
+        
 
 
     }
@@ -183,7 +192,7 @@ public class uiHandler : MonoBehaviour
         // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
         if(playerCount >=2)
         {
-            DetectGameState();
+            DetectWinner();
         }
     }
 
@@ -493,6 +502,7 @@ public class uiHandler : MonoBehaviour
         p0_health3.SetActive(false);
         p0_health2.SetActive(false);
         p0_health1.SetActive(false);
+        p0_health0.SetActive(false);
 
        
         p0_instructions_run.SetActive(false);
@@ -521,6 +531,7 @@ public class uiHandler : MonoBehaviour
         p1_health3.SetActive(false);
         p1_health2.SetActive(false);
         p1_health1.SetActive(false);
+        p1_health0.SetActive(false);
 
         p1_instructions_run.SetActive(false);
         p1_instructions_aim.SetActive(false);
@@ -529,8 +540,47 @@ public class uiHandler : MonoBehaviour
         p1_instructions_bump.SetActive(false);
     }
 
-    public void DetectGameState()
+    public void DetectWinner()
     {
+        int playersAliveCount = 0;
 
+        for(int i = 0; i < playerAliveIndex.Length; i++)
+        {
+            if (playerAliveIndex[i])
+            {
+                playersAliveCount++;
+            }
+        }
+
+        if(playersAliveCount == 1)
+        {
+            for (int i = 0; i < playerAliveIndex.Length; i++)
+            {
+                if (playerAliveIndex[i] == true)
+                {
+                    if(i == 0) // PLAYER 1 wins
+                    {
+                        p0_winner.SetActive(true); // Show player 0 as the winner
+                        p1_loser.SetActive(true); // Show player 1 as the loser
+                    }
+                    else if (i== 1) // PLAYER 2 wins
+                    {
+                        p1_winner.SetActive(true); // Show player 1 as the winner
+                        p0_loser.SetActive(true); // Show player 0 as the loser
+                    }
+                    else if (i == 2) // PLAYER 3 wins
+                    {
+                        p1_loser.SetActive(true); // Show player 1 as the loser
+                        p0_loser.SetActive(true); // Show player 0 as the loser
+                    }
+                    else if (i == 3) // PLAYER 4 wins
+                    {
+                        p1_loser.SetActive(true); // Show player 1 as the loser
+                        p0_loser.SetActive(true); // Show player 0 as the loser
+                    }
+                }
+            }
+        }
+        
     }
 }
