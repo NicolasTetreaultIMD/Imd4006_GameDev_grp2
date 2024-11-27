@@ -53,6 +53,7 @@ public class CarController : MonoBehaviour
     public float maxSpeed = 37.5f;
     public float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
+    public float rotationAmount;
 
     [Header("Turning")]
     public float currentTurnSpeed;
@@ -296,7 +297,7 @@ public class CarController : MonoBehaviour
             // Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
             // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
 
-            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45 * (Mathf.Min(1, speed/speedForPeakTurn)) + centerMassManager.turnIncrease, 0) * transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * rotationAmount * (Mathf.Min(1, speed/speedForPeakTurn)) + centerMassManager.turnIncrease, 0) * transform.rotation;
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
 
             //right turn

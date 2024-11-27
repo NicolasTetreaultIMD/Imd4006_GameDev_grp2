@@ -160,6 +160,7 @@ MonoBehaviour:
   maxSpeed: 37.5
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
+  rotationAmount: 60
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
@@ -349,7 +350,8 @@ MonoBehaviour:
   jumpStrengthY: 1.7
   jumpStrengthX: 1
   bumpSpeed: 1.3
-  invertBump: 0
+  invertBump: 1
+  bumpCooldown: 4
   audioHandler: {fileID: 505890743119021628}
 --- !u!114 &5956470940994522726
 MonoBehaviour:
@@ -2688,7 +2690,7 @@ MonoBehaviour:
   shootForceIncreaseSpeed: 0
   isShooting: 0
   aritime: 0
-  shootCooldown: 0
+  shootCooldown: 0.5
   lastShootTime: 0
   canShoot: 0
   trajectoryLine: {fileID: 199994340255641112}
@@ -8070,7 +8072,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15193,7 +15195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

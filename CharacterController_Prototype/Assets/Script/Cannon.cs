@@ -81,7 +81,6 @@ public class Cannon : MonoBehaviour
         shootForceIncreaseSpeed = 2;
         hitMarker.GetComponent<MeshRenderer>().enabled = false;
 
-        shootCooldown = 2;
         canShoot = true;
     }
 

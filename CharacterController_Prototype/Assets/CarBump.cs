@@ -1,5 +1,6 @@
  using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,7 +19,9 @@ public class CarBump : MonoBehaviour
     public float jumpStrengthX;
     public float bumpSpeed;
     public bool invertBump;
+    public float bumpCooldown;
 
+    private float timeElapsed;
     private float initYLevel;
     private int BumpDirection;
     private bool isBumping;
@@ -53,6 +56,8 @@ public class CarBump : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        timeElapsed -= Time.fixedDeltaTime;
+
         if (isBumping)
         {
             elapsedTime += Time.fixedDeltaTime * bumpSpeed; // Accumulate time each frame
@@ -80,15 +85,16 @@ public class CarBump : MonoBehaviour
     {
         
 
-        if (!isBumping && cannon.projectile.Count > 0 && carController.cartState == CarController.CartState.InCart)
+        if (!isBumping && timeElapsed <= 0 && carController.cartState == CarController.CartState.InCart)
         {
+            timeElapsed = bumpCooldown;
+
             BumpDirection = direction;
             elapsedTime = 0;
             prevMassChange = 0;
             centerMassManager.overideTiltScale = true;
 
             carController.SwitchCartState(CarController.CartState.InAir);
-            cannon.projectile.RemoveAt(0);
 
             audioHandler.carBump();
 
