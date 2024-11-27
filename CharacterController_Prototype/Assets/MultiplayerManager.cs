@@ -13,6 +13,7 @@ public class MultiplayerManager : MonoBehaviour
     public List<PlayerInput> players = new List<PlayerInput>();
     public GameObject[] playerPrefabs = new GameObject[4];
 
+    public List<Transform> spawnPoints = new List<Transform>();
 
     LayerMask p1OcclusionMask;
     LayerMask p2OcclusionMask;
@@ -40,6 +41,13 @@ public class MultiplayerManager : MonoBehaviour
         PlayerInputManager.instance.onPlayerLeft -= OnPlayerLeft;
     }
 
+    private void SetSpawnPoint(Transform player, int playerInd)
+    {
+        Debug.Log(player + " id: " + playerInd);
+        player.position = spawnPoints[playerInd].position;
+        player.rotation = spawnPoints[playerInd].rotation;
+    }
+
     private void OnPlayerJoined(PlayerInput playerInput)
     {
         players.Add(playerInput);
@@ -48,7 +56,9 @@ public class MultiplayerManager : MonoBehaviour
         GameObject player = playerInput.gameObject;
         player = cullingMaskApplier(player, playerInput.playerIndex);
 
-        playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex + 1];
+        playerInputManager.playerPrefab = playerPrefabs[playerInput.playerIndex];
+
+        SetSpawnPoint(player.transform, playerInput.playerIndex);
 
         Debug.Log($"Player joined: {playerInput.playerIndex}");
     }
