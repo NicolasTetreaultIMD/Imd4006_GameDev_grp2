@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Haptics;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -18,6 +19,8 @@ public class CarController : MonoBehaviour
     public float stickDeadzone;
     PlayerInput playerInput;
     private InputAction increase;
+    public HapticFeedback haptics;
+
 
     [Header("Health")]
     public GameManager gameManager;
@@ -470,6 +473,7 @@ public class CarController : MonoBehaviour
                 vfxHandler.PickupItem(); // Play Item Pickup VFX
                 audioHandler.PickupItem(); // Play Item Pickup AFX
 
+                haptics.CrateHaptics();
                 other.GetComponent<ItemRespawn>().ItemPickedUp();
             }
         }

@@ -135,6 +135,7 @@ MonoBehaviour:
   playerId: 0
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0.3
+  haptics: {fileID: 4109759420216548726}
   gameManager: {fileID: 0}
   damageHandler: {fileID: 5364289520311506974}
   characterHider: {fileID: 3383399683257868369}
@@ -340,7 +341,6 @@ MonoBehaviour:
   jumpStrengthX: 1
   bumpSpeed: 1.3
   invertBump: 0
-  audioHandler: {fileID: 505890743119021628}
 --- !u!114 &5956470940994522726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7603,7 +7603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14725,7 +14725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
