@@ -140,10 +140,36 @@ public class audioHandler : MonoBehaviour
         }
     }
 
+
+    private float currentPitch = 0.8f; 
+    private bool increasing = true;   //if the pitch should increase or decrease
+
     public void carBump()
     {
         if (source[9].isPlaying == false)
         {
+            source[9].pitch = currentPitch;
+
+            //change audio pitch
+            if (increasing)
+            {
+                currentPitch += 0.5f; //increase pitch by this value
+                if (currentPitch >= 2f) // Check upper bound
+                {
+                    currentPitch = 2f;
+                    increasing = false; //make pitch decrease
+                }
+            }
+            else
+            {
+                currentPitch -= 0.5f; //decrease pitch
+                if (currentPitch <= 0.5f) 
+                {
+                    currentPitch = 0.5f;
+                    increasing = true; //pitch increase
+                }
+            }
+
             source[9].Play();
         }
     }
