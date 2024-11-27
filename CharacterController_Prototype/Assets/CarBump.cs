@@ -78,6 +78,8 @@ public class CarBump : MonoBehaviour
 
     private void Bump (int direction)
     {
+        
+
         if (!isBumping && cannon.projectile.Count > 0 && carController.cartState == CarController.CartState.InCart)
         {
             BumpDirection = direction;
@@ -89,6 +91,10 @@ public class CarBump : MonoBehaviour
             cannon.projectile.RemoveAt(0);
 
             audioHandler.carBump();
+
+            // VFX for bump
+            if (direction == 1) { carController.vfxHandler.BumpLeft(); }
+            if (direction == -1) { carController.vfxHandler.BumpRight(); }
 
             isBumping = true;
         }
