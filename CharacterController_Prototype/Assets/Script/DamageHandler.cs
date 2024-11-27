@@ -16,11 +16,25 @@ public class DamageHandler : MonoBehaviour
     public bool isImmune;
     public bool isStunned;
 
+    public GameObject shield;
+
+    private MeshRenderer[] meshRenderers;  // Array to store the mesh renderers
+    private Color[] originalColors;        // Array to store original colors of mesh renderers
+
     // Start is called before the first frame update
     void Start()
     {
         carController = GetComponent<CarController>();
         isStunned = false;
+
+        meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        originalColors = new Color[meshRenderers.Length];
+
+        // Save the original colors of all MeshRenderers
+        for (int i = 0; i < meshRenderers.Length; i++)
+        {
+            originalColors[i] = meshRenderers[i].material.color;
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +49,6 @@ public class DamageHandler : MonoBehaviour
         {
             carController.speed = 0;
         }
-
     }
 
     public void Hit(int explosivePlayerId)
@@ -52,8 +65,10 @@ public class DamageHandler : MonoBehaviour
             {
                 carController.health--;
                 carController.speed = 0;
+
                 isImmune = true;
                 StartCoroutine(ImmunityTime());
+                StartCoroutine(FlashMeshes());
 
                 if (carController.health <= 0)
                 {
@@ -84,6 +99,28 @@ public class DamageHandler : MonoBehaviour
         // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(4f);
         isImmune = false;
+    }
+
+    private IEnumerator FlashMeshes()
+    {
+        float flashDuration = 0.5f;  
+        float flashInterval = 0.2f;  
+
+        while (isImmune)
+        {            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                meshRenderers[i].material.color = Color.white;
+            }
+
+            yield return new WaitForSeconds(flashDuration);
+
+            for (int i = 0; i < meshRenderers.Length; i++)
+            {
+                meshRenderers[i].material.color = originalColors[i];
+            }
+
+            yield return new WaitForSeconds(flashInterval);
+        }
     }
 
 }
