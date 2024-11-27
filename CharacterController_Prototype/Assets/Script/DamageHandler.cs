@@ -12,6 +12,8 @@ public class DamageHandler : MonoBehaviour
     public CarController carController;
     public int playerId;
 
+    public uiHandler uiHandler;
+
     public bool isProjectile;
     public bool isImmune;
     public bool isStunned;
@@ -24,6 +26,7 @@ public class DamageHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiHandler = GameObject.Find("Canvas").GetComponent<uiHandler>();
         carController = GetComponent<CarController>();
         isStunned = false;
 
@@ -63,6 +66,9 @@ public class DamageHandler : MonoBehaviour
         {
             if (gameObject.tag == "Player" && playerId != explosivePlayerId)
             {
+ everetts-branch
+                isStunned=true;
+                uiHandler.playerAliveIndex[playerId] = false;
                 carController.health--;
                 carController.speed = 0;
 
@@ -74,6 +80,7 @@ public class DamageHandler : MonoBehaviour
                 {
                     isStunned = true;
                 }
+ main
             }
         }
     }
