@@ -67,11 +67,6 @@ public class DamageHandler : MonoBehaviour
 
     public void Hit(int explosivePlayerId)
     {
-        if (gameObject.tag == "Target")
-        {
-            gameObject.GetComponent<Renderer>().material = testMaterial;
-            carController.audioHandler.HitTarget();
-        }
 
         if (isImmune == false)
         {
