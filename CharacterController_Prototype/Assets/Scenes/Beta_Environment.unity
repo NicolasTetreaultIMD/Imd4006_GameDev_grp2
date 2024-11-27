@@ -10873,7 +10873,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &729138932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14378,7 +14381,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1054520524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16217,7 +16223,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1143639495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19078,7 +19087,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1223650241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22465,7 +22477,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1420293558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30932,7 +30947,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1990880049
 BoxCollider:
   m_ObjectHideFlags: 0

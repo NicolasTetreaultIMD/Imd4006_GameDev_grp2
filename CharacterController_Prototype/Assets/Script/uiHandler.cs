@@ -140,15 +140,15 @@ public class uiHandler : MonoBehaviour
         }
 
         // Update the UI text to show the projectile count
-        if (players[0] != null)
+        if (playerCount >= 1)
         {
 
             // PLAYER 1 has AMMO
-            if (players[0].GetComponent<CarController>().cannon.projectile.Count > 0) 
+            if (players[0].GetComponent<CarController>().cannon.projectile.Count >= 1) 
             {
                 ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
 
-                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
+                if (players[0].GetComponent<CarController>().cannon.projectile.Count >= 2)
                 {
                     ShowNextAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
                 }
@@ -165,14 +165,14 @@ public class uiHandler : MonoBehaviour
             CurrentHealth(0, players[0].GetComponent<CarController>().health); // Show current player health
         }
 
-        if (players[1] != null) 
+        if (playerCount >= 2) 
         {
             // PLAYER 2 has AMMO
-            if (players[1].GetComponent<CarController>().cannon.projectile.Count > 0)
+            if (players[1].GetComponent<CarController>().cannon.projectile.Count >= 1)
             {
                 ShowCurrentAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
 
-                if (players[0].GetComponent<CarController>().cannon.projectile.Count > 1)
+                if (players[1].GetComponent<CarController>().cannon.projectile.Count >= 2)
                 {
                     ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
                 }
@@ -436,6 +436,7 @@ public class uiHandler : MonoBehaviour
             }
         }
     }
+
 
     // TUTORIAL
     private IEnumerator ShowTutorial()
