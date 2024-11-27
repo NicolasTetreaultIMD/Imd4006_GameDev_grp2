@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamageApplier : MonoBehaviour
 {
     public int playerId;
+    bool isReady;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,12 @@ public class DamageApplier : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void Awake()
+    {
+        //isReady = false;
+        StartCoroutine(LaunchPeriod());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -32,11 +39,14 @@ public class DamageApplier : MonoBehaviour
 
         if (transform.root.tag == "Mine")
         {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            if (isReady)
             {
-                other.gameObject.GetComponent<DamageHandler>().Hit(-1); //A parameter of -1 means that even the player who threw it can get damaged by it
-
-                StartCoroutine(FadeOut());
+                Debug.Log("Hooray");
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
+                {
+                    other.gameObject.GetComponent<DamageHandler>().Hit(-1); //A parameter of -1 means that even the player who threw it can get damaged by it
+                    StartCoroutine(FadeOut());
+                }
             }
         }
 
@@ -44,25 +54,31 @@ public class DamageApplier : MonoBehaviour
         {
             if (other.gameObject.GetComponent<DamageHandler>() != null)
             {
-                other.gameObject.GetComponent<DamageHandler>().Hit(playerId); //A parameter of -1 means that even the player who threw it can get damaged by it
+                other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
             
             }
         }
 
         if (transform.root.tag == "Trap")
         {
-            if (other.gameObject.GetComponent<DamageHandler>() != null)
+            if (isReady)
             {
-                if (other.gameObject.GetComponent<CarController>().playerId != playerId)
+                if (other.gameObject.GetComponent<DamageHandler>() != null)
                 {
                     Debug.Log("Bye bye trap");
-                    other.gameObject.GetComponent<DamageHandler>().Stun(playerId);
+                    other.gameObject.GetComponent<DamageHandler>().Stun(-1);
                     StartCoroutine(TrapFadeOut());
                 }
             }
         }
 
 
+    }
+
+    private IEnumerator LaunchPeriod()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isReady = true;
     }
 
     private IEnumerator FadeOut()
