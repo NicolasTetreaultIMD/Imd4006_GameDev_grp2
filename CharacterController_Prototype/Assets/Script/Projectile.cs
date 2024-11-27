@@ -61,10 +61,10 @@ public class Projectile : MonoBehaviour
 
         if (carController != null)
         {
-            if (gameObject.tag == "Trap")
-            {
-                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
-            }
+            //if (gameObject.tag == "Trap")
+            //{
+            //    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+            //}
         }
     }
 

@@ -10873,7 +10873,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &729138932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12913,6 +12916,7 @@ MonoBehaviour:
   playerId: 0
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0
+  haptics: {fileID: 0}
   gameManager: {fileID: 0}
   damageHandler: {fileID: 0}
   characterHider: {fileID: 0}
@@ -14378,7 +14382,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1054520524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16217,7 +16224,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1143639495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17080,6 +17090,7 @@ MonoBehaviour:
   playerId: 0
   leftStick: {x: 0, y: 0}
   stickDeadzone: 0
+  haptics: {fileID: 0}
   gameManager: {fileID: 0}
   damageHandler: {fileID: 0}
   characterHider: {fileID: 0}
@@ -19078,7 +19089,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1223650241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19850,6 +19864,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1105609274}
     m_Modifications:
+    - target: {fileID: 5870222591931579464, guid: 7a55f49ab8dbb294bac28655bbe11557,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.021
+      objectReference: {fileID: 0}
+    - target: {fileID: 5870222591931579464, guid: 7a55f49ab8dbb294bac28655bbe11557,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.494
+      objectReference: {fileID: 0}
     - target: {fileID: 6262186320313543687, guid: 7a55f49ab8dbb294bac28655bbe11557,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22465,7 +22489,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1420293558
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30932,7 +30959,10 @@ MonoBehaviour:
   playerId: 0
   uiHandler: {fileID: 0}
   isProjectile: 0
+  isImmune: 0
   isStunned: 0
+  shield: {fileID: 0}
+  shieldTerial: {fileID: 0}
 --- !u!65 &1990880049
 BoxCollider:
   m_ObjectHideFlags: 0
