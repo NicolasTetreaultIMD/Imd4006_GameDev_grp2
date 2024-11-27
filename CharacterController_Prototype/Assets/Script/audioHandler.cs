@@ -20,6 +20,7 @@ public class audioHandler : MonoBehaviour
     //          [6] - explosion
     //          [7] - drift
     //          [8] - success (player hits a target)
+    //          [9] - bump
 
     private float speed;
 
@@ -136,6 +137,14 @@ public class audioHandler : MonoBehaviour
         if (source[8].isPlaying == false)
         {
             source[8].Play();
+        }
+    }
+
+    public void carBump()
+    {
+        if (source[9].isPlaying == false)
+        {
+            source[9].Play();
         }
     }
 
