@@ -25,6 +25,9 @@ public class CarBump : MonoBehaviour
     private float elapsedTime;
     private float prevMassChange;
 
+
+    public audioHandler audioHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +87,8 @@ public class CarBump : MonoBehaviour
 
             carController.SwitchCartState(CarController.CartState.InAir);
             cannon.projectile.RemoveAt(0);
+
+            audioHandler.carBump();
 
             isBumping = true;
         }
