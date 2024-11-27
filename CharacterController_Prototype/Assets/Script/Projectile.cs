@@ -36,6 +36,7 @@ public class Projectile : MonoBehaviour
         madeContact = false;
         mass = gameObject.GetComponent<Rigidbody>().mass;
 
+        
     }
 
     // Update is called once per frame
@@ -77,16 +78,6 @@ public class Projectile : MonoBehaviour
         carController = newCart;
         forcesApplied = true;
 
-        if (gameObject.tag == "Mine")
-        {
-            carController.audioHandler.mineBeep();
-        }
-
-        if (gameObject.tag == "Nuke")
-        {
-            carController.audioHandler.nukeWhistle();
-        }
-
     }
 
 
@@ -104,7 +95,7 @@ public class Projectile : MonoBehaviour
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
                 bombMesh.enabled = false;
 
-                carController.audioHandler.impactExplosion(); // PLAY Audio
+                carController.audioHandler.impactExplosion();
                 haptics.ExplosionHaptics();
 
                 StartCoroutine(FadeOut());
@@ -161,8 +152,6 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.tag == "Player" && madeContact == true)
             {
                 explosion.gameObject.SetActive(true);
-                carController.audioHandler.impactExplosion(); // play explosion SFX
-
             }
         }
 
@@ -171,7 +160,6 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.tag == "Player" && madeContact == true)
             {
                 explosion.gameObject.SetActive(true);
-                carController.audioHandler.activateTrap();
             }
         }
     }
