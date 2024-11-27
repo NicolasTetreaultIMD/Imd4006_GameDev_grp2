@@ -21,6 +21,9 @@ public class audioHandler : MonoBehaviour
     //          [7] - drift
     //          [8] - success (player hits a target)
     //          [9] - bump
+    //          [10] - Trap
+    //          [11] - Mine
+    //          [12] - Nuke
 
     private float speed;
 
@@ -152,6 +155,30 @@ public class audioHandler : MonoBehaviour
             }
 
             source[9].Play();
+        }
+    }
+
+    public void activateTrap()
+    {
+        // Play bear trap noise
+        if (source[10].isPlaying == false)
+        {
+            source[10].Play();
+        }
+    }
+
+    public void mineBeep()
+    {
+        if (source[11].isPlaying == false)
+        {
+            source[11].Play();
+        }
+    } 
+    public void nukeWhistle()
+    {
+        if (source[12].isPlaying == false)
+        {
+            source[12].Play();
         }
     }
 
