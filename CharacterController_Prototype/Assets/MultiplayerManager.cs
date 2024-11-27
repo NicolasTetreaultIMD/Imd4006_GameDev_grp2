@@ -1,6 +1,5 @@
 using Cinemachine;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +32,11 @@ public class MultiplayerManager : MonoBehaviour
     {
         PlayerInputManager.instance.onPlayerJoined += OnPlayerJoined;
         PlayerInputManager.instance.onPlayerLeft += OnPlayerLeft;
+    }
+
+    private void Awake()
+    {
+        
     }
 
     private void OnDisable()
