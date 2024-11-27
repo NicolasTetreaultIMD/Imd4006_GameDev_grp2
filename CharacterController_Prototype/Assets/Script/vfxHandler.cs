@@ -30,6 +30,8 @@ public class vfxHandler : MonoBehaviour
 
     [Header("Shooting Effects")]
     public VisualEffect shootItem;
+    public VisualEffect bumpLeft;
+    public VisualEffect bumpRight;
 
     private float speed;
     private float minTime = 0.0005f; // time is used for Trail renderer for wind trails ( VFX )
@@ -50,6 +52,9 @@ public class vfxHandler : MonoBehaviour
         // Disable VFX
         itemPickup.enabled = false;
         shootItem.enabled = false;
+        bumpLeft.enabled = false;
+        bumpRight.enabled = false;
+
         aimDirectionParent.SetActive(false);
         ToggleSparks(false);
         ToggleVolumetricSmoke(3); // 3 = both trails off
@@ -284,6 +289,18 @@ public class vfxHandler : MonoBehaviour
     {
         shootItem.enabled = true;
         StartCoroutine(DisableEffectAfterDelay(shootItem, 0.2f));
+    }
+
+    public void BumpLeft()
+    {
+        bumpLeft.enabled = true;
+        StartCoroutine(DisableEffectAfterDelay(bumpLeft, 0.2f));
+    }
+
+    public void BumpRight()
+    {
+        bumpRight.enabled = true;
+        StartCoroutine(DisableEffectAfterDelay(bumpRight, 0.2f));
     }
 
     // Delay VFX (VisualEffect vfx) after delay interval (float delay)
