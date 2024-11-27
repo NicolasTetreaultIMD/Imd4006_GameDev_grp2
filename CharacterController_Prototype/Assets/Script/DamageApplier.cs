@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class DamageApplier : MonoBehaviour
 {
@@ -52,7 +53,8 @@ public class DamageApplier : MonoBehaviour
             if (other.gameObject.GetComponent<DamageHandler>() != null)
             {
                 other.gameObject.GetComponent<DamageHandler>().Hit(playerId);
-            
+                other.gameObject.GetComponent<CarController>().audioHandler.impactExplosion();
+
             }
         }
 
