@@ -18,6 +18,11 @@ public class CameraManager : MonoBehaviour
     public float maxCamDistance;
     public float cameraShakeAmount;
 
+    [Header("In Car Cam Properties")]
+    public float inCarFOV;
+    public float inCarYOffset;
+    private Vector3 baseOffset;
+
     [Header("Camera Shake Properties")]
     public float amplitudeChange;
     public float amplitudeChangeSpeed;
@@ -39,6 +44,8 @@ public class CameraManager : MonoBehaviour
     {
         transform.parent = null;
 
+        baseOffset = cinemachine.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset;
+
         backCamAction = playerInput.actions["LookBack"];
         backCamAction.Enable();
 
@@ -57,16 +64,25 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
+        float fovFlatIncrease = inCarFOV;
+        cinemachine.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = baseOffset;
+
+        if (carController.cartState == CarController.CartState.Running)
+        {
+            fovFlatIncrease = 0;
+            cinemachine.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(baseOffset.x, baseOffset.y - inCarYOffset, baseOffset.z);
+        }
+
         //Zoom out based on speed
         if (carController.cartState == CarController.CartState.PoleHolding)
         {
-            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX * 1.5f, minFOV), FOVChangeSpeed * Time.deltaTime);
+            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX * 1.5f, minFOV) + fovFlatIncrease, FOVChangeSpeed * Time.deltaTime);
             backCam.m_Lens.FieldOfView = cinemachine.m_Lens.FieldOfView;
             //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance * 2, 1f * Time.deltaTime);
         }
         else
         {
-            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX, minFOV), FOVChangeSpeed * Time.deltaTime);
+            cinemachine.m_Lens.FieldOfView = Mathf.Lerp(cinemachine.m_Lens.FieldOfView, Mathf.Max((carController.speed / carController.maxSpeed) * maxFOX, minFOV) + fovFlatIncrease, FOVChangeSpeed * Time.deltaTime);
             //targetPos = Mathf.Lerp(currentDistance, (carController.speed / carController.maxSpeed) * maxCamDistance, 8f * Time.deltaTime);
             backCam.m_Lens.FieldOfView = cinemachine.m_Lens.FieldOfView;
         }
