@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "Gameplay",
@@ -60,6 +60,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "CannonPower",
+                    "type": "Value",
+                    "id": "ee44a1ad-fa2b-4ed9-8695-04e0af58e9c9",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "BumpLeft",
                     "type": "Value",
                     "id": "57c8de5a-bd0f-4dc9-9cea-29bc8a9d1800",
@@ -72,6 +81,15 @@
                     "name": "BumpRight",
                     "type": "Value",
                     "id": "61bd7637-d02b-4a66-97aa-f80b6d6321ed",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LookBack",
+                    "type": "Value",
+                    "id": "eab60049-1cee-42f7-97be-b6cf865b80c8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -279,17 +297,6 @@
                 },
                 {
                     "name": "",
-                    "id": "52c3059e-b5b1-42f4-bdb7-459d1d974190",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "CannonShoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dc543ae3-ea57-4df6-8b6d-a1371bc0aea2",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -351,6 +358,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "BumpRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "907964d4-86c8-4066-8b4e-67951a5638e5",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9157ae6c-5d6c-46b8-9aaa-b9a583811700",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c109d28f-5eeb-42e0-a27f-14beca850cde",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CannonPower",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "32fc062c-72cc-4e2e-9d20-8171cfea73be",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CannonPower",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
