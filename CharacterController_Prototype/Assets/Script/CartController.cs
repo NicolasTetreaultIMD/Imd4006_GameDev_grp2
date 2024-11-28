@@ -56,6 +56,7 @@ public class CarController : MonoBehaviour
     public float rotationAmount;
 
     [Header("Turning")]
+    public float minTurn;
     public float currentTurnSpeed;
     public bool turnSpeedToggle;
     public float maxTurnSpeed;
@@ -292,24 +293,21 @@ public class CarController : MonoBehaviour
 
         rb.MovePosition(transform.position + transform.forward * moveInput * speed * Time.fixedDeltaTime);
 
-        if (speed != 0) //Spherical rotation to simulate steering and not sharp turns.
+        // Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
+        // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
+
+        Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * (minTurn + rotationAmount * (Mathf.Min(1, speed/speedForPeakTurn))) + centerMassManager.turnIncrease, 0) * transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
+
+        //right turn
+        if (leftStick.x > 0)
         {
-            // Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * 45, 0) * transform.rotation;
-            // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, currentTurnSpeed * Time.fixedDeltaTime);
-
-            Quaternion targetRotation = Quaternion.Euler(0, leftStick.x * rotationAmount * (Mathf.Min(1, speed/speedForPeakTurn)) + centerMassManager.turnIncrease, 0) * transform.rotation;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, maxTurnSpeed * Time.fixedDeltaTime);
-
-            //right turn
-            if (leftStick.x > 0)
-            {
-                turnTilt = -turnTiltStrength * speed;
-            }
-            //left turn
-            else if (leftStick.x < 0)
-            {
-                turnTilt = turnTiltStrength * speed;
-            }
+            turnTilt = -turnTiltStrength * speed;
+        }
+        //left turn
+        else if (leftStick.x < 0)
+        {
+            turnTilt = turnTiltStrength * speed;
         }
     }
 

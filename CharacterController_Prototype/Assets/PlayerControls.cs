@@ -82,6 +82,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""CannonPower"",
+                    ""type"": ""Value"",
+                    ""id"": ""ee44a1ad-fa2b-4ed9-8695-04e0af58e9c9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""BumpLeft"",
                     ""type"": ""Value"",
                     ""id"": ""57c8de5a-bd0f-4dc9-9cea-29bc8a9d1800"",
@@ -94,6 +103,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""BumpRight"",
                     ""type"": ""Value"",
                     ""id"": ""61bd7637-d02b-4a66-97aa-f80b6d6321ed"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LookBack"",
+                    ""type"": ""Value"",
+                    ""id"": ""eab60049-1cee-42f7-97be-b6cf865b80c8"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -301,17 +319,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""52c3059e-b5b1-42f4-bdb7-459d1d974190"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CannonShoot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""dc543ae3-ea57-4df6-8b6d-a1371bc0aea2"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -375,6 +382,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""BumpRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""907964d4-86c8-4066-8b4e-67951a5638e5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9157ae6c-5d6c-46b8-9aaa-b9a583811700"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookBack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c109d28f-5eeb-42e0-a27f-14beca850cde"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CannonPower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32fc062c-72cc-4e2e-9d20-8171cfea73be"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CannonPower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -389,8 +440,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_CannonAim = m_Gameplay.FindAction("CannonAim", throwIfNotFound: true);
         m_Gameplay_CannonShoot = m_Gameplay.FindAction("CannonShoot", throwIfNotFound: true);
+        m_Gameplay_CannonPower = m_Gameplay.FindAction("CannonPower", throwIfNotFound: true);
         m_Gameplay_BumpLeft = m_Gameplay.FindAction("BumpLeft", throwIfNotFound: true);
         m_Gameplay_BumpRight = m_Gameplay.FindAction("BumpRight", throwIfNotFound: true);
+        m_Gameplay_LookBack = m_Gameplay.FindAction("LookBack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -458,8 +511,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_CannonAim;
     private readonly InputAction m_Gameplay_CannonShoot;
+    private readonly InputAction m_Gameplay_CannonPower;
     private readonly InputAction m_Gameplay_BumpLeft;
     private readonly InputAction m_Gameplay_BumpRight;
+    private readonly InputAction m_Gameplay_LookBack;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -470,8 +525,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @CannonAim => m_Wrapper.m_Gameplay_CannonAim;
         public InputAction @CannonShoot => m_Wrapper.m_Gameplay_CannonShoot;
+        public InputAction @CannonPower => m_Wrapper.m_Gameplay_CannonPower;
         public InputAction @BumpLeft => m_Wrapper.m_Gameplay_BumpLeft;
         public InputAction @BumpRight => m_Wrapper.m_Gameplay_BumpRight;
+        public InputAction @LookBack => m_Wrapper.m_Gameplay_LookBack;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -499,12 +556,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CannonShoot.started += instance.OnCannonShoot;
             @CannonShoot.performed += instance.OnCannonShoot;
             @CannonShoot.canceled += instance.OnCannonShoot;
+            @CannonPower.started += instance.OnCannonPower;
+            @CannonPower.performed += instance.OnCannonPower;
+            @CannonPower.canceled += instance.OnCannonPower;
             @BumpLeft.started += instance.OnBumpLeft;
             @BumpLeft.performed += instance.OnBumpLeft;
             @BumpLeft.canceled += instance.OnBumpLeft;
             @BumpRight.started += instance.OnBumpRight;
             @BumpRight.performed += instance.OnBumpRight;
             @BumpRight.canceled += instance.OnBumpRight;
+            @LookBack.started += instance.OnLookBack;
+            @LookBack.performed += instance.OnLookBack;
+            @LookBack.canceled += instance.OnLookBack;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -527,12 +590,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @CannonShoot.started -= instance.OnCannonShoot;
             @CannonShoot.performed -= instance.OnCannonShoot;
             @CannonShoot.canceled -= instance.OnCannonShoot;
+            @CannonPower.started -= instance.OnCannonPower;
+            @CannonPower.performed -= instance.OnCannonPower;
+            @CannonPower.canceled -= instance.OnCannonPower;
             @BumpLeft.started -= instance.OnBumpLeft;
             @BumpLeft.performed -= instance.OnBumpLeft;
             @BumpLeft.canceled -= instance.OnBumpLeft;
             @BumpRight.started -= instance.OnBumpRight;
             @BumpRight.performed -= instance.OnBumpRight;
             @BumpRight.canceled -= instance.OnBumpRight;
+            @LookBack.started -= instance.OnLookBack;
+            @LookBack.performed -= instance.OnLookBack;
+            @LookBack.canceled -= instance.OnLookBack;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -558,7 +627,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnCannonAim(InputAction.CallbackContext context);
         void OnCannonShoot(InputAction.CallbackContext context);
+        void OnCannonPower(InputAction.CallbackContext context);
         void OnBumpLeft(InputAction.CallbackContext context);
         void OnBumpRight(InputAction.CallbackContext context);
+        void OnLookBack(InputAction.CallbackContext context);
     }
 }
