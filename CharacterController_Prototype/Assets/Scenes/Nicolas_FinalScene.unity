@@ -4090,6 +4090,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 0}
   cinemachine: {fileID: 0}
+  backCam: {fileID: 0}
   minFOV: 0
   maxFOX: 0
   FOVChangeSpeed: 0
@@ -12969,6 +12970,7 @@ MonoBehaviour:
   maxSpeed: 37.5
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
+  rotationAmount: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
@@ -17146,6 +17148,7 @@ MonoBehaviour:
   maxSpeed: 37.5
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
+  rotationAmount: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
