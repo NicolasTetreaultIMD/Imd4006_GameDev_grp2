@@ -4089,12 +4089,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carController: {fileID: 0}
+  playerInput: {fileID: 0}
   cinemachine: {fileID: 0}
+  backCam: {fileID: 0}
   minFOV: 0
   maxFOX: 0
   FOVChangeSpeed: 0
   maxCamDistance: 0
   cameraShakeAmount: 0
+  inCarFOV: 0
+  inCarYOffset: 0
   amplitudeChange: 0
   amplitudeChangeSpeed: 0
   maxAmplitude: 0
@@ -12954,6 +12958,7 @@ MonoBehaviour:
   health: 0
   cannon: {fileID: 0}
   canPickUpItem: 0
+  Characters: []
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
   rb: {fileID: 941737918}
@@ -12969,6 +12974,8 @@ MonoBehaviour:
   maxSpeed: 37.5
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
+  rotationAmount: 0
+  minTurn: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0
@@ -13629,7 +13636,6 @@ MonoBehaviour:
   players: []
   playerPrefabs:
   - {fileID: 38323842053506640, guid: fb82bc8cdab0b7345af5a5d46b0d4694, type: 3}
-  - {fileID: 38323842053506640, guid: 631e6d26e38517d41a13af53fc8a9b1c, type: 3}
   spawnPoints:
   - {fileID: 2102763137}
   - {fileID: 259803746}
@@ -17131,6 +17137,7 @@ MonoBehaviour:
   health: 0
   cannon: {fileID: 0}
   canPickUpItem: 0
+  Characters: []
   Runner: {fileID: 0}
   Sitter: {fileID: 0}
   rb: {fileID: 1192316230}
@@ -17146,6 +17153,8 @@ MonoBehaviour:
   maxSpeed: 37.5
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
+  rotationAmount: 0
+  minTurn: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
   maxTurnSpeed: 0

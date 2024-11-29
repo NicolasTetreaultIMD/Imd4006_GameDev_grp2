@@ -12,6 +12,10 @@ public class CharacterHider : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -33,4 +37,5 @@ public class CharacterHider : MonoBehaviour
             go.SetActive(true);
         }
     }
+
 }

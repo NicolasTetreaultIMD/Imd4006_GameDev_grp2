@@ -21,7 +21,6 @@ public class CarController : MonoBehaviour
     private InputAction increase;
     public HapticFeedback haptics;
 
-
     [Header("Health")]
     public GameManager gameManager;
     public DamageHandler damageHandler;
@@ -33,6 +32,7 @@ public class CarController : MonoBehaviour
     public bool canPickUpItem;
 
     [Header("Character")]
+    public GameObject[] Characters;
     public Transform Runner;
     public Transform Sitter;
     public Rigidbody rb;
@@ -87,7 +87,7 @@ public class CarController : MonoBehaviour
     public float maxMotionBlurIntensity;
     private float prevMotionBlurChange;
     private MotionBlur motionBlur;
-    public Animator animationController;
+    public Animator animator;
     public ParticleSystem featherEffect;
     public vfxHandler vfxHandler;
     public audioHandler audioHandler;
@@ -124,7 +124,7 @@ public class CarController : MonoBehaviour
         {
             //Syncs the speed of the player's leg animation to the player's actual speed in the game.
             float newLowerBodySpeed = speed / 18.75f;
-            animationController.SetFloat("LowerBodySpeed", newLowerBodySpeed);
+            animator.SetFloat("LowerBodySpeed", newLowerBodySpeed);
 
             //Transition for the runner to go to the shooter position
             if (goingToShooterSpot)
