@@ -38,13 +38,13 @@ public class NukeTracker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (projectileScript != null)
-        {
-            if (projectileScript.carController != null)
-            {
-                playerId = projectileScript.carController.playerId;
-            }
-        }
+        //if (projectileScript != null)
+        //{
+        //    if (projectileScript.carController != null)
+        //    {
+        //        playerId = projectileScript.carController.playerId;
+        //    }
+        //}
 
         if (other.gameObject.tag == "Player")
         {
@@ -62,10 +62,13 @@ public class NukeTracker : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            projectileScript.explosion.SetActive(true);
-            mesh.SetActive(false);
-            StopCoroutine(FadeOut());
-            StartCoroutine(QuickFadeout());
+            if (collision.gameObject.GetComponent<CarController>().playerId != playerId)
+            {
+                projectileScript.explosion.SetActive(true);
+                mesh.SetActive(false);
+                StopCoroutine(FadeOut());
+                StartCoroutine(QuickFadeout());
+            }
         }
     }
 

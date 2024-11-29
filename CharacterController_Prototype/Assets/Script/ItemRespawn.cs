@@ -28,6 +28,7 @@ public class ItemRespawn : MonoBehaviour
         {
             gameObject.tag = "Trap Box";
         }
+        gameObject.tag = "Nuke Box";
     }
 
     // Update is called once per frame

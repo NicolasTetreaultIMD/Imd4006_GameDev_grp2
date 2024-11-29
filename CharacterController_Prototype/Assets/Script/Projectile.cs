@@ -114,6 +114,7 @@ public class Projectile : MonoBehaviour
             //Landmine Projectile
             if(gameObject.tag == "Mine")
             {
+                //Collision with evironment
                 if (collision.gameObject.tag != "Player")
                 {
                     madeContact = true;
@@ -128,10 +129,9 @@ public class Projectile : MonoBehaviour
                 gameObject.GetComponent<NukeTracker>().playerId = carController.playerId;
                 explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
              
-
+                //Collision with evironment
                 if (nukeTracker.foundPlayer == false)
                 {
-
                     if (collision.gameObject.GetComponent<CarController>() != null)
                     {
                         if (collision.gameObject.GetComponent<CarController>().playerId != carController.playerId)
@@ -194,7 +194,7 @@ public class Projectile : MonoBehaviour
         {
             if (other.gameObject.tag == "Player" && madeContact == true)
             {
-                explosion.gameObject.SetActive(true);
+                explosion.gameObject.SetActive(true); //Trap's "explosion" is just the hitbox for when the player get's stunned.
                 carController.audioHandler.activateTrap();
             }
         }
