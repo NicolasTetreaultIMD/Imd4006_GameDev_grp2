@@ -20,8 +20,12 @@ public class DamageApplier : MonoBehaviour
         
     }
 
-    private void Awake()
+    private void OnEnable()
     {
+        if (gameObject.transform.root.tag == "Nuke")
+        {
+            playerId = gameObject.GetComponentInParent<NukeTracker>().playerId;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

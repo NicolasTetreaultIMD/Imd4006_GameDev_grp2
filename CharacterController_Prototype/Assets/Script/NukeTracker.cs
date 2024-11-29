@@ -37,13 +37,13 @@ public class NukeTracker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (projectileScript != null)
-        //{
-        //    if (projectileScript.carController != null)
-        //    {
-        //        playerId = projectileScript.carController.playerId;
-        //    }
-        //}
+        if (projectileScript != null)
+        {
+            if (projectileScript.carController != null)
+            {
+                playerId = projectileScript.carController.playerId;
+            }
+        }
 
         if (other.gameObject.tag == "Player")
         {
