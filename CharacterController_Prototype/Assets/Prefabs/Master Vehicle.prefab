@@ -188,7 +188,7 @@ MonoBehaviour:
   cartShakeAmount: 0.0005
   globalVolume: {fileID: 0}
   maxMotionBlurIntensity: 0.3
-  animationController: {fileID: 368202493085116213}
+  animator: {fileID: 0}
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 1670990211093855072}
   audioHandler: {fileID: 505890743119021628}
@@ -2787,12 +2787,13 @@ MonoBehaviour:
   projectile: []
   projectileRb: {fileID: 0}
   shootingPoint: {fileID: 4851002436662877685}
-  shootForce: 40
+  shootForce: 62.5
+  startingShootforce: 62.5
   maxShootForce: 100
   shootForceIncreaseSpeed: 0
   isShooting: 0
   aritime: 0
-  shootCooldown: 0.5
+  shootCooldown: 1.25
   lastShootTime: 0
   canShoot: 0
   trajectoryLine: {fileID: 199994340255641112}
@@ -8174,7 +8175,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15375,7 +15376,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18819,12 +18820,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6869138383838781646}
   m_SourcePrefab: {fileID: 100100000, guid: b191e381127ae514fa05535482409638, type: 3}
---- !u!95 &368202493085116213 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5218221805192107522, guid: b191e381127ae514fa05535482409638,
-    type: 3}
-  m_PrefabInstance: {fileID: 5581867740578984247}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1253435465104434708 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6634892729522394915, guid: b191e381127ae514fa05535482409638,

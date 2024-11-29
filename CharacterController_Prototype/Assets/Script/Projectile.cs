@@ -3,8 +3,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public GameObject allMesh;
-    public MeshRenderer bombMesh;
+    //Mine Mesh
+    public GameObject buttonMesh;
+
+    //Trap Mesh
+    public GameObject openTrap;
+    public GameObject closeTrap;
+
+    //Bomb Mesh
+    public GameObject bombMesh;
+
+    //Nuke Mesh
+    public GameObject nukeMesh;
 
     [Header("Projectile Movement")]
     float totalTime = 0f;
@@ -15,6 +25,7 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed;
 
     [Header("Explosions")]
+    public bool isReady;
     public bool forcesApplied;
     public bool madeContact;
     public GameObject explosion;
@@ -33,9 +44,14 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         projectileSpeed = 2;
+
         forcesApplied = false;
         madeContact = false;
+        isReady = false;
+
         mass = gameObject.GetComponent<Rigidbody>().mass;
+
+        StartCoroutine(LaunchPeriod());
 
     }
 
@@ -59,13 +75,6 @@ public class Projectile : MonoBehaviour
             transform.position = positionAtTime;
         }
 
-        if (carController != null)
-        {
-            //if (gameObject.tag == "Trap")
-            //{
-            //    explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
-            //}
-        }
     }
 
     //Applies the properties from the Cannon to shoot the Projectile accordingly
@@ -77,11 +86,6 @@ public class Projectile : MonoBehaviour
         haptics = newHaptics;
         carController = newCart;
         forcesApplied = true;
-
-        if (gameObject.tag == "Mine")
-        {
-            carController.audioHandler.mineBeep();
-        }
 
         if (gameObject.tag == "Nuke")
         {
@@ -99,13 +103,17 @@ public class Projectile : MonoBehaviour
             //Normal Bomb Projectile
             if (gameObject.tag == "Bomb")
             {
+                //Stops Projectile from continuing to fall
                 madeContact = true;
                 gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                explosion.gameObject.SetActive(true);
-                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
-                bombMesh.enabled = false;
 
-                carController.audioHandler.impactExplosion(); // PLAY Audio
+                //Applier Effect
+                explosion.gameObject.SetActive(true);                
+                bombMesh.gameObject.SetActive(false);
+                explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
+                //FX
+                carController.audioHandler.impactExplosion();
                 haptics.ExplosionHaptics();
 
                 StartCoroutine(FadeOut());
@@ -117,9 +125,11 @@ public class Projectile : MonoBehaviour
                 //Collision with evironment
                 if (collision.gameObject.tag != "Player")
                 {
+                    //Stops Projectile from continuing to fall
                     madeContact = true;
                     gameObject.transform.rotation = Quaternion.identity;
                     explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
+
                 }
             }
 
@@ -136,12 +146,16 @@ public class Projectile : MonoBehaviour
                     {
                         if (collision.gameObject.GetComponent<CarController>().playerId != carController.playerId)
                         {
+                            //Stops Projectile from continuing to fall
                             madeContact = true;
                             gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                            allMesh.SetActive(false);
+
+                            //Applier Effect
+                            nukeMesh.SetActive(false);
                             explosion.gameObject.SetActive(true);
                             explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
+                            //FX
                             carController.audioHandler.impactExplosion();
                             haptics.ExplosionHaptics();
 
@@ -150,12 +164,16 @@ public class Projectile : MonoBehaviour
                     }
                     else
                     {
+                        //Stops Projectile from continuing to fall
                         madeContact = true;
                         gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                        allMesh.SetActive(false);
+
+                        //Applier Effect
+                        nukeMesh.SetActive(false);
                         explosion.gameObject.SetActive(true);
                         explosion.GetComponent<DamageApplier>().playerId = carController.playerId;
 
+                        //FX
                         carController.audioHandler.impactExplosion();
                         haptics.ExplosionHaptics();
 
@@ -169,6 +187,7 @@ public class Projectile : MonoBehaviour
             {
                 if (collision.gameObject.tag != "Player")
                 {
+                    //Stops Projectile from continuing to fall
                     madeContact = true;
                     gameObject.transform.rotation = Quaternion.identity;
                 }
@@ -180,28 +199,55 @@ public class Projectile : MonoBehaviour
     //For non-instant explosion projectiles
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.tag == "Mine")
+        if (isReady)
         {
-            if (other.gameObject.tag == "Player" && madeContact == true)
+            if (gameObject.tag == "Mine")
             {
-                explosion.gameObject.SetActive(true);
-                carController.audioHandler.impactExplosion(); // play explosion SFX
+                if (other.gameObject.tag == "Player" && madeContact == true)
+                {
+                    explosion.gameObject.SetActive(true);
+                    carController.audioHandler.impactExplosion(); // play explosion SFX
 
+                }
             }
         }
 
-        if (gameObject.tag == "Trap")
+        if (isReady)
         {
-            if (other.gameObject.tag == "Player" && madeContact == true)
+            if (gameObject.tag == "Trap")
             {
-                explosion.gameObject.SetActive(true); //Trap's "explosion" is just the hitbox for when the player get's stunned.
-                carController.audioHandler.activateTrap();
+                if (other.gameObject.tag == "Player" && madeContact == true)
+                {
+                    explosion.gameObject.SetActive(true); //Trap's "explosion" is just the hitbox for when the player get's stunned.
+
+                    openTrap.SetActive(false);
+                    closeTrap.SetActive(true);
+
+                    carController.audioHandler.activateTrap();
+                }
             }
         }
     }
 
+    private IEnumerator LaunchPeriod()
+    {
+        yield return new WaitForSeconds(1.2f);
+        isReady = true;
 
-    private IEnumerator FadeOut()
+        if (gameObject.tag == "Mine")
+        {
+            carController.audioHandler.mineBeep();
+            gameObject.transform.Find("landmineButton_geo").GetComponent<Renderer>().material.color = Color.red;
+        }
+
+        if(gameObject.tag == "Trap")
+        {
+            openTrap.SetActive(true);
+            closeTrap.SetActive(false);
+        }
+    }
+
+        private IEnumerator FadeOut()
     {
         // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(0.5f);

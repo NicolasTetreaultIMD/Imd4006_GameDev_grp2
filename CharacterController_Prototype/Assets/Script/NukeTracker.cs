@@ -7,7 +7,6 @@ public class NukeTracker : MonoBehaviour
     public GameObject target;
     public GameObject newTarget;
     public Projectile projectileScript;
-    public GameObject mesh;
 
     public int playerId;
     public bool foundPlayer;
@@ -58,14 +57,14 @@ public class NukeTracker : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             if (collision.gameObject.GetComponent<CarController>().playerId != playerId)
             {
                 projectileScript.explosion.SetActive(true);
-                mesh.SetActive(false);
+                projectileScript.nukeMesh.SetActive(false);
                 StopCoroutine(FadeOut());
                 StartCoroutine(QuickFadeout());
             }
@@ -77,7 +76,7 @@ public class NukeTracker : MonoBehaviour
         // Wait for 2 seconds before continuing
         yield return new WaitForSeconds(5f);
         projectileScript.explosion.SetActive(true);
-        mesh.SetActive(false);
+        projectileScript.nukeMesh.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         Destroy(transform.root.gameObject);
     }

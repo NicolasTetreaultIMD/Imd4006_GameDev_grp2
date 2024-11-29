@@ -28,7 +28,6 @@ public class ItemRespawn : MonoBehaviour
         {
             gameObject.tag = "Trap Box";
         }
-        gameObject.tag = "Nuke Box";
     }
 
     // Update is called once per frame
@@ -53,11 +52,9 @@ public class ItemRespawn : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
 
-        Debug.Log("Cooldown");
         int randomValue = Random.Range(20, 31);
         int randomTag = Random.Range(1, 5);
 
-        Debug.Log(randomTag);
 
         if (randomTag == 1)
         {

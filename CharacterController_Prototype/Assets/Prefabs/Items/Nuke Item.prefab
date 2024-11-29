@@ -289,7 +289,6 @@ MonoBehaviour:
   target: {fileID: 0}
   newTarget: {fileID: 0}
   projectileScript: {fileID: 7331157710501167149}
-  mesh: {fileID: 7758786440345429834}
   playerId: 0
   foundPlayer: 0
   speed: 40
@@ -307,12 +306,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allMesh: {fileID: 7758786440345429834}
+  buttonMesh: {fileID: 0}
+  openTrap: {fileID: 0}
+  closeTrap: {fileID: 0}
   bombMesh: {fileID: 0}
+  nukeMesh: {fileID: 7758786440345429834}
   shootingPoint: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
   shootForce: 0
   mass: 0
   projectileSpeed: 0
+  isReady: 0
   forcesApplied: 0
   madeContact: 0
   explosion: {fileID: 5620928563147722370}
@@ -479,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 0
+  isReady: 0
 --- !u!1 &7074449168504949033
 GameObject:
   m_ObjectHideFlags: 0

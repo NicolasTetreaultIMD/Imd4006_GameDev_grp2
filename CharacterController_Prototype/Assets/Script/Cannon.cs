@@ -30,6 +30,7 @@ public class Cannon : MonoBehaviour
     public Rigidbody projectileRb;
     public GameObject shootingPoint;
     public float shootForce;
+    public float startingShootforce;
     public float maxShootForce;
     public float shootForceIncreaseSpeed;
     Vector3 direction;
@@ -71,11 +72,12 @@ public class Cannon : MonoBehaviour
 
         shoot.canceled += ctx =>
         {
+            shootForce = startingShootforce;
             isShooting = false;
         };
 
         carLoaded = false;
-        shootForceIncreaseSpeed = 2;
+        shootForceIncreaseSpeed = 3.5f;
         hitMarker.GetComponent<MeshRenderer>().enabled = false;
 
         canShoot = true;
@@ -198,7 +200,7 @@ public class Cannon : MonoBehaviour
                     cart.audioHandler.ShootItem();
 
                     haptics.CannonHaptics();
-                    shootForce = 40;
+                    shootForce = startingShootforce;
 
                     lastShootTime = Time.time + shootCooldown;
                 }

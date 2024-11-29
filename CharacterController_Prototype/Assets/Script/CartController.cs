@@ -374,21 +374,21 @@ public class CarController : MonoBehaviour
         //Perfoms different actions based on the new state
         switch (newState){
             case CartState.Running:
-                Debug.Log("RUNNING");
+                //Debug.Log("RUNNING");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("JumpBack", 0);
                 goingToRunnerSpot = true;
                 break;
 
             case CartState.InCart:
-                Debug.Log("IN CART");
+                //Debug.Log("IN CART");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("Jump", 0);
                 goingToShooterSpot = true;
                 break;
 
             case CartState.PoleHolding:
-                Debug.Log("Holding Pole");
+               // Debug.Log("Holding Pole");
 
 
                 //then rotate point to the right of cart
