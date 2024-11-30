@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/startScreen.unity
     guid: bb32a7ccad3a65541951f5d02b42b4d0
   - enabled: 1
-    path: Assets/Scenes/Beta_Environment.unity
-    guid: 146b6e26412811349b044c0e10310831
+    path: Assets/Scenes/Final_Environment.unity
+    guid: e217c312efb6a1745ad90e5473524173
   m_configObjects: {}
