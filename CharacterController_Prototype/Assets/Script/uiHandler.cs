@@ -134,10 +134,11 @@ public class uiHandler : MonoBehaviour
 
     void Start()
     {
+        // ** CHANGE THESE IF TESTING ONLY TWO PLAYERS (set index 2 and 3 to false)
         playerAliveIndex[0] = true;
         playerAliveIndex[1] = true;
-        playerAliveIndex[2] = false;
-        playerAliveIndex[3] = false;
+        playerAliveIndex[2] = true;
+        playerAliveIndex[3] = true;
 
         playerCount = 0;
         tutorialFlag = false; // not yet seen tutorial prompts
@@ -145,10 +146,10 @@ public class uiHandler : MonoBehaviour
         p1_winner.SetActive(false);
         p2_winner.SetActive(false);
         p3_winner.SetActive(false);
-        HideP0UI();
-        HideP1UI();
-        HideP2UI();
-        HideP3UI();
+        ShowJoinPrompt_P1();
+        ShowJoinPrompt_P2();
+        ShowJoinPrompt_P3();
+        ShowJoinPrompt_P4();
         
 
 
@@ -161,38 +162,42 @@ public class uiHandler : MonoBehaviour
 
         if (playerCount == 0)
         {
-            HideP0UI();
-            HideP1UI();
-            HideP2UI();
-            HideP3UI();
+            ShowJoinPrompt_P1();
+            ShowJoinPrompt_P2();
+            ShowJoinPrompt_P3();
+            ShowJoinPrompt_P4();
         }
 
         if (playerCount == 1) 
         {
             p0_ammoFrame.SetActive(true);
             p0_pressAtoJoin.SetActive(false); // hide press A to join
-            HideP0UI();
+            
+            // SHOW JOIN PROMPTS FOR REMAINING PLAYERS
+            ShowJoinPrompt_P2();
+            ShowJoinPrompt_P3();
+            ShowJoinPrompt_P4();
         }
 
         if (playerCount == 2)
         {
             p1_ammoFrame.SetActive(true);
             p1_pressAtoJoin.SetActive(false); // hide press A to join
-            HideP1UI();
+            ShowJoinPrompt_P3();
+            ShowJoinPrompt_P4();
         }
 
         if (playerCount == 3) 
         {
             p2_ammoFrame.SetActive(true);
             p2_pressAtoJoin.SetActive(false); // hide press A to join
-            HideP2UI();
+            ShowJoinPrompt_P4();
         }
 
         if (playerCount == 4)
         {
             p3_ammoFrame.SetActive(true);
             p3_pressAtoJoin.SetActive(false); // hide press A to join
-            HideP1UI();
             // Show tutorial when all players are in the lobby
             if (!tutorialFlag)
             {
@@ -575,7 +580,7 @@ public class uiHandler : MonoBehaviour
         playerCount--;
     }
 
-    private void HideP0UI() // HIDE PLAYER 1 PROMPT
+    private void ShowJoinPrompt_P1() // HIDE PLAYER 1 PROMPT
     {
         p0_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
 
@@ -605,7 +610,7 @@ public class uiHandler : MonoBehaviour
        
     }
 
-    private void HideP1UI() // HIDE PLAYER 2 UI
+    private void ShowJoinPrompt_P2() // HIDE PLAYER 2 UI
     {
         p1_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
 
@@ -631,7 +636,7 @@ public class uiHandler : MonoBehaviour
         p1_instructions_bump.SetActive(false);
     }
 
-    private void HideP2UI() // HIDE PLAYER 2 UI
+    private void ShowJoinPrompt_P3() // HIDE PLAYER 2 UI
     {
         p2_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
 
@@ -657,7 +662,7 @@ public class uiHandler : MonoBehaviour
         p2_instructions_bump.SetActive(false);
     }
 
-    private void HideP3UI() // HIDE PLAYER 3 UI
+    private void ShowJoinPrompt_P4() // HIDE PLAYER 3 UI
     {
         p3_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
 
@@ -683,7 +688,7 @@ public class uiHandler : MonoBehaviour
         p3_instructions_bump.SetActive(false);
     }
 
-    public void DetectWinner()
+    public void DetectWinner() // Function detects whether there is a game winner
     {
         int playersAliveCount = 0;
 
