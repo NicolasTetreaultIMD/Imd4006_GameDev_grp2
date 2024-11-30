@@ -12,6 +12,8 @@ public class uiHandler : MonoBehaviour
     [Header("Frames")]
     public GameObject p0_ammoFrame;
     public GameObject p1_ammoFrame;
+    public GameObject p2_ammoFrame;
+    public GameObject p3_ammoFrame;
 
     [Header("Ammo Types")]
     public GameObject p0_currentBomb;
@@ -34,6 +36,26 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_nextNuke;
     public GameObject p1_nextTrap;
 
+    public GameObject p2_currentBomb;
+    public GameObject p2_currentMine;
+    public GameObject p2_currentNuke;
+    public GameObject p2_currentTrap;
+
+    public GameObject p2_nextBomb;
+    public GameObject p2_nextMine;
+    public GameObject p2_nextNuke;
+    public GameObject p2_nextTrap;
+
+    public GameObject p3_currentBomb;
+    public GameObject p3_currentMine;
+    public GameObject p3_currentNuke;
+    public GameObject p3_currentTrap;
+
+    public GameObject p3_nextBomb;
+    public GameObject p3_nextMine;
+    public GameObject p3_nextNuke;
+    public GameObject p3_nextTrap;
+
     [Header("Player Health")]
     public GameObject p0_health3;
     public GameObject p0_health2;
@@ -44,6 +66,16 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_health2;
     public GameObject p1_health1;
     public GameObject p1_health0;
+
+    public GameObject p2_health3;
+    public GameObject p2_health2;
+    public GameObject p2_health1;
+    public GameObject p2_health0;
+
+    public GameObject p3_health3;
+    public GameObject p3_health2;
+    public GameObject p3_health1;
+    public GameObject p3_health0;
 
     [Header("Instructions")]
     public GameObject p0_instructions_run;
@@ -58,8 +90,22 @@ public class uiHandler : MonoBehaviour
     public GameObject p1_instructions_shoot2;
     public GameObject p1_instructions_bump;
 
+    public GameObject p2_instructions_run;
+    public GameObject p2_instructions_aim;
+    public GameObject p2_instructions_shoot;
+    public GameObject p2_instructions_shoot2;
+    public GameObject p2_instructions_bump;
+
+    public GameObject p3_instructions_run;
+    public GameObject p3_instructions_aim;
+    public GameObject p3_instructions_shoot;
+    public GameObject p3_instructions_shoot2;
+    public GameObject p3_instructions_bump;
+
     public GameObject p0_pressAtoJoin;
     public GameObject p1_pressAtoJoin;
+    public GameObject p2_pressAtoJoin;
+    public GameObject p3_pressAtoJoin;
 
     [Header("PlayerJoin")]
     public int playerCount;
@@ -72,6 +118,12 @@ public class uiHandler : MonoBehaviour
 
     public GameObject p1_winner;
     public GameObject p1_loser;
+
+    public GameObject p2_winner;
+    public GameObject p2_loser;
+
+    public GameObject p3_winner;
+    public GameObject p3_loser;
 
     private bool tutorialFlag;
 
@@ -91,8 +143,12 @@ public class uiHandler : MonoBehaviour
         tutorialFlag = false; // not yet seen tutorial prompts
         p0_winner.SetActive(false);
         p1_winner.SetActive(false);
+        p2_winner.SetActive(false);
+        p3_winner.SetActive(false);
         HideP0UI();
         HideP1UI();
+        HideP2UI();
+        HideP3UI();
         
 
 
@@ -107,36 +163,42 @@ public class uiHandler : MonoBehaviour
         {
             HideP0UI();
             HideP1UI();
+            HideP2UI();
+            HideP3UI();
         }
 
         if (playerCount == 1) 
         {
             p0_ammoFrame.SetActive(true);
             p0_pressAtoJoin.SetActive(false); // hide press A to join
-            HideP1UI();
+            HideP0UI();
         }
 
         if (playerCount == 2)
         {
             p1_ammoFrame.SetActive(true);
             p1_pressAtoJoin.SetActive(false); // hide press A to join
-
-            // Show tutorial if not yet seen 
-            if (!tutorialFlag)
-            {
-                StartCoroutine(ShowTutorial());
-                tutorialFlag=true;
-            }
+            HideP1UI();
         }
 
         if (playerCount == 3) 
         {
-
+            p2_ammoFrame.SetActive(true);
+            p2_pressAtoJoin.SetActive(false); // hide press A to join
+            HideP2UI();
         }
 
         if (playerCount == 4)
         {
-
+            p3_ammoFrame.SetActive(true);
+            p3_pressAtoJoin.SetActive(false); // hide press A to join
+            HideP1UI();
+            // Show tutorial when all players are in the lobby
+            if (!tutorialFlag)
+            {
+                StartCoroutine(ShowTutorial());
+                tutorialFlag = true;
+            }
         }
 
         // Update the UI text to show the projectile count
@@ -174,7 +236,7 @@ public class uiHandler : MonoBehaviour
 
                 if (players[1].GetComponent<CarController>().cannon.projectile.Count >= 2)
                 {
-                    ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name); // Show current ammo type
+                    ShowNextAmmoType(1, players[1].GetComponent<CarController>().cannon.projectile[1].name);
                 }
                 else // if the player only has 1 ammo set the next ammo type to empty
                 {
@@ -189,8 +251,58 @@ public class uiHandler : MonoBehaviour
             CurrentHealth(1, players[1].GetComponent<CarController>().health); // Show current player health
 
         }
+
+        if (playerCount >= 3)
+        {
+            // PLAYER 3 has AMMO
+            if (players[2].GetComponent<CarController>().cannon.projectile.Count >= 1)
+            {
+                ShowCurrentAmmoType(2, players[2].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
+
+                if (players[2].GetComponent<CarController>().cannon.projectile.Count >= 2) // IF the player has reserve amo
+                {
+                    ShowNextAmmoType(2, players[2].GetComponent<CarController>().cannon.projectile[1].name);
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(2, "Empty"); // Show current ammo type
+                }
+            }
+            else // PLAYER 3 has no ammo
+            {
+                ShowCurrentAmmoType(2, "Empty");
+            }
+
+            CurrentHealth(2, players[2].GetComponent<CarController>().health); // Show current player health
+
+        }
+
+        if (playerCount >= 4)
+        {
+            // PLAYER 3 has AMMO
+            if (players[3].GetComponent<CarController>().cannon.projectile.Count >= 1)
+            {
+                ShowCurrentAmmoType(3, players[3].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
+
+                if (players[3].GetComponent<CarController>().cannon.projectile.Count >= 2) // IF the player has reserve amo
+                {
+                    ShowNextAmmoType(3, players[3].GetComponent<CarController>().cannon.projectile[1].name);
+                }
+                else // if the player only has 1 ammo set the next ammo type to empty
+                {
+                    ShowNextAmmoType(3, "Empty"); // Show current ammo type
+                }
+            }
+            else // PLAYER 3 has no ammo
+            {
+                ShowCurrentAmmoType(3, "Empty");
+            }
+
+            CurrentHealth(2, players[2].GetComponent<CarController>().health); // Show current player health
+
+        }
         // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
-        if(playerCount >=2)
+        if (playerCount >=2)
         {
             DetectWinner();
         }
@@ -199,172 +311,59 @@ public class uiHandler : MonoBehaviour
     // Function toggles element visibility state using the bool type
     public void ShowCurrentAmmoType(int playerID, string type) 
     {
+        void SetItemState(GameObject bomb, GameObject mine, GameObject nuke, GameObject trap, string type)
+        {
+            bomb.SetActive(type == "Bomb Item");
+            mine.SetActive(type == "Mine Item");
+            nuke.SetActive(type == "Nuke Item");
+            trap.SetActive(type == "Trap Item");
+        }
+
         if (playerID == 0) // FIRST PLAYER
         {
-            if (type == "Bomb Item")
-            {
-                p0_currentBomb.SetActive(true);
-                p0_currentMine.SetActive(false);
-                p0_currentNuke.SetActive(false);
-                p0_currentTrap.SetActive(false);
-
-            }
-            else if (type == "Mine Item")
-            {
-                p0_currentBomb.SetActive(false);
-                p0_currentMine.SetActive(true);
-                p0_currentNuke.SetActive(false);
-                p0_currentTrap.SetActive(false);
-
-            }
-            else if (type == "Nuke Item")
-            {
-                p0_currentBomb.SetActive(false);
-                p0_currentMine.SetActive(false);
-                p0_currentNuke.SetActive(true);
-                p0_currentTrap.SetActive(false);
-
-            }
-            else if (type == "Trap Item")
-            {
-                p0_currentBomb.SetActive(false);
-                p0_currentMine.SetActive(false);
-                p0_currentNuke.SetActive(false);
-                p0_currentTrap.SetActive(true);
-            }
-
-            else if (type == "Empty") // No ammo is left
-            {
-                p0_currentBomb.SetActive(false);
-                p0_currentMine.SetActive(false);
-                p0_currentNuke.SetActive(false);
-                p0_currentTrap.SetActive(false);
-            }
+            SetItemState(p0_currentBomb, p0_currentMine, p0_currentNuke, p0_currentTrap, type);
         }
         else if (playerID == 1) // SECOND PLAYER
         {
-            if (type == "Bomb Item")
-            {
-                p1_currentBomb.SetActive(true);
-                p1_currentMine.SetActive(false);
-                p1_currentNuke.SetActive(false);
-                p1_currentTrap.SetActive(false);
-            }
-            else if (type == "Mine Item")
-            {
-                p1_currentBomb.SetActive(false);
-                p1_currentMine.SetActive(true);
-                p1_currentNuke.SetActive(false);
-                p1_currentTrap.SetActive(false);
-            }
-            else if (type == "Nuke Item")
-            {
-                p1_currentBomb.SetActive(false);
-                p1_currentMine.SetActive(false);
-                p1_currentNuke.SetActive(true);
-                p1_currentTrap.SetActive(false);
-
-
-            }
-            else if (type == "Trap Item")
-            {
-                p1_currentBomb.SetActive(false);
-                p1_currentMine.SetActive(false);
-                p1_currentNuke.SetActive(false);
-                p1_currentTrap.SetActive(true);
-            }
-            else if (type == "Empty") // No ammo is left
-            {
-                p1_currentBomb.SetActive(false);
-                p1_currentMine.SetActive(false);
-                p1_currentNuke.SetActive(false);
-                p1_currentTrap.SetActive(false);
-
-            }
+            SetItemState(p1_currentBomb, p1_currentMine, p1_currentNuke, p1_currentTrap, type);
         }
+        else if (playerID == 2) // SECOND PLAYER
+        {
+            SetItemState(p2_currentBomb, p2_currentMine, p2_currentNuke, p2_currentTrap, type);
+        }
+        else if (playerID == 3) // SECOND PLAYER
+        {
+            SetItemState(p3_currentBomb, p3_currentMine, p3_currentNuke, p3_currentTrap, type);
+        }
+
     }
 
     // Function toggles element visibility state using the bool type
     public void ShowNextAmmoType(int playerID, string type)
     {
-        if (playerID == 0) // PLAYER ONE
+        void SetItemState(GameObject bomb, GameObject mine, GameObject nuke, GameObject trap, string type)
         {
-            if (type == "Bomb Item")
-            {
-                p0_nextBomb.SetActive(true);
-                p0_nextMine.SetActive(false);
-                p0_nextNuke.SetActive(false);
-                p0_nextTrap.SetActive(false);
-            }
-            else if (type == "Mine Item")
-            {
-                p0_nextBomb.SetActive(false);
-                p0_nextMine.SetActive(true);
-                p0_nextNuke.SetActive(false);
-                p0_nextTrap.SetActive(false);
-            }
-            else if (type == "Nuke Item")
-            {
-                p0_nextBomb.SetActive(false);
-                p0_nextMine.SetActive(false);
-                p0_nextNuke.SetActive(true);
-                p0_nextTrap.SetActive(false);
-
-            }
-            else if (type == "Trap Item")
-            {
-                p0_nextBomb.SetActive(false);
-                p0_nextMine.SetActive(false);
-                p0_nextNuke.SetActive(false);
-                p0_nextTrap.SetActive(true);
-            }
-            else if (type == "Empty") // No ammo is left
-            {
-                p0_nextBomb.SetActive(false);
-                p0_nextMine.SetActive(false);
-                p0_nextNuke.SetActive(false);
-                p0_nextTrap.SetActive(false);
-            }
+            bomb.SetActive(type == "Bomb Item");
+            mine.SetActive(type == "Mine Item");
+            nuke.SetActive(type == "Nuke Item");
+            trap.SetActive(type == "Trap Item");
         }
 
-        if (playerID == 1) // PLAYER TWO
+        if (playerID == 0) // FIRST PLAYER
         {
-            if (type == "Bomb Item")
-            {
-                p1_nextBomb.SetActive(true);
-                p1_nextMine.SetActive(false);
-                p1_nextNuke.SetActive(false);
-                p1_nextTrap.SetActive(false);
-            }
-            else if (type == "Mine Item")
-            {
-                p1_nextBomb.SetActive(false);
-                p1_nextMine.SetActive(true);
-                p1_nextNuke.SetActive(false);
-                p1_nextTrap.SetActive(false);
-            }
-            else if (type == "Nuke Item")
-            {
-                p1_nextBomb.SetActive(false);
-                p1_nextMine.SetActive(false);
-                p1_nextNuke.SetActive(true);
-                p1_nextTrap.SetActive(false);
-
-            }
-            else if (type == "Trap Item")
-            {
-                p1_nextBomb.SetActive(false);
-                p1_nextMine.SetActive(false);
-                p1_nextNuke.SetActive(false);
-                p1_nextTrap.SetActive(true);
-            }
-            else if (type == "Empty") // No ammo is left
-            {
-                p1_nextBomb.SetActive(false);
-                p1_nextMine.SetActive(false);
-                p1_nextNuke.SetActive(false);
-                p1_nextTrap.SetActive(false);
-            }
+            SetItemState(p0_nextBomb, p0_nextMine, p0_nextNuke, p0_nextTrap, type);
+        }
+        else if (playerID == 1) // SECOND PLAYER
+        {
+            SetItemState(p1_nextBomb, p1_nextMine, p1_nextNuke, p1_nextTrap, type);
+        }
+        else if (playerID == 2) // THIRD PLAYER
+        {
+            SetItemState(p2_nextBomb, p2_nextMine, p2_nextNuke, p2_nextTrap, type);
+        }
+        else if (playerID == 4) // SECOND PLAYER
+        {
+            SetItemState(p3_nextBomb, p3_nextMine, p3_nextNuke, p3_nextTrap, type);
         }
     }
 
@@ -435,6 +434,70 @@ public class uiHandler : MonoBehaviour
                 p1_health0.SetActive(true);
             }
         }
+
+        if (playerID == 2) // PLAYER THREE
+        {
+            if (health == 3)
+            {
+                p2_health3.SetActive(true);
+                p2_health2.SetActive(false);
+                p2_health1.SetActive(false);
+                p2_health0.SetActive(false);
+            }
+            if (health == 2)
+            {
+                p2_health3.SetActive(false);
+                p2_health2.SetActive(true);
+                p2_health1.SetActive(false);
+                p2_health0.SetActive(false);
+            }
+            if (health == 1)
+            {
+                p2_health3.SetActive(false);
+                p2_health2.SetActive(false);
+                p2_health1.SetActive(true);
+                p2_health0.SetActive(false);
+            }
+            if (health == 0)
+            {
+                p2_health3.SetActive(false);
+                p2_health2.SetActive(false);
+                p2_health1.SetActive(false);
+                p2_health0.SetActive(true);
+            }
+        }
+
+        if (playerID == 3) // PLAYER THREE
+        {
+            if (health == 3)
+            {
+                p3_health3.SetActive(true);
+                p3_health2.SetActive(false);
+                p3_health1.SetActive(false);
+                p3_health0.SetActive(false);
+            }
+            if (health == 2)
+            {
+                p3_health3.SetActive(false);
+                p3_health2.SetActive(true);
+                p3_health1.SetActive(false);
+                p3_health0.SetActive(false);
+            }
+            if (health == 1)
+            {
+                p3_health3.SetActive(false);
+                p3_health2.SetActive(false);
+                p3_health1.SetActive(true);
+                p3_health0.SetActive(false);
+            }
+            if (health == 0)
+            {
+                p3_health3.SetActive(false);
+                p3_health2.SetActive(false);
+                p3_health1.SetActive(false);
+                p3_health0.SetActive(true);
+            }
+        }
     }
 
 
@@ -444,34 +507,61 @@ public class uiHandler : MonoBehaviour
         // Show run instructions
         p0_instructions_run.SetActive(true);
         p1_instructions_run.SetActive(true);
+        p2_instructions_run.SetActive(true);
+        p3_instructions_run.SetActive(true);
         yield return new WaitForSeconds(12);
         p0_instructions_run.SetActive(false);
         p1_instructions_run.SetActive(false);
+        p2_instructions_run.SetActive(false);
+        p3_instructions_run.SetActive(false);
 
         // AIM
         p0_instructions_aim.SetActive(true);
         p1_instructions_aim.SetActive(true);
+        p2_instructions_aim.SetActive(true);
+        p3_instructions_aim.SetActive(true);
         yield return new WaitForSeconds(9);
         p0_instructions_aim.SetActive(false);
         p1_instructions_aim.SetActive(false);
+        p2_instructions_aim.SetActive(false);
+        p3_instructions_aim.SetActive(false);
 
         // SHOOT
         p0_instructions_shoot.SetActive(true);
         p0_instructions_shoot2.SetActive(true);
+
+        p1_instructions_shoot.SetActive(true);
         p1_instructions_shoot2.SetActive(true);
-        p1_instructions_shoot2.SetActive(true);
+
+        p2_instructions_shoot.SetActive(true);
+        p2_instructions_shoot2.SetActive(true);
+
+        p3_instructions_shoot.SetActive(true);
+        p3_instructions_shoot2.SetActive(true);
+
         yield return new WaitForSeconds(9);
         p0_instructions_shoot.SetActive(false);
         p0_instructions_shoot2.SetActive(false);
+
+        p1_instructions_shoot.SetActive(false);
         p1_instructions_shoot2.SetActive(false);
-        p1_instructions_shoot2.SetActive(false);
+
+        p2_instructions_shoot.SetActive(false);
+        p2_instructions_shoot2.SetActive(false);
+
+        p3_instructions_shoot.SetActive(false);
+        p3_instructions_shoot2.SetActive(false);
 
         // BUMP
         p0_instructions_bump.SetActive(true);
         p1_instructions_bump.SetActive(true);
+        p2_instructions_bump.SetActive(true);
+        p3_instructions_bump.SetActive(true);
         yield return new WaitForSeconds(9);
         p0_instructions_bump.SetActive(false);
         p1_instructions_bump.SetActive(false);
+        p2_instructions_bump.SetActive(false);
+        p3_instructions_bump.SetActive(false);
 
     }
 
@@ -541,6 +631,58 @@ public class uiHandler : MonoBehaviour
         p1_instructions_bump.SetActive(false);
     }
 
+    private void HideP2UI() // HIDE PLAYER 2 UI
+    {
+        p2_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+
+        p2_ammoFrame.SetActive(false);
+        p2_currentBomb.SetActive(false);
+        p2_currentMine.SetActive(false);
+        p2_currentNuke.SetActive(false);
+        p2_currentTrap.SetActive(false);
+        p2_nextBomb.SetActive(false);
+        p2_nextMine.SetActive(false);
+        p2_nextNuke.SetActive(false);
+        p2_nextTrap.SetActive(false);
+
+        p2_health3.SetActive(false);
+        p2_health2.SetActive(false);
+        p2_health1.SetActive(false);
+        p2_health0.SetActive(false);
+
+        p2_instructions_run.SetActive(false);
+        p2_instructions_aim.SetActive(false);
+        p2_instructions_shoot.SetActive(false);
+        p2_instructions_shoot2.SetActive(false);
+        p2_instructions_bump.SetActive(false);
+    }
+
+    private void HideP3UI() // HIDE PLAYER 3 UI
+    {
+        p3_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+
+        p3_ammoFrame.SetActive(false);
+        p3_currentBomb.SetActive(false);
+        p3_currentMine.SetActive(false);
+        p3_currentNuke.SetActive(false);
+        p3_currentTrap.SetActive(false);
+        p3_nextBomb.SetActive(false);
+        p3_nextMine.SetActive(false);
+        p3_nextNuke.SetActive(false);
+        p3_nextTrap.SetActive(false);
+
+        p3_health3.SetActive(false);
+        p3_health2.SetActive(false);
+        p3_health1.SetActive(false);
+        p3_health0.SetActive(false);
+
+        p3_instructions_run.SetActive(false);
+        p3_instructions_aim.SetActive(false);
+        p3_instructions_shoot.SetActive(false);
+        p3_instructions_shoot2.SetActive(false);
+        p3_instructions_bump.SetActive(false);
+    }
+
     public void DetectWinner()
     {
         int playersAliveCount = 0;
@@ -561,27 +703,34 @@ public class uiHandler : MonoBehaviour
                 {
                     if(i == 0) // PLAYER 1 wins
                     {
-                        p0_winner.SetActive(true); // Show player 0 as the winner
-                        p1_loser.SetActive(true); // Show player 1 as the loser
+                        p0_winner.SetActive(true);  // WINNER
+                        p1_loser.SetActive(true);
+                        p2_loser.SetActive(true);
+                        p3_loser.SetActive(true);
                     }
                     else if (i== 1) // PLAYER 2 wins
                     {
-                        p1_winner.SetActive(true); // Show player 1 as the winner
-                        p0_loser.SetActive(true); // Show player 0 as the loser
+                        p0_loser.SetActive(true);
+                        p1_winner.SetActive(true);  // WINNER
+                        p2_loser.SetActive(true);
+                        p3_loser.SetActive(true);
                     }
                     else if (i == 2) // PLAYER 3 wins
                     {
-                        p1_loser.SetActive(true); // Show player 1 as the loser
-                        p0_loser.SetActive(true); // Show player 0 as the loser
+                        p1_loser.SetActive(true);
+                        p0_loser.SetActive(true); 
+                        p2_winner.SetActive(true);
+                        p3_loser.SetActive(true);
                     }
                     else if (i == 3) // PLAYER 4 wins
                     {
-                        p1_loser.SetActive(true); // Show player 1 as the loser
-                        p0_loser.SetActive(true); // Show player 0 as the loser
+                        p1_loser.SetActive(true); 
+                        p0_loser.SetActive(true); 
+                        p2_loser.SetActive(true);
+                        p3_winner.SetActive(true); // WINNER
                     }
                 }
             }
         }
-        
     }
 }
