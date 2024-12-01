@@ -107,6 +107,9 @@ public class uiHandler : MonoBehaviour
     public GameObject p2_pressAtoJoin;
     public GameObject p3_pressAtoJoin;
 
+    [Header("Bump UI")]
+    public GameObject[] player_bump_disabled = new GameObject [4];
+
     [Header("Accelerate Prompt")]
     public GameObject[] player_accelerate = new GameObject [4];
 
@@ -172,6 +175,12 @@ public class uiHandler : MonoBehaviour
         countdown2[3].SetActive(false);
         countdown1[3].SetActive(false);
         countdown_ready[3].SetActive(false);
+
+        player_bump_disabled[0].SetActive(false);
+        player_bump_disabled[1].SetActive(false);
+        player_bump_disabled[2].SetActive(false);
+        player_bump_disabled[3].SetActive(false);
+
 
         countdownStart = false;
         playerCount = 0;
@@ -241,11 +250,12 @@ public class uiHandler : MonoBehaviour
             p3_ammoFrame.SetActive(true);
             p3_pressAtoJoin.SetActive(false); // hide press A to join
             // Show tutorial when all players are in the lobby
-            if (!tutorialFlag)
-            {
-                StartCoroutine(ShowTutorial());
-                tutorialFlag = true;
-            }
+
+            //if (!tutorialFlag)
+            //{
+            //    StartCoroutine(ShowTutorial());
+            //    tutorialFlag = true;
+            //}
         }
 
         // Update the UI text to show the projectile count
@@ -354,9 +364,10 @@ public class uiHandler : MonoBehaviour
             DetectWinner();
         }
 
-        // Show prompt to PRESS A to accelerate. Scale it up and down
+        // PLAYER LOOP
         for (int i = 0; i < playerCount; i++)
         {
+            //Show prompt to PRESS A to accelerate.Scale it up and down
             if (players[i].GetComponent<CarController>().cartState == CarController.CartState.Running) // If cart is in running state, prompt the player to press A
             {
                 // SHOW PROMPT TO TAP A to move
@@ -367,9 +378,25 @@ public class uiHandler : MonoBehaviour
             else // Player does not require prompt
             {
                 player_accelerate[i].SetActive(false);
-
             }
+
+            // DISABLE BUMP UI WHEN PLAYER IS IN BUMP STATE
+            if (players[i].GetComponent<CarController>().cartState == CarController.CartState.InAir)
+            {
+                StartCoroutine(DisableBump(i));
+            }
+
         }
+
+
+    }
+
+    // When the player uses a bump, show a disabled display
+    private IEnumerator DisableBump(int playerID)
+    {
+        player_bump_disabled[playerID].SetActive(true);
+        yield return new WaitForSeconds(4);
+        player_bump_disabled[playerID].SetActive(false);
 
     }
 
@@ -419,7 +446,7 @@ public class uiHandler : MonoBehaviour
         countdown_ready[1].SetActive(true);
         countdown_ready[2].SetActive(true);
         countdown_ready[3].SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         countdown_ready[0].SetActive(false);
         countdown_ready[1].SetActive(false);
         countdown_ready[2].SetActive(false);
