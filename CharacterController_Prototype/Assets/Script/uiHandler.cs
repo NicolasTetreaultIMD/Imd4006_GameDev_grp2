@@ -113,6 +113,14 @@ public class uiHandler : MonoBehaviour
     [Header("PlayerJoin")]
     public int playerCount;
 
+    [Header("PlayersReady")]
+    public GameObject awaitingPlayers;
+    public GameObject[] countdown3 = new GameObject [4];
+    public GameObject[] countdown2 = new GameObject [4];
+    public GameObject[] countdown1 = new GameObject[4];
+    public GameObject[] countdown_ready = new GameObject[4];
+
+
     [Header("WinStates")]
     public bool[] playerAliveIndex = new bool[4];
 
@@ -130,6 +138,8 @@ public class uiHandler : MonoBehaviour
 
     private bool tutorialFlag;
 
+    private bool countdownStart;
+
 
 
 
@@ -143,12 +153,34 @@ public class uiHandler : MonoBehaviour
         playerAliveIndex[2] = true;
         playerAliveIndex[3] = true;
 
+        countdown3[0].SetActive(false);
+        countdown2[0].SetActive(false);
+        countdown1[0].SetActive(false);
+        countdown_ready[0].SetActive(false);
+
+        countdown3[1].SetActive(false);
+        countdown2[1].SetActive(false);
+        countdown1[1].SetActive(false);
+        countdown_ready[1].SetActive(false);
+
+        countdown3[2].SetActive(false);
+        countdown2[2].SetActive(false);
+        countdown1[2].SetActive(false);
+        countdown_ready[2].SetActive(false);
+
+        countdown3[3].SetActive(false);
+        countdown2[3].SetActive(false);
+        countdown1[3].SetActive(false);
+        countdown_ready[3].SetActive(false);
+
+        countdownStart = false;
         playerCount = 0;
         tutorialFlag = false; // not yet seen tutorial prompts
         p0_winner.SetActive(false);
         p1_winner.SetActive(false);
         p2_winner.SetActive(false);
         p3_winner.SetActive(false);
+        awaitingPlayers.SetActive(true);
         ShowJoinPrompt_P1();
         ShowJoinPrompt_P2();
         ShowJoinPrompt_P3();
@@ -184,10 +216,17 @@ public class uiHandler : MonoBehaviour
 
         if (playerCount == 2)
         {
+
             p1_ammoFrame.SetActive(true);
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            if (!countdownStart) // ** MOVE THIS TO 4 PLAYER FOR FINAL **
+            {
+                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
+                countdownStart = true;
+            }
         }
 
         if (playerCount == 3) 
@@ -315,7 +354,7 @@ public class uiHandler : MonoBehaviour
             DetectWinner();
         }
 
-        // Show prompt to PRESS A to accelerate
+        // Show prompt to PRESS A to accelerate. Scale it up and down
         for (int i = 0; i < playerCount; i++)
         {
             if (players[i].GetComponent<CarController>().cartState == CarController.CartState.Running) // If cart is in running state, prompt the player to press A
@@ -325,13 +364,66 @@ public class uiHandler : MonoBehaviour
                 StartCoroutine(ScalePrompt(player_accelerate[i].transform, i)); // scale it up and down once
 
             }
-            else
+            else // Player does not require prompt
             {
                 player_accelerate[i].SetActive(false);
 
             }
         }
 
+    }
+
+    public void PlayersReady()
+    {
+        awaitingPlayers.SetActive(false);
+
+        StartCoroutine(ShowDisablePrompt());
+        Debug.Log("3");
+
+    }
+
+    // Used to display the countdown
+    private IEnumerator ShowDisablePrompt()
+    {
+        countdown3[0].SetActive(true);
+        countdown3[1].SetActive(true);
+        countdown3[2].SetActive(true);
+        countdown3[3].SetActive(true);
+        yield return new WaitForSeconds(1);
+        countdown3[0].SetActive(false);
+        countdown3[1].SetActive(false);
+        countdown3[2].SetActive(false);
+        countdown3[3].SetActive(false);
+
+        countdown2[0].SetActive(true);
+        countdown2[1].SetActive(true);
+        countdown2[2].SetActive(true);
+        countdown2[3].SetActive(true);
+        yield return new WaitForSeconds(1);
+        countdown2[0].SetActive(false);
+        countdown2[1].SetActive(false);
+        countdown2[2].SetActive(false);
+        countdown2[3].SetActive(false);
+
+        countdown1[0].SetActive(true);
+        countdown1[1].SetActive(true);
+        countdown1[2].SetActive(true);
+        countdown1[3].SetActive(true);
+        yield return new WaitForSeconds(1);
+        countdown1[0].SetActive(false);
+        countdown1[1].SetActive(false);
+        countdown1[2].SetActive(false);
+        countdown1[3].SetActive(false);
+
+        countdown_ready[0].SetActive(true);
+        countdown_ready[1].SetActive(true);
+        countdown_ready[2].SetActive(true);
+        countdown_ready[3].SetActive(true);
+        yield return new WaitForSeconds(1);
+        countdown_ready[0].SetActive(false);
+        countdown_ready[1].SetActive(false);
+        countdown_ready[2].SetActive(false);
+        countdown_ready [3].SetActive(false);
     }
 
     private IEnumerator ScalePrompt(Transform promptTransform, int index)
