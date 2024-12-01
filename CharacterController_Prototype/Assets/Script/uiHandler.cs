@@ -107,6 +107,9 @@ public class uiHandler : MonoBehaviour
     public GameObject p2_pressAtoJoin;
     public GameObject p3_pressAtoJoin;
 
+    [Header("Accelerate Prompt")]
+    public GameObject[] player_accelerate = new GameObject [4];
+
     [Header("PlayerJoin")]
     public int playerCount;
 
@@ -311,6 +314,53 @@ public class uiHandler : MonoBehaviour
         {
             DetectWinner();
         }
+
+        // Show prompt to PRESS A to accelerate
+        for (int i = 0; i < playerCount; i++)
+        {
+            if (players[i].GetComponent<CarController>().cartState == CarController.CartState.Running) // If cart is in running state, prompt the player to press A
+            {
+                // SHOW PROMPT TO TAP A to move
+                player_accelerate[i].SetActive(true);
+                StartCoroutine(ScalePrompt(player_accelerate[i].transform, i)); // scale it up and down once
+
+            }
+            else
+            {
+                player_accelerate[i].SetActive(false);
+
+            }
+        }
+
+    }
+
+    private IEnumerator ScalePrompt(Transform promptTransform, int index)
+    {
+        float scaleDuration = 0.5f; // Duration of one scale up or down
+        float scaleAmount = 1.2f;   // Scale factor for the animation
+        Vector3 originalScale = promptTransform.localScale;
+        Vector3 targetScale = originalScale * scaleAmount;
+
+        // Scale up
+        yield return LerpScale(promptTransform, originalScale, targetScale, scaleDuration / 2);
+
+        // Scale down
+        yield return LerpScale(promptTransform, targetScale, originalScale, scaleDuration / 2);
+
+    }
+
+    private IEnumerator LerpScale(Transform target, Vector3 from, Vector3 to, float duration)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
+        {
+            target.localScale = Vector3.Lerp(from, to, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        target.localScale = to;
     }
 
     // Function toggles element visibility state using the bool type
