@@ -142,7 +142,7 @@ MonoBehaviour:
   haptics: {fileID: 4109759420216548726}
   gameManager: {fileID: 0}
   damageHandler: {fileID: 5364289520311506974}
-  characterHider: {fileID: 0}
+  characterHider: {fileID: 8914522853295762150}
   health: 0
   cannon: {fileID: 3630920482399317114}
   canPickUpItem: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   rotationAmount: 60
+  canMove: 0
   minTurn: 10
   currentTurnSpeed: 0
   turnSpeedToggle: 0
@@ -2575,6 +2576,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2387834527785214241}
+  - component: {fileID: 8914522853295762150}
   m_Layer: 0
   m_Name: CharacterHider
   m_TagString: Untagged
@@ -2597,6 +2599,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6919212868211562354}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8914522853295762150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750593937739930911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6d7a801f8b45c4eb90f362e2c6dea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hide:
+  - {fileID: 5431683208751995934}
+  - {fileID: 8040910226482917436}
+  - {fileID: 5121745074006495453}
+  - {fileID: 5460107960267704511}
+  - {fileID: 3680251402657241684}
+  - {fileID: 7368213553056359418}
+  - {fileID: 6554998165911558331}
+  - {fileID: 6764515192787013412}
 --- !u!1 &2781057754377641386
 GameObject:
   m_ObjectHideFlags: 0
@@ -8175,7 +8198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15376,7 +15399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16791,7 +16814,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36a1ac0160784344cbbe7a412e6150fc,
         type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18933,7 +18956,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 36a1ac0160784344cbbe7a412e6150fc,
         type: 3}
       propertyPath: m_Layer
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

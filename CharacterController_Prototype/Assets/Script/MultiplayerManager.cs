@@ -127,8 +127,8 @@ public class MultiplayerManager : MonoBehaviour
         {
             //Player Layers
             playerCam.GetComponent<Camera>().cullingMask = p4OcclusionMask;
-            playerCam.layer = 14;
-            playerCine.layer = 14;
+            playerCam.layer = 13;
+            playerCine.layer = 13;
 
             player.GetComponentInChildren<LineRenderer>().gameObject.layer = 17;
             player.transform.Find("Hitmarker").gameObject.layer = 17;

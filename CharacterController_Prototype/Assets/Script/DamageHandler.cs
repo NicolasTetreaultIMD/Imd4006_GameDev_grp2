@@ -74,9 +74,12 @@ public class DamageHandler : MonoBehaviour
             {
                 carController.health--;
                 carController.speed = 0;
+                carController.haptics.ExplosionHaptics();
+
 
                 if (carController.health <= 0)
                 {
+                    isImmune = true;
                     uiHandler.playerAliveIndex[playerId] = false;
                     shield.SetActive(true);
                     isStunned = true;

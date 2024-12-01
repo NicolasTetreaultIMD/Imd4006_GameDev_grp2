@@ -133,6 +133,12 @@ public class Cannon : MonoBehaviour
             hitMarker.GetComponent<MeshRenderer>().enabled = false;
         }
 
+        if(canShoot == false)
+        {
+            trajectoryLine.enabled = false;
+            hitMarker.GetComponent<MeshRenderer>().enabled = false;
+        }
+
     }
 
     private void FixedUpdate()

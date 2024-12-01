@@ -230,12 +230,6 @@ public class uiHandler : MonoBehaviour
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
-
-            if (!countdownStart) // ** MOVE THIS TO 4 PLAYER FOR FINAL **
-            {
-                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
-                countdownStart = true;
-            }
         }
 
         if (playerCount == 3) 
@@ -256,6 +250,12 @@ public class uiHandler : MonoBehaviour
             //    StartCoroutine(ShowTutorial());
             //    tutorialFlag = true;
             //}
+
+            if (!countdownStart) // ** MOVE THIS TO 4 PLAYER FOR FINAL **
+            {
+                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
+                countdownStart = true;
+            }
         }
 
         // Update the UI text to show the projectile count
@@ -355,7 +355,7 @@ public class uiHandler : MonoBehaviour
                 ShowCurrentAmmoType(3, "Empty");
             }
 
-            CurrentHealth(2, players[2].GetComponent<CarController>().health); // Show current player health
+            CurrentHealth(3, players[3].GetComponent<CarController>().health); // Show current player health
 
         }
         // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
@@ -451,6 +451,11 @@ public class uiHandler : MonoBehaviour
         countdown_ready[1].SetActive(false);
         countdown_ready[2].SetActive(false);
         countdown_ready [3].SetActive(false);
+
+        players[0].GetComponent<CarController>().canMove = true;
+        players[1].GetComponent<CarController>().canMove = true;
+        players[2].GetComponent<CarController>().canMove = true;
+        players[3].GetComponent<CarController>().canMove = true;
     }
 
     private IEnumerator ScalePrompt(Transform promptTransform, int index)
@@ -641,7 +646,7 @@ public class uiHandler : MonoBehaviour
             }
         }
 
-        if (playerID == 3) // PLAYER THREE
+        if (playerID == 3) // PLAYER FOUR
         {
             if (health == 3)
             {

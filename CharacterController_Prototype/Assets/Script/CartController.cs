@@ -54,6 +54,7 @@ public class CarController : MonoBehaviour
     public float speedDecreaseCooldown; //The time in which a speed will decrease
     public float speedDecreaseValue; //How much the speed will decrease by
     public float rotationAmount;
+    public bool canMove;
 
     [Header("Turning")]
     public float minTurn;
@@ -120,7 +121,7 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.GameOver == false)
+        if (gameManager.GameOver == false && canMove)
         {
             //Syncs the speed of the player's leg animation to the player's actual speed in the game.
             float newLowerBodySpeed = speed / 18.75f;
@@ -162,7 +163,7 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameManager.GameOver == false)
+        if (gameManager.GameOver == false && canMove)
         {
             turnTilt = 0;
 
