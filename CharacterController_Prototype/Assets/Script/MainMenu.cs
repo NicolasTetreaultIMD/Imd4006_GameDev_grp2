@@ -8,7 +8,10 @@ public class NewBehaviourScript : MonoBehaviour
 {
 
     public AudioMixer audioMixer;
-    
+
+    public Transform explosion; // Assign your sprite's Transform here in the Inspector
+    public float rotateSpeed = 360f; // Degrees per second
+
     public void startGame()
     {
         SceneManager.LoadScene(1);
@@ -22,6 +25,12 @@ public class NewBehaviourScript : MonoBehaviour
     public void setVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
+    }
+
+    void Update()
+    {
+        //rotate explosion
+        explosion.Rotate(Vector3.forward, rotateSpeed * Time.deltaTime);
     }
 
 }
