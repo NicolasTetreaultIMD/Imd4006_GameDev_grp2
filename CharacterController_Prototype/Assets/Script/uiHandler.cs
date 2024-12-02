@@ -77,30 +77,6 @@ public class uiHandler : MonoBehaviour
     public GameObject p3_health1;
     public GameObject p3_health0;
 
-    [Header("Instructions")]
-    public GameObject p0_instructions_run;
-    public GameObject p0_instructions_aim;
-    public GameObject p0_instructions_shoot;
-    public GameObject p0_instructions_shoot2;
-    public GameObject p0_instructions_bump;
-
-    public GameObject p1_instructions_run;
-    public GameObject p1_instructions_aim;
-    public GameObject p1_instructions_shoot;
-    public GameObject p1_instructions_shoot2;
-    public GameObject p1_instructions_bump;
-
-    public GameObject p2_instructions_run;
-    public GameObject p2_instructions_aim;
-    public GameObject p2_instructions_shoot;
-    public GameObject p2_instructions_shoot2;
-    public GameObject p2_instructions_bump;
-
-    public GameObject p3_instructions_run;
-    public GameObject p3_instructions_aim;
-    public GameObject p3_instructions_shoot;
-    public GameObject p3_instructions_shoot2;
-    public GameObject p3_instructions_bump;
 
     public GameObject p0_pressAtoJoin;
     public GameObject p1_pressAtoJoin;
@@ -252,12 +228,6 @@ public class uiHandler : MonoBehaviour
             p3_ammoFrame.SetActive(true);
             p3_pressAtoJoin.SetActive(false); // hide press A to join
             // Show tutorial when all players are in the lobby
-
-            //if (!tutorialFlag)
-            //{
-            //    StartCoroutine(ShowTutorial());
-            //    tutorialFlag = true;
-            //}
 
             if (!countdownStart)
             {
@@ -699,69 +669,7 @@ public class uiHandler : MonoBehaviour
     }
 
 
-    // TUTORIAL
-    private IEnumerator ShowTutorial()
-    {
-        // Show run instructions
-        p0_instructions_run.SetActive(true);
-        p1_instructions_run.SetActive(true);
-        p2_instructions_run.SetActive(true);
-        p3_instructions_run.SetActive(true);
-        yield return new WaitForSeconds(12);
-        p0_instructions_run.SetActive(false);
-        p1_instructions_run.SetActive(false);
-        p2_instructions_run.SetActive(false);
-        p3_instructions_run.SetActive(false);
-
-        // AIM
-        p0_instructions_aim.SetActive(true);
-        p1_instructions_aim.SetActive(true);
-        p2_instructions_aim.SetActive(true);
-        p3_instructions_aim.SetActive(true);
-        yield return new WaitForSeconds(9);
-        p0_instructions_aim.SetActive(false);
-        p1_instructions_aim.SetActive(false);
-        p2_instructions_aim.SetActive(false);
-        p3_instructions_aim.SetActive(false);
-
-        // SHOOT
-        p0_instructions_shoot.SetActive(true);
-        p0_instructions_shoot2.SetActive(true);
-
-        p1_instructions_shoot.SetActive(true);
-        p1_instructions_shoot2.SetActive(true);
-
-        p2_instructions_shoot.SetActive(true);
-        p2_instructions_shoot2.SetActive(true);
-
-        p3_instructions_shoot.SetActive(true);
-        p3_instructions_shoot2.SetActive(true);
-
-        yield return new WaitForSeconds(9);
-        p0_instructions_shoot.SetActive(false);
-        p0_instructions_shoot2.SetActive(false);
-
-        p1_instructions_shoot.SetActive(false);
-        p1_instructions_shoot2.SetActive(false);
-
-        p2_instructions_shoot.SetActive(false);
-        p2_instructions_shoot2.SetActive(false);
-
-        p3_instructions_shoot.SetActive(false);
-        p3_instructions_shoot2.SetActive(false);
-
-        // BUMP
-        p0_instructions_bump.SetActive(true);
-        p1_instructions_bump.SetActive(true);
-        p2_instructions_bump.SetActive(true);
-        p3_instructions_bump.SetActive(true);
-        yield return new WaitForSeconds(9);
-        p0_instructions_bump.SetActive(false);
-        p1_instructions_bump.SetActive(false);
-        p2_instructions_bump.SetActive(false);
-        p3_instructions_bump.SetActive(false);
-
-    }
+    
 
     public void AddPlayer()
     {
@@ -792,14 +700,6 @@ public class uiHandler : MonoBehaviour
         p0_health2.SetActive(false);
         p0_health1.SetActive(false);
         p0_health0.SetActive(false);
-
-       
-        p0_instructions_run.SetActive(false);
-        p0_instructions_aim.SetActive(false);
-        p0_instructions_shoot.SetActive(false);
-        p0_instructions_shoot2.SetActive(false);
-        p0_instructions_bump.SetActive(false);
-
        
     }
 
@@ -822,11 +722,6 @@ public class uiHandler : MonoBehaviour
         p1_health1.SetActive(false);
         p1_health0.SetActive(false);
 
-        p1_instructions_run.SetActive(false);
-        p1_instructions_aim.SetActive(false);
-        p1_instructions_shoot.SetActive(false);
-        p1_instructions_shoot2.SetActive(false);
-        p1_instructions_bump.SetActive(false);
     }
 
     private void ShowJoinPrompt_P3() // HIDE PLAYER 2 UI
@@ -848,11 +743,7 @@ public class uiHandler : MonoBehaviour
         p2_health1.SetActive(false);
         p2_health0.SetActive(false);
 
-        p2_instructions_run.SetActive(false);
-        p2_instructions_aim.SetActive(false);
-        p2_instructions_shoot.SetActive(false);
-        p2_instructions_shoot2.SetActive(false);
-        p2_instructions_bump.SetActive(false);
+
     }
 
     private void ShowJoinPrompt_P4() // HIDE PLAYER 3 UI
@@ -874,11 +765,6 @@ public class uiHandler : MonoBehaviour
         p3_health1.SetActive(false);
         p3_health0.SetActive(false);
 
-        p3_instructions_run.SetActive(false);
-        p3_instructions_aim.SetActive(false);
-        p3_instructions_shoot.SetActive(false);
-        p3_instructions_shoot2.SetActive(false);
-        p3_instructions_bump.SetActive(false);
     }
 
     public void DetectWinner() // Function detects whether there is a game winner
