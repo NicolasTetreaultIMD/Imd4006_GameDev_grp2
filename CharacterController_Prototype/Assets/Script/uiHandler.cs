@@ -203,7 +203,6 @@ public class uiHandler : MonoBehaviour
     void Update()
     {
         // SHOW UI dependent on player count
-
         if (playerCount == 0)
         {
             ShowJoinPrompt_P1();
@@ -221,6 +220,8 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P2();
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 2)
@@ -230,6 +231,9 @@ public class uiHandler : MonoBehaviour
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
+            players[1].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 3) 
@@ -237,6 +241,10 @@ public class uiHandler : MonoBehaviour
             p2_ammoFrame.SetActive(true);
             p2_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
+            players[1].gameObject.GetComponent<CarController>().health = 3;
+            players[2].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 4)
@@ -412,6 +420,17 @@ public class uiHandler : MonoBehaviour
     // Used to display the countdown
     private IEnumerator ShowDisablePrompt()
     {
+        players[0].GetComponent<CarController>().canMove = false;
+        players[1].GetComponent<CarController>().canMove = false;
+        players[2].GetComponent<CarController>().canMove = false;
+        players[3].GetComponent<CarController>().canMove = false;
+
+        players[0].GetComponent<CarController>().speed = 0;
+        players[1].GetComponent<CarController>().speed = 0;
+        players[2].GetComponent<CarController>().speed = 0;
+        players[3].GetComponent<CarController>().speed = 0;
+
+
         countdown3[0].SetActive(true);
         countdown3[1].SetActive(true);
         countdown3[2].SetActive(true);
