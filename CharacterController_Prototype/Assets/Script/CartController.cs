@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Linq;
@@ -93,7 +94,9 @@ public class CarController : MonoBehaviour
     public vfxHandler vfxHandler;
     public audioHandler audioHandler;
 
-    
+    [Header("Screen Shake")]
+    public CinemachineVirtualCamera cinemachine;
+    public CameraManager camManager;
 
     private void Start()
     {
@@ -426,6 +429,10 @@ public class CarController : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
         {
+            //screenShake
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude / 2;
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency / 2;
+
             if (canPickUpItem == true && cannon.projectile.Count < 2)
             {
                 if (other.tag == "Bomb Box")
