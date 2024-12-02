@@ -12,6 +12,9 @@ public class PlayerIndicators : MonoBehaviour
     private GameObject promptText;
 
     public GameObject[] playerIndicators;       // Array to store all the indicators
+
+    public GameObject[] playerPlaneIndicators;  // Array store the plane indicators showing player's direction
+
     public List<PlayerInput> players;
 
     public bool showPlayer1;
@@ -25,7 +28,7 @@ public class PlayerIndicators : MonoBehaviour
         players = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>().getPlayers();
 
         // Find all the pole objects in the scene by tag
-        if(carController.playerId == 0)
+        if (carController.playerId == 0)
         {
             playerIndicators[0].SetActive(true);
             playerIndicators[1].SetActive(false);
@@ -57,5 +60,25 @@ public class PlayerIndicators : MonoBehaviour
             playerIndicators[3].SetActive(true);
         }
 
+    }
+
+    private void Update()
+    {
+        if (players.Count < 4)
+        {
+            players = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>().getPlayers();
+        }
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].playerIndex != carController.playerId)
+            {
+                if (playerPlaneIndicators[i].activeSelf == false)
+                {
+                    playerPlaneIndicators[i].SetActive(true);
+                }
+                playerPlaneIndicators[i].transform.LookAt(players[i].gameObject.transform);
+            }
+        }
     }
 }
