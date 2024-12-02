@@ -77,6 +77,7 @@ public class MultiplayerManager : MonoBehaviour
 
         GameObject playerCam = player.GetComponent<CameraHolders>().carCamera;
         GameObject playerCine = player.GetComponent<CameraHolders>().carCinemachine;
+        GameObject playerBackCam = player.GetComponent<CameraHolders>().carBackCam;
 
         if (playerId == 0)
         {
@@ -84,6 +85,7 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p1OcclusionMask;
             playerCam.layer = 10;
             playerCine.layer = 10;
+            playerBackCam.layer = 10;
 
             player.GetComponentInChildren<LineRenderer>().gameObject.layer = 14;
             player.transform.Find("Hitmarker").gameObject.layer = 14;
@@ -99,6 +101,7 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p2OcclusionMask;
             playerCam.layer = 11;
             playerCine.layer = 11;
+            playerBackCam.layer = 11;
 
             player.GetComponentInChildren<LineRenderer>().gameObject.layer = 15;
             player.transform.Find("Hitmarker").gameObject.layer = 15;
@@ -114,6 +117,7 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p3OcclusionMask;
             playerCam.layer = 12;
             playerCine.layer = 12;
+            playerBackCam.layer = 12;
 
             player.GetComponentInChildren<LineRenderer>().gameObject.layer = 16;
             player.transform.Find("Hitmarker").gameObject.layer = 16;
@@ -129,6 +133,7 @@ public class MultiplayerManager : MonoBehaviour
             playerCam.GetComponent<Camera>().cullingMask = p4OcclusionMask;
             playerCam.layer = 13;
             playerCine.layer = 13;
+            playerBackCam.layer = 13;
 
             player.GetComponentInChildren<LineRenderer>().gameObject.layer = 17;
             player.transform.Find("Hitmarker").gameObject.layer = 17;
