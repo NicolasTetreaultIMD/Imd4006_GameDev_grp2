@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class PoleProximityPrompt : MonoBehaviour
+public class PlayerIndicators : MonoBehaviour
 {
     public float proximityThreshold = 20f;  // Distance threshold for proximity
 
@@ -57,26 +57,5 @@ public class PoleProximityPrompt : MonoBehaviour
             playerIndicators[3].SetActive(true);
         }
 
-    }
-
-    void Update()
-    {
-        //foreach (var player in players)
-        //{
-        //    if (carController.playerId != player.playerIndex)
-        //    {
-        //        float distance = Vector3.Distance();
-        //    }
-        //}
-
-        //float distance = Vector3.Distance();
-
-        //if (distance > proximityThreshold)
-        //{
-        //    If the player is close enough to the pole, show the prompt
-        //    ShowPlayerIndicators();
-        //    Debug.Log("OUTSIDE OF DISTANCE!");
-        //    return; // Exit the loop after finding the first pole within range (optional, can remove if you want to check all poles)
-        //}
     }
 }
