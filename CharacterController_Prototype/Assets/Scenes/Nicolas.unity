@@ -16681,6 +16681,8 @@ MonoBehaviour:
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 0}
   audioHandler: {fileID: 0}
+  cinemachine: {fileID: 0}
+  camManager: {fileID: 0}
 --- !u!4 &941737916
 Transform:
   m_ObjectHideFlags: 0
@@ -21680,6 +21682,8 @@ MonoBehaviour:
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 0}
   audioHandler: {fileID: 0}
+  cinemachine: {fileID: 0}
+  camManager: {fileID: 0}
 --- !u!65 &1192316229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33202,6 +33206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   GameOver: 0

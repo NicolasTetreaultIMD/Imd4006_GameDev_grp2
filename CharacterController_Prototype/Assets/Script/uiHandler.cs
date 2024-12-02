@@ -153,8 +153,8 @@ public class uiHandler : MonoBehaviour
         // ** CHANGE THESE IF TESTING ONLY TWO PLAYERS (set index 2 and 3 to false)
         playerAliveIndex[0] = true;
         playerAliveIndex[1] = true; 
-        playerAliveIndex[2] = false;
-        playerAliveIndex[3] = false;
+        playerAliveIndex[2] = true;
+        playerAliveIndex[3] = true;
 
         countdown3[0].SetActive(false);
         countdown2[0].SetActive(false);
@@ -230,12 +230,6 @@ public class uiHandler : MonoBehaviour
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
-
-            if (!countdownStart)
-            {
-                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
-                countdownStart = true;
-            }
         }
 
         if (playerCount == 3) 
