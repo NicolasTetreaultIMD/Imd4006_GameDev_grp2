@@ -172,7 +172,7 @@ MonoBehaviour:
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   rotationAmount: 60
-  canMove: 0
+  canMove: 1
   minTurn: 10
   currentTurnSpeed: 0
   turnSpeedToggle: 0

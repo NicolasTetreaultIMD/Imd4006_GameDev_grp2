@@ -77,31 +77,6 @@ public class uiHandler : MonoBehaviour
     public GameObject p3_health1;
     public GameObject p3_health0;
 
-    [Header("Instructions")]
-    public GameObject p0_instructions_run;
-    public GameObject p0_instructions_aim;
-    public GameObject p0_instructions_shoot;
-    public GameObject p0_instructions_shoot2;
-    public GameObject p0_instructions_bump;
-
-    public GameObject p1_instructions_run;
-    public GameObject p1_instructions_aim;
-    public GameObject p1_instructions_shoot;
-    public GameObject p1_instructions_shoot2;
-    public GameObject p1_instructions_bump;
-
-    public GameObject p2_instructions_run;
-    public GameObject p2_instructions_aim;
-    public GameObject p2_instructions_shoot;
-    public GameObject p2_instructions_shoot2;
-    public GameObject p2_instructions_bump;
-
-    public GameObject p3_instructions_run;
-    public GameObject p3_instructions_aim;
-    public GameObject p3_instructions_shoot;
-    public GameObject p3_instructions_shoot2;
-    public GameObject p3_instructions_bump;
-
     public GameObject p0_pressAtoJoin;
     public GameObject p1_pressAtoJoin;
     public GameObject p2_pressAtoJoin;
@@ -203,7 +178,6 @@ public class uiHandler : MonoBehaviour
     void Update()
     {
         // SHOW UI dependent on player count
-
         if (playerCount == 0)
         {
             ShowJoinPrompt_P1();
@@ -221,6 +195,8 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P2();
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 2)
@@ -230,6 +206,9 @@ public class uiHandler : MonoBehaviour
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
+            players[1].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 3) 
@@ -237,6 +216,10 @@ public class uiHandler : MonoBehaviour
             p2_ammoFrame.SetActive(true);
             p2_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P4();
+
+            players[0].gameObject.GetComponent<CarController>().health = 3;
+            players[1].gameObject.GetComponent<CarController>().health = 3;
+            players[2].gameObject.GetComponent<CarController>().health = 3;
         }
 
         if (playerCount == 4)
@@ -412,6 +395,22 @@ public class uiHandler : MonoBehaviour
     // Used to display the countdown
     private IEnumerator ShowDisablePrompt()
     {
+        //players[0].GetComponent<CarController>().canMove = false;
+        //players[1].GetComponent<CarController>().canMove = false;
+        //players[2].GetComponent<CarController>().canMove = false;
+        //players[3].GetComponent<CarController>().canMove = false;
+
+        //players[0].GetComponent<CarController>().speed = 0;
+        //players[1].GetComponent<CarController>().speed = 0;
+        //players[2].GetComponent<CarController>().speed = 0;
+        //players[3].GetComponent<CarController>().speed = 0;
+
+        //players[0].gameObject.transform.position = GameObject.Find("Player1Spawn").transform.position;
+        //players[1].gameObject.transform.position = GameObject.Find("Player2Spawn").transform.position;
+        //players[2].gameObject.transform.position = GameObject.Find("Player3Spawn").transform.position;
+        //players[3].gameObject.transform.position = GameObject.Find("Player4Spawn").transform.position;
+
+
         countdown3[0].SetActive(true);
         countdown3[1].SetActive(true);
         countdown3[2].SetActive(true);
@@ -452,10 +451,10 @@ public class uiHandler : MonoBehaviour
         countdown_ready[2].SetActive(false);
         countdown_ready [3].SetActive(false);
 
-        players[0].GetComponent<CarController>().canMove = true;
-        players[1].GetComponent<CarController>().canMove = true;
-        players[2].GetComponent<CarController>().canMove = true;
-        players[3].GetComponent<CarController>().canMove = true;
+        //players[0].GetComponent<CarController>().canMove = true;
+        //players[1].GetComponent<CarController>().canMove = true;
+        //players[2].GetComponent<CarController>().canMove = true;
+        //players[3].GetComponent<CarController>().canMove = true;
     }
 
     private IEnumerator ScalePrompt(Transform promptTransform, int index)
@@ -679,71 +678,6 @@ public class uiHandler : MonoBehaviour
         }
     }
 
-
-    // TUTORIAL
-    private IEnumerator ShowTutorial()
-    {
-        // Show run instructions
-        p0_instructions_run.SetActive(true);
-        p1_instructions_run.SetActive(true);
-        p2_instructions_run.SetActive(true);
-        p3_instructions_run.SetActive(true);
-        yield return new WaitForSeconds(12);
-        p0_instructions_run.SetActive(false);
-        p1_instructions_run.SetActive(false);
-        p2_instructions_run.SetActive(false);
-        p3_instructions_run.SetActive(false);
-
-        // AIM
-        p0_instructions_aim.SetActive(true);
-        p1_instructions_aim.SetActive(true);
-        p2_instructions_aim.SetActive(true);
-        p3_instructions_aim.SetActive(true);
-        yield return new WaitForSeconds(9);
-        p0_instructions_aim.SetActive(false);
-        p1_instructions_aim.SetActive(false);
-        p2_instructions_aim.SetActive(false);
-        p3_instructions_aim.SetActive(false);
-
-        // SHOOT
-        p0_instructions_shoot.SetActive(true);
-        p0_instructions_shoot2.SetActive(true);
-
-        p1_instructions_shoot.SetActive(true);
-        p1_instructions_shoot2.SetActive(true);
-
-        p2_instructions_shoot.SetActive(true);
-        p2_instructions_shoot2.SetActive(true);
-
-        p3_instructions_shoot.SetActive(true);
-        p3_instructions_shoot2.SetActive(true);
-
-        yield return new WaitForSeconds(9);
-        p0_instructions_shoot.SetActive(false);
-        p0_instructions_shoot2.SetActive(false);
-
-        p1_instructions_shoot.SetActive(false);
-        p1_instructions_shoot2.SetActive(false);
-
-        p2_instructions_shoot.SetActive(false);
-        p2_instructions_shoot2.SetActive(false);
-
-        p3_instructions_shoot.SetActive(false);
-        p3_instructions_shoot2.SetActive(false);
-
-        // BUMP
-        p0_instructions_bump.SetActive(true);
-        p1_instructions_bump.SetActive(true);
-        p2_instructions_bump.SetActive(true);
-        p3_instructions_bump.SetActive(true);
-        yield return new WaitForSeconds(9);
-        p0_instructions_bump.SetActive(false);
-        p1_instructions_bump.SetActive(false);
-        p2_instructions_bump.SetActive(false);
-        p3_instructions_bump.SetActive(false);
-
-    }
-
     public void AddPlayer()
     {
         playerCount++;        
@@ -774,14 +708,7 @@ public class uiHandler : MonoBehaviour
         p0_health1.SetActive(false);
         p0_health0.SetActive(false);
 
-       
-        p0_instructions_run.SetActive(false);
-        p0_instructions_aim.SetActive(false);
-        p0_instructions_shoot.SetActive(false);
-        p0_instructions_shoot2.SetActive(false);
-        p0_instructions_bump.SetActive(false);
 
-       
     }
 
     private void ShowJoinPrompt_P2() // HIDE PLAYER 2 UI
@@ -802,12 +729,6 @@ public class uiHandler : MonoBehaviour
         p1_health2.SetActive(false);
         p1_health1.SetActive(false);
         p1_health0.SetActive(false);
-
-        p1_instructions_run.SetActive(false);
-        p1_instructions_aim.SetActive(false);
-        p1_instructions_shoot.SetActive(false);
-        p1_instructions_shoot2.SetActive(false);
-        p1_instructions_bump.SetActive(false);
     }
 
     private void ShowJoinPrompt_P3() // HIDE PLAYER 2 UI
@@ -828,12 +749,6 @@ public class uiHandler : MonoBehaviour
         p2_health2.SetActive(false);
         p2_health1.SetActive(false);
         p2_health0.SetActive(false);
-
-        p2_instructions_run.SetActive(false);
-        p2_instructions_aim.SetActive(false);
-        p2_instructions_shoot.SetActive(false);
-        p2_instructions_shoot2.SetActive(false);
-        p2_instructions_bump.SetActive(false);
     }
 
     private void ShowJoinPrompt_P4() // HIDE PLAYER 3 UI
@@ -854,12 +769,6 @@ public class uiHandler : MonoBehaviour
         p3_health2.SetActive(false);
         p3_health1.SetActive(false);
         p3_health0.SetActive(false);
-
-        p3_instructions_run.SetActive(false);
-        p3_instructions_aim.SetActive(false);
-        p3_instructions_shoot.SetActive(false);
-        p3_instructions_shoot2.SetActive(false);
-        p3_instructions_bump.SetActive(false);
     }
 
     public void DetectWinner() // Function detects whether there is a game winner
