@@ -291,7 +291,7 @@ MonoBehaviour:
   projectileScript: {fileID: 7331157710501167149}
   playerId: 0
   foundPlayer: 0
-  speed: 40
+  speed: 35
   rotationSpeed: 0
 --- !u!114 &7331157710501167149
 MonoBehaviour:
@@ -305,7 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1f2e2a2fc5ce349a7dcd841f95bb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allMesh: {fileID: 7758786440345429834}
   buttonMesh: {fileID: 0}
   openTrap: {fileID: 0}
   closeTrap: {fileID: 0}

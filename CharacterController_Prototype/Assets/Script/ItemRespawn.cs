@@ -10,23 +10,27 @@ public class ItemRespawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int randomTag = Random.Range(1, 5);
+        int randomTag = Random.Range(1, 101);
 
-        if (randomTag == 1)
+        if (randomTag > 0 && randomTag <= 27.5f) // 27.5% chance
         {
             gameObject.tag = "Bomb Box";
         }
-        else if (randomTag == 2)
+        else if (randomTag > 27.5f && randomTag <= 55) // 27.5% chance
         {
             gameObject.tag = "Mine Box";
         }
-        else if (randomTag == 3)
+        else if (randomTag > 55 && randomTag <= 82.5f) // 27.5% chance
+        {
+            gameObject.tag = "Trap Box";
+        }
+        else if (randomTag > 82.5f && randomTag <= 100) // 17.5% chance
         {
             gameObject.tag = "Nuke Box";
         }
-        else if (randomTag == 4)
+        else
         {
-            gameObject.tag = "Trap Box";
+            gameObject.tag = "Nuke Box"; //In case of messed up math
         }
     }
 

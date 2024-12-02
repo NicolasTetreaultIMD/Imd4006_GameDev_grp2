@@ -395,20 +395,45 @@ public class uiHandler : MonoBehaviour
     // Used to display the countdown
     private IEnumerator ShowDisablePrompt()
     {
-        //players[0].GetComponent<CarController>().canMove = false;
-        //players[1].GetComponent<CarController>().canMove = false;
-        //players[2].GetComponent<CarController>().canMove = false;
-        //players[3].GetComponent<CarController>().canMove = false;
+        GameObject[] itemClear1 = GameObject.FindGameObjectsWithTag("Bomb");
+        GameObject[] itemClear2 = GameObject.FindGameObjectsWithTag("Mine");
+        GameObject[] itemClear3 = GameObject.FindGameObjectsWithTag("Nuke");
+        GameObject[] itemClear4 = GameObject.FindGameObjectsWithTag("Trap");
 
-        //players[0].GetComponent<CarController>().speed = 0;
-        //players[1].GetComponent<CarController>().speed = 0;
-        //players[2].GetComponent<CarController>().speed = 0;
-        //players[3].GetComponent<CarController>().speed = 0;
+        foreach (GameObject bombs in itemClear1)
+        {
+            Destroy(bombs);
+        }
 
-        //players[0].gameObject.transform.position = GameObject.Find("Player1Spawn").transform.position;
-        //players[1].gameObject.transform.position = GameObject.Find("Player2Spawn").transform.position;
-        //players[2].gameObject.transform.position = GameObject.Find("Player3Spawn").transform.position;
-        //players[3].gameObject.transform.position = GameObject.Find("Player4Spawn").transform.position;
+        foreach (GameObject mines in itemClear2)
+        {
+            Destroy(mines);
+        }
+
+        foreach (GameObject nukes in itemClear3)
+        {
+            Destroy(nukes);
+        }
+
+        foreach (GameObject traps in itemClear4)
+        {
+            Destroy(traps);
+        }
+
+        players[0].GetComponent<CarController>().canMove = false;
+        players[1].GetComponent<CarController>().canMove = false;
+        players[2].GetComponent<CarController>().canMove = false;
+        players[3].GetComponent<CarController>().canMove = false;
+
+        players[0].GetComponent<CarController>().speed = 0;
+        players[1].GetComponent<CarController>().speed = 0;
+        players[2].GetComponent<CarController>().speed = 0;
+        players[3].GetComponent<CarController>().speed = 0;
+
+        players[0].gameObject.transform.position = GameObject.Find("Player1Spawn").transform.position;
+        players[1].gameObject.transform.position = GameObject.Find("Player2Spawn").transform.position;
+        players[2].gameObject.transform.position = GameObject.Find("Player3Spawn").transform.position;
+        players[3].gameObject.transform.position = GameObject.Find("Player4Spawn").transform.position;
 
 
         countdown3[0].SetActive(true);
@@ -451,10 +476,11 @@ public class uiHandler : MonoBehaviour
         countdown_ready[2].SetActive(false);
         countdown_ready [3].SetActive(false);
 
-        //players[0].GetComponent<CarController>().canMove = true;
-        //players[1].GetComponent<CarController>().canMove = true;
-        //players[2].GetComponent<CarController>().canMove = true;
-        //players[3].GetComponent<CarController>().canMove = true;
+        players[0].GetComponent<CarController>().canMove = true;
+        players[1].GetComponent<CarController>().canMove = true;
+        players[2].GetComponent<CarController>().canMove = true;
+        players[3].GetComponent<CarController>().canMove = true;
+
     }
 
     private IEnumerator ScalePrompt(Transform promptTransform, int index)
