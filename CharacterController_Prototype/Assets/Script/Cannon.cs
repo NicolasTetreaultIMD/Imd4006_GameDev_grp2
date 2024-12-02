@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using UnityEngine.Timeline;
 
 public class Cannon : MonoBehaviour
 {
+
     [Header("Player Input")]
     public PlayerInput playerInput;
     private InputAction shoot;
@@ -56,6 +58,9 @@ public class Cannon : MonoBehaviour
     public float maxCarTiltInfluence;
     private float prevMassChange;
 
+    [Header("Screen Shake")]
+    public CinemachineVirtualCamera cinemachine;
+    public CameraManager camManager;
 
     // Start is called before the first frame update
     void Start()
@@ -207,6 +212,10 @@ public class Cannon : MonoBehaviour
 
                     haptics.CannonHaptics();
                     shootForce = startingShootforce;
+
+                    //screenShake
+                    cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude;
+                    cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency;
 
                     lastShootTime = Time.time + shootCooldown;
                 }

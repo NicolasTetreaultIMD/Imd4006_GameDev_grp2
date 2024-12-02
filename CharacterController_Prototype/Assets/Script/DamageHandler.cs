@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,6 +7,10 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour
 {
+    [Header("Screen Shake")]
+    public CinemachineVirtualCamera cinemachine;
+    public CameraManager camManager;
+
     public Material testMaterial;
     public Material currentMaterial;
 
@@ -89,6 +94,10 @@ public class DamageHandler : MonoBehaviour
                 }
                 else
                 {
+                    //screenShake
+                    cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude * 2;
+                    cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency * 2;
+
                     isImmune = true;
                     StartCoroutine(ImmunityTime());
                     shield.SetActive(true);
@@ -105,6 +114,10 @@ public class DamageHandler : MonoBehaviour
     {
         if (gameObject.tag == "Player" && playerId != explosivePlayerId)
         {
+            //screenShake
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude;
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency;
+
             isStunned = true;
             StartCoroutine(StunDuration());
         }

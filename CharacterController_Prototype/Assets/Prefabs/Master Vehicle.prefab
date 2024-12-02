@@ -194,6 +194,8 @@ MonoBehaviour:
   featherEffect: {fileID: 0}
   vfxHandler: {fileID: 1670990211093855072}
   audioHandler: {fileID: 505890743119021628}
+  cinemachine: {fileID: 4857661243104453208}
+  camManager: {fileID: 436990676036860377}
 --- !u!114 &1670990211093855072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b2330d80aa0f74d958795161ceca03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cinemachine: {fileID: 4857661243104453208}
+  camManager: {fileID: 436990676036860377}
   testMaterial: {fileID: 0}
   currentMaterial: {fileID: 0}
   carController: {fileID: 0}
@@ -366,6 +370,8 @@ MonoBehaviour:
   bumpSpeed: 1.3
   invertBump: 1
   bumpCooldown: 4
+  cinemachine: {fileID: 4857661243104453208}
+  camManager: {fileID: 436990676036860377}
   audioHandler: {fileID: 505890743119021628}
 --- !u!114 &5956470940994522726
 MonoBehaviour:
@@ -2925,6 +2931,8 @@ MonoBehaviour:
   increment: 0.1
   centerMassManager: {fileID: 56952471568300064}
   maxCarTiltInfluence: 9
+  cinemachine: {fileID: 4857661243104453208}
+  camManager: {fileID: 436990676036860377}
 --- !u!120 &199994340255641112
 LineRenderer:
   serializedVersion: 2
@@ -8298,7 +8306,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8478,7 +8486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5120203693739202436}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0001694969, y: 0.9965906, z: 0.0020479911, w: 0.08248034}
+  m_LocalRotation: {x: -0.00016949487, y: 0.9965906, z: 0.0020479658, w: 0.08248038}
   m_LocalPosition: {x: 0.57, y: 1.25, z: 4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15499,7 +15507,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class CarBump : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class CarBump : MonoBehaviour
     private bool isBumping;
     private float elapsedTime;
     private float prevMassChange;
+
+    [Header("Screen Shake")]
+    public CinemachineVirtualCamera cinemachine;
+    public CameraManager camManager;
 
 
     public audioHandler audioHandler;
@@ -87,6 +92,10 @@ public class CarBump : MonoBehaviour
 
         if (!isBumping && timeElapsed <= 0 && carController.cartState == CarController.CartState.InCart)
         {
+            //screenShake
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = camManager.amplitudeChange + camManager.maxAmplitude / 2;
+            cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = camManager.frequencyChange + camManager.maxFrequency / 2;
+
             timeElapsed = bumpCooldown;
 
             BumpDirection = direction;
