@@ -92,6 +92,7 @@ MonoBehaviour:
   - {fileID: -7893295128165547882}
   - {fileID: -7011558710299706105}
   - {fileID: 4141297929925313062}
+  - {fileID: 3584546083244475012}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -132,6 +133,91 @@ MonoBehaviour:
   maxNits:
     m_OverrideState: 0
     m_Value: 1000
+--- !u!114 &3584546083244475012
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbc47814ff925e4493c1cd48a160fdd, type: 3}
+  m_Name: CleanOutline
+  m_EditorClassIdentifier: 
+  active: 1
+  standaloneActive:
+    m_OverrideState: 0
+    m_Value: 1
+  debugMode:
+    m_OverrideState: 0
+    m_Value: 0
+  outlineColor:
+    m_OverrideState: 1
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
+  outlineThickness:
+    m_OverrideState: 1
+    m_Value: 0.51
+  enableClosenessBoost:
+    m_OverrideState: 0
+    m_Value: 0
+  closenessBoostThickness:
+    m_OverrideState: 0
+    m_Value: 1
+  closenessBoostNear:
+    m_OverrideState: 0
+    m_Value: 0.3
+  closenessBoostFar:
+    m_OverrideState: 0
+    m_Value: 0.7
+  enableDistanceFade:
+    m_OverrideState: 1
+    m_Value: 0
+  distanceFadeNear:
+    m_OverrideState: 1
+    m_Value: 0.15
+  distanceFadeFar:
+    m_OverrideState: 1
+    m_Value: 0.6
+  depthSampleType:
+    m_OverrideState: 1
+    m_Value: 1
+  depthThickness:
+    m_OverrideState: 1
+    m_Value: 1
+  depthMultiplier:
+    m_OverrideState: 1
+    m_Value: 1
+  depthBias:
+    m_OverrideState: 1
+    m_Value: 1
+  depthThreshold:
+    m_OverrideState: 1
+    m_Value: 0.1
+  depth9TilesThreshold:
+    m_OverrideState: 1
+    m_Value: 0.5
+  depth9TilesBottomFix:
+    m_OverrideState: 1
+    m_Value: 0.005
+  normalThickness:
+    m_OverrideState: 1
+    m_Value: 1
+  normalCheckDirection:
+    m_OverrideState: 1
+    m_Value: 1
+  normalMultiplier:
+    m_OverrideState: 1
+    m_Value: 5
+  normalBias:
+    m_OverrideState: 1
+    m_Value: 10
+  normalThreshold:
+    m_OverrideState: 1
+    m_Value: 0.3
+  enableNormalOutline:
+    m_OverrideState: 1
+    m_Value: 1
 --- !u!114 &4141297929925313062
 MonoBehaviour:
   m_ObjectHideFlags: 3

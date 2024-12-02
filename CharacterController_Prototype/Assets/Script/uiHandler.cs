@@ -221,6 +221,12 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P2();
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
+
+            if (!countdownStart)
+            {
+                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
+                countdownStart = true;
+            }
         }
 
         if (playerCount == 2)
