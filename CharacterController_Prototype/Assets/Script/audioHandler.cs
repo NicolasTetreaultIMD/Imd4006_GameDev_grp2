@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -25,6 +26,7 @@ public class audioHandler : MonoBehaviour
     //          [11] - Mine
     //          [12] - Nuke
     //          [13] - Footsteps
+    //          [14] - Ouch (Getting hit)
 
     private float speed;
 
@@ -180,6 +182,15 @@ public class audioHandler : MonoBehaviour
         if (source[12].isPlaying == false)
         {
             source[12].Play();
+        }
+    }
+
+    public void hitPlayer()
+    {
+        if(source[14].isPlaying == false)
+        { 
+            source[14].Play();
+            Debug.Log("Hit!");
         }
     }
 
