@@ -16659,6 +16659,7 @@ MonoBehaviour:
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   rotationAmount: 0
+  canMove: 0
   minTurn: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
@@ -21657,6 +21658,7 @@ MonoBehaviour:
   speedDecreaseCooldown: 0
   speedDecreaseValue: 0
   rotationAmount: 0
+  canMove: 0
   minTurn: 0
   currentTurnSpeed: 0
   turnSpeedToggle: 0
@@ -33200,8 +33202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players:
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   GameOver: 0

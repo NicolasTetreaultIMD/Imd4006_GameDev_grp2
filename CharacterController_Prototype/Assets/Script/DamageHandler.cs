@@ -52,6 +52,7 @@ public class DamageHandler : MonoBehaviour
         if(isStunned)
         {
             carController.speed = 0;
+
         }
 
         if (isImmune) // Keep looping the alpha lerp back and forth
@@ -77,6 +78,8 @@ public class DamageHandler : MonoBehaviour
                 carController.haptics.ExplosionHaptics();
 
 
+
+
                 if (carController.health <= 0)
                 {
                     isImmune = true;
@@ -89,6 +92,9 @@ public class DamageHandler : MonoBehaviour
                     isImmune = true;
                     StartCoroutine(ImmunityTime());
                     shield.SetActive(true);
+
+                    //PLAYER IS HIT - PLAY SFX
+                    carController.audioHandler.hitPlayer();
 
                 }
             }
