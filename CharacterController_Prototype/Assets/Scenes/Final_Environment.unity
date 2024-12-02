@@ -33204,6 +33204,8 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   GameOver: 0
 --- !u!4 &1664210557
 Transform:

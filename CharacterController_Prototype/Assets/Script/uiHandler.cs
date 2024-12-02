@@ -230,12 +230,6 @@ public class uiHandler : MonoBehaviour
             p1_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
-
-            if (!countdownStart)
-            {
-                PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
-                countdownStart = true;
-            }
         }
 
         if (playerCount == 3) 
