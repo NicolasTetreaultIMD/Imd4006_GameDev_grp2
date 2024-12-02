@@ -420,6 +420,11 @@ public class uiHandler : MonoBehaviour
             Destroy(traps);
         }
 
+        players[0].GetComponentInChildren<Cannon>().projectile.Clear();
+        players[1].GetComponentInChildren<Cannon>().projectile.Clear();
+        players[2].GetComponentInChildren<Cannon>().projectile.Clear();
+        players[3].GetComponentInChildren<Cannon>().projectile.Clear();
+
         players[0].GetComponent<CarController>().canMove = false;
         players[1].GetComponent<CarController>().canMove = false;
         players[2].GetComponent<CarController>().canMove = false;
