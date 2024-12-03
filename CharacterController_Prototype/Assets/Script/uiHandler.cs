@@ -228,11 +228,6 @@ public class uiHandler : MonoBehaviour
             p3_pressAtoJoin.SetActive(false); // hide press A to join
             // Show tutorial when all players are in the lobby
 
-            //if (!tutorialFlag)
-            //{
-            //    StartCoroutine(ShowTutorial());
-            //    tutorialFlag = true;
-            //}
 
             if (!countdownStart)
             {
@@ -424,6 +419,17 @@ public class uiHandler : MonoBehaviour
         players[1].GetComponentInChildren<Cannon>().projectile.Clear();
         players[2].GetComponentInChildren<Cannon>().projectile.Clear();
         players[3].GetComponentInChildren<Cannon>().projectile.Clear();
+
+        // Reset items from the UI
+        ShowCurrentAmmoType(0, "Empty");
+        ShowCurrentAmmoType(1, "Empty");
+        ShowCurrentAmmoType(2, "Empty");
+        ShowCurrentAmmoType(3, "Empty");
+
+        ShowNextAmmoType(0, "Empty");
+        ShowNextAmmoType(1, "Empty");
+        ShowNextAmmoType(2, "Empty");
+        ShowNextAmmoType(3, "Empty");
 
         players[0].GetComponent<CarController>().canMove = false;
         players[1].GetComponent<CarController>().canMove = false;
