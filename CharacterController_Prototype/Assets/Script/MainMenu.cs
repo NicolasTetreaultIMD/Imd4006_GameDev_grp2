@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
+using UnityEngine.EventSystems;
 
 public class NewBehaviourScript : MonoBehaviour
 {
 
     public AudioMixer audioMixer;
 
+    public GameObject volumeSlider;
+    public GameObject playButton;
     public Transform explosion; // Assign your sprite's Transform here in the Inspector
 
     public void startGame()
@@ -21,10 +24,23 @@ public class NewBehaviourScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void optionsMenu()
+    {
+        // Set the first selectable UI element (the slider) in the options menu
+        EventSystem.current.SetSelectedGameObject(volumeSlider);
+    }
+
+    public void mainMenu()
+    {
+        // Set the first selectable UI element (the slider) in the options menu
+        EventSystem.current.SetSelectedGameObject(playButton);
+    }
+
     public void setVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
     }
+
 
     void Update()
     {
