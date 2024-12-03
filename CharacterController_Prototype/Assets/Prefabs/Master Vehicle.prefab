@@ -2168,7 +2168,7 @@ GameObject:
   - component: {fileID: 855103040707217206}
   - component: {fileID: 3402263916245530958}
   - component: {fileID: 1960615637903243695}
-  m_Layer: 19
+  m_Layer: 18
   m_Name: p1_planeIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8513,7 +8513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15810,7 +15810,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
