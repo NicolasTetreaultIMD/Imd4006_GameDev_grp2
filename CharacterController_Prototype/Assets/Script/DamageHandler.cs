@@ -79,7 +79,10 @@ public class DamageHandler : MonoBehaviour
             if (gameObject.tag == "Player" && playerId != explosivePlayerId)
             {
                 carController.health--;
-                carController.speed = 0;
+                //carController.speed = 0;
+                carController.speed = Mathf.Max(0, carController.speed - 15);
+                carController.SwitchCartState(CarController.CartState.Running);
+
                 carController.haptics.ExplosionHaptics();
 
 
@@ -129,7 +132,7 @@ public class DamageHandler : MonoBehaviour
         isStunned = false;
     }
 
-    private IEnumerator ImmunityTime()
+    public IEnumerator ImmunityTime()
     {
         yield return new WaitForSeconds(4f);
         isImmune = false;
