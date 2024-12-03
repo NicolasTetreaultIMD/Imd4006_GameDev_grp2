@@ -88,8 +88,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 38323842053506640}
   serializedVersion: 4
-  m_Mass: 1500
-  m_Drag: 0
+  m_Mass: 1
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: -0.5, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -124,10 +124,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.83, y: 0.6, z: 2.65}
-  m_Center: {x: 0, y: -0.1418711, z: -0.11}
+  m_Size: {x: 1.2974598, y: 0.6, z: 3.0110526}
+  m_Center: {x: 0, y: -0.1418711, z: 0.029930055}
 --- !u!114 &7055167592824403724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   turnSpeedToggle: 0
   maxTurnSpeed: 0
   dynamicTurnBool: 0
-  speedForPeakTurn: 20
+  speedForPeakTurn: 30
   grabManager: {fileID: 5776944967031356947}
   cameraPivotRef: {fileID: 3852233620265509722}
   poleRotateLookatRef: {fileID: 325940681475265771}
@@ -2256,7 +2256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1398394859464747619
 Transform:
   m_ObjectHideFlags: 0
@@ -8513,7 +8513,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4604344055401029457}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8725,7 +8725,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5120203693739202436}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00016949487, y: 0.9965906, z: 0.0020479658, w: 0.08248038}
+  m_LocalRotation: {x: -0.0001694969, y: 0.9965906, z: 0.0020479911, w: 0.08248034}
   m_LocalPosition: {x: 0.57, y: 1.25, z: 4.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8783,7 +8783,7 @@ GameObject:
   - component: {fileID: 3644839372322982978}
   - component: {fileID: 6950902403388345241}
   - component: {fileID: 121253474677127317}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ObstacleCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8824,7 +8824,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2410291, y: 1.330679, z: 3.274094}
+  m_Size: {x: 1.4733633, y: 1.330679, z: 3.7304318}
   m_Center: {x: 0, y: 0.02, z: -0.12297034}
 --- !u!114 &121253474677127317
 MonoBehaviour:
@@ -9048,8 +9048,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5112435, y: 1.330679, z: 0.5340204}
-  m_Center: {x: 0, y: 0.02, z: 2.1081386}
+  m_Size: {x: 1.5112435, y: 1.330679, z: 0.61146736}
+  m_Center: {x: 0, y: 0.02, z: 2.146862}
 --- !u!114 &4960174567441013848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9064,6 +9064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCarCrashSpeed: 27
   carController: {fileID: 7055167592824403724}
+  collisionManager: {fileID: 121253474677127317}
   coroutineOn: 0
 --- !u!1 &5522058444780186097
 GameObject:
@@ -15810,7 +15811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7078388969008493982}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0890304, y: 0.0000000176655, z: -0.0000000015790371, w: 0.9960289}
+  m_LocalRotation: {x: 0.0890304, y: -0.000000017665503, z: 0.0000000015790375, w: 0.9960289}
   m_LocalPosition: {x: 0, y: 3.33, z: -10.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

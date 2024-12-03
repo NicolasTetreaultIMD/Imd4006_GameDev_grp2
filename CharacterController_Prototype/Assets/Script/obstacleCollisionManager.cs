@@ -58,6 +58,8 @@ public class obstacleCollisionManager : MonoBehaviour
         }
     }
 
+    
+
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log("BANG");
