@@ -32,6 +32,8 @@ public class ItemRespawn : MonoBehaviour
         {
             gameObject.tag = "Nuke Box"; //In case of messed up math
         }
+
+        gameObject.tag = "Nuke Box";
     }
 
     // Update is called once per frame

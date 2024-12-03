@@ -122,6 +122,12 @@ public class CarController : MonoBehaviour
         cartState = CartState.Running;
     }
 
+    private void Awake()
+    {
+        health = 3;
+
+    }
+
     private void Update()
     {
         if (gameManager.GameOver == false && canMove)
