@@ -119,6 +119,8 @@ public class uiHandler : MonoBehaviour
     private bool countdownStart;
 
 
+    public GameObject gameOverScreen;
+
 
 
     // Start is called before the first frame update
@@ -169,8 +171,9 @@ public class uiHandler : MonoBehaviour
         ShowJoinPrompt_P2();
         ShowJoinPrompt_P3();
         ShowJoinPrompt_P4();
-        
 
+
+        gameOverScreen.SetActive(false);
 
     }
 
@@ -864,6 +867,9 @@ public class uiHandler : MonoBehaviour
                     }
                 }
             }
+
+            gameOverScreen.SetActive(true); //turn on game over UIs
+
         }
     }
 }
