@@ -27344,7 +27344,7 @@ GameObject:
   - component: {fileID: 949577243}
   - component: {fileID: 949577242}
   m_Layer: 5
-  m_Name: Image
+  m_Name: darkBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
