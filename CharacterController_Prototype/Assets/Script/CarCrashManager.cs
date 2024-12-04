@@ -48,7 +48,15 @@ public class CarCrashManager : MonoBehaviour
         collisionManager.cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = collisionManager.camManager.amplitudeChange + collisionManager.camManager.maxAmplitude;
         collisionManager.cinemachine.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_FrequencyGain = collisionManager.camManager.frequencyChange + collisionManager.camManager.maxFrequency;
 
-        otherDamageHandler.GetComponent<Rigidbody>().AddForce(transform.forward * 4000 * (carController.speed / carController.maxSpeed));
+        if (otherDamageHandler.GetComponent<CarController>().cartState != CarController.CartState.PoleHolding)
+        {
+            otherDamageHandler.GetComponent<Rigidbody>().AddForce(transform.forward * 4000 * (carController.speed / carController.maxSpeed));
+        }
+        else
+        {
+            otherDamageHandler.GetComponent<GrabManager>().StopGrabPole();
+        }
+
         otherDamageHandler.Hit(carController.playerId);
         coroutineOn = false;
     }

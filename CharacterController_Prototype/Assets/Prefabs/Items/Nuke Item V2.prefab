@@ -310,6 +310,8 @@ MonoBehaviour:
   playerId: 0
   foundPlayer: 0
   speed: 37.5
+  speedDecreaseValue: 0.5
+  speedDecreaseCooldown: 0
   rotationSpeed: 0
 --- !u!114 &7373736652637363746
 MonoBehaviour:

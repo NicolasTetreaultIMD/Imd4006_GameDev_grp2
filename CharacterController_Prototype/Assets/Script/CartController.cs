@@ -16,10 +16,12 @@ public class CarController : MonoBehaviour
 
     [Header("Player Input")]
     public int playerId;
+    public bool playerIsReady;
     public Vector2 leftStick;
     public float stickDeadzone;
     PlayerInput playerInput;
     private InputAction increase;
+    private InputAction readyUp;
     public HapticFeedback haptics;
 
     [Header("Health")]
@@ -111,6 +113,10 @@ public class CarController : MonoBehaviour
 
         increase = playerInput.actions["SpeedIncrease"]; // Use PlayerInput actions
         increase.performed += Increase;
+
+        readyUp = playerInput.actions["GetReady"];
+        readyUp.performed += PlayerReadyUp;
+
 
         speed = 0;
         currentTurnSpeed = 0;
@@ -241,6 +247,11 @@ public class CarController : MonoBehaviour
                 characterHider.HideObjects();
             }
         }
+    }
+
+    private void PlayerReadyUp(InputAction.CallbackContext context)
+    {
+        playerIsReady = true;
     }
 
     //Makes sure the stickInputs follow the deadzone set
@@ -385,6 +396,7 @@ public class CarController : MonoBehaviour
         //Perfoms different actions based on the new state
         switch (newState){
             case CartState.Running:
+                GetComponent<BoxCollider>().enabled = true;
                 //Debug.Log("RUNNING");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("JumpBack", 0);
@@ -392,6 +404,7 @@ public class CarController : MonoBehaviour
                 break;
 
             case CartState.InCart:
+                GetComponent<BoxCollider>().enabled = true;
                 //Debug.Log("IN CART");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("Jump", 0);
@@ -401,6 +414,7 @@ public class CarController : MonoBehaviour
             case CartState.PoleHolding:
                // Debug.Log("Holding Pole");
 
+                GetComponent<BoxCollider>().enabled = false;
 
                 //then rotate point to the right of cart
                 if (Vector3.Dot(transform.right, Vector3.Normalize(poleRotateLookatRef.position - transform.position)) > 0)
@@ -412,6 +426,7 @@ public class CarController : MonoBehaviour
                 //Rotate point to the left of cart
                 else
                 {
+                    GetComponent<BoxCollider>().enabled = true;
                     transform.LookAt(poleRotateLookatRef);
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90, 0);
                     poleTurnDirection = -1;

@@ -35,7 +35,10 @@ public class CharacterHider : MonoBehaviour
     {
         foreach (GameObject go in hide)
         {
-            go.SetActive(true);
+            if (go.name != "Hitmarker" && go.name != "Shield")
+            {
+                go.SetActive(true);
+            }
         }
     }
 

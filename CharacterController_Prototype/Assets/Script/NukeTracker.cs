@@ -13,6 +13,8 @@ public class NukeTracker : MonoBehaviour
 
     // Speed at which the object will move
     public float speed;
+    public float speedDecreaseValue;
+    public float speedDecreaseCooldown;
     public float rotationSpeed;
 
     // Start is called before the first frame update
@@ -26,6 +28,12 @@ public class NukeTracker : MonoBehaviour
     {
         if (foundPlayer)
         {
+            if (Time.time >= speedDecreaseCooldown)
+            {
+                speed -= speedDecreaseValue;
+                speedDecreaseCooldown = Time.time + 0.5f;
+            }
+
             if (target.gameObject.GetComponent<CarController>().playerId != playerId)
             {
                 projectileScript.madeContact = true;
@@ -50,9 +58,12 @@ public class NukeTracker : MonoBehaviour
             //Debug.Log("Sender PlayerId: " + playerId + " Target PlayerId: " + other.gameObject.GetComponent<CarController>().playerId);
             if (other.gameObject.GetComponent<CarController>().playerId != playerId)
             {
-                target = other.gameObject;
-                foundPlayer = true;
-                StartCoroutine(FadeOut());
+                if (other.gameObject.GetComponent<CarController>().health > 0)
+                {
+                    target = other.gameObject;
+                    foundPlayer = true;
+                    StartCoroutine(FadeOut());
+                }
             }
         }
     }
