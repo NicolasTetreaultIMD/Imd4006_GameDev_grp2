@@ -45739,6 +45739,11 @@ MonoBehaviour:
   - {fileID: 2004953563}
   - {fileID: 15121180}
   - {fileID: 943736075}
+  playerControlsUI:
+  - {fileID: 1604398104}
+  - {fileID: 2053260154}
+  - {fileID: 1380645611}
+  - {fileID: 1586938745}
   p0_currentBomb: {fileID: 1064776285}
   p0_currentMine: {fileID: 658103908}
   p0_currentNuke: {fileID: 1345771657}

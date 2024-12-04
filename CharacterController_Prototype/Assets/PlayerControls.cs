@@ -457,6 +457,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""GetReady"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""25a27ef2-c7bb-48cb-be86-1c5af85fb91b"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GetReady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
