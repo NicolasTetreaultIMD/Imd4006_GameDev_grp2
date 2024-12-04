@@ -196,14 +196,6 @@ public class uiHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            players[0].gameObject.GetComponent<CarController>().health = 1;
-            players[1].gameObject.GetComponent<CarController>().health = 1;
-            players[2].gameObject.GetComponent<CarController>().health = 1;
-        }
-
-
         // SHOW UI dependent on player count
         if (playerCount == 0)
         {
