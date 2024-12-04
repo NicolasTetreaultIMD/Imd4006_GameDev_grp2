@@ -81,7 +81,10 @@ public class DamageHandler : MonoBehaviour
                 carController.health--;
                 //carController.speed = 0;
                 carController.speed = Mathf.Max(0, carController.speed - 15);
-                carController.SwitchCartState(CarController.CartState.Running);
+                if (carController.cartState != CarController.CartState.PoleHolding)
+                {
+                    carController.SwitchCartState(CarController.CartState.Running);
+                }
 
                 carController.haptics.ExplosionHaptics();
 

@@ -235,7 +235,7 @@ public class GrabManager : MonoBehaviour
     }
 
     //Leave the pole grabbing state
-    private void StopGrabPole()
+    public void StopGrabPole()
     {
         if (carController.cartState == CarController.CartState.PoleHolding)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.VFX;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 
 public class uiHandler : MonoBehaviour
@@ -115,11 +116,11 @@ public class uiHandler : MonoBehaviour
     public GameObject p3_loser;
 
     private bool tutorialFlag;
-
     private bool countdownStart;
-
-
     public GameObject gameOverScreen;
+    public int playersAliveCount;
+
+    public bool ifShowMenuScreen;
 
 
 
@@ -180,6 +181,14 @@ public class uiHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            players[0].gameObject.GetComponent<CarController>().health = 1;
+            players[1].gameObject.GetComponent<CarController>().health = 1;
+            players[2].gameObject.GetComponent<CarController>().health = 1;
+        }
+
+
         // SHOW UI dependent on player count
         if (playerCount == 0)
         {
@@ -189,11 +198,11 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P4();
         }
 
-        if (playerCount == 1) 
+        if (playerCount == 1)
         {
             p0_ammoFrame.SetActive(true);
             p0_pressAtoJoin.SetActive(false); // hide press A to join
-            
+
             // SHOW JOIN PROMPTS FOR REMAINING PLAYERS
             ShowJoinPrompt_P2();
             ShowJoinPrompt_P3();
@@ -214,7 +223,7 @@ public class uiHandler : MonoBehaviour
             players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
         }
 
-        if (playerCount == 3) 
+        if (playerCount == 3)
         {
             p2_ammoFrame.SetActive(true);
             p2_pressAtoJoin.SetActive(false); // hide press A to join
@@ -244,7 +253,7 @@ public class uiHandler : MonoBehaviour
         {
 
             // PLAYER 1 has AMMO
-            if (players[0].GetComponent<CarController>().cannon.projectile.Count >= 1) 
+            if (players[0].GetComponent<CarController>().cannon.projectile.Count >= 1)
             {
                 ShowCurrentAmmoType(0, players[0].GetComponent<CarController>().cannon.projectile[0].name); // Show current ammo type
 
@@ -265,7 +274,7 @@ public class uiHandler : MonoBehaviour
             CurrentHealth(0, players[0].GetComponent<CarController>().health); // Show current player health
         }
 
-        if (playerCount >= 2) 
+        if (playerCount >= 2)
         {
             // PLAYER 2 has AMMO
             if (players[1].GetComponent<CarController>().cannon.projectile.Count >= 1)
@@ -340,7 +349,7 @@ public class uiHandler : MonoBehaviour
 
         }
         // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
-        if (playerCount ==4)
+        if (playerCount == 4)
         {
             DetectWinner();
         }
@@ -647,7 +656,6 @@ public class uiHandler : MonoBehaviour
             }
             if (health == 0)
             {
-                Debug.Log("PLAYER 2 OUT");
                 p1_health3.SetActive(false);
                 p1_health2.SetActive(false);
                 p1_health1.SetActive(false);
@@ -821,8 +829,7 @@ public class uiHandler : MonoBehaviour
 
     public void DetectWinner() // Function detects whether there is a game winner
     {
-        int playersAliveCount = 0;
-
+        playersAliveCount = 0;
         for(int i = 0; i < playerAliveIndex.Length; i++)
         {
             if (playerAliveIndex[i])
@@ -867,9 +874,18 @@ public class uiHandler : MonoBehaviour
                     }
                 }
             }
-
-            gameOverScreen.SetActive(true); //turn on game over UIs
+            if (!ifShowMenuScreen)
+            {
+                StartCoroutine(GameOverScreen());
+            }
 
         }
+    }
+
+    private IEnumerator GameOverScreen()
+    {
+        ifShowMenuScreen = true;
+        yield return new WaitForSeconds(1.5f);
+        gameOverScreen.SetActive(true); //turn on game over UIs
     }
 }

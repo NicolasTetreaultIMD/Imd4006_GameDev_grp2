@@ -385,6 +385,7 @@ public class CarController : MonoBehaviour
         //Perfoms different actions based on the new state
         switch (newState){
             case CartState.Running:
+                GetComponent<BoxCollider>().enabled = true;
                 //Debug.Log("RUNNING");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("JumpBack", 0);
@@ -392,6 +393,7 @@ public class CarController : MonoBehaviour
                 break;
 
             case CartState.InCart:
+                GetComponent<BoxCollider>().enabled = true;
                 //Debug.Log("IN CART");
                 runnerAnimController.ChangeWeight(0, 1);
                 runnerAnimController.ChangeAnimation("Jump", 0);
@@ -401,6 +403,7 @@ public class CarController : MonoBehaviour
             case CartState.PoleHolding:
                // Debug.Log("Holding Pole");
 
+                GetComponent<BoxCollider>().enabled = false;
 
                 //then rotate point to the right of cart
                 if (Vector3.Dot(transform.right, Vector3.Normalize(poleRotateLookatRef.position - transform.position)) > 0)
@@ -412,6 +415,7 @@ public class CarController : MonoBehaviour
                 //Rotate point to the left of cart
                 else
                 {
+                    GetComponent<BoxCollider>().enabled = true;
                     transform.LookAt(poleRotateLookatRef);
                     transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 90, 0);
                     poleTurnDirection = -1;
