@@ -130,11 +130,12 @@ public class CarController : MonoBehaviour
 
     private void Update()
     {
+        float newLowerBodySpeed = speed / 18.75f;
+        animator.SetFloat("LowerBodySpeed", newLowerBodySpeed);
+
         if (gameManager.GameOver == false && canMove)
         {
-            //Syncs the speed of the player's leg animation to the player's actual speed in the game.
-            float newLowerBodySpeed = speed / 18.75f;
-            animator.SetFloat("LowerBodySpeed", newLowerBodySpeed);
+            //Syncs the speed of the player's leg animation to the player's actual speed in the game.      
 
             //Transition for the runner to go to the shooter position
             if (goingToShooterSpot)
