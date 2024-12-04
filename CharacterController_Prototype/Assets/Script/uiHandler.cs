@@ -196,7 +196,7 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
 
-            players[0].gameObject.GetComponent<CarController>().health = 3;
+            players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health
         }
 
         if (playerCount == 2)
@@ -207,8 +207,8 @@ public class uiHandler : MonoBehaviour
             ShowJoinPrompt_P3();
             ShowJoinPrompt_P4();
 
-            players[0].gameObject.GetComponent<CarController>().health = 3;
-            players[1].gameObject.GetComponent<CarController>().health = 3;
+            players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+            players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
         }
 
         if (playerCount == 3) 
@@ -217,9 +217,9 @@ public class uiHandler : MonoBehaviour
             p2_pressAtoJoin.SetActive(false); // hide press A to join
             ShowJoinPrompt_P4();
 
-            players[0].gameObject.GetComponent<CarController>().health = 3;
-            players[1].gameObject.GetComponent<CarController>().health = 3;
-            players[2].gameObject.GetComponent<CarController>().health = 3;
+            players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+            players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+            players[2].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
         }
 
         if (playerCount == 4)
@@ -337,7 +337,7 @@ public class uiHandler : MonoBehaviour
 
         }
         // DETECT WHEN THERE IS A WINNER IF > 2 PLAYERS
-        if (playerCount >=2)
+        if (playerCount ==4)
         {
             DetectWinner();
         }
@@ -530,7 +530,7 @@ public class uiHandler : MonoBehaviour
         {
             bomb.SetActive(type == "Bomb Item");
             mine.SetActive(type == "Mine Item");
-            nuke.SetActive(type == "Nuke Item");
+            nuke.SetActive(type == "Nuke Item V2");
             trap.SetActive(type == "Trap Item");
         }
 
@@ -560,7 +560,7 @@ public class uiHandler : MonoBehaviour
         {
             bomb.SetActive(type == "Bomb Item");
             mine.SetActive(type == "Mine Item");
-            nuke.SetActive(type == "Nuke Item");
+            nuke.SetActive(type == "Nuke Item V2");
             trap.SetActive(type == "Trap Item");
         }
 
@@ -576,7 +576,7 @@ public class uiHandler : MonoBehaviour
         {
             SetItemState(p2_nextBomb, p2_nextMine, p2_nextNuke, p2_nextTrap, type);
         }
-        else if (playerID == 4) // SECOND PLAYER
+        else if (playerID == 3) // SECOND PLAYER
         {
             SetItemState(p3_nextBomb, p3_nextMine, p3_nextNuke, p3_nextTrap, type);
         }
@@ -615,6 +615,7 @@ public class uiHandler : MonoBehaviour
                 p0_health2.SetActive(false);
                 p0_health1.SetActive(false);
                 p0_health0.SetActive(true);
+                p0_loser.SetActive(true);
             }
         }
 
@@ -643,10 +644,13 @@ public class uiHandler : MonoBehaviour
             }
             if (health == 0)
             {
+                Debug.Log("PLAYER 2 OUT");
                 p1_health3.SetActive(false);
                 p1_health2.SetActive(false);
                 p1_health1.SetActive(false);
                 p1_health0.SetActive(true);
+                p1_loser.SetActive(true);
+
             }
         }
 
@@ -679,6 +683,8 @@ public class uiHandler : MonoBehaviour
                 p2_health2.SetActive(false);
                 p2_health1.SetActive(false);
                 p2_health0.SetActive(true);
+                p2_loser.SetActive(true);
+
             }
         }
 
@@ -711,6 +717,8 @@ public class uiHandler : MonoBehaviour
                 p3_health2.SetActive(false);
                 p3_health1.SetActive(false);
                 p3_health0.SetActive(true);
+                p3_loser.SetActive(true);
+
             }
         }
     }

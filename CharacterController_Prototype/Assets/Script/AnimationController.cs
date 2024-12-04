@@ -7,12 +7,16 @@ public class AnimationController : MonoBehaviour
 {
 
     string currentAnimation = "";
-    Animator animator;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    private void Awake()
+    {
     }
 
     // Update is called once per frame
@@ -33,8 +37,9 @@ public class AnimationController : MonoBehaviour
         }
     }
 
-    public void ChangeAnimation(string animation, int layer, float crossfade = 0.2f)
+    public void ChangeAnimation(string animation, int layer )
     {
+        float crossfade = 0.2f;
         if (currentAnimation != animation)
         {
             currentAnimation = animation;

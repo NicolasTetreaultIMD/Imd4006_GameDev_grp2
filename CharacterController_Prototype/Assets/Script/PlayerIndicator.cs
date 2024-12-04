@@ -27,7 +27,7 @@ public class PlayerIndicators : MonoBehaviour
     {
         players = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>().getPlayers();
 
-        // Find all the pole objects in the scene by tag
+        // ARROW INDICATORS ABOVE THE PLAYERS
         if (carController.playerId == 0)
         {
             playerIndicators[0].SetActive(true);
@@ -69,6 +69,7 @@ public class PlayerIndicators : MonoBehaviour
             players = GameObject.Find("MultiplayerManager").GetComponent<MultiplayerManager>().getPlayers();
         }
 
+        // Track the position of each player relative to one another
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].playerIndex != carController.playerId)
@@ -79,6 +80,14 @@ public class PlayerIndicators : MonoBehaviour
                 }
                 playerPlaneIndicators[i].transform.LookAt(players[i].gameObject.transform);
             }
+
+            // HIDE player indicators for all dead players
+            //if (players[i].GetComponent<CarController>().health == 0)
+            //{
+            //    playerPlaneIndicators[i].SetActive(false);
+            //   // players[i].gameObject.transform.root.Find("PlayerPlaneIndicatorParent").gameObject.SetActive(false);
+            //}
+
         }
     }
 }
