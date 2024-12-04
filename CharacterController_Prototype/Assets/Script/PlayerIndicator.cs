@@ -82,11 +82,11 @@ public class PlayerIndicators : MonoBehaviour
             }
 
             // HIDE player indicators for all dead players
-            //if (players[i].GetComponent<CarController>().health == 0)
-            //{
-            //    playerPlaneIndicators[i].SetActive(false);
-            //   // players[i].gameObject.transform.root.Find("PlayerPlaneIndicatorParent").gameObject.SetActive(false);
-            //}
+            if (players[i].GetComponent<CarController>().health == 0)
+            {
+                playerPlaneIndicators[i].SetActive(false);
+                // players[i].gameObject.transform.root.Find("PlayerPlaneIndicatorParent").gameObject.SetActive(false);
+            }
 
         }
     }
