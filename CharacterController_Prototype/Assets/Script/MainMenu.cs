@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.EventSystems;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
 
@@ -78,6 +78,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void quitGame()
     {
+        Debug.Log("QUIT!");
         Application.Quit();
     }
 
