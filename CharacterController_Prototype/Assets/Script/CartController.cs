@@ -16,10 +16,12 @@ public class CarController : MonoBehaviour
 
     [Header("Player Input")]
     public int playerId;
+    public bool playerIsReady;
     public Vector2 leftStick;
     public float stickDeadzone;
     PlayerInput playerInput;
     private InputAction increase;
+    private InputAction readyUp;
     public HapticFeedback haptics;
 
     [Header("Health")]
@@ -111,6 +113,10 @@ public class CarController : MonoBehaviour
 
         increase = playerInput.actions["SpeedIncrease"]; // Use PlayerInput actions
         increase.performed += Increase;
+
+        readyUp = playerInput.actions["GetReady"];
+        readyUp.performed += PlayerReadyUp;
+
 
         speed = 0;
         currentTurnSpeed = 0;
@@ -241,6 +247,11 @@ public class CarController : MonoBehaviour
                 characterHider.HideObjects();
             }
         }
+    }
+
+    private void PlayerReadyUp(InputAction.CallbackContext context)
+    {
+        playerIsReady = true;
     }
 
     //Makes sure the stickInputs follow the deadzone set

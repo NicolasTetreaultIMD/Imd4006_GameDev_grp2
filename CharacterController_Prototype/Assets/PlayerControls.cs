@@ -116,6 +116,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""GetReady"",
+                    ""type"": ""Value"",
+                    ""id"": ""c231824e-f9a4-4f6c-8ed0-520490189d91"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -426,6 +435,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""CannonPower"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96be68a1-52f1-4b37-b660-d0a960edcbd3"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GetReady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""297f6dc4-fd98-4c93-9443-c5eae7746f52"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GetReady"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -444,6 +475,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_BumpLeft = m_Gameplay.FindAction("BumpLeft", throwIfNotFound: true);
         m_Gameplay_BumpRight = m_Gameplay.FindAction("BumpRight", throwIfNotFound: true);
         m_Gameplay_LookBack = m_Gameplay.FindAction("LookBack", throwIfNotFound: true);
+        m_Gameplay_GetReady = m_Gameplay.FindAction("GetReady", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -515,6 +547,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_BumpLeft;
     private readonly InputAction m_Gameplay_BumpRight;
     private readonly InputAction m_Gameplay_LookBack;
+    private readonly InputAction m_Gameplay_GetReady;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -529,6 +562,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @BumpLeft => m_Wrapper.m_Gameplay_BumpLeft;
         public InputAction @BumpRight => m_Wrapper.m_Gameplay_BumpRight;
         public InputAction @LookBack => m_Wrapper.m_Gameplay_LookBack;
+        public InputAction @GetReady => m_Wrapper.m_Gameplay_GetReady;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -568,6 +602,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LookBack.started += instance.OnLookBack;
             @LookBack.performed += instance.OnLookBack;
             @LookBack.canceled += instance.OnLookBack;
+            @GetReady.started += instance.OnGetReady;
+            @GetReady.performed += instance.OnGetReady;
+            @GetReady.canceled += instance.OnGetReady;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -602,6 +639,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @LookBack.started -= instance.OnLookBack;
             @LookBack.performed -= instance.OnLookBack;
             @LookBack.canceled -= instance.OnLookBack;
+            @GetReady.started -= instance.OnGetReady;
+            @GetReady.performed -= instance.OnGetReady;
+            @GetReady.canceled -= instance.OnGetReady;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -631,5 +671,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBumpLeft(InputAction.CallbackContext context);
         void OnBumpRight(InputAction.CallbackContext context);
         void OnLookBack(InputAction.CallbackContext context);
+        void OnGetReady(InputAction.CallbackContext context);
     }
 }

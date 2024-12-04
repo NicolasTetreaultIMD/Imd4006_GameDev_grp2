@@ -64,6 +64,16 @@ public class NewBehaviourScript : MonoBehaviour
 
         uiHandler.DetectWinner();
         uiHandler.PlayersReady();
+
+        uiHandler.playerControlsUI[0].SetActive(true);
+        uiHandler.playerControlsUI[1].SetActive(true);
+        uiHandler.playerControlsUI[2].SetActive(true);
+        uiHandler.playerControlsUI[3].SetActive(true);
+
+        uiHandler.p0_ammoFrame.SetActive(true);
+        uiHandler.p1_ammoFrame.SetActive(true);
+        uiHandler.p2_ammoFrame.SetActive(true);
+        uiHandler.p3_ammoFrame.SetActive(true);
     }
 
     public void quitGame()

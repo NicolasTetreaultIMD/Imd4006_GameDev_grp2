@@ -16,6 +16,13 @@ public class uiHandler : MonoBehaviour
     public GameObject p2_ammoFrame;
     public GameObject p3_ammoFrame;
 
+    [Header("Waiting Room UI")]
+    public List<GameObject> waitingPlayersUI = new List<GameObject>();
+    public List<GameObject> readyPlayersUI = new List<GameObject>();
+
+    [Header("controls UI")]
+    public List<GameObject> playerControlsUI = new List<GameObject>();
+
     [Header("Ammo Types")]
     public GameObject p0_currentBomb;
     public GameObject p0_currentMine;
@@ -88,6 +95,7 @@ public class uiHandler : MonoBehaviour
 
     [Header("Accelerate Prompt")]
     public GameObject[] player_accelerate = new GameObject [4];
+    Vector3 originalScaleAccUI;
 
     [Header("PlayerJoin")]
     public int playerCount;
@@ -117,6 +125,7 @@ public class uiHandler : MonoBehaviour
 
     private bool tutorialFlag;
     private bool countdownStart;
+    private bool gameStart;
     public GameObject gameOverScreen;
     public int playersAliveCount;
 
@@ -159,6 +168,12 @@ public class uiHandler : MonoBehaviour
         player_bump_disabled[2].SetActive(false);
         player_bump_disabled[3].SetActive(false);
 
+        originalScaleAccUI = player_accelerate[0].transform.localScale;
+
+        StartCoroutine(ScalePrompt(player_accelerate[0].transform, 0));
+        StartCoroutine(ScalePrompt(player_accelerate[1].transform, 1));
+        StartCoroutine(ScalePrompt(player_accelerate[2].transform, 2));
+        StartCoroutine(ScalePrompt(player_accelerate[3].transform, 3));
 
         countdownStart = false;
         playerCount = 0;
@@ -168,10 +183,10 @@ public class uiHandler : MonoBehaviour
         p2_winner.SetActive(false);
         p3_winner.SetActive(false);
         awaitingPlayers.SetActive(true);
-        ShowJoinPrompt_P1();
-        ShowJoinPrompt_P2();
-        ShowJoinPrompt_P3();
-        ShowJoinPrompt_P4();
+        ShowJoinPrompt_P1(true);
+        ShowJoinPrompt_P2(true);
+        ShowJoinPrompt_P3(true);
+        ShowJoinPrompt_P4(true);
 
 
         gameOverScreen.SetActive(false);
@@ -192,10 +207,10 @@ public class uiHandler : MonoBehaviour
         // SHOW UI dependent on player count
         if (playerCount == 0)
         {
-            ShowJoinPrompt_P1();
-            ShowJoinPrompt_P2();
-            ShowJoinPrompt_P3();
-            ShowJoinPrompt_P4();
+            ShowJoinPrompt_P1(true);
+            ShowJoinPrompt_P2(true);
+            ShowJoinPrompt_P3(true);
+            ShowJoinPrompt_P4(true);
         }
 
         if (playerCount == 1)
@@ -204,9 +219,11 @@ public class uiHandler : MonoBehaviour
             p0_pressAtoJoin.SetActive(false); // hide press A to join
 
             // SHOW JOIN PROMPTS FOR REMAINING PLAYERS
-            ShowJoinPrompt_P2();
-            ShowJoinPrompt_P3();
-            ShowJoinPrompt_P4();
+            ShowJoinPrompt_P2(true);
+            ShowJoinPrompt_P3(true);
+            ShowJoinPrompt_P4(true);
+
+            HandleReadyUI(1);
 
             players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health
         }
@@ -216,8 +233,10 @@ public class uiHandler : MonoBehaviour
 
             p1_ammoFrame.SetActive(true);
             p1_pressAtoJoin.SetActive(false); // hide press A to join
-            ShowJoinPrompt_P3();
-            ShowJoinPrompt_P4();
+            ShowJoinPrompt_P3(true);
+            ShowJoinPrompt_P4(true);
+
+            HandleReadyUI(2);
 
             players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
             players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
@@ -227,7 +246,9 @@ public class uiHandler : MonoBehaviour
         {
             p2_ammoFrame.SetActive(true);
             p2_pressAtoJoin.SetActive(false); // hide press A to join
-            ShowJoinPrompt_P4();
+            ShowJoinPrompt_P4(true);
+
+            HandleReadyUI(3);
 
             players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
             players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
@@ -236,16 +257,38 @@ public class uiHandler : MonoBehaviour
 
         if (playerCount == 4)
         {
-            p3_ammoFrame.SetActive(true);
             p3_pressAtoJoin.SetActive(false); // hide press A to join
             // Show tutorial when all players are in the lobby
 
+            HandleReadyUI(4);
+
+            if (!gameStart)
+            {
+                p3_ammoFrame.SetActive(true);
+                players[0].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+                players[1].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+                players[2].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+                players[3].gameObject.GetComponent<CarController>().health = 3; // Players will always have max health while waiting for players to join
+            }
 
             if (!countdownStart)
             {
+                if (players[0].gameObject.GetComponent<CarController>().playerIsReady &&
+                    players[1].gameObject.GetComponent<CarController>().playerIsReady &&
+                    players[2].gameObject.GetComponent<CarController>().playerIsReady &&
+                    players[3].gameObject.GetComponent<CarController>().playerIsReady)
+                {
+                    PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
+                    countdownStart = true;
+                    gameStart = true;
+                }
+            }
+
+            /*if (!countdownStart)
+            {
                 PlayersReady(); // REMOVE WAITING SCREEN AND START COUNTDOWN
                 countdownStart = true;
-            }
+            }*/
         }
 
         // Update the UI text to show the projectile count
@@ -358,11 +401,11 @@ public class uiHandler : MonoBehaviour
         for (int i = 0; i < playerCount; i++)
         {
             //Show prompt to PRESS A to accelerate.Scale it up and down
-            if (players[i].GetComponent<CarController>().cartState == CarController.CartState.Running) // If cart is in running state, prompt the player to press A
+            if (players[i].GetComponent<CarController>().cartState == CarController.CartState.Running && players[i].GetComponent<CarController>().health > 0) // If cart is in running state, prompt the player to press A
             {
                 // SHOW PROMPT TO TAP A to move
                 player_accelerate[i].SetActive(true);
-                StartCoroutine(ScalePrompt(player_accelerate[i].transform, i)); // scale it up and down once
+                //StartCoroutine(ScalePrompt(player_accelerate[i].transform, i)); // scale it up and down once
 
             }
             else // Player does not require prompt
@@ -379,6 +422,18 @@ public class uiHandler : MonoBehaviour
         }
 
 
+    }
+
+    private void HandleReadyUI(int playerCount)
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            if (players[i].GetComponent<CarController>().playerIsReady)
+            {
+                waitingPlayersUI[i].SetActive(false);
+                readyPlayersUI[i].SetActive(true);
+            }
+        }
     }
 
     // When the player uses a bump, show a disabled display
@@ -510,15 +565,17 @@ public class uiHandler : MonoBehaviour
     {
         float scaleDuration = 0.5f; // Duration of one scale up or down
         float scaleAmount = 1.2f;   // Scale factor for the animation
-        Vector3 originalScale = promptTransform.localScale;
-        Vector3 targetScale = originalScale * scaleAmount;
+        promptTransform.localScale = originalScaleAccUI;
+        Vector3 curScale = promptTransform.localScale;
+        Vector3 targetScale = originalScaleAccUI * scaleAmount;
 
         // Scale up
-        yield return LerpScale(promptTransform, originalScale, targetScale, scaleDuration / 2);
+        yield return LerpScale(promptTransform, curScale, targetScale, scaleDuration / 2);
 
         // Scale down
-        yield return LerpScale(promptTransform, targetScale, originalScale, scaleDuration / 2);
+        yield return LerpScale(promptTransform, targetScale, curScale, scaleDuration / 2);
 
+        StartCoroutine(ScalePrompt(promptTransform, index));
     }
 
     private IEnumerator LerpScale(Transform target, Vector3 from, Vector3 to, float duration)
@@ -628,6 +685,8 @@ public class uiHandler : MonoBehaviour
                 p0_health1.SetActive(false);
                 p0_health0.SetActive(true);
                 p0_loser.SetActive(true);
+                ShowJoinPrompt_P1(false);
+                playerControlsUI[0].SetActive(false);
             }
         }
 
@@ -661,6 +720,8 @@ public class uiHandler : MonoBehaviour
                 p1_health1.SetActive(false);
                 p1_health0.SetActive(true);
                 p1_loser.SetActive(true);
+                ShowJoinPrompt_P2(false);
+                playerControlsUI[1].SetActive(false);
 
             }
         }
@@ -695,6 +756,8 @@ public class uiHandler : MonoBehaviour
                 p2_health1.SetActive(false);
                 p2_health0.SetActive(true);
                 p2_loser.SetActive(true);
+                ShowJoinPrompt_P3(false);
+                playerControlsUI[2].SetActive(false);
 
             }
         }
@@ -729,6 +792,8 @@ public class uiHandler : MonoBehaviour
                 p3_health1.SetActive(false);
                 p3_health0.SetActive(true);
                 p3_loser.SetActive(true);
+                ShowJoinPrompt_P4(false);
+                playerControlsUI[3].SetActive(false);
 
             }
         }
@@ -744,9 +809,9 @@ public class uiHandler : MonoBehaviour
         playerCount--;
     }
 
-    private void ShowJoinPrompt_P1() // HIDE PLAYER 1 PROMPT
+    private void ShowJoinPrompt_P1(bool pressToJoin) // HIDE PLAYER 1 PROMPT
     {
-        p0_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+        p0_pressAtoJoin.SetActive(pressToJoin); // SHOW JOIN PROMPT
 
         // hide UI's by default
         p0_ammoFrame.SetActive(false);
@@ -767,9 +832,9 @@ public class uiHandler : MonoBehaviour
 
     }
 
-    private void ShowJoinPrompt_P2() // HIDE PLAYER 2 UI
+    private void ShowJoinPrompt_P2(bool pressToJoin) // HIDE PLAYER 2 UI
     {
-        p1_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+        p1_pressAtoJoin.SetActive(pressToJoin); // SHOW JOIN PROMPT
 
         p1_ammoFrame.SetActive(false);
         p1_currentBomb.SetActive(false);
@@ -787,9 +852,9 @@ public class uiHandler : MonoBehaviour
         p1_health0.SetActive(false);
     }
 
-    private void ShowJoinPrompt_P3() // HIDE PLAYER 2 UI
+    private void ShowJoinPrompt_P3(bool pressToJoin) // HIDE PLAYER 2 UI
     {
-        p2_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+        p2_pressAtoJoin.SetActive(pressToJoin); // SHOW JOIN PROMPT
 
         p2_ammoFrame.SetActive(false);
         p2_currentBomb.SetActive(false);
@@ -807,9 +872,9 @@ public class uiHandler : MonoBehaviour
         p2_health0.SetActive(false);
     }
 
-    private void ShowJoinPrompt_P4() // HIDE PLAYER 3 UI
+    private void ShowJoinPrompt_P4(bool pressToJoin) // HIDE PLAYER 3 UI
     {
-        p3_pressAtoJoin.SetActive(true); // SHOW JOIN PROMPT
+        p3_pressAtoJoin.SetActive(pressToJoin); // SHOW JOIN PROMPT
 
         p3_ammoFrame.SetActive(false);
         p3_currentBomb.SetActive(false);
