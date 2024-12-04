@@ -12,19 +12,19 @@ public class ItemRespawn : MonoBehaviour
     {
         int randomTag = Random.Range(1, 101);
 
-        if (randomTag > 0 && randomTag <= 27.5f) // 27.5% chance
+        if (randomTag > 0 && randomTag <= 40f) // 40% chance
         {
             gameObject.tag = "Bomb Box";
         }
-        else if (randomTag > 27.5f && randomTag <= 55) // 27.5% chance
+        else if (randomTag > 40f && randomTag <= 70) // 30% chance
         {
             gameObject.tag = "Mine Box";
         }
-        else if (randomTag > 55 && randomTag <= 82.5f) // 27.5% chance
+        else if (randomTag > 70 && randomTag <= 85) // 15% chance
         {
             gameObject.tag = "Trap Box";
         }
-        else if (randomTag > 82.5f && randomTag <= 100) // 17.5% chance
+        else if (randomTag > 85f && randomTag <= 100) // 15% chance
         {
             gameObject.tag = "Nuke Box";
         }
@@ -32,6 +32,7 @@ public class ItemRespawn : MonoBehaviour
         {
             gameObject.tag = "Nuke Box"; //In case of messed up math
         }
+        //gameObject.tag = "Nuke Box";
     }
 
     // Update is called once per frame
