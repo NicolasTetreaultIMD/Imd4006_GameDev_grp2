@@ -132,7 +132,10 @@ public class DamageHandler : MonoBehaviour
     private IEnumerator StunDuration()
     {
         yield return new WaitForSeconds(3f);
-        isStunned = false;
+        if (carController.health > 0)
+        {
+            isStunned = false;
+        }
     }
 
     public IEnumerator ImmunityTime()
