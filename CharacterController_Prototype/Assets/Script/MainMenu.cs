@@ -12,7 +12,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject volumeSlider;
     public GameObject playButton;
-    public Transform explosion; // Assign your sprite's Transform here in the Inspector
+    public Transform explosion;
 
     public void startGame()
     {
@@ -26,14 +26,19 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void optionsMenu()
     {
-        // Set the first selectable UI element (the slider) in the options menu
+        //set volume slider as first button
         EventSystem.current.SetSelectedGameObject(volumeSlider);
+    }
+
+    public void playButtonSelect()
+    {
+        //set first button to playButton
+        EventSystem.current.SetSelectedGameObject(playButton);
     }
 
     public void mainMenu()
     {
-        // Set the first selectable UI element (the slider) in the options menu
-        EventSystem.current.SetSelectedGameObject(playButton);
+        SceneManager.LoadScene(0);
     }
 
     public void setVolume(float volume)
